@@ -4,7 +4,7 @@ from calendar import datetime
 from datetime import timedelta
 
 # Chemin vers le fichier iCalendar
-ics_file = 'Calendar/ADECal.ics'
+ics_file = './Calendar/ADECal.ics'
 
 # Date de référence pour la conversion (par exemple, la date actuelle)
 reference_date = datetime.date.today()
@@ -21,16 +21,17 @@ reference_timezone = timezone('Europe/Paris')
 
 # Parcourir les événements du calendrier
 for event in calendar.events:
-    # Convertir la date de début en UTC
+    # Convertir la date de début en UTC + 2h pour se mettre à l'heure
     start_utc = event.begin.astimezone(timezone('UTC')) + timedelta(minutes=120)
 
-    # Convertir la date de fin en UTC
+    # Convertir la date de fin en UTC + 2h pour se mettre à l'heure
     end_utc = event.end.astimezone(timezone('UTC')) + timedelta(minutes=120)
 
     print("Titre :", event.name)
     print("Date de début (UTC) :", start_utc)
     print("Date de fin (UTC) :", end_utc)
     print("Description :", event.description)
+    print("Salle :", event.location)
     # Comparer la date actuel avec la date de début du module pour filtrer les événements au jour même
     #if start_utc.date() == reference_date:
 
