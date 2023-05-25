@@ -4,7 +4,7 @@ import datetime
 
 intents = Intents.default()
 
-TOKEN = "MTExMDk2NzMxODU1MDQzMzgyMw.GiYq4d.5b6jdZeAmo0W7ZsLSPOW3upVy9N-7BOurARb5s"
+TOKEN = "MTExMDk2NzMxODU1MDQzMzgyMw.GiO2NB.1Gevd3Q159xq0hvItQd016xH97EnSP4RpaMofI"
 
 bot = Bot(command_prefix='!', intents=intents)
 
@@ -12,15 +12,20 @@ bot = Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print(f'Logged in as {bot.user.name} ({bot.user.id})')
 
-@bot.command(description = "Teste")
+@bot.command(description = "Verify bot's connection")
 async def ping(ctx : ApplicationContext):
     await ctx.interaction.response.send_message(f"Pong! {bot.latency*1000:.0f} ms")
 
+@bot.command(description = "Ask your schedule")
+async def schedule(ctx : ApplicationContext, message):
+    
+    user = ctx.author
+    await user.send(message)
+    await ctx.interaction.response.send_message("Done !")
+    
 
-@bot.event
-async def on_ready():
-    print(f'Logged in as {bot.user.name}')
-
+    
+"""
 @tasks.loop(hours=1)
 async def send_private_messages():
     users = [479649694033641502, 363011509564997642, 534827724183699476, 238995072740229121]
@@ -44,5 +49,6 @@ async def before_send_private_messages():
     await asyncio.sleep(time_until_target)
 
 send_private_messages.start()
+"""
 
 bot.run(TOKEN)
