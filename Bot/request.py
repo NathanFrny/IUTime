@@ -61,4 +61,9 @@ def lessons_TP(tp: str):
     
     return lessons
 
-print(lessons_TP("TPA"))
+def trie(cours_dict):
+    sorted_dict = dict(sorted(cours_dict.items(), key=lambda x: x[0]))
+    return sorted_dict
+
+
+print(trie(lessons_TP("TPA")))

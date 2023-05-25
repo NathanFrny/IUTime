@@ -1,7 +1,7 @@
 from discord import *
 from discord.ext import commands, tasks
 import datetime
-from request import lessons_TP
+from request import lessons_TP, trie
 
 intents = Intents.default()
 
@@ -13,25 +13,34 @@ bot = Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print(f'Logged in as {bot.user.name} ({bot.user.id})')
 
-@bot.command(description = "Verify bot's connection")
-async def ping(ctx : ApplicationContext):
-    await ctx.interaction.response.send_message(f"Pong! {bot.latency*1000:.0f} ms")
+@bot.command(description="Ask your schedule")
+async def schedule(ctx: ApplicationContext, tp):
 
-@bot.command(description = "Ask your schedule")
-async def schedule(ctx : ApplicationContext, tp):
-    
     user = ctx.author
     date = datetime.date.today()
-    
+    schedule = trie(lessons_TP(tp))
     embed = Embed(
         title='Schedule',
         description=f"Voici l'emploi du temps du {tp}",
         color=0x9370DB  # Couleur violette (vous pouvez modifier la couleur selon vos préférences)
     )
-    
-    embed.add_field(name=str(date), value="testevalue\nça c'est aprés le retour a la ligne")
+
+    for heures in schedule.keys():
+        debut = heures
+        cours = schedule[heures]["Cours"]
+        salle = schedule[heures]["Salle"]
+        prof = schedule[heures]["Prof"]
+        heure_fin = schedule[heures]["Heure de fin"]
+
+        embed.add_field(
+            name=cours,
+            value=f"Début: {debut}\nSalle: {salle}\nProf: {prof}\nHeure de fin: {heure_fin}\n\n",
+            inline=False
+        )
+
     await user.send(embed=embed)
-    await ctx.interaction.response.send_message("Done !")
+    await ctx.interaction.response.send_message("Done!")
+
     
 
 
