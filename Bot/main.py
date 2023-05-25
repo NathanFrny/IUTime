@@ -17,13 +17,21 @@ async def ping(ctx : ApplicationContext):
     await ctx.interaction.response.send_message(f"Pong! {bot.latency*1000:.0f} ms")
 
 @bot.command(description = "Ask your schedule")
-async def schedule(ctx : ApplicationContext, message):
+async def schedule(ctx : ApplicationContext, tp):
     
     user = ctx.author
-    await user.send(message)
+    date = datetime.date.today()
+    
+    embed = Embed(
+        title='Schedule',
+        description=f"Voici l'emploi du temps du {tp}",
+        color=0x9370DB  # Couleur violette (vous pouvez modifier la couleur selon vos préférences)
+    )
+    
+    embed.add_field(name=str(date), value="testevalue\nça c'est aprés le retour a la ligne")
+    await user.send(embed=embed)
     await ctx.interaction.response.send_message("Done !")
     
-
     
 """
 @tasks.loop(hours=1)
