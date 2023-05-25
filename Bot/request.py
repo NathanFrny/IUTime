@@ -61,4 +61,16 @@ def lessons_TP(tp: str):
     
     return lessons
 
+def tostring(lessons : dict):
+    result = ""
+    for time, info in lessons.items():
+        result += f"{time}:\n"
+        for value in info.items():
+            result += f"{value}\n"
+        result += "\n"
+    return result
+
+
+
+
 print(lessons_TP("TPA"))
