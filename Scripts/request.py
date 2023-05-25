@@ -54,7 +54,7 @@ def lessons_TP(tp: str):
                     teacher= "Aucun prof"
                 
                 # On crée la valeur du dictionnaire contenant le cours (la clé est l'heure de début du cours)
-                lessons[end_hour] = {"Cours" : event.name[:-3],
+                lessons[start_hour] = {"Cours" : event.name[:-3],
                                 "Salle" : event.location,
                                 "Prof" : teacher,
                                 "Heure de fin" : end_hour}
