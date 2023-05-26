@@ -1,8 +1,8 @@
 from discord import *
-from discord.ext import commands, tasks
+#from discord.ext import commands, tasks
 import datetime
 from request import lessons_TP, trie
-from constants import TOKEN, AVAILABLETP
+from constants import TOKEN, AVAILABLETP, LOGOPATH, AUTHORS
 
 intents = Intents.default()
 bot = Bot(command_prefix='!', intents=intents)
@@ -12,7 +12,7 @@ async def on_ready():
     print(f'Logged in as {bot.user.name} ({bot.user.id})')
 
 @bot.command(description="Ask your schedule")
-async def schedule(ctx: ApplicationContext, tp):
+async def schedule(ctx: ApplicationContext, tp : str):
 
     user = ctx.author
     if tp.upper() in AVAILABLETP:
@@ -23,6 +23,8 @@ async def schedule(ctx: ApplicationContext, tp):
             description=f"Voici l'emploi du temps du {tp}",
             color=0x9370DB  # Couleur violette (vous pouvez modifier la couleur selon vos préférences)
         )
+        embed.set_thumbnail(url = LOGOPATH)
+        embed.set_footer(text = f"Ecris par : {AUTHORS}")
 
         for heures in schedule.keys():
             debut = heures

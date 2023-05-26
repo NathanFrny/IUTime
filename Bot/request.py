@@ -45,8 +45,6 @@ def lessons_TP(tp: str):
                 lines = description.split('\n')
                 # Suppression des lines contenant "BUT" ou des parenthèses
                 teacher= [ligne for ligne in lines if "BUT" not in ligne and "(" not in ligne and ")" not in ligne and ligne.strip() != ""]
-                print(teacher)
-                print(event.name)
                 
                 # Si il y a un profs alors on récupère uniquement le teacheren string sinon on indique qu'il n'y a aucun prof
                 if len(teacher) > 0:
