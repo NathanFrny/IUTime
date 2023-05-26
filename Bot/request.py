@@ -4,7 +4,7 @@ from calendar import datetime
 from datetime import timedelta
 
 # Chemin vers le fichier iCalendar
-ics_file = './Calendar/ADECal.ics'
+ics_file = 'Calendar/ADECal.ics'
 
 # Lecture du fichier iCalendar
 with open(ics_file, 'r', encoding="utf-8") as file:
@@ -22,20 +22,20 @@ reference_date = datetime.date.today()
 
 # Renvoies les cours de la journée pour le TP mis en paramètre
 def lessons_TP(tp: str):
-    
+    tp = tp.upper()
     lessons = {}
+    listCours = [" CM", " DS", " PFT" , tp[-3:], tp[4:7], f"{tp[-3]} {tp[-1]}", f"{tp[-2] [-1]}"]
     
     for event in calendar.events:
-        
         # Convertir la date de début en UTC + 2h pour se mettre à l'heure
-        start_utc = event.begin.astimezone(timezone('UTC')) + timedelta(minutes=120)
+        start_utc = event.begin.astimezone(timezone('UTC')) + timedelta(minutes=1650) #120
         # Convertir la date de fin en UTC + 2h pour se mettre à l'heure
-        end_utc = event.end.astimezone(timezone('UTC')) + timedelta(minutes=120)
+        end_utc = event.end.astimezone(timezone('UTC')) + timedelta(minutes=1650)   
         
         # Si l'évênement est aujourd'hui
         if start_utc.date() == reference_date:
-            
-            if event.name[-3:] == "TPA" or event.name[-3:] == "TD1" or event.name[-3:] == " CM" or event.name[-3:] == " DS" or event.name[-3:] == "A 1" or event.name[-3:] == "A 2" or event.name[-3:] == " Ds" or event.name[-3:] == "PFT" or event.name[-3:] == "P A":
+            event.name = event.name.upper()
+            if event.name[-3:] in listCours:
                 
                 start_hour = start_utc.strftime("%H:%M")
                 end_hour = end_utc.strftime("%H:%M")
@@ -45,7 +45,8 @@ def lessons_TP(tp: str):
                 lines = description.split('\n')
                 # Suppression des lines contenant "BUT" ou des parenthèses
                 teacher= [ligne for ligne in lines if "BUT" not in ligne and "(" not in ligne and ")" not in ligne and ligne.strip() != ""]
-                
+                print(teacher)
+                print(event.name)
                 
                 # Si il y a un profs alors on récupère uniquement le teacheren string sinon on indique qu'il n'y a aucun prof
                 if len(teacher) > 0:
@@ -66,4 +67,4 @@ def trie(cours_dict):
     return sorted_dict
 
 
-print(trie(lessons_TP("TPA")))
+print(trie(lessons_TP("BUT1TD2TPD")))
