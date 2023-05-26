@@ -9,19 +9,24 @@ bot = Bot(command_prefix='!', intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f'Logged in as {bot.user.name} ({bot.user.id})')
+    print(f'Logged in as {bot.user.name} ({bot.user.id})') #Bot connection confirmation
 
 @bot.command(description="Ask your schedule")
-async def schedule(ctx: ApplicationContext, tp : str):
+async def schedule(ctx: ApplicationContext, tp : str): 
+    """Main Feature: 
+    Using /schedule on discord channel or bot's DMs
+    return in DMs the choiced TP shedule's for the day
+    
+    Update soon : return schedule for tommorrow if hour >= 7pm"""
 
     user = ctx.author
     if tp.upper() in AVAILABLETP:
         date = datetime.date.today()
         schedule = trie(lessons_TP(tp))
         embed = Embed(
-            title='Schedule',
+            title=f'Schedule {date}',
             description=f"Voici l'emploi du temps du {tp}",
-            color=0x9370DB  # Couleur violette (vous pouvez modifier la couleur selon vos préférences)
+            color=0x9370DB  #Purple
         )
         embed.set_thumbnail(url = LOGOPATH)
         embed.set_footer(text = f"Ecris par : {AUTHORS}")
@@ -40,13 +45,13 @@ async def schedule(ctx: ApplicationContext, tp : str):
             )
 
         await user.send(embed=embed)
-        await ctx.interaction.response.send_message("Done!")
+        await ctx.interaction.response.send_message("Done!") #Responding to user
     else:
         message = "Les arguments attendus sont :"
         for element in AVAILABLETP:
             message += element + ", "
         message = message[:-2]
-        await ctx.interaction.response.send_message(message)
+        await ctx.interaction.response.send_message(message) #Responding if bad argument
 
     
 
