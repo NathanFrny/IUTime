@@ -1,8 +1,9 @@
 from discord import *
 #from discord.ext import commands, tasks
 import datetime
+import json
 from request import lessons_TP, trie
-from constants import TOKEN, AVAILABLETP, LOGOPATH, AUTHORS
+from constants import TOKEN, AVAILABLETP, LOGOPATH, AUTHORS, DATASOURCES
 
 intents = Intents.default()
 bot = Bot(command_prefix='!', intents=intents)
@@ -53,10 +54,20 @@ async def schedule(ctx: ApplicationContext, tp : str):
         message = message[:-2]
         await ctx.interaction.response.send_message(message) #Responding if bad argument
 
+@bot.command(description = "Activer ou non les notifications des cours")
+async def notif(ctx : ApplicationContext, boolean : bool):
+    """Permet aux utilisateurs d'activer ou désactiver les notifcations de prochains cours"""
+    id = ctx.author
+    with open(DATASOURCES, "x") as f:
+        js = f.load()
+        if id in js.keys() and id["notify"] != boolean:
+            id["notify"] = boolean
+        else:
+            js[id] = boolean
+        json.dump(js, f)
+    await ctx.interaction.response.send_message("Done!")
     
-
-
-"""
+            
 @tasks.loop(hours=1)
 async def send_private_messages():
     users = [479649694033641502, 363011509564997642, 534827724183699476, 238995072740229121]
@@ -79,7 +90,6 @@ async def before_send_private_messages():
 
     await asyncio.sleep(time_until_target)
 
-send_private_messages.start()
-"""
-
-bot.run(TOKEN)
+if __name__ == "__main__":
+    send_private_messages.start()
+    bot.run(TOKEN)

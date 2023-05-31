@@ -24,13 +24,13 @@ reference_date = datetime.date.today()
 def lessons_TP(tp: str):
     tp = tp.upper()
     lessons = {}
-    listCours = [" CM", " DS", " PFT" , tp[-3:], tp[4:7], f"{tp[-3]} {tp[-1]}", f"{tp[-2] [-1]}"]
+    listCours = [" CM", " DS", " PFT" , tp[-3:], tp[4:7], f"{tp[-3]} {tp[-1]}", f"{tp[-2] [-1]}", f"{tp[0:4]}"]
     
     for event in calendar.events:
         # Convertir la date de début en UTC + 2h pour se mettre à l'heure
-        start_utc = event.begin.astimezone(timezone('UTC')) + timedelta(minutes=1650) #120
+        start_utc = event.begin.astimezone(timezone('UTC')) + timedelta(minutes=120) 
         # Convertir la date de fin en UTC + 2h pour se mettre à l'heure
-        end_utc = event.end.astimezone(timezone('UTC')) + timedelta(minutes=1650)   
+        end_utc = event.end.astimezone(timezone('UTC')) + timedelta(minutes=120)   
         
         # Si l'évênement est aujourd'hui
         if start_utc.date() == reference_date:

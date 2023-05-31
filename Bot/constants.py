@@ -9,4 +9,12 @@ AVAILABLETP = ["BUT1TD1TPA",
                 "BUT2TD2TPC",
                 "BUT2TD2TPD"]
 LOGOPATH = "/Sources/Ccorp_logo.png"
+DATASOURCES = "index.json"
+
+
+
+
+
+
+
 AUTHORS = "Calais Corp : Bonnel Noah, Fourny Nathan, Artu Florient"
