@@ -2,8 +2,8 @@ from discord import *
 from discord.ext import commands, tasks
 import datetime
 import json
-from request import lessons_TP, trie
-from constants import TOKEN, AVAILABLETP, LOGOPATH, AUTHORS, DATASOURCES, IUTSERVID
+from request import lessons_TP, trie, next_lessons
+from constants import TOKEN, AVAILABLETP, LOGOPATH, AUTHORS, DATASOURCES, IUTSERVID, TP, TP_DISCORD_ROLE_PLACEMENT
 
 intents = Intents.default()
 bot = Bot(command_prefix='!', intents=intents)
@@ -74,10 +74,11 @@ async def notif(ctx: ApplicationContext, boolean: bool):
 
     
             
-@tasks.loop(hours=1.5)
+@tasks.loop(minutes=1)
 async def send_private_messages():
     UsersList = []
-    current_time = datetime.datetime.now().strftime('%H:%M')
+    hour = 9#datetime.datetime.now().hour
+    TPNextLessons = {tp : next_lessons(lessons_TP(tp), hour) for tp in AVAILABLETP}
 
     with open(DATASOURCES, "r+") as f:
         try:
@@ -86,7 +87,7 @@ async def send_private_messages():
             return
     
     for id in js:
-        if id["notify"] == True:
+        if js[id]["notify"] == True:
             UsersList.append(id)
 
 
@@ -96,23 +97,31 @@ async def send_private_messages():
             member = guild.get_member(user_id)
             
             if member:
-                user_roles = [role.name for role in member.roles]
+                user_tp = member.roles[4]
+                schedule = TP[user_tp]
+                embed = Embed(
+                    title=f'Prochain cours :',
+                    color=0x9370DB)#Purple
+                embed.add_field(
+                    name=TPNextLessons[schedule]["Cours"],
+                    value=f"Salle: {TPNextLessons[schedule]['Salle']}\nProf: {TPNextLessons[schedule['Prof']]}\nHeure de fin: {TPNextLessons[schedule]['Heure de fin']}\n\n",
+                    inline=False)
                 user = await bot.fetch_user(user_id)
-                await user.send(f"Voici les rôles de l'utilisateur {member.name}:\n{', '.join(user_roles)}")
+                await user.send(embed=embed)
         except Exception as e:
             print(f"Une erreur s'est produite lors de l'envoi d'un message privé à l'utilisateur {user_id}: {e}")
 
 
 
-@send_private_messages.before_loop
-async def before_send_private_messages():
-    now = datetime.datetime.now()
-    target_time = now.replace(hour=23, minute=24, second=0) 
-    if now > target_time:
-        target_time += datetime.timedelta(days=1)
-    time_until_target = (target_time - now).total_seconds()
-
-    await asyncio.sleep(time_until_target)
+#@send_private_messages.before_loop
+#async def before_send_private_messages():
+#    now = datetime.datetime.now()
+#    target_time = now.replace(hour=23, minute=24, second=0) 
+#    if now > target_time:
+#        target_time += datetime.timedelta(days=1)
+#    time_until_target = (target_time - now).total_seconds()
+#
+#    await asyncio.sleep(time_until_target)
 
 if __name__ == "__main__":
     send_private_messages.start()
