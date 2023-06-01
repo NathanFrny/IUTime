@@ -1,5 +1,5 @@
 from discord import *
-#from discord.ext import commands, tasks
+from discord.ext import commands, tasks
 import datetime
 import json
 from request import lessons_TP, trie
@@ -29,7 +29,7 @@ async def schedule(ctx: ApplicationContext, tp : str):
             description=f"Voici l'emploi du temps du {tp}",
             color=0x9370DB  #Purple
         )
-        embed.set_thumbnail(url = LOGOPATH)
+        #embed.set_thumbnail(url = LOGOPATH) HEBERGER LE LOGO SUR INGUR
         embed.set_footer(text = f"Ecris par : {AUTHORS}")
 
         for heures in schedule.keys():
