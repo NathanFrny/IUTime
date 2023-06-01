@@ -54,18 +54,26 @@ async def schedule(ctx: ApplicationContext, tp : str):
         message = message[:-2]
         await ctx.interaction.response.send_message(message) #Responding if bad argument
 
-@bot.command(description = "Activer ou non les notifications des cours")
-async def notif(ctx : ApplicationContext, boolean : bool):
-    """Permet aux utilisateurs d'activer ou désactiver les notifcations de prochains cours"""
-    id = ctx.author
-    with open(DATASOURCES, "x") as f:
-        js = f.load()
-        if id in js.keys() and id["notify"] != boolean:
-            id["notify"] = boolean
-        else:
-            js[id] = boolean
+@bot.command(description="Activer ou non les notifications des cours")
+async def notif(ctx: ApplicationContext, boolean: bool):
+    """Permet aux utilisateurs d'activer ou désactiver les notifications de prochains cours"""
+    id = ctx.author.id
+    with open(DATASOURCES, "r+") as f:
+        try:
+            js = json.load(f)
+        except json.JSONDecodeError:
+            js = {}
+    if id in js.keys():
+        js[id]["notify"] = boolean
+    else:
+        js[id] = {"notify": boolean}
+        
+    print("-----------------------------------------------\n", js)
+    
+    with open(DATASOURCES, "w+") as f:
         json.dump(js, f)
     await ctx.interaction.response.send_message("Done!")
+
     
             
 @tasks.loop(hours=1)
