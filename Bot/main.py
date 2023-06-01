@@ -3,7 +3,7 @@ from discord.ext import commands, tasks
 import datetime
 import json
 from request import lessons_TP, trie
-from constants import TOKEN, AVAILABLETP, LOGOPATH, AUTHORS, DATASOURCES
+from constants import TOKEN, AVAILABLETP, LOGOPATH, AUTHORS, DATASOURCES, IUTSERVID
 
 intents = Intents.default()
 bot = Bot(command_prefix='!', intents=intents)
@@ -68,25 +68,41 @@ async def notif(ctx: ApplicationContext, boolean: bool):
     else:
         js[id] = {"notify": boolean}
         
-    print("-----------------------------------------------\n", js)
-    
     with open(DATASOURCES, "w+") as f:
         json.dump(js, f)
     await ctx.interaction.response.send_message("Done!")
 
     
             
-@tasks.loop(hours=1)
+@tasks.loop(hours=1.5)
 async def send_private_messages():
-    users = [479649694033641502, 363011509564997642, 534827724183699476, 238995072740229121]
-
+    UsersList = []
     current_time = datetime.datetime.now().strftime('%H:%M')
 
-    if current_time == '23:2':
-        for user_id in users:
-            print('ok')
-            user = await bot.fetch_user(user_id)
-            await user.send("Ceci est un message privé planifié.")
+    with open(DATASOURCES, "r+") as f:
+        try:
+            js = json.load(f)
+        except json.JSONDecodeError:
+            return
+    
+    for id in js:
+        if id["notify"] == True:
+            UsersList.append(id)
+
+
+    for user_id in UsersList:
+        try:
+            guild = bot.get_guild(IUTSERVID)
+            member = guild.get_member(user_id)
+            
+            if member:
+                user_roles = [role.name for role in member.roles]
+                user = await bot.fetch_user(user_id)
+                await user.send(f"Voici les rôles de l'utilisateur {member.name}:\n{', '.join(user_roles)}")
+        except Exception as e:
+            print(f"Une erreur s'est produite lors de l'envoi d'un message privé à l'utilisateur {user_id}: {e}")
+
+
 
 @send_private_messages.before_loop
 async def before_send_private_messages():

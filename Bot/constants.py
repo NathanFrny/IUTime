@@ -10,7 +10,7 @@ AVAILABLETP = ["BUT1TD1TPA",
                 "BUT2TD2TPD"]
 LOGOPATH = "/Sources/Ccorp_logo.png"
 DATASOURCES = "index.json"
-
+IUTSERVID = 690169359490089059
 
 
 
