@@ -1,11 +1,25 @@
+"""
+# REVIEW générale : le code est pas mal, mais il y a quelques points à améliorer :
+
+- un petit docstring à chaque fonction, même basique, c'est toujours mieux que rien
+
+- Le token, c'est pas une bonne idée de le mettre en clair dans le code, il faut le mettre dans un fichier de config ou un .env
+
+- au niveau de la structure du projet, pas trop compris l'intérêt du Script/main.py
+
+- et un dernier tips, je conseille de faire un fichier pour gérer l'ICS à part, {ça permet de séparer les fonctionnalités et de rendre le code plus lisible} ← copilot
+"""
+
 from discord import *
 from discord.ext import commands, tasks
 import datetime
 
 intents = Intents.default()
 
+# REVIEW - a mettre dans un .env ou un fichier de config
 TOKEN = "MTExMDk2NzMxODU1MDQzMzgyMw.GiO2NB.1Gevd3Q159xq0hvItQd016xH97EnSP4RpaMofI"
 
+# REVIEW - le command_prefix est pas utilisé à ma connaissance, vu qu'on utilise les interactions (commandes slash)
 bot = Bot(command_prefix='!', intents=intents)
 
 @bot.event
