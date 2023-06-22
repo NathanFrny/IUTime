@@ -1,26 +1,6 @@
 import logging
 
 
-def testing_lessons_generation() -> dict:
-    """to tests others functions ONLY (useless to test this function)
-
-    Returns:
-        dict: Representation of a lesson for each hour of the day
-    """
-    cours: dict = {}
-    for heure in range(0, 24):
-        heure_debut = f"{heure:02d}:00"
-        heure_fin = f"{heure+1:02d}:00"
-        cours[heure_debut] = {
-            "Cours": f"Cours {heure+1}",
-            "Salle": f"Salle {heure+1}",
-            "Prof": f"Prof {heure+1}",
-            "Heure de début": heure_debut,
-            "Heure de fin": heure_fin,
-        }
-    return cours
-
-
 def sorting(cours_dict: dict) -> list[tuple]:
     """Sorts the dictionary keys time order.
 

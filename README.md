@@ -131,6 +131,20 @@ For utils.py
             "-----------------------------------------------------------------------"
         )
         logging.basicConfig(level=logging.DEBUG)
+        
+        def testing_lessons_generation() -> dict:
+            cours: dict = {}
+            for heure in range(0, 24):
+                heure_debut = f"{heure:02d}:00"
+                heure_fin = f"{heure+1:02d}:00"
+                cours[heure_debut] = {
+                    "Cours": f"Cours {heure+1}",
+                    "Salle": f"Salle {heure+1}",
+                    "Prof": f"Prof {heure+1}",
+                    "Heure de début": heure_debut,
+                    "Heure de fin": heure_fin,
+                }
+            return cours
 
         COURS = {
             "16:49": {
