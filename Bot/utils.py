@@ -1,5 +1,4 @@
 import logging
-import datetime
 
 
 def testing_lessons_generation() -> dict:
@@ -37,64 +36,3 @@ def sorting(cours_dict: dict) -> list[tuple]:
     logging.debug(f"sorted_items = {sorted_items}")
 
     return [(hour, lesson) for hour, lesson in sorted_items]
-
-
-if __name__ == "utils":
-    from rich import print
-
-    SEPARATOR = (
-        "-----------------------------------------------------------------------"
-    )
-    logging.basicConfig(level=logging.DEBUG)
-
-    COURS = {
-        "16:49": {
-            "Cours": "Cours 1",
-            "Salle": "Salle 1",
-            "Prof": "Prof 1",
-            "Heure de début": "16:49",
-            "Heure de fin": "17:14",
-        },
-        "05:22": {
-            "Cours": "Cours 1",
-            "Salle": "Salle 1",
-            "Prof": "Prof 1",
-            "Heure de début": "5:22",
-            "Heure de fin": "14:37",
-        },
-        "14:00": {
-            "Cours": "Cours 1",
-            "Salle": "Salle 1",
-            "Prof": "Prof 1",
-            "Heure de début": "14:00",
-            "Heure de fin": "15:01",
-        },
-    }
-    print(f"COURS = {COURS}")
-    print(SEPARATOR)
-    print(
-        "sorting testing function:\n\
-Args: \n\
-    COURS :     dict = COURS\n\
-Expected return:\n\
-    sorted_dict : list = [('05:22', {'Cours': 'Cours 1',\n\
-'Salle': 'Salle 1',\n\
-'Prof': 'Prof 1',\n\
-'Heure de début': '5:22',\n\
-'Heure de fin': '14:37'}), \n\
-    ('14:00', {'Cours': 'Cours 1',\n\
-'Salle': 'Salle 1',\n\
-'Prof': 'Prof 1',\n\
-'Heure de début': '14:00',\n\
-'Heure de fin': '15:01'}), \n\
-('16:49', {'Cours': 'Cours 1',\n\
-'Salle': 'Salle 1',\n\
-'Prof': 'Prof 1',\n\
-'Heure de début': '16:49',\n\
-'Heure de fin': '17:14'})] \n\
-        "
-    )
-    print(
-        f"RESULT FOR FONCTION : sorting: \n\
-{sorting(COURS)}"
-    )

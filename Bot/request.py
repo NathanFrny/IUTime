@@ -115,6 +115,7 @@ def next_lesson_for_tp(cours_dict: dict[str], tp: str) -> tuple | None:
 
     if next_lesson is None:
         logging.error(f"Le TP {tp} n'a pas/plus de cours aujourd'hui")
+        raise RuntimeError
 
     return next_lesson
 
@@ -124,7 +125,7 @@ async def schedule_task(task, planned_date: datetime) -> None:
     #     # TODO - faire des vrais classes d'erreur
     #     raise RuntimeError("Planned date is already passed")
 
-    current_time: datetime = datetime.now()
+    current_time: Datetime = Datetime.now()
     sleep_time: timedelta = planned_date - current_time
     logging.info(f"Scheduled to run {task} at {planned_date}")
     await asyncio.sleep(sleep_time.total_seconds())
@@ -133,79 +134,3 @@ async def schedule_task(task, planned_date: datetime) -> None:
         return await task()
     else:
         return task()
-
-
-if __name__ == "request":
-    from utils import *
-    from rich import print
-
-    SEPARATOR = (
-        "-----------------------------------------------------------------------"
-    )
-    logging.basicConfig(level=logging.DEBUG)
-
-    DEBUGTP = "testing"
-    COURS = testing_lessons_generation()
-
-    print(
-        f"DEBUGTP = {DEBUGTP}\n\
-COURS = {COURS}"
-    )
-    print(SEPARATOR)
-    print(
-        "lessons_TP testing function:\n\
-Args: \n\
-    DEBUGTP :     str = 'testing'\n\
-Expected return:\n\
-    lessons : dict = { \n\
-'08:00': { \n\
-    'Cours': 'Mathematics', \n\
-    'Salle': 'A101', \n\
-    'Prof': 'Mr. Dupont', \n\
-    'Heure de début': '08:00', \n\
-    'Heure de fin': '09:30' }, \n\
-'09:30': { \n\
-    'Cours': 'Physics', \n\
-    'Salle': 'B202', \n\
-    'Prof': 'Mrs. Martin', \n\
-    'Heure de début': '09:30', \n\
-    'Heure de fin': '11:00' }, \n\
-'12:00': { \n\
-    'Cours': 'Computer Science', \n\
-    'Salle': 'C303', \n\
-    'Prof': 'Mr. Smith', \n\
-    'Heure de début': '12:00', \n\
-    'Heure de fin': '13:00' }, \n\
-'14:00': { \n\
-    'Cours': 'Chemistry', \n\
-    'Salle': 'D404', \n\
-    'Prof': 'Ms. Johnson', \n\
-    'Heure de début': '14:00', \n\
-    'Heure de fin': '15:30' } \n\
-}\n\
-Take care of: The test dates may not correspond to the dates indicated in the events in the Calendars/TESTING/ADECal.ics file."
-    )
-    print(
-        f"RESULT FOR FONCTION : lesson_TP: \n\
-{lessons_TP(DEBUGTP)}"
-    )
-    print(SEPARATOR)
-    print(
-        "next_lesson_for_tp testing function:\n\
-Args :\n\
-    COURS : dict = testing_lessons_generation()\n\
-    DEBUGTP : str = 'testing'\n\
-Expected return : next_lesson : dict =\n\
-{'00:00': {\n\
-    'Cours': 'Cours 1',\n\
-    'Salle': 'Salle 1',\n\
-    'Prof': 'Prof 1',\n\
-    'Heure de début': '00:00',\n\
-    'Heure de fin': '01:00'\n\
-}}\n\
-Take care of: Result of the function depend of actual hour"
-    )
-    print(
-        f"RESULT FOR FUNCTION : next_lesson_for_tp: \n\
-{next_lesson_for_tp(COURS, DEBUGTP)}"
-    )

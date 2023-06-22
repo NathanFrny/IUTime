@@ -1,21 +1,21 @@
-#import utils
+# import utils
 
-#print(
+# print(
 #    "-------------------------------------------------\n\
-#TESTS FOR MODULE UTILS ENDED\n\
-#-------------------------------------------------"
-#)
-import request
+# TESTS FOR MODULE UTILS ENDED\n\
+# -------------------------------------------------"
+# )
+# import request
+#
+# print(
+#    "-------------------------------------------------\n\
+# TESTS FOR MODULE REQUEST ENDED\n\
+# -------------------------------------------------"
+# )
+import main
 
 print(
     "-------------------------------------------------\n\
-TESTS FOR MODULE REQUEST ENDED\n\
+TESTS FOR MODULE MAIN ENDED\n\
 -------------------------------------------------"
 )
-#import main
-#
-#print(
-#    "-------------------------------------------------\n\
-#TESTS FOR MODULE MAIN ENDED\n\
-#-------------------------------------------------"
-#)
