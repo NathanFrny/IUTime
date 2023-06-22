@@ -1,128 +1,126 @@
-from discord import *
-from discord.ext import commands, tasks
 import datetime
 import json
-from request import lessons_TP, trie, next_lessons
-from constants import TOKEN, AVAILABLETP, LOGOPATH, AUTHORS, DATASOURCES, IUTSERVID, TP, TP_DISCORD_ROLE_PLACEMENT
+import logging
+from discord import *
+from discord.ext import tasks
+from functools import partial
+from request import lessons_TP, next_lesson_for_tp, schedule_task
+from rich import print
+from constants import (
+    TOKEN,
+    TP,
+    LOGOPATH,
+    AUTHORS,
+    DATASOURCES,
+    IUTSERVID,
+)
+
+logging.basicConfig(level=logging.INFO)
+
 
 intents = Intents.default()
-bot = Bot(command_prefix='!', intents=intents)
+bot: Bot = Bot(command_prefix="!", intents=intents)
+
 
 @bot.event
 async def on_ready():
-    print(f'Logged in as {bot.user.name} ({bot.user.id})') #Bot connection confirmation
+    if not bot.user:
+        raise InterruptedError("The bot didn't connect")
 
-@bot.command(description="Ask your schedule")
-async def schedule(ctx: ApplicationContext, tp : str): 
-    """Main Feature: 
-    Using /schedule on discord channel or bot's DMs
-    return in DMs the choiced TP shedule's for the day
-    
-    Update soon : return schedule for tommorrow if hour >= 7pm"""
+    print(
+        f"Logged in as {bot.user.name} ({bot.user.id})"
+    )  # Bot connection confirmation
+    # await wait_for_start_time()
 
-    user = ctx.author
-    if tp.upper() in AVAILABLETP:
-        date = datetime.date.today()
-        schedule = trie(lessons_TP(tp))
-        embed = Embed(
-            title=f'Schedule {date}',
-            description=f"Voici l'emploi du temps du {tp}",
-            color=0x9370DB  #Purple
+    # plan all asks
+    for tp in TP.keys():
+        await plan_notification(tp)
+
+
+async def plan_notification(tp: str) -> None:
+    """Send a notification 5 minutes before the next lesson
+
+    Args:
+        tp (str): code of the TP group
+    """
+
+    # Get the next lesson hour
+    try:
+        next_lesson = next_lesson_for_tp(lessons_TP(TP[tp]), tp)
+    except RuntimeError as e:
+        # If the TP doesn't have any lessons, stop the automatic planing
+        logging.error(
+            f"The TP {tp} doesn't have any more lesson, shuttig down the automatic planning"
         )
-        #embed.set_thumbnail(url = LOGOPATH) HEBERGER LE LOGO SUR INGUR
-        embed.set_footer(text = f"Ecris par : {AUTHORS}")
+        return
+    logging.info(f"Send lesson for TP {tp} : {next_lesson}")
+    embed: Embed = Embed(title="Prochain cours :", color=0x9370DB)  # Purple
+    embed.set_thumbnail(url=LOGOPATH)
+    embed.set_footer(text=f"Ecris par : {AUTHORS}")
+    embed.add_field(
+        name=next_lesson["Cours"],
+        value=f"Salle: {next_lesson['Salle']}\n\
+            Prof: {next_lesson['Prof']}\n\
+            Heure de fin: {next_lesson['Heure de fin']}\n\n",
+        inline=False,
+    )
 
-        for heures in schedule.keys():
-            debut = heures
-            cours = schedule[heures]["Cours"]
-            salle = schedule[heures]["Salle"]
-            prof = schedule[heures]["Prof"]
-            heure_fin = schedule[heures]["Heure de fin"]
+    lesson_time = datetime.datetime.strptime(next_lesson["Heure de début"], "%H:%M")
 
-            embed.add_field(
-                name=cours,
-                value=f"Début: {debut}\nSalle: {salle}\nProf: {prof}\nHeure de fin: {heure_fin}\n\n",
-                inline=False
-            )
+    notification_time = datetime.datetime.now()
+    notification_time.replace(hour=lesson_time.hour, minute=lesson_time.minute)
+    notification_time -= datetime.timedelta(minutes=5)
 
+    task = partial(send_notification, await get_user_list_from_tp(tp), embed=embed)
+
+    await schedule_task(
+        task,
+        notification_time,
+    )
+
+
+async def send_notification(user_list: list[User], embed: Embed):
+    """Sends a notification with a private message to all the users in user_list
+
+    Args:
+        user_list (list[User]): The list of users to be notified
+        embed (Embed): The embed that will be sent
+    """
+
+    for user in user_list:
         await user.send(embed=embed)
-        await ctx.interaction.response.send_message("Done!") #Responding to user
-    else:
-        message = "Les arguments attendus sont :"
-        for element in AVAILABLETP:
-            message += element + ", "
-        message = message[:-2]
-        await ctx.interaction.response.send_message(message) #Responding if bad argument
-
-@bot.command(description="Activer ou non les notifications des cours")
-async def notif(ctx: ApplicationContext, boolean: bool):
-    """Permet aux utilisateurs d'activer ou désactiver les notifications de prochains cours"""
-    id = ctx.author.id
-    with open(DATASOURCES, "r+") as f:
-        try:
-            js = json.load(f)
-        except json.JSONDecodeError:
-            js = {}
-    if id in js.keys():
-        js[id]["notify"] = boolean
-    else:
-        js[id] = {"notify": boolean}
-        
-    with open(DATASOURCES, "w+") as f:
-        json.dump(js, f)
-    await ctx.interaction.response.send_message("Done!")
-
-    
-            
-@tasks.loop(minutes=1)
-async def send_private_messages():
-    UsersList = []
-    hour = 9#datetime.datetime.now().hour
-    TPNextLessons = {tp : next_lessons(lessons_TP(tp), hour) for tp in AVAILABLETP}
-
-    with open(DATASOURCES, "r+") as f:
-        try:
-            js = json.load(f)
-        except json.JSONDecodeError:
-            return
-    
-    for id in js:
-        if js[id]["notify"] == True:
-            UsersList.append(id)
 
 
-    for user_id in UsersList:
-        try:
-            guild = bot.get_guild(IUTSERVID)
-            member = guild.get_member(user_id)
-            
-            if member:
-                user_tp = member.roles[4]
-                schedule = TP[user_tp]
-                embed = Embed(
-                    title=f'Prochain cours :',
-                    color=0x9370DB)#Purple
-                embed.add_field(
-                    name=TPNextLessons[schedule]["Cours"],
-                    value=f"Salle: {TPNextLessons[schedule]['Salle']}\nProf: {TPNextLessons[schedule['Prof']]}\nHeure de fin: {TPNextLessons[schedule]['Heure de fin']}\n\n",
-                    inline=False)
-                user = await bot.fetch_user(user_id)
-                await user.send(embed=embed)
-        except Exception as e:
-            print(f"Une erreur s'est produite lors de l'envoi d'un message privé à l'utilisateur {user_id}: {e}")
+async def get_user_list_from_tp(tp: str) -> list[int]:
+    """Renvoie l'ID des utilisateurs faisant partie du TP
+
+    Args:
+        tp (str): TP cible (rôle discord)
+
+    Returns:
+        list[int]: liste d'identifiants discord
+    """
+    res = []
+    user_list = await get_notified_users()
+    guild = bot.get_guild(IUTSERVID)
+    for user_ in user_list:
+        member = await guild.fetch_member(user_)
+        roles = member.roles
+        if tp in roles:
+            res.append(user_)
+
+    return res
 
 
+async def get_notified_users() -> list[int]:
+    with open("index.json", "r") as f:
+        js: dict = json.load(f)
+    # TODO - try/except
+    return [user_ for user_, user_params in js.items() if user_params["notify"] == True]
 
-#@send_private_messages.before_loop
-#async def before_send_private_messages():
-#    now = datetime.datetime.now()
-#    target_time = now.replace(hour=23, minute=24, second=0) 
-#    if now > target_time:
-#        target_time += datetime.timedelta(days=1)
-#    time_until_target = (target_time - now).total_seconds()
-#
-#    await asyncio.sleep(time_until_target)
 
 if __name__ == "__main__":
-    send_private_messages.start()
     bot.run(TOKEN)
+
+if __name__ == "main":
+    pass
