@@ -2,7 +2,7 @@ import logging
 from ics import Calendar
 from pytz import timezone
 import datetime
-from datetime import timedelta, datetime, date
+from datetime import timedelta, datetime as Datetime, date
 import asyncio
 from inspect import iscoroutinefunction
 from utils import sorting
@@ -22,7 +22,7 @@ def lessons_TP(tp: str) -> dict:
     calendar: Calendar = Calendar(ical_data)
 
     lessons: dict[str:dict] = {}
-    reference_date: date = datetime.today().date()
+    reference_date: date = date.today()
     logging.debug(f"Reference_date = {reference_date}")
 
     for event in calendar.events:
@@ -93,10 +93,10 @@ def next_lesson_for_tp(cours_dict: dict[str], tp: str) -> tuple | None:
 
     next_lesson: dict = None
 
-    date: datetime = datetime.now()
-    logging.debug(f"date = {date}")
+    date_: Datetime = Datetime.now()
+    logging.debug(f"date = {date_}")
 
-    total_minutes: int = (date.hour * 60) + date.minute
+    total_minutes: int = (date_.hour * 60) + date_.minute
     logging.debug(f"total_minutes = {total_minutes}")
 
     cours: list[tuple] = sorting(cours_dict)

@@ -2,7 +2,6 @@ import datetime
 import json
 import logging
 from discord import *
-from discord.ext import tasks
 from functools import partial
 from request import lessons_TP, next_lesson_for_tp, schedule_task
 from rich import print
@@ -112,10 +111,11 @@ async def get_user_list_from_tp(tp: str) -> list[int]:
     return res
 
 
-async def get_notified_users() -> list[int]:
-    with open("index.json", "r") as f:
+async def get_notified_users(sources : str= DATASOURCES) -> list[int]:
+    with open(sources, "r") as f:
         js: dict = json.load(f)
     # TODO - try/except
+    logging.debug(f"path = {sources}")
     return [user_ for user_, user_params in js.items() if user_params["notify"] == True]
 
 
@@ -123,4 +123,10 @@ if __name__ == "__main__":
     bot.run(TOKEN)
 
 if __name__ == "main":
-    pass
+    from rich import print
+
+    PATH_TO_JSON :str = ""
+    SEPARATOR = (
+        "-----------------------------------------------------------------------"
+    )
+    logging.basicConfig(level=logging.DEBUG)

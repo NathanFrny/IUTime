@@ -33,15 +33,13 @@ def sorting(cours_dict: dict) -> list[tuple]:
     """
     logging.debug(f"cours_dict = {cours_dict}")
 
-    sorted_items = sorted(cours_dict.keys(), key=lambda x: x[0])
+    sorted_items = sorted(cours_dict.items(), key=lambda x: x[0])
     logging.debug(f"sorted_items = {sorted_items}")
-    teste = [(hour, lesson) for hour, lesson in sorted_items]
-    for elt in teste:
-        elt[0] = datetime()
+
+    return [(hour, lesson) for hour, lesson in sorted_items]
 
 
 if __name__ == "utils":
-    from utils import *
     from rich import print
 
     SEPARATOR = (
@@ -57,7 +55,7 @@ if __name__ == "utils":
             "Heure de début": "16:49",
             "Heure de fin": "17:14",
         },
-        "5:22": {
+        "05:22": {
             "Cours": "Cours 1",
             "Salle": "Salle 1",
             "Prof": "Prof 1",
@@ -79,7 +77,7 @@ if __name__ == "utils":
 Args: \n\
     COURS :     dict = COURS\n\
 Expected return:\n\
-    sorted_dict : list = [('5:22', {'Cours': 'Cours 1',\n\
+    sorted_dict : list = [('05:22', {'Cours': 'Cours 1',\n\
 'Salle': 'Salle 1',\n\
 'Prof': 'Prof 1',\n\
 'Heure de début': '5:22',\n\
