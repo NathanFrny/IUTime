@@ -1,21 +1,16 @@
 import datetime
-import json
 import logging
 from discord import *
 from functools import partial
 from request import lessons_TP, next_lesson_for_tp, schedule_task
-from utils import sorting
-from rich import print
-from constants import (
-    TOKEN,
-    TP,
-    LOGOPATH,
-    AUTHORS,
-    DATASOURCES,
-    IUTSERVID,
+from utils import (
+    sorting,
+    embed_schedule_construct,
+    lesson_notification_parameter_change,
+    get_notified_users,
 )
-
-logging.basicConfig(level=logging.INFO)
+from rich import print
+from constants import TOKEN, TP, DATASOURCES, IUTSERVID, ZINCEID
 
 
 intents = Intents.default()
@@ -27,10 +22,9 @@ async def on_ready():
     if not bot.user:
         raise InterruptedError("The bot didn't connect")
 
-    print(
+    logging.info(
         f"Logged in as {bot.user.name} ({bot.user.id})"
     )  # Bot connection confirmation
-    # await wait_for_start_time()
 
     # plan all asks
     for tp in TP.keys():
@@ -44,35 +38,35 @@ async def schedule(ctx: ApplicationContext, tp: str):
     return in DMs the choiced TP shedule's for the day
 
     Update soon : return schedule for tommorrow if hour >= 7pm"""
-
+    # TODO - writte error reporting
     user: User | Member = ctx.author
+    logging.debug(
+        f"({datetime.datetime.now()}) | main.py schedule function :  User value : {user}"
+    )
     if tp.upper() in TP.values():
+        logging.debug(
+            f"({datetime.datetime.now()}) | main.py schedule function : tp value : {tp}"
+        )
         date: datetime.date = datetime.date.today()
         schedule: list = sorting(lessons_TP(tp))
-        embed: Embed = Embed(
-            title=f"Schedule {date}",
-            description=f"Voici l'emploi du temps du {tp}",
-            color=0x9370DB,  # Purple
+        logging.debug(
+            f"({datetime.datetime.now()}) | main.py schedule function : schedule value : {schedule}"
         )
-        embed.set_thumbnail(url=LOGOPATH)
-        embed.set_footer(text=f"Ecris par : {AUTHORS}")
 
-        for heures in schedule:
-            debut: dict = heures[1]["Heure de début"]
-            cours: str = schedule[heures][1]["Cours"]
-            salle: str = schedule[heures][1]["Salle"]
-            prof: str = schedule[heures][1]["Prof"]
-            heure_fin: str = schedule[heures][1]["Heure de fin"]
+        embed = embed_schedule_construct(
+            title=f"Emploi du temps du {date}",
+            description=f"{tp}",
+            color=0xFF0000,  # red
+            schedule=schedule,
+            sign=True,
+        )
 
-            embed.add_field(
-                name=cours,
-                value=f"Début: {debut}\nSalle: {salle}\nProf: {prof}\nHeure de fin: {heure_fin}\n\n",
-                inline=False,
-            )
-
-        await user.send(embed=embed)  # Send schedule in DM's
+        await send_notification(user_list=[user], embed=embed)
         await ctx.interaction.response.send_message("Done!")  # Responding to user
     else:
+        logging.debug(
+            f"({datetime.datetime.now()}) | main.py schedule function : TP not found"
+        )
         message: str = "Les arguments attendus sont :"
         for element in TP.values():
             message += element + ", "
@@ -83,25 +77,28 @@ async def schedule(ctx: ApplicationContext, tp: str):
 
 
 @bot.command(description="Activer ou non les notifications des cours")
-async def notif(ctx: ApplicationContext, boolean: bool, path=DATASOURCES):
+async def notif(ctx: ApplicationContext, boolean: bool):
     """Permet aux utilisateurs d'activer ou désactiver les notifications de prochains cours"""
-    id: int = ctx.author.id
-    with open(path, "r+") as f:
-        try:
-            js = json.load(f)
-        except json.JSONDecodeError:
-            js = {}
-    if id in js.keys():
-        js[id]["notify"] = boolean
+    id: str = ctx.author.id
+    result = lesson_notification_parameter_change(
+        user_id=id, parameter=boolean, path=DATASOURCES
+    )
+    if result:
+        await ctx.interaction.response.send_message("Done!")
     else:
-        js[id] = {"notify": boolean}
-
-    with open(path, "w+") as f:
-        json.dump(js, f)
-    await ctx.interaction.response.send_message("Done!")
+        # Never supposed to appear
+        zince: User = await bot.fetch_user(ZINCEID)
+        date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+        await zince.send(
+            f"({date}) Error in notif function (main.py) for user {ctx.author}, boolean = {boolean}"
+        )
+        await ctx.interaction.response.send_message(
+            "An error happened, my creators have been notified"
+        )
 
 
 async def plan_notification(tp: str) -> None:
+    print("plan_notification")
     """Send a notification 5 minutes before the next lesson
 
     Args:
@@ -110,29 +107,32 @@ async def plan_notification(tp: str) -> None:
 
     # Get the next lesson hour
     try:
-        next_lesson = next_lesson_for_tp(lessons_TP(TP[tp]), tp)
+        next_lesson: list[tuple] = next_lesson_for_tp(lessons_TP(TP[tp]), tp)
     except RuntimeError as e:
         # If the TP doesn't have any lessons, stop the automatic planing
         logging.error(
-            f"The TP {tp} doesn't have any more lesson, shuttig down the automatic planning"
+            f"({datetime.datetime.now()}) | main.py plan_notification function : The TP {tp} doesn't have any more lesson, shuttig down the automatic planning"
         )
         return
-    logging.info(f"Send lesson for TP {tp} : {next_lesson}")
-    embed: Embed = Embed(title="Prochain cours :", color=0x9370DB)  # Purple
-    embed.set_thumbnail(url=LOGOPATH)
-    embed.set_footer(text=f"Ecris par : {AUTHORS}")
-    embed.add_field(
-        name=next_lesson["Cours"],
-        value=f"Salle: {next_lesson['Salle']}\n\
-            Prof: {next_lesson['Prof']}\n\
-            Heure de fin: {next_lesson['Heure de fin']}\n\n",
-        inline=False,
+    logging.info(
+        f"({datetime.datetime.now()}) | main.py plan_notification function : Send lesson for TP {tp} : {next_lesson}"
     )
 
-    lesson_time = datetime.datetime.strptime(next_lesson["Heure de début"], "%H:%M")
+    embed: Embed = embed_schedule_construct(
+        title="Prochain cours:",
+        description=None,
+        color=0x9370DB,
+        schedule=next_lesson,
+        sign=True,
+    )
+    print(f"next lesson : {next_lesson}")
+    lesson_time: datetime.datetime = datetime.datetime.strptime(
+        next_lesson[0][1]["Heure de début"], "%H:%M"
+    )
 
-    notification_time = datetime.datetime.now()
+    notification_time: datetime.datetime = datetime.datetime.now()
     notification_time.replace(hour=lesson_time.hour, minute=lesson_time.minute)
+    # notification sent 5 min before lesson
     notification_time -= datetime.timedelta(minutes=5)
 
     task = partial(send_notification, await get_user_list_from_tp(tp), embed=embed)
@@ -143,19 +143,30 @@ async def plan_notification(tp: str) -> None:
     )
 
 
-async def send_notification(user_list: list[User], embed: Embed):
+async def send_notification(
+    user_list: list[User], embed: Embed = None, message: str = None
+):
+    print("send_notification")
     """Sends a notification with a private message to all the users in user_list
 
     Args:
         user_list (list[User]): The list of users to be notified
-        embed (Embed): The embed that will be sent
+        embed (Embed | None): The embed that will be sent
+        message (str | None): The message that will be sent
     """
 
     for user in user_list:
-        await user.send(embed=embed)
+        if message:
+            await user.send(message)
+        if embed:
+            await user.send(embed=embed)
+        logging.debug(
+            f"({datetime.datetime.now()}) | main.py send_notification function : notification sent"
+        )
 
 
 async def get_user_list_from_tp(tp: str, serv_ID=IUTSERVID) -> list:
+    print("get_user_list_from_tp")
     # TODO - je sais pas comment mais va falloir trouver comment tester cette fonction
     """Renvoie l'ID des utilisateurs faisant partie du TP
 
@@ -166,43 +177,33 @@ async def get_user_list_from_tp(tp: str, serv_ID=IUTSERVID) -> list:
         list: liste d'identifiants discord
     """
     res = []
-    user_list = get_notified_users()
-    guild = bot.get_guild(serv_ID)
-    logging.debug(f"Discord server found: {guild.name}")
+    user_list: list[str] = get_notified_users()
+    guild: Guild = bot.get_guild(serv_ID)
+    logging.debug(
+        f"({datetime.datetime.now()}) | main.py get_user_list_from_tp function : Discord server found: {guild.name} | {type(guild.name)}"
+    )
     if guild:
         for user_ in user_list:
-            logging.debug(f"user_ = {user_}")
-            member = await guild.fetch_member(user_)
-            logging.debug(f"member = {member}")
+            logging.debug(
+                f"({datetime.datetime.now()}) | main.py get_user_list_from_tp function : user_ = {user_} | {type(user_)}"
+            )
+            member: Member = await guild.fetch_member(user_)
+            logging.debug(
+                f"({datetime.datetime.now()}) | main.py get_user_list_from_tp function : member = {member} | {type(member)}"
+            )
             roles = member.roles
-            logging.debug(f"roles = {roles}")
-            if tp in roles:
-                res.append(user_)
+            logging.debug(
+                f"({datetime.datetime.now()}) | main.py get_user_list_from_tp function : roles = {roles} | {type(roles)}"
+            )
+            for role in roles:
+                if tp == role.name:
+                    res.append(member)
     else:
         raise RuntimeError("Discord server not found")
 
     return res
 
 
-def get_notified_users(sources: str = DATASOURCES) -> list:
-    """Return all IDs found in json in parameters where schedule's notification are activated
-
-    Args:
-        sources (str, optional): Path to json. Defaults to DATASOURCES.
-
-    Returns:
-        list: All IDs found
-    """
-    with open(sources, "r") as f:
-        js: dict = json.load(f)
-    # TODO - try/except
-    logging.debug(f"path = {sources}")
-    liste_id = [
-        user_ for user_, user_params in js.items() if user_params["notify"] == True
-    ]
-    logging.debug(f"Type des ID renvoyés : {type(liste_id[0])}")
-    return liste_id
-
-
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.CRITICAL)
     bot.run(TOKEN)
