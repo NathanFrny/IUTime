@@ -1,10 +1,7 @@
 import logging
 from ics import Calendar
 from pytz import timezone
-import datetime
-from datetime import timedelta, datetime as Datetime, date
-import asyncio
-from inspect import iscoroutinefunction
+from datetime import datetime as Datetime, date
 from utils import sorting
 
 
@@ -142,22 +139,3 @@ def next_lesson_for_tp(cours_dict: dict[str], tp: str) -> list[tuple] | None:
         raise RuntimeError
 
     return next_lesson
-
-
-async def schedule_task(task, planned_date: datetime) -> None:
-    print("schedule_task")
-    # if datetime.datetime.now() > planned_date:
-    #     # TODO - faire des vrais classes d'erreur
-    #     raise RuntimeError("Planned date is already passed")
-
-    current_time: Datetime = Datetime.now()
-    sleep_time: timedelta = planned_date - current_time
-    logging.info(
-        f"({Datetime.now()}) request.py schedule_task function : Scheduled to run {task} at {planned_date}"
-    )
-    await asyncio.sleep(sleep_time.total_seconds())
-
-    if iscoroutinefunction(task):
-        return await task()
-    else:
-        return task()

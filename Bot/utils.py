@@ -2,6 +2,9 @@ import logging
 import json
 from datetime import datetime
 from discord import Embed, Colour
+from datetime import timedelta
+import asyncio
+from inspect import iscoroutinefunction
 from constants import LOGOPATH, AUTHORS, DATASOURCES
 
 
@@ -103,6 +106,25 @@ def get_notified_users(sources: str = DATASOURCES) -> list:
             f"({datetime.now()}) | utils.py get_notified_users function : liste_id is empty"
         )
     return liste_id
+
+
+async def schedule_task(task, planned_date: datetime) -> None:
+    print("schedule_task")
+    # if datetime.datetime.now() > planned_date:
+    #     # TODO - faire des vrais classes d'erreur
+    #     raise RuntimeError("Planned date is already passed")
+
+    current_time: datetime = datetime.now()
+    sleep_time: timedelta = planned_date - current_time
+    logging.info(
+        f"({datetime.now()}) request.py schedule_task function : Scheduled to run {task} at {planned_date}"
+    )
+    await asyncio.sleep(sleep_time.total_seconds())
+
+    if iscoroutinefunction(task):
+        return await task()
+    else:
+        return task()
 
 
 def sorting(cours_dict: dict) -> list[tuple]:

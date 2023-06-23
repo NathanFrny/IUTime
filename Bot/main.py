@@ -2,12 +2,13 @@ import datetime
 import logging
 from discord import *
 from functools import partial
-from request import lessons_TP, next_lesson_for_tp, schedule_task
+from request import lessons_TP, next_lesson_for_tp
 from utils import (
     sorting,
     embed_schedule_construct,
     lesson_notification_parameter_change,
     get_notified_users,
+    schedule_task,
 )
 from rich import print
 from constants import TOKEN, TP, DATASOURCES, IUTSERVID, ZINCEID
