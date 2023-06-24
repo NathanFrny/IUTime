@@ -98,9 +98,7 @@ def get_notified_users(sources: str = DATASOURCES) -> list:
         js: dict = json.load(f)
     # TODO - try/except
     logging.debug("path = %s", sources)
-    liste_id = [
-        user_ for user_, user_params in js.items() if user_params["notify"] == True
-    ]
+    liste_id = [user_ for user_, user_params in js.items() if user_params["notify"]]
     try:
         logging.debug("Type des ID renvoyés : %s", type(liste_id[0]))
     except IndexError:
@@ -141,7 +139,8 @@ def sorting(cours_dict: dict) -> list[tuple]:
         cours_dict (dict): Representation of lessons.
 
     Returns:
-        list[tuple]: List of tuples containing the string of an hour in index 0 and a dictionary of the lesson in index 1.
+        list[tuple]: List of tuples containing the string of an hour in index 0 and
+        a dictionary of the lesson in index 1.
     """
     logging.debug("cours_dict = %s", cours_dict)
 
