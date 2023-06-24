@@ -1,0 +1,24 @@
+- enregister des devoirs avec une date de rendu, un niveau de criticité (banale (notifié le jour d'avant, normal ( notifié 3 jours avant), critique (notifié tout le temps)
+- seul les délégués du tp en question et les profs peuvent écrire ( role = enseignant)
+- suppression automatiques des devoirs dont la deadlines est dépassées ( 1 jours aprés, noté en OUTDATED)
+- pouvoir supprimer des devoirs écris par erreurs
+- préciser si c'est noté
+
+class : devoir
+	- ressource (str)
+	- prof (str)
+	- niveau de criticité (enum)
+	- date de rendu (date)
+	- descriptions (str)
+	- noté (bool)
+	- outdated (bool)
+
+fonction:
+
+- écrire les devoirs dans le json:
+	{homeworks: {nom_tp : [devoir1, devoir2]}}
+- demander les devoirs de son tp au bot
+- supprimer un devoir
+- envois automatique des devoirs à 19h10, calculé à 19h05 pour éviter les problèmes
+- modifier un devoir
+- ajouter un devoir

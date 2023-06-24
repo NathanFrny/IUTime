@@ -48,19 +48,21 @@ def embed_schedule_construct(
     return embed
 
 
-def lesson_notification_parameter_change(
-    user_id: str, parameter: bool, path: str = DATASOURCES
+def notification_parameter_change(
+    user_id: str, parameter: bool, notification: str, path: str = DATASOURCES
 ) -> bool:
     """Change the notification's parameter for the user
 
     Args:
         user_id (str): user's discord id
         parameter (bool): true if notification accepted, false else
+        notification (str): which notification need a modification
         path (str, optional): path to json Defaults to DATASOURCES.
 
     Returns:
         bool: true if modification is done, false if any error happened
     """
+    print(type(user_id))
     with open(path, "r+") as file:
         try:
             js: dict = json.load(file)
@@ -68,9 +70,10 @@ def lesson_notification_parameter_change(
             js: dict = {}
     try:
         if user_id in js.keys():
-            js[user_id]["notify"] = parameter
+            js[user_id][notification] = parameter
         else:
-            js[user_id] = {"notify": parameter}
+            print(1)
+            js[user_id] = {notification: parameter}
 
         with open(path, "w+") as file:
             json.dump(js, file)

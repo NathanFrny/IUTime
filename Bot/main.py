@@ -6,12 +6,12 @@ from request import lessons_TP, next_lesson_for_tp
 from utils import (
     sorting,
     embed_schedule_construct,
-    lesson_notification_parameter_change,
+    notification_parameter_change,
     get_notified_users,
     schedule_task,
 )
 from rich import print
-from constants import TOKEN, TP, DATASOURCES, IUTSERVID, ZINCEID
+from constants import TOKEN, TP, DATASOURCES, IUTSERVID, ZINCEID, NOTIFICATION_JSON_KEYS
 
 
 intents = Intents.default()
@@ -78,25 +78,39 @@ async def schedule(ctx: ApplicationContext, tp: str):
 
 
 @bot.command(description="Activer ou non les notifications des cours")
-async def notif(ctx: ApplicationContext, boolean: bool):
+async def notif(ctx: ApplicationContext, notification: str, boolean: bool):
     """Permet aux utilisateurs d'activer ou désactiver les notifications de prochains cours"""
-    id: str = ctx.author.id
-    result = lesson_notification_parameter_change(
-        user_id=id, parameter=boolean, path=DATASOURCES
-    )
-    if result:
-        await ctx.interaction.response.send_message("Done!")
+    if notification in NOTIFICATION_JSON_KEYS:
+        id: str = str(ctx.author.id)
+        result = notification_parameter_change(
+            user_id=id, parameter=boolean, notification=notification, path=DATASOURCES
+        )
+        if result:
+            await ctx.interaction.response.send_message("Done!")
+        else:
+            # Never supposed to appear
+            zince: User = await bot.fetch_user(ZINCEID)
+            date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+            await zince.send(
+                f"({date}) Error in notif function (main.py) for user {ctx.author}, notification = {notification}, boolean = {boolean}"
+            )
+            await ctx.interaction.response.send_message(
+                "An error happened, my creators have been notified"
+            )
     else:
-        # Never supposed to appear
-        zince: User = await bot.fetch_user(ZINCEID)
-        date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-        await zince.send(
-            f"({date}) Error in notif function (main.py) for user {ctx.author}, boolean = {boolean}"
+        logging.debug(
+            f"({datetime.datetime.now()}) | main.py notif function : notification not found"
         )
+        message: str = "Les arguments attendus sont :"
+        for element in NOTIFICATION_JSON_KEYS:
+            message += element + ", "
+        message = message[:-2]  # Last 2 caracters suppression
         await ctx.interaction.response.send_message(
-            "An error happened, my creators have been notified"
-        )
+            message
+        )  # Responding if bad argument
 
+@bot.command(description="Ajouter un devoir à son TP")
+async def homework(ctx:  ApplicationContext, )
 
 async def plan_notification(tp: str) -> None:
     print("plan_notification")
@@ -168,7 +182,6 @@ async def send_notification(
 
 async def get_user_list_from_tp(tp: str, serv_ID=IUTSERVID) -> list:
     print("get_user_list_from_tp")
-    # TODO - je sais pas comment mais va falloir trouver comment tester cette fonction
     """Renvoie l'ID des utilisateurs faisant partie du TP
 
     Args:
