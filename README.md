@@ -4,6 +4,8 @@ A Discord bot that can read a schedule and respond to user queries.
 ---
 Made by Artu Florient, Bonnel Noah, Fourny Nathan
 
+<!-- FIXME le testing ici, non, ne pas faire ça, pitié -->
+
 ---------------------------------------------------------------------
 To tests functions: 
 Copy/paste the following code to got some tests on functions then execute testing.py
@@ -37,10 +39,7 @@ Take care of : nothing\n\
     )
 
 -------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------
+
 For request.py
     if __name__ == "request":
         from utils import *
