@@ -30,7 +30,6 @@ def embed_schedule_construct(
     Returns:
         Embed: discord Embed object, ready to be sended
     """
-    # TODO - Create a real lesson class
     print(schedule)
     embed: Embed = Embed(title=title, description=description, color=color)
     for heures in schedule:

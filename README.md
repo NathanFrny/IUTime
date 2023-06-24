@@ -2,7 +2,7 @@
 A Discord bot that can read a schedule and respond to user queries.
 
 ---
-Made by Artu Florient, Bonnel Noah, Fourny Nathan
+Made by Artu Florient, Bonnel Noah, Fourny Nathan, Prokopowicz Colin
 
 <!-- FIXME le testing ici, non, ne pas faire ça, pitié -->
 

@@ -67,7 +67,6 @@ def lessons_tp(tp: str) -> dict:
 
             # On crée la valeur du dictionnaire contenant le cours (la clé est l'heure de début du cours)
             lessons[start_hour]: dict[str] = {
-                # TODO - Créer un objet "cours"
                 "Cours": event.name[:-3],
                 "Salle": event.location,
                 "Prof": teacher,
