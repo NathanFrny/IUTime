@@ -4,5 +4,8 @@
     },
     "python.formatting.provider": "none",
     "python.linting.enabled": true,
-    "python.analysis.typeCheckingMode": "off"
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.extraPaths": [
+        "./Bot/Class"
+    ]
 }

@@ -4,21 +4,11 @@
 - pouvoir supprimer des devoirs écris par erreurs
 - préciser si c'est noté
 
-class : devoir
-	- ressource (str)
-	- prof (str)
-	- niveau de criticité (enum)
-	- date de rendu (date)
-	- descriptions (str)
-	- noté (bool)
-	- outdated (bool)
+taff restant:
 
-fonction:
+	fonction:
 
-- écrire les devoirs dans le json:
-	{homeworks: {nom_tp : [devoir1, devoir2]}}
-- demander les devoirs de son tp au bot
-- supprimer un devoir
-- envois automatique des devoirs à 19h10, calculé à 19h05 pour éviter les problèmes
-- modifier un devoir
-- ajouter un devoir
+	- demander les devoirs de son tp au bot
+	- supprimer un devoir
+	- envois automatique des devoirs à 19h10, calculé à 19h05 pour éviter les problèmes
+	- modifier un devoir

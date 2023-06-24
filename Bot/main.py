@@ -9,10 +9,11 @@ from utils import (
     notification_parameter_change,
     get_notified_users,
     schedule_task,
+    add_homework_for_tp,
 )
 from rich import print
 from constants import TOKEN, TP, DATASOURCES, IUTSERVID, ZINCEID, NOTIFICATION_JSON_KEYS
-
+from homework import Homework
 
 intents = Intents.default()
 bot: Bot = Bot(command_prefix="!", intents=intents)
@@ -109,8 +110,68 @@ async def notif(ctx: ApplicationContext, notification: str, boolean: bool):
             message
         )  # Responding if bad argument
 
+
 @bot.command(description="Ajouter un devoir à son TP")
-async def homework(ctx:  ApplicationContext, )
+async def add_homework(
+    ctx: ApplicationContext,
+    ressource: str,
+    prof: str,
+    criticite: str,
+    date_rendu: str,
+    description: str,
+    note: bool = False,
+):
+    # TODO - ajouter des descriptions aux arguments visible sur discord ( format de la date notemment)
+    # TODO - ajouter les logging.debug | Colin technology waiting room
+
+    user: User | Member = ctx.author
+    roles: list[Role] = user.roles
+    roles_name: list[str] = []
+    for role in roles:
+        roles_name.append(role.name)
+
+    print(roles_name)
+    for name in roles_name:
+        print(name)
+        if name in TP.keys() and "délégué" in roles_name:
+            print(date_rendu)
+            try:
+                date_rendu_obj: datetime.datetime = datetime.datetime.strptime(
+                    date_rendu, f"%Y-%m-%d-%H-%M"
+                )
+            except ValueError:
+                await ctx.interaction.response.send_message(
+                    "Format de date invalide. Utilisez le format 'AAAA-MM-JJ-HH-MM'"
+                )
+                return
+
+            homework = Homework(
+                ressource, prof, criticite, date_rendu_obj, description, note
+            )
+            result: bool = add_homework_for_tp(
+                homework,
+                TP[name],
+            )
+            if result:
+                await ctx.interaction.response.send_message("Devoir ajouté avec succès")
+            else:
+                # Never supposed to appear
+                zince: User = await bot.fetch_user(ZINCEID)
+                date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+                await zince.send(
+                    f"({date}) Error in add_homework function (main.py) for user {ctx.author}, tp = {name}, homework = {homework}"
+                )
+                await ctx.interaction.response.send_message(
+                    "An error happened, my creators have been notified"
+                )
+            break
+    try:
+        await ctx.interaction.response.send_message(
+            "Seul les délégués des TP ont le droit de modifier les devoirs enregistrés"
+        )
+    except InteractionResponded:
+        pass
+
 
 async def plan_notification(tp: str) -> None:
     print("plan_notification")

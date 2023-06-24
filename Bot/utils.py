@@ -6,6 +6,7 @@ from datetime import timedelta
 import asyncio
 from inspect import iscoroutinefunction
 from constants import LOGOPATH, AUTHORS, DATASOURCES
+from homework import Homework
 
 
 def embed_schedule_construct(
@@ -62,7 +63,6 @@ def notification_parameter_change(
     Returns:
         bool: true if modification is done, false if any error happened
     """
-    print(type(user_id))
     with open(path, "r+") as file:
         try:
             js: dict = json.load(file)
@@ -149,3 +149,36 @@ def sorting(cours_dict: dict) -> list[tuple]:
     )
 
     return [(hour, lesson) for hour, lesson in sorted_items]
+
+
+def add_homework_for_tp(homework: Homework, tp: str, path=DATASOURCES) -> bool:
+    """Add an homework in json file
+
+    Args:
+        homework (Homework): homework need to be added
+        tp (str): tp group concerned
+        path (_type_, optional): path to json file. Defaults to DATASOURCES.
+
+    Returns:
+        bool: true if adding complete, false if error happened
+    """
+    with open(path, "r+") as file:
+        try:
+            js: dict = json.load(file)
+        except json.JSONDecodeError:
+            js: dict = {}
+    try:
+        if "homework" not in js:
+            js["homework"] = {}
+
+        if tp not in js["homework"]:
+            js["homework"][tp] = []
+
+        js["homework"][tp].append(homework.tojson())
+
+        with open(path, "w+") as file:
+            json.dump(js, file)
+        return True
+
+    except RuntimeError:
+        return False
