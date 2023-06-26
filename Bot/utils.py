@@ -16,20 +16,19 @@ def embed_schedule_construct(
     description: str | None,
     sign: bool = True,
 ) -> Embed:
-    """Create a discord embed object representing a student's shedule
+    """Create a discord Embed object representing a student's shedule
 
     Args:
         title (str): title of the embed
         color (int | Colour): color of the embed
-        schedule (list): schedule fo the student, use sorting function for a good structure
+        schedule (list): schedule of student, use sorting function for a good structure
         description (str | None): description of the embed
         sign (bool): signed by CSquare on demand, default True
 
     Returns:
-        Embed: discord Embed object, ready to be sended
+        Embed: discord Embed object, ready to be sent
     """
     # TODO - Create a real lesson class
-    print(schedule)
     embed: Embed = Embed(title=title, description=description, color=color)
     for heures in schedule:
         debut: str = heures[1]["Heure de début"]
@@ -44,7 +43,52 @@ def embed_schedule_construct(
         )
     if sign:
         embed.set_thumbnail(url=LOGOPATH)
-        embed.set_footer(text=f"Ecris par : {AUTHORS}")
+        embed.set_footer(text=f"Écris par : {AUTHORS}")
+
+    return embed
+
+
+def embed_homework_construct(
+    title: str,
+    color: int | Colour,
+    homeworks: list[Homework],
+    description: str | None,
+    sign: bool = True,
+    sorting: bool = True,
+) -> Embed:
+    """Create a discord Embed object representing a student's homeworks
+
+    Args:
+        title (str): title of the embed
+        color (int | Colour): color of the embed
+        homeworks (list[Homework]): homeworks of student
+        description (str | None): description of the embed
+        sign (bool, optional): signed by CSquare on demand, default True
+        sorting (bool, optional): sorting of homework to position them with outdated on top, default True
+    Returns:
+        Embed: discord Embed object, ready to be sent
+    """
+    if sorting:
+        sorting_homeworks(homeworks)
+    embed: Embed = Embed(
+        title=title, description=description if description else "", color=color
+    )
+    for homework in homeworks:
+        if homework.criticite_compare:
+            ressource: str = homework.ressource
+            prof: str = homework.prof
+            date_rendu: datetime = homework.date_rendu
+            description: str = homework.description
+            note: bool = homework.note
+            outdated: bool = homework.outdated
+
+            embed.add_field(
+                name=f"{ressource} {'DEADLINE DEPASSÉ' if outdated else ''}",
+                value=f"Prof: {prof}\nPour le: {date_rendu.day}/{date_rendu.month if len(str(date_rendu.month)) > 1 else '0'+str(date_rendu.month)}/{date_rendu.year} {date_rendu.hour}H{date_rendu.minute if len(str(date_rendu.minute)) > 1 else '0'+str(date_rendu.minute)}\nDescription: {description}\n{'Devoir noté' if note else ''}",
+            )
+    if sign:
+        embed.set_thumbnail(url=LOGOPATH)
+        embed.set_footer(text=f"Écris par : {AUTHORS}")
 
     return embed
 
@@ -130,7 +174,7 @@ async def schedule_task(task, planned_date: datetime) -> None:
         return task()
 
 
-def sorting(cours_dict: dict) -> list[tuple]:
+def sorting_schedule(cours_dict: dict) -> list[tuple]:
     """Sorts the dictionary keys time order.
 
     Args:
@@ -151,13 +195,17 @@ def sorting(cours_dict: dict) -> list[tuple]:
     return [(hour, lesson) for hour, lesson in sorted_items]
 
 
-def add_homework_for_tp(homework: Homework, tp: str, path=DATASOURCES) -> bool:
+def sorting_homeworks(homework_list: list[Homework]) -> list[Homework]:
+    return sorted(homework_list, key=lambda hw: hw.is_outdated(), reverse=False)
+
+
+def add_homework_for_tp(homework: Homework, tp: str, path: str = DATASOURCES) -> bool:
     """Add an homework in json file
 
     Args:
         homework (Homework): homework need to be added
         tp (str): tp group concerned
-        path (_type_, optional): path to json file. Defaults to DATASOURCES.
+        path (str, optional): path to json file. Defaults to DATASOURCES.
 
     Returns:
         bool: true if adding complete, false if error happened
@@ -182,3 +230,63 @@ def add_homework_for_tp(homework: Homework, tp: str, path=DATASOURCES) -> bool:
 
     except RuntimeError:
         return False
+
+
+def del_homework_for_tp(placement: int, tp: str, path=DATASOURCES) -> int:
+    """Remove an homework in json file
+
+    Args:
+        placement (int): index of the homework
+        tp (str): tp group concerned
+        path (str, optional): path to json file. Defaults to DATASOURCES.
+
+    Returns:
+        int: 1 if deletion is successful, 0 if an error occurs during execution, 2 if user gave a miss-argument
+    """
+    try:
+        with open(path, "r+") as file:
+            js: dict = json.load(file)
+
+        homework_list: dict = js["homework"][tp]
+        if placement < 0:
+            raise IndexError
+        del homework_list[placement]
+
+        with open(path, "w+") as file:
+            json.dump(js, file)
+
+        return 1
+
+    except (json.JSONDecodeError, KeyError, IndexError):
+        # if user gave a miss-argument, because no any homework registered in his tp or not even in all others tp
+        return 2
+    except FileNotFoundError:
+        return 0
+
+
+def homework_for_tp(tp: str, path=DATASOURCES) -> list[Homework]:
+    """Return a list of object Homework
+
+    Args:
+        tp (str): tp group concerned
+        path (_type_, optional): path to json file. Defaults to DATASOURCES.
+
+    Returns:
+        list[Homework]: list of Homework for the tp asked
+    """
+    with open(path, "r+") as file:
+        try:
+            js: dict = json.load(file)
+        except json.JSONDecodeError:
+            js: dict = {}
+
+    list_dict_homework: list[Homework] = []
+    try:
+        list_dict_homework: list[dict] = js["homework"][tp]
+    except KeyError:
+        pass
+    list_homework: list[Homework] = []
+    for homework_dict in list_dict_homework:
+        list_homework.append(Homework.fromjson(json.dumps(homework_dict)))
+
+    return list_homework

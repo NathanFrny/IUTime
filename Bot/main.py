@@ -4,12 +4,15 @@ from discord import *
 from functools import partial
 from request import lessons_TP, next_lesson_for_tp
 from utils import (
-    sorting,
+    sorting_schedule,
     embed_schedule_construct,
     notification_parameter_change,
     get_notified_users,
     schedule_task,
     add_homework_for_tp,
+    homework_for_tp,
+    embed_homework_construct,
+    del_homework_for_tp,
 )
 from rich import print
 from constants import TOKEN, TP, DATASOURCES, IUTSERVID, ZINCEID, NOTIFICATION_JSON_KEYS
@@ -50,7 +53,7 @@ async def schedule(ctx: ApplicationContext, tp: str):
             f"({datetime.datetime.now()}) | main.py schedule function : tp value : {tp}"
         )
         date: datetime.date = datetime.date.today()
-        schedule: list = sorting(lessons_TP(tp))
+        schedule: list = sorting_schedule(lessons_TP(tp))
         logging.debug(
             f"({datetime.datetime.now()}) | main.py schedule function : schedule value : {schedule}"
         )
@@ -111,6 +114,53 @@ async def notif(ctx: ApplicationContext, notification: str, boolean: bool):
         )  # Responding if bad argument
 
 
+@bot.command(description="Demandez les devoirs enregistrés liés à son TP")
+async def homework(ctx: ApplicationContext):
+    user: User | Member = ctx.author
+    logging.debug(
+        f"({datetime.datetime.now()}) | main.py homework function :  User value : {user}"
+    )
+    # Récupération du TP de l'utilisateur
+    roles: list[Role] = user.roles
+    for role in roles:
+        logging.debug(
+            f"({datetime.datetime.now()}) | main.py homework function :  role value : {role}"
+        )
+        if role.name in TP.keys():
+            logging.debug(
+                f"({datetime.datetime.now()}) | main.py homework function :  role.name value : {role.name}"
+            )
+            homeworks: list[Homework] = homework_for_tp(TP[role.name])
+            logging.debug(
+                f"({datetime.datetime.now()}) | main.py homework function :  homeworks value : {homeworks}"
+            )
+            logging.debug(
+                f"({datetime.datetime.now()}) | main.py homework function : homeworks's elem type : {type(homeworks[0])}"
+            )
+            for homework in homeworks:
+                if not homework.criticite_compare():
+                    homeworks.remove(homework)
+            break
+    # Envois des devoirs ou d'un message si aucun devoir
+    if homeworks:
+        embed: Embed = embed_homework_construct(
+            title=role.name, color=0x00FF00, homeworks=homeworks, description="Devoir"
+        )
+        await send_notification(user_list=[user], embed=embed)
+        await ctx.interaction.response.send_message("Done!")
+    else:
+        await send_notification(user_list=[user], message="Aucun devoirs enregistrés")
+        await ctx.interaction.response.send_message("Done!")
+
+    # Si aucun groupe TP n'a été trouvé
+    try:
+        await ctx.interaction.response.send_message(
+            "Aucun groupe TP ne vous est attribué sur ce serveur discord"
+        )
+    except InteractionResponded:
+        pass
+
+
 @bot.command(description="Ajouter un devoir à son TP")
 async def add_homework(
     ctx: ApplicationContext,
@@ -130,18 +180,16 @@ async def add_homework(
     for role in roles:
         roles_name.append(role.name)
 
-    print(roles_name)
     for name in roles_name:
-        print(name)
         if name in TP.keys() and "délégué" in roles_name:
-            print(date_rendu)
             try:
+                # TODO - revoir l'écriture de la date dans la commande
                 date_rendu_obj: datetime.datetime = datetime.datetime.strptime(
                     date_rendu, f"%Y-%m-%d-%H-%M"
                 )
             except ValueError:
                 await ctx.interaction.response.send_message(
-                    "Format de date invalide. Utilisez le format 'AAAA-MM-JJ-HH-MM'"
+                    "Format de date invalide. Utilisez le format 'AAAA-JJ-MM-HH-MM'"
                 )
                 return
 
@@ -173,6 +221,58 @@ async def add_homework(
         pass
 
 
+@bot.command(description="Supprimer un devoir à son TP")
+async def del_homework(ctx: ApplicationContext, emplacement: int = None):
+    user: User | Member = ctx.author
+    roles: list[Role] = user.roles
+    roles_name: list[str] = []
+    for role in roles:
+        roles_name.append(role.name)
+
+    for name in roles_name:
+        if name in TP.keys() and "délégué" in roles_name:
+            # 0 = not
+            if not emplacement:
+                homeworks: list[Homework] = homework_for_tp(TP[name])
+                embed: Embed = embed_homework_construct(
+                    title="Liste des devoirs enregistrés",
+                    description="Utilisez la commande /del_homework en indiquant le numéro du devoir que vous voulez supprimer",
+                    # TODO - Sondage pour savoir si il faut préciser les numéros dans l'embed ou pas
+                    color=0x00FF00,
+                    homeworks=homeworks,
+                    sorting=False,
+                )
+                await ctx.interaction.response.send_message(embed=embed)
+            else:
+                result: int = del_homework_for_tp(
+                    placement=emplacement - 1, tp=TP[name]
+                )
+                match result:
+                    case 1:
+                        await ctx.interaction.response.send_message("Done!")
+                    case 0:
+                        # Never supposed to appear
+                        zince: User = await bot.fetch_user(ZINCEID)
+                        date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+                        await zince.send(
+                            f"({date}) Error in del_homework function (main.py) for user {ctx.author}, tp = {name}, placement = {emplacement}"
+                        )
+                        await ctx.interaction.response.send_message(
+                            "An error happened, my creators have been notified"
+                        )
+                    case 2:
+                        await ctx.interaction.response.send_message(
+                            "Il semblerai que le devoir dont vous avez demandé la suppression n'existe pas"
+                        )
+                break
+    try:
+        await ctx.interaction.response.send_message(
+            "Seul les délégués des TP ont le droit de modifier les devoirs enregistrés"
+        )
+    except InteractionResponded:
+        pass
+
+
 async def plan_notification(tp: str) -> None:
     print("plan_notification")
     """Send a notification 5 minutes before the next lesson
@@ -184,7 +284,7 @@ async def plan_notification(tp: str) -> None:
     # Get the next lesson hour
     try:
         next_lesson: list[tuple] = next_lesson_for_tp(lessons_TP(TP[tp]), tp)
-    except RuntimeError as e:
+    except RuntimeError:
         # If the TP doesn't have any lessons, stop the automatic planing
         logging.error(
             f"({datetime.datetime.now()}) | main.py plan_notification function : The TP {tp} doesn't have any more lesson, shuttig down the automatic planning"
@@ -280,5 +380,5 @@ async def get_user_list_from_tp(tp: str, serv_ID=IUTSERVID) -> list:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.CRITICAL)
+    logging.basicConfig(level=logging.DEBUG)
     bot.run(TOKEN)

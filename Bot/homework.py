@@ -1,5 +1,5 @@
 from __future__ import annotations
-from datetime import datetime
+from datetime import datetime, timedelta
 from critical import Critical
 import json
 
@@ -27,7 +27,7 @@ class Homework:
                 self._criticite: Critical = Critical.CRITIQUE
             case 1:
                 self._criticite: Critical = Critical.BANALE
-            case 2:
+            case 3:
                 self._criticite: Critical = Critical.NORMAL
             case _:
                 self._criticite: Critical = Critical.CRITIQUE
@@ -98,6 +98,8 @@ class Homework:
 
     def is_outdated(self) -> bool:
         current_date: datetime = datetime.now()
+        if current_date > self._date_rendu:
+            self._outdated = True
         return current_date > self._date_rendu
 
     def mark_outdated(self):
@@ -114,6 +116,16 @@ class Homework:
             "outdated": self._outdated,
         }
         return homework_dict
+
+    def criticite_compare(self) -> bool:
+        """Compare the due date of the homework with current date and importance
+
+        Returns:
+            bool: True if current date and importance (in days) > due date, False otherwise
+        """
+        current_date = datetime.now()
+        delta = timedelta(days=self.criticite.value)
+        return (current_date + delta) >= self.date_rendu
 
     @staticmethod
     def fromjson(json_str: str) -> Homework:

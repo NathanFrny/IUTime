@@ -7,8 +7,5 @@
 taff restant:
 
 	fonction:
-
-	- demander les devoirs de son tp au bot
-	- supprimer un devoir
 	- envois automatique des devoirs à 19h10, calculé à 19h05 pour éviter les problèmes
-	- modifier un devoir
+	- suppression auto des devoirs outdated aprés 24h de délais dépassé lorsque la fonction se relance automatiquement a minuit

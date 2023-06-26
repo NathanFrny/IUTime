@@ -2,7 +2,7 @@ import logging
 from ics import Calendar
 from pytz import timezone
 from datetime import datetime as Datetime, date
-from utils import sorting
+from utils import sorting_schedule
 
 
 # Renvoies les cours de la journée pour le TP mis en paramètre
@@ -118,7 +118,7 @@ def next_lesson_for_tp(cours_dict: dict[str], tp: str) -> list[tuple] | None:
         f"({Datetime.now()}) request.py next_lesson_for_tp function : total_minutes = {total_minutes} | {type(total_minutes)}"
     )
 
-    cours: list[tuple] = sorting(cours_dict)
+    cours: list[tuple] = sorting_schedule(cours_dict)
 
     for key in cours:
         logging.debug(

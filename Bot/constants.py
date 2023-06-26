@@ -30,5 +30,5 @@ NOTIFICATION_JSON_KEYS = [
     "next_lesson",  # Value for notification of the next lesson
     "homeworks",  # Value for notification of homeworks
 ]
-AUTHORS = "Calais Corp : Bonnel Noah, Fourny Nathan, Artu Florient, Thimoté Bois, Colin Prokopowicz"
+AUTHORS = "C Square : Bonnel Noah, Fourny Nathan, Artu Florient, Thimoté Bois, Colin Prokopowicz"
 ZINCEID = 363011509564997642
