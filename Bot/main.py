@@ -2,7 +2,17 @@
 import datetime
 import logging
 from functools import partial
-from discord import Embed, Intents, Member, User, Bot, ApplicationContext, Guild
+from discord import (
+    Embed,
+    Intents,
+    Member,
+    User,
+    Bot,
+    ApplicationContext,
+    Guild,
+    Role,
+    InteractionResponded,
+)
 from request import lessons_tp, next_lesson_for_tp
 from utils import (
     sorting_schedule,
@@ -50,15 +60,15 @@ async def schedule(ctx: ApplicationContext, tp: str):
     """Main Feature:
     Using /schedule on discord channel or bot's DMs
     return in DMs the choiced TP shedule's for the day
-
-    Update soon : return schedule for tommorrow if hour >= 7pm"""
+    """
     # TODO - writte error reporting
+    # TODO - if 7pm past, return tomorrow's schedule
     user: User | Member = ctx.author
     logging.debug("User value : %s", user)
     if tp.upper() in TP.values():
         logging.debug("tp value : %s", tp)
         date: datetime.date = datetime.date.today()
-        _schedule: list = sorting(lessons_tp(tp))
+        _schedule: list = sorting_schedule(lessons_tp(tp))
         logging.debug("() | main.py schedule function : schedule value : %s", _schedule)
 
         embed = embed_schedule_construct(
@@ -170,7 +180,6 @@ async def add_homework(
     note: bool = False,
 ):
     # TODO - ajouter des descriptions aux arguments visible sur discord ( format de la date notemment)
-    # TODO - ajouter les logging.debug | Colin technology waiting room
 
     user: User | Member = ctx.author
     roles: list[Role] = user.roles
@@ -178,22 +187,25 @@ async def add_homework(
     for role in roles:
         roles_name.append(role.name)
 
+    logging.debug(f"roles_name = {roles_name}")
+
     for name in roles_name:
         if name in TP.keys() and "délégué" in roles_name:
+            logging.debug("TP and role 'délégué' found")
             try:
-                # TODO - revoir l'écriture de la date dans la commande
                 date_rendu_obj: datetime.datetime = datetime.datetime.strptime(
                     date_rendu, f"%Y-%m-%d-%H-%M"
                 )
             except ValueError:
                 await ctx.interaction.response.send_message(
-                    "Format de date invalide. Utilisez le format 'AAAA-JJ-MM-HH-MM'"
+                    "Format de date invalide. Utilisez le format 'AAAA-MM-JJ-HH-MM'"
                 )
                 return
 
             homework = Homework(
                 ressource, prof, criticite, date_rendu_obj, description, note
             )
+            logging.debug(f"homework = {homework}")
             result: bool = add_homework_for_tp(
                 homework,
                 TP[name],
@@ -212,6 +224,7 @@ async def add_homework(
                 )
             break
     try:
+        logging.debug("TP or role 'délégué' not found")
         await ctx.interaction.response.send_message(
             "Seul les délégués des TP ont le droit de modifier les devoirs enregistrés"
         )
@@ -227,11 +240,16 @@ async def del_homework(ctx: ApplicationContext, emplacement: int = None):
     for role in roles:
         roles_name.append(role.name)
 
+    logging.debug(f"roles_name = {roles_name}")
+
     for name in roles_name:
         if name in TP.keys() and "délégué" in roles_name:
             # 0 = not
             if not emplacement:
+                logging.debug("not placement")
+
                 homeworks: list[Homework] = homework_for_tp(TP[name])
+                logging.debug(f"homeworks = {homeworks}")
                 embed: Embed = embed_homework_construct(
                     title="Liste des devoirs enregistrés",
                     description="Utilisez la commande /del_homework en indiquant le numéro du devoir que vous voulez supprimer",
@@ -242,6 +260,7 @@ async def del_homework(ctx: ApplicationContext, emplacement: int = None):
                 )
                 await ctx.interaction.response.send_message(embed=embed)
             else:
+                logging.debug("placement")
                 result: int = del_homework_for_tp(
                     placement=emplacement - 1, tp=TP[name]
                 )
@@ -297,7 +316,7 @@ async def plan_notification(tp: str) -> None:
         schedule=next_lesson,
         sign=True,
     )
-    print(f"next lesson : {next_lesson}")
+    logging.info(f"next lesson : {next_lesson}")
     lesson_time: datetime.datetime = datetime.datetime.strptime(
         next_lesson[0][1]["Heure de début"], "%H:%M"
     )
