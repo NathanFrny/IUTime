@@ -124,7 +124,7 @@ class Homework:
             bool: True if current date and importance (in days) > due date, False otherwise
         """
         current_date = datetime.now()
-        delta = timedelta(days=self.criticite.value)
+        delta = timedelta(days=self.criticite.value, hours=12)
         return (current_date + delta) >= self.date_rendu
 
     @staticmethod

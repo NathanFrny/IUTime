@@ -13,6 +13,7 @@ from utils import (
     homework_for_tp,
     embed_homework_construct,
     del_homework_for_tp,
+    homework_auto_remove,
 )
 from rich import print
 from constants import TOKEN, TP, DATASOURCES, IUTSERVID, ZINCEID, NOTIFICATION_JSON_KEYS
@@ -357,4 +358,5 @@ if __name__ == "__main__":
         level=logging.DEBUG,
         format="%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s",
     )
+    homework_auto_remove()
     bot.run(TOKEN)

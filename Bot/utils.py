@@ -5,7 +5,7 @@ from discord import Embed, Colour
 from datetime import timedelta
 import asyncio
 from inspect import iscoroutinefunction
-from constants import LOGOPATH, AUTHORS, DATASOURCES
+from constants import LOGOPATH, AUTHORS, DATASOURCES, TP
 from homework import Homework
 
 
@@ -256,12 +256,12 @@ def del_homework_for_tp(placement: int, tp: str, path=DATASOURCES) -> int:
         return 0
 
 
-def homework_for_tp(tp: str, path=DATASOURCES) -> list[Homework]:
+def homework_for_tp(tp: str, path: str = DATASOURCES) -> list[Homework]:
     """Return a list of object Homework
 
     Args:
         tp (str): tp group concerned
-        path (_type_, optional): path to json file. Defaults to DATASOURCES.
+        path (str, optional): path to json file. Defaults to DATASOURCES.
 
     Returns:
         list[Homework]: list of Homework for the tp asked
@@ -282,3 +282,34 @@ def homework_for_tp(tp: str, path=DATASOURCES) -> list[Homework]:
         list_homework.append(Homework.fromjson(json.dumps(homework_dict)))
 
     return list_homework
+
+
+def homework_auto_remove(path: str = DATASOURCES):
+    all_homeworks_dict: dict = {}
+    current_date: datetime = datetime.now()
+    for tp in TP.values():
+        logging.debug(f"TP = {tp}")
+
+        homeworks_temp: list[Homework] = homework_for_tp(tp=tp, path=path)
+        logging.debug(f"homeworks_temp = {homeworks_temp}")
+        homeworks: list[Homework] = []
+        for homework in homeworks_temp:
+            if homework.date_rendu + timedelta(days=1) > current_date:
+                logging.debug(f"valid homework : {homework}")
+                homeworks.append(homework.tojson())
+            else:
+                logging.debug(f"unvalid homework : {homework}")
+
+        all_homeworks_dict[tp] = homeworks
+        logging.debug(f"all_homeworks_dict = {all_homeworks_dict}")
+
+    with open(path, "r+") as file:
+        try:
+            js: dict = json.load(file)
+        except json.JSONDecodeError:
+            js: dict = {}
+
+    js["homework"] = all_homeworks_dict
+
+    with open(path, "w+") as file:
+        json.dump(js, file)
