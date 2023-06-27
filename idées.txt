@@ -4,8 +4,14 @@
 - pouvoir supprimer des devoirs écris par erreurs
 - préciser si c'est noté
 
+
 taff restant:
 
 	fonction:
 	- envois automatique des devoirs à 19h10, calculé à 19h05 pour éviter les problèmes
 	- suppression auto des devoirs outdated aprés 24h de délais dépassé lorsque la fonction se relance automatiquement a minuit
+
+merge du dev de Colin
+desciption sur les arguments des commandes slash
+gérer  les droits du bot sur le pannel discord
+commande de controle pour récupérer par exemple le contenu entier du json

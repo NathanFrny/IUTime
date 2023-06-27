@@ -32,8 +32,8 @@ async def on_ready():
     )  # Bot connection confirmation
 
     # plan all asks
-    for tp in TP.keys():
-        await plan_notification(tp)
+    # for tp in TP.keys():
+    #    await plan_notification(tp)
 
 
 @bot.command(description="Ask your schedule")
@@ -45,18 +45,12 @@ async def schedule(ctx: ApplicationContext, tp: str):
     Update soon : return schedule for tommorrow if hour >= 7pm"""
     # TODO - writte error reporting
     user: User | Member = ctx.author
-    logging.debug(
-        f"({datetime.datetime.now()}) | main.py schedule function :  User value : {user}"
-    )
+    logging.debug(f"User value : {user}")
     if tp.upper() in TP.values():
-        logging.debug(
-            f"({datetime.datetime.now()}) | main.py schedule function : tp value : {tp}"
-        )
+        logging.debug(f"tp value : {tp}")
         date: datetime.date = datetime.date.today()
         schedule: list = sorting_schedule(lessons_TP(tp))
-        logging.debug(
-            f"({datetime.datetime.now()}) | main.py schedule function : schedule value : {schedule}"
-        )
+        logging.debug(f"schedule value : {schedule}")
 
         embed = embed_schedule_construct(
             title=f"Emploi du temps du {date}",
@@ -69,9 +63,7 @@ async def schedule(ctx: ApplicationContext, tp: str):
         await send_notification(user_list=[user], embed=embed)
         await ctx.interaction.response.send_message("Done!")  # Responding to user
     else:
-        logging.debug(
-            f"({datetime.datetime.now()}) | main.py schedule function : TP not found"
-        )
+        logging.debug(f"TP not found")
         message: str = "Les arguments attendus sont :"
         for element in TP.values():
             message += element + ", "
@@ -102,9 +94,7 @@ async def notif(ctx: ApplicationContext, notification: str, boolean: bool):
                 "An error happened, my creators have been notified"
             )
     else:
-        logging.debug(
-            f"({datetime.datetime.now()}) | main.py notif function : notification not found"
-        )
+        logging.debug(f"notification not found")
         message: str = "Les arguments attendus sont :"
         for element in NOTIFICATION_JSON_KEYS:
             message += element + ", "
@@ -116,30 +106,25 @@ async def notif(ctx: ApplicationContext, notification: str, boolean: bool):
 
 @bot.command(description="Demandez les devoirs enregistrés liés à son TP")
 async def homework(ctx: ApplicationContext):
+    # TODO - checker la génération d'une erreur azec add_homework si l'utilisateur n'est relié a aucun groupe de tp
     user: User | Member = ctx.author
-    logging.debug(
-        f"({datetime.datetime.now()}) | main.py homework function :  User value : {user}"
-    )
+    logging.debug(f"User value : {user}")
     # Récupération du TP de l'utilisateur
     roles: list[Role] = user.roles
     for role in roles:
-        logging.debug(
-            f"({datetime.datetime.now()}) | main.py homework function :  role value : {role}"
-        )
+        logging.debug(f"role value : {role}")
         if role.name in TP.keys():
+            logging.debug(f"role.name value : {role.name}")
+            homeworks_temp: list[Homework] = homework_for_tp(TP[role.name])
+            logging.debug(f"homeworks_temp value : {homeworks_temp}")
             logging.debug(
-                f"({datetime.datetime.now()}) | main.py homework function :  role.name value : {role.name}"
+                f"homeworks_temp's elem type : {type(homeworks_temp[0]) if homeworks_temp != [] else 'homeworks_temp is empty'}"
             )
-            homeworks: list[Homework] = homework_for_tp(TP[role.name])
-            logging.debug(
-                f"({datetime.datetime.now()}) | main.py homework function :  homeworks value : {homeworks}"
-            )
-            logging.debug(
-                f"({datetime.datetime.now()}) | main.py homework function : homeworks's elem type : {type(homeworks[0])}"
-            )
-            for homework in homeworks:
-                if not homework.criticite_compare():
-                    homeworks.remove(homework)
+            homeworks: list[Homework] = []
+            # DO NOT use remove method here
+            for homework in homeworks_temp:
+                if homework.criticite_compare():
+                    homeworks.append(homework)
             break
     # Envois des devoirs ou d'un message si aucun devoir
     if homeworks:
@@ -287,12 +272,10 @@ async def plan_notification(tp: str) -> None:
     except RuntimeError:
         # If the TP doesn't have any lessons, stop the automatic planing
         logging.error(
-            f"({datetime.datetime.now()}) | main.py plan_notification function : The TP {tp} doesn't have any more lesson, shuttig down the automatic planning"
+            f"The TP {tp} doesn't have any more lesson, shuttig down the automatic planning"
         )
         return
-    logging.info(
-        f"({datetime.datetime.now()}) | main.py plan_notification function : Send lesson for TP {tp} : {next_lesson}"
-    )
+    logging.info(f"Send lesson for TP {tp} : {next_lesson}")
 
     embed: Embed = embed_schedule_construct(
         title="Prochain cours:",
@@ -336,9 +319,7 @@ async def send_notification(
             await user.send(message)
         if embed:
             await user.send(embed=embed)
-        logging.debug(
-            f"({datetime.datetime.now()}) | main.py send_notification function : notification sent"
-        )
+        logging.debug(f"notification sent")
 
 
 async def get_user_list_from_tp(tp: str, serv_ID=IUTSERVID) -> list:
@@ -354,22 +335,14 @@ async def get_user_list_from_tp(tp: str, serv_ID=IUTSERVID) -> list:
     res = []
     user_list: list[str] = get_notified_users()
     guild: Guild = bot.get_guild(serv_ID)
-    logging.debug(
-        f"({datetime.datetime.now()}) | main.py get_user_list_from_tp function : Discord server found: {guild.name} | {type(guild.name)}"
-    )
+    logging.debug(f"Discord server found: {guild.name} | {type(guild.name)}")
     if guild:
         for user_ in user_list:
-            logging.debug(
-                f"({datetime.datetime.now()}) | main.py get_user_list_from_tp function : user_ = {user_} | {type(user_)}"
-            )
+            logging.debug(f"user_ = {user_} | {type(user_)}")
             member: Member = await guild.fetch_member(user_)
-            logging.debug(
-                f"({datetime.datetime.now()}) | main.py get_user_list_from_tp function : member = {member} | {type(member)}"
-            )
+            logging.debug(f"member = {member} | {type(member)}")
             roles = member.roles
-            logging.debug(
-                f"({datetime.datetime.now()}) | main.py get_user_list_from_tp function : roles = {roles} | {type(roles)}"
-            )
+            logging.debug(f"roles = {roles} | {type(roles)}")
             for role in roles:
                 if tp == role.name:
                     res.append(member)
@@ -380,5 +353,8 @@ async def get_user_list_from_tp(tp: str, serv_ID=IUTSERVID) -> list:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s",
+    )
     bot.run(TOKEN)

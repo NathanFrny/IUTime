@@ -138,20 +138,14 @@ def get_notified_users(sources: str = DATASOURCES) -> list:
     with open(sources, "r") as f:
         js: dict = json.load(f)
     # TODO - try/except
-    logging.debug(
-        f"({datetime.now()}) | utils.py get_notified_users function : path = {sources}"
-    )
+    logging.debug(f"path = {sources}")
     liste_id = [
         user_ for user_, user_params in js.items() if user_params["notify"] == True
     ]
     try:
-        logging.debug(
-            f"({datetime.now()}) | utils.py get_notified_users function : Type des ID renvoyés : {type(liste_id[0])}"
-        )
+        logging.debug(f"Type des ID renvoyés : {type(liste_id[0])}")
     except IndexError:
-        logging.debug(
-            f"({datetime.now()}) | utils.py get_notified_users function : liste_id is empty"
-        )
+        logging.debug(f"liste_id is empty")
     return liste_id
 
 
@@ -163,9 +157,7 @@ async def schedule_task(task, planned_date: datetime) -> None:
 
     current_time: datetime = datetime.now()
     sleep_time: timedelta = planned_date - current_time
-    logging.info(
-        f"({datetime.now()}) request.py schedule_task function : Scheduled to run {task} at {planned_date}"
-    )
+    logging.info(f"Scheduled to run {task} at {planned_date}")
     await asyncio.sleep(sleep_time.total_seconds())
 
     if iscoroutinefunction(task):
