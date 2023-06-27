@@ -1,0 +1,6 @@
+py-cord
+rich
+ics
+pytz
+selenium
+requests

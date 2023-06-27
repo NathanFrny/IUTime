@@ -1,8 +1,9 @@
+"""Main file of the bot, contains all the commands and the main loop"""
 import datetime
 import logging
-from discord import *
 from functools import partial
-from request import lessons_TP, next_lesson_for_tp
+from discord import Embed, Intents, Member, User, Bot, ApplicationContext, Guild
+from request import lessons_tp, next_lesson_for_tp
 from utils import (
     sorting_schedule,
     embed_schedule_construct,
@@ -15,26 +16,33 @@ from utils import (
     del_homework_for_tp,
     homework_auto_remove,
 )
-from rich import print
+from rich import print  # pylint: disable=redefined-builtin
 from constants import TOKEN, TP, DATASOURCES, IUTSERVID, ZINCEID, NOTIFICATION_JSON_KEYS
 from homework import Homework
 
 intents = Intents.default()
-bot: Bot = Bot(command_prefix="!", intents=intents)
+bot: Bot = Bot(intents=intents)
+
+# logging style: "31/01/2023 12:00:00 | DEBUG | main.py | function : message"
+logging.basicConfig(
+    format="%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s",
+    level=logging.DEBUG,
+)
 
 
 @bot.event
 async def on_ready():
+    """Actions to do when the bot is ready to use"""
     if not bot.user:
         raise InterruptedError("The bot didn't connect")
 
     logging.info(
-        f"Logged in as {bot.user.name} ({bot.user.id})"
+        "Logged in as %s (%s)", bot.user.name, bot.user.id
     )  # Bot connection confirmation
 
     # plan all asks
-    # for tp in TP.keys():
-    #    await plan_notification(tp)
+    for tp in TP:
+        await plan_notification(tp)
 
 
 @bot.command(description="Ask your schedule")
@@ -46,25 +54,25 @@ async def schedule(ctx: ApplicationContext, tp: str):
     Update soon : return schedule for tommorrow if hour >= 7pm"""
     # TODO - writte error reporting
     user: User | Member = ctx.author
-    logging.debug(f"User value : {user}")
+    logging.debug("User value : %s", user)
     if tp.upper() in TP.values():
-        logging.debug(f"tp value : {tp}")
+        logging.debug("tp value : %s", tp)
         date: datetime.date = datetime.date.today()
-        schedule: list = sorting_schedule(lessons_TP(tp))
-        logging.debug(f"schedule value : {schedule}")
+        _schedule: list = sorting(lessons_tp(tp))
+        logging.debug("() | main.py schedule function : schedule value : %s", _schedule)
 
         embed = embed_schedule_construct(
             title=f"Emploi du temps du {date}",
             description=f"{tp}",
             color=0xFF0000,  # red
-            schedule=schedule,
+            schedule=_schedule,
             sign=True,
         )
 
         await send_notification(user_list=[user], embed=embed)
         await ctx.interaction.response.send_message("Done!")  # Responding to user
     else:
-        logging.debug(f"TP not found")
+        logging.debug("TP not found")
         message: str = "Les arguments attendus sont :"
         for element in TP.values():
             message += element + ", "
@@ -78,9 +86,12 @@ async def schedule(ctx: ApplicationContext, tp: str):
 async def notif(ctx: ApplicationContext, notification: str, boolean: bool):
     """Permet aux utilisateurs d'activer ou désactiver les notifications de prochains cours"""
     if notification in NOTIFICATION_JSON_KEYS:
-        id: str = str(ctx.author.id)
+        author_id: str = str(ctx.author.id)
         result = notification_parameter_change(
-            user_id=id, parameter=boolean, notification=notification, path=DATASOURCES
+            user_id=author_id,
+            parameter=boolean,
+            notification=notification,
+            path=DATASOURCES,
         )
         if result:
             await ctx.interaction.response.send_message("Done!")
@@ -89,13 +100,14 @@ async def notif(ctx: ApplicationContext, notification: str, boolean: bool):
             zince: User = await bot.fetch_user(ZINCEID)
             date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
             await zince.send(
-                f"({date}) Error in notif function (main.py) for user {ctx.author}, notification = {notification}, boolean = {boolean}"
+                f"({date}) Error in notif function (main.py) for user\
+                    {ctx.author}, notification = {notification}, boolean = {boolean}"
             )
             await ctx.interaction.response.send_message(
                 "An error happened, my creators have been notified"
             )
     else:
-        logging.debug(f"notification not found")
+        logging.debug("Notification not found")
         message: str = "Les arguments attendus sont :"
         for element in NOTIFICATION_JSON_KEYS:
             message += element + ", "
@@ -260,7 +272,6 @@ async def del_homework(ctx: ApplicationContext, emplacement: int = None):
 
 
 async def plan_notification(tp: str) -> None:
-    print("plan_notification")
     """Send a notification 5 minutes before the next lesson
 
     Args:
@@ -269,14 +280,15 @@ async def plan_notification(tp: str) -> None:
 
     # Get the next lesson hour
     try:
-        next_lesson: list[tuple] = next_lesson_for_tp(lessons_TP(TP[tp]), tp)
+        next_lesson: list[tuple] = next_lesson_for_tp(lessons_tp(TP[tp]), tp)
     except RuntimeError:
         # If the TP doesn't have any lessons, stop the automatic planing
         logging.error(
-            f"The TP {tp} doesn't have any more lesson, shuttig down the automatic planning"
+            "The TP %s doesn't have any more lesson, shuttig down the automatic planning",
+            tp,
         )
         return
-    logging.info(f"Send lesson for TP {tp} : {next_lesson}")
+    logging.info("(Send lesson for TP %s : %s", tp, next_lesson)
 
     embed: Embed = embed_schedule_construct(
         title="Prochain cours:",
@@ -306,7 +318,6 @@ async def plan_notification(tp: str) -> None:
 async def send_notification(
     user_list: list[User], embed: Embed = None, message: str = None
 ):
-    print("send_notification")
     """Sends a notification with a private message to all the users in user_list
 
     Args:
@@ -320,11 +331,10 @@ async def send_notification(
             await user.send(message)
         if embed:
             await user.send(embed=embed)
-        logging.debug(f"notification sent")
+    logging.debug("notification sent to users : %s", user_list)
 
 
-async def get_user_list_from_tp(tp: str, serv_ID=IUTSERVID) -> list:
-    print("get_user_list_from_tp")
+async def get_user_list_from_tp(tp: str, serv_id=IUTSERVID) -> list:
     """Renvoie l'ID des utilisateurs faisant partie du TP
 
     Args:
@@ -335,15 +345,15 @@ async def get_user_list_from_tp(tp: str, serv_ID=IUTSERVID) -> list:
     """
     res = []
     user_list: list[str] = get_notified_users()
-    guild: Guild = bot.get_guild(serv_ID)
-    logging.debug(f"Discord server found: {guild.name} | {type(guild.name)}")
+    guild: Guild = bot.get_guild(serv_id)
+    logging.debug("Discord server found: %s", guild.name)
     if guild:
         for user_ in user_list:
-            logging.debug(f"user_ = {user_} | {type(user_)}")
+            logging.debug("user_ = %s", user_)
             member: Member = await guild.fetch_member(user_)
-            logging.debug(f"member = {member} | {type(member)}")
+            logging.debug("member = %s", member)
             roles = member.roles
-            logging.debug(f"roles = {roles} | {type(roles)}")
+            logging.debug("roles = %s", roles)
             for role in roles:
                 if tp == role.name:
                     res.append(member)

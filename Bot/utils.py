@@ -1,10 +1,13 @@
+"""This module contains all the functions that are used in the bot."""
+# TODO - rename this file, utils.py is too generic
+from datetime import timedelta, datetime
+import asyncio
 import logging
 import json
-from datetime import datetime
-from discord import Embed, Colour
-from datetime import timedelta
-import asyncio
 from inspect import iscoroutinefunction
+
+
+from discord import Embed, Colour
 from constants import LOGOPATH, AUTHORS, DATASOURCES, TP
 from homework import Homework
 
@@ -29,6 +32,7 @@ def embed_schedule_construct(
         Embed: discord Embed object, ready to be sent
     """
     # TODO - Create a real lesson class
+    print(schedule)
     embed: Embed = Embed(title=title, description=description, color=color)
     for heures in schedule:
         debut: str = heures[1]["Heure de début"]
@@ -107,7 +111,8 @@ def notification_parameter_change(
     Returns:
         bool: true if modification is done, false if any error happened
     """
-    with open(path, "r+") as file:
+    print(type(user_id))
+    with open(path, "r+", encoding="utf-8") as file:
         try:
             js: dict = json.load(file)
         except json.JSONDecodeError:
@@ -119,7 +124,7 @@ def notification_parameter_change(
             print(1)
             js[user_id] = {notification: parameter}
 
-        with open(path, "w+") as file:
+        with open(path, "w+", encoding="utf-8") as file:
             json.dump(js, file)
         return True
     except RuntimeError:
@@ -135,29 +140,36 @@ def get_notified_users(sources: str = DATASOURCES) -> list:
     Returns:
         list: All IDs found
     """
-    with open(sources, "r") as f:
+    with open(sources, "r", encoding="utf-8") as f:
         js: dict = json.load(f)
     # TODO - try/except
-    logging.debug(f"path = {sources}")
-    liste_id = [
-        user_ for user_, user_params in js.items() if user_params["notify"] == True
-    ]
+    logging.debug("path = %s", sources)
+    liste_id = [user_ for user_, user_params in js.items() if user_params["notify"]]
     try:
-        logging.debug(f"Type des ID renvoyés : {type(liste_id[0])}")
+        logging.debug("Type des ID renvoyés : %s", type(liste_id[0]))
     except IndexError:
-        logging.debug(f"liste_id is empty")
+        logging.debug("liste_id is empty")
     return liste_id
 
 
 async def schedule_task(task, planned_date: datetime) -> None:
-    print("schedule_task")
+    """Schedule a task to run at a specific time.
+
+    Args:
+        task (callable | coroutine): task to run
+        planned_date (datetime): time to run the task
+
+    Returns:
+        None
+    """
+
     # if datetime.datetime.now() > planned_date:
     #     # TODO - faire des vrais classes d'erreur
     #     raise RuntimeError("Planned date is already passed")
 
     current_time: datetime = datetime.now()
     sleep_time: timedelta = planned_date - current_time
-    logging.info(f"Scheduled to run {task} at {planned_date}")
+    logging.info("Scheduled to run %s at %s", task.__name__, planned_date)
     await asyncio.sleep(sleep_time.total_seconds())
 
     if iscoroutinefunction(task):
@@ -173,16 +185,13 @@ def sorting_schedule(cours_dict: dict) -> list[tuple]:
         cours_dict (dict): Representation of lessons.
 
     Returns:
-        list[tuple]: List of tuples containing the string of an hour in index 0 and a dictionary of the lesson in index 1.
+        list[tuple]: List of tuples containing the string of an hour in index 0 and
+        a dictionary of the lesson in index 1.
     """
-    logging.debug(
-        f"({datetime.now()}) | utils.py sorting function : cours_dict = {cours_dict}"
-    )
+    logging.debug("cours_dict = %s", cours_dict)
 
     sorted_items = sorted(cours_dict.items(), key=lambda x: x[0])
-    logging.debug(
-        f"({datetime.now()}) | utils.py sorting function : sorted_items = {sorted_items}"
-    )
+    logging.debug("sorted_items = %s", sorted_items)
 
     return [(hour, lesson) for hour, lesson in sorted_items]
 

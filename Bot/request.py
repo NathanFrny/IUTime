@@ -1,18 +1,19 @@
+"""Module contenant les fonctions permettant de récupérer les cours d'un TP"""
 import logging
+from datetime import datetime, date
 from ics import Calendar
 from pytz import timezone
-from datetime import datetime as Datetime, date
+from datetime import datetime, date
 from utils import sorting_schedule
 
 
-# Renvoies les cours de la journée pour le TP mis en paramètre
-def lessons_TP(tp: str) -> dict:
-    print("lessons_TP")
+def lessons_tp(tp: str) -> dict:
+    """Renvoies les cours de la journée pour le TP mis en paramètre"""
     tp = tp.upper()
-    logging.debug(f"tp's value = {tp} | {type(tp)}")
+    logging.debug("tp's value = %s", tp)
 
     ics_file: str = f"Calendars/{tp}/ADECal.ics"
-    logging.debug(f"Source's path : {ics_file} | {type(ics_file)}")
+    logging.debug("Source's path : %s", ics_file)
 
     with open(ics_file, "r", encoding="utf-8") as file:
         ical_data: str = file.read()
@@ -21,16 +22,16 @@ def lessons_TP(tp: str) -> dict:
 
     lessons: dict[str:dict] = {}
     reference_date: date = date.today()
-    logging.debug(f"Reference_date = {reference_date} | {type(reference_date)}")
+    logging.debug("Reference_date = %s", reference_date)
 
     for event in calendar.events:
-        logging.debug(f"event : {event} | {type(event)}")
-        start_utc: Datetime = event.begin.astimezone(timezone("Europe/Paris"))
-        end_utc: Datetime = event.end.astimezone(timezone("Europe/Paris"))
+        logging.debug("event : %s", event)
+        start_utc: datetime = event.begin.astimezone(timezone("Europe/Paris"))
+        end_utc: datetime = event.end.astimezone(timezone("Europe/Paris"))
 
         # Si l'évênement est aujourd'hui
         if start_utc.date() == reference_date:
-            logging.debug(f"Event is today")
+            logging.debug("Event is today")
             event.name = event.name.upper()
 
             start_hour: str = start_utc.strftime("%H:%M")
@@ -40,10 +41,11 @@ def lessons_TP(tp: str) -> dict:
             description: str = event.description
             lines: list[str] = description.split("\n")
             logging.debug(
-                f"event_name = {event.name} | {type(event.name)}\n\
-start_hour = {start_hour} | {type(start_hour)}\n\
-end_hour = {end_hour} | {type(end_hour)}\n\
-description = {description} | {type(description)}"
+                "Event name: %s | Event description: %s | start_hour: %s | end_hour: %s",
+                event.name,
+                description,
+                start_hour,
+                end_hour,
             )
             # Suppression des lines contenant "BUT" ou des parenthèses
             teacher: list[str] = [
@@ -55,18 +57,17 @@ description = {description} | {type(description)}"
                 and ")" not in ligne
                 and ligne.strip() != ""
             ]
-            logging.debug(f"teacher = {teacher} | {type(teacher)}")
+            logging.debug("teacher = %s", teacher)
 
             # Si il y a un profs alors on récupère uniquement le teacheren string sinon on indique qu'il n'y a aucun prof
             if len(teacher) > 0:
                 teacher: str = teacher[0]
             else:
                 teacher: str = "Aucun prof"
-            logging.debug(f"teacher = {teacher} | {type(teacher)}")
+            logging.debug("teacher = %s", teacher)
 
             # On crée la valeur du dictionnaire contenant le cours (la clé est l'heure de début du cours)
             lessons[start_hour]: dict[str] = {
-                # TODO - Créer un objet "cours"
                 "Cours": event.name[:-3],
                 "Salle": event.location,
                 "Prof": teacher,
@@ -75,13 +76,14 @@ description = {description} | {type(description)}"
             }
         else:
             logging.debug(
-                f"Error on event date's : {str(start_utc.date())} | {type(start_utc.date())}"
+                "Error on event date's: %s | reference_date: %s",
+                start_utc.date(),
+                reference_date,
             )
     return lessons
 
 
 def next_lesson_for_tp(cours_dict: dict[str], tp: str) -> list[tuple] | None:
-    print(next_lesson_for_tp)
     """Return the next lesson regardless of the date
 
     Args:
@@ -94,26 +96,24 @@ def next_lesson_for_tp(cours_dict: dict[str], tp: str) -> list[tuple] | None:
 
     next_lesson: list[tuple] = None
 
-    date_: Datetime = Datetime.now()
-    logging.debug(f"date = {date_} | {type(date_)}")
+    date_: datetime = datetime.now()
+    logging.debug("date = %s", date_)
 
     total_minutes: int = (date_.hour * 60) + date_.minute
-    logging.debug(f"total_minutes = {total_minutes} | {type(total_minutes)}")
+    logging.debug("total_minutes = %s", total_minutes)
 
     cours: list[tuple] = sorting_schedule(cours_dict)
 
     for key in cours:
-        logging.debug(f"value of key: {key} | {type(key)}")
+        logging.debug("value of key: %s", key)
         # Conversion in total minutes
         key: tuple[str]
         minutes = int(key[0].split(":")[0]) * 60 + int(key[0].split(":")[1])
         if total_minutes < minutes:
             return [key]
-        else:
-            pass
 
     if next_lesson is None:
-        logging.error(f"Le TP {tp} n'a pas/plus de cours aujourd'hui")
-        raise RuntimeError
+        logging.error("Le TP %s n'a pas/plus de cours aujourd'hui", tp.upper())
+        raise RuntimeError(f"Le TP {tp.upper()} n'a pas/plus de cours aujourd'hui")
 
     return next_lesson
