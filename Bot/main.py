@@ -22,11 +22,10 @@ from utils import (
     schedule_task,
     add_homework_for_tp,
     homework_for_tp,
-    embed_homework_construct,
     del_homework_for_tp,
     homework_auto_remove,
 )
-from rich import print  # pylint: disable=redefined-builtin
+from rich import print  # pylint: disable=redefined-builtin, unused-import
 from constants import TOKEN, TP, DATASOURCES, IUTSERVID, ZINCEID, NOTIFICATION_JSON_KEYS
 from homework import Homework
 
@@ -51,29 +50,31 @@ async def on_ready():
     )  # Bot connection confirmation
 
     # plan all asks
-    for tp in TP:
-        await plan_notification(tp)
+    for t_p in TP:
+        await plan_notification(t_p)
 
 
 @bot.command(description="Ask your schedule")
-async def schedule(ctx: ApplicationContext, tp: str):
-    """Main Feature:
-    Using /schedule on discord channel or bot's DMs
-    return in DMs the choiced TP shedule's for the day
+async def schedule(ctx: ApplicationContext, t_p: str):
+    """Command to retrieve and send the schedule for a specific TP group.
+
+    Args:
+        ctx (ApplicationContext): The application context.
+        t_p (str): The TP group for which to retrieve the schedule.
     """
     # TODO - writte error reporting
     # TODO - if 7pm past, return tomorrow's schedule
     user: User | Member = ctx.author
     logging.debug("User value : %s", user)
-    if tp.upper() in TP.values():
-        logging.debug("tp value : %s", tp)
+    if t_p.upper() in TP.values():
+        logging.debug("tp value : %s", t_p)
         date: datetime.date = datetime.date.today()
-        _schedule: list = sorting_schedule(lessons_tp(tp))
+        _schedule: list = sorting_schedule(lessons_tp(t_p))
         logging.debug("() | main.py schedule function : schedule value : %s", _schedule)
 
         embed = embed_schedule_construct(
             title=f"Emploi du temps du {date}",
-            description=f"{tp}",
+            description=f"{t_p}",
             color=0xFF0000,  # red
             schedule=_schedule,
             sign=True,
@@ -129,30 +130,43 @@ async def notif(ctx: ApplicationContext, notification: str, boolean: bool):
 
 @bot.command(description="Demandez les devoirs enregistrés liés à son TP")
 async def homework(ctx: ApplicationContext):
+    """Command to retrieve and send homeworks to the user.
+
+    Args:
+        ctx (ApplicationContext): The application context.
+    """
     # TODO - checker la génération d'une erreur azec add_homework si l'utilisateur n'est relié a aucun groupe de tp
     user: User | Member = ctx.author
-    logging.debug(f"User value : {user}")
+    logging.debug("User value : %s", user)
     # Récupération du TP de l'utilisateur
     roles: list[Role] = user.roles
     for role in roles:
-        logging.debug(f"role value : {role}")
-        if role.name in TP.keys():
-            logging.debug(f"role.name value : {role.name}")
+        logging.debug("role value : %s", role)
+        if role.name in TP.keys():  # pylint: disable=consider-iterating-dictionary
+            logging.debug("role.name value : %s", role.name)
             homeworks_temp: list[Homework] = homework_for_tp(TP[role.name])
-            logging.debug(f"homeworks_temp value : {homeworks_temp}")
+            logging.debug("homeworks_temp value : %s", homeworks_temp)
             logging.debug(
-                f"homeworks_temp's elem type : {type(homeworks_temp[0]) if homeworks_temp != [] else 'homeworks_temp is empty'}"
+                "homeworks_temp's elem type : %s",
+                {
+                    type(homeworks_temp[0])
+                    if homeworks_temp
+                    else "homeworks_temp is empty"
+                },
             )
             homeworks: list[Homework] = []
             # DO NOT use remove method here
-            for homework in homeworks_temp:
-                if homework.criticite_compare():
-                    homeworks.append(homework)
+            for homework_ in homeworks_temp:
+                if homework_.criticite_compare():
+                    homeworks.append(homework_)
             break
     # Envois des devoirs ou d'un message si aucun devoir
     if homeworks:
-        embed: Embed = embed_homework_construct(
-            title=role.name, color=0x00FF00, homeworks=homeworks, description="Devoir"
+        embed: Embed = Homework.embed_homework_construct(
+            title=role.name,  # pylint: disable=undefined-loop-variable
+            color=0x00FF00,
+            homeworks=homeworks,
+            description="Devoir",
         )
         await send_notification(user_list=[user], embed=embed)
         await ctx.interaction.response.send_message("Done!")
@@ -179,6 +193,17 @@ async def add_homework(
     description: str,
     note: bool = False,
 ):
+    """Command to add a homework to the TP.
+
+    Args:
+        ctx (ApplicationContext): The application context.
+        ressource (str): The resource of the homework.
+        prof (str): The professor of the homework.
+        criticite (str): The importance/criticality of the homework.
+        date_rendu (str): The deadline of the homework in the format 'YYYY-MM-DD-HH-MM'.
+        description (str): The description of the homework.
+        note (bool, optional): Whether the homework needs to be noted. Defaults to False.
+    """
     # TODO - ajouter des descriptions aux arguments visible sur discord ( format de la date notemment)
 
     user: User | Member = ctx.author
@@ -187,14 +212,17 @@ async def add_homework(
     for role in roles:
         roles_name.append(role.name)
 
-    logging.debug(f"roles_name = {roles_name}")
+    logging.debug("roles_name = %s", roles_name)
 
     for name in roles_name:
-        if name in TP.keys() and "délégué" in roles_name:
+        if (
+            name in TP.keys()  # pylint: disable=consider-iterating-dictionary
+            and "délégué" in roles_name
+        ):
             logging.debug("TP and role 'délégué' found")
             try:
                 date_rendu_obj: datetime.datetime = datetime.datetime.strptime(
-                    date_rendu, f"%Y-%m-%d-%H-%M"
+                    date_rendu, "%Y-%m-%d-%H-%M"
                 )
             except ValueError:
                 await ctx.interaction.response.send_message(
@@ -202,12 +230,12 @@ async def add_homework(
                 )
                 return
 
-            homework = Homework(
+            homework_ = Homework(
                 ressource, prof, criticite, date_rendu_obj, description, note
             )
-            logging.debug(f"homework = {homework}")
+            logging.debug("homework = %s", homework_)
             result: bool = add_homework_for_tp(
-                homework,
+                homework_,
                 TP[name],
             )
             if result:
@@ -217,7 +245,8 @@ async def add_homework(
                 zince: User = await bot.fetch_user(ZINCEID)
                 date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
                 await zince.send(
-                    f"({date}) Error in add_homework function (main.py) for user {ctx.author}, tp = {name}, homework = {homework}"
+                    f"({date}) Error in add_homework function (main.py)\
+for user {ctx.author}, tp = {name}, homework = {homework_}"
                 )
                 await ctx.interaction.response.send_message(
                     "An error happened, my creators have been notified"
@@ -234,26 +263,35 @@ async def add_homework(
 
 @bot.command(description="Supprimer un devoir à son TP")
 async def del_homework(ctx: ApplicationContext, emplacement: int = None):
+    """Command to delete a homework from the TP.
+
+    Args:
+        ctx (ApplicationContext): The application context.
+        emplacement (int, optional): The placement of the homework to be deleted. Defaults to None.
+    """
     user: User | Member = ctx.author
     roles: list[Role] = user.roles
     roles_name: list[str] = []
     for role in roles:
         roles_name.append(role.name)
 
-    logging.debug(f"roles_name = {roles_name}")
+    logging.debug("roles_name = %s", roles_name)
 
     for name in roles_name:
-        if name in TP.keys() and "délégué" in roles_name:
+        if (
+            name in TP.keys()  # pylint: disable=consider-iterating-dictionary
+            and "délégué" in roles_name
+        ):
             # 0 = not
             if not emplacement:
                 logging.debug("not placement")
 
                 homeworks: list[Homework] = homework_for_tp(TP[name])
-                logging.debug(f"homeworks = {homeworks}")
-                embed: Embed = embed_homework_construct(
+                logging.debug("homeworks = %s", homeworks)
+                embed: Embed = Homework.embed_homework_construct(
                     title="Liste des devoirs enregistrés",
-                    description="Utilisez la commande /del_homework en indiquant le numéro du devoir que vous voulez supprimer",
-                    # TODO - Sondage pour savoir si il faut préciser les numéros dans l'embed ou pas
+                    description="Utilisez la commande /del_homework en indiquant\
+le numéro du devoir que vous voulez supprimer",
                     color=0x00FF00,
                     homeworks=homeworks,
                     sorting=False,
@@ -262,7 +300,7 @@ async def del_homework(ctx: ApplicationContext, emplacement: int = None):
             else:
                 logging.debug("placement")
                 result: int = del_homework_for_tp(
-                    placement=emplacement - 1, tp=TP[name]
+                    placement=emplacement - 1, t_p=TP[name]
                 )
                 match result:
                     case 1:
@@ -272,14 +310,16 @@ async def del_homework(ctx: ApplicationContext, emplacement: int = None):
                         zince: User = await bot.fetch_user(ZINCEID)
                         date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
                         await zince.send(
-                            f"({date}) Error in del_homework function (main.py) for user {ctx.author}, tp = {name}, placement = {emplacement}"
+                            f"({date}) Error in del_homework function (main.py) for\
+user {ctx.author}, tp = {name}, placement = {emplacement}"
                         )
                         await ctx.interaction.response.send_message(
                             "An error happened, my creators have been notified"
                         )
                     case 2:
                         await ctx.interaction.response.send_message(
-                            "Il semblerai que le devoir dont vous avez demandé la suppression n'existe pas"
+                            "Il semblerai que le devoir dont vous avez\
+demandé la suppression n'existe pas"
                         )
                 break
     try:
@@ -290,7 +330,7 @@ async def del_homework(ctx: ApplicationContext, emplacement: int = None):
         pass
 
 
-async def plan_notification(tp: str) -> None:
+async def plan_notification(t_p: str) -> None:
     """Send a notification 5 minutes before the next lesson
 
     Args:
@@ -299,15 +339,15 @@ async def plan_notification(tp: str) -> None:
 
     # Get the next lesson hour
     try:
-        next_lesson: list[tuple] = next_lesson_for_tp(lessons_tp(TP[tp]), tp)
+        next_lesson: list[tuple] = next_lesson_for_tp(lessons_tp(TP[t_p]), t_p)
     except RuntimeError:
         # If the TP doesn't have any lessons, stop the automatic planing
         logging.error(
             "The TP %s doesn't have any more lesson, shuttig down the automatic planning",
-            tp,
+            t_p,
         )
         return
-    logging.info("(Send lesson for TP %s : %s", tp, next_lesson)
+    logging.info("(Send lesson for TP %s : %s", t_p, next_lesson)
 
     embed: Embed = embed_schedule_construct(
         title="Prochain cours:",
@@ -316,7 +356,7 @@ async def plan_notification(tp: str) -> None:
         schedule=next_lesson,
         sign=True,
     )
-    logging.info(f"next lesson : {next_lesson}")
+    logging.info("next lesson : %s", next_lesson)
     lesson_time: datetime.datetime = datetime.datetime.strptime(
         next_lesson[0][1]["Heure de début"], "%H:%M"
     )
@@ -326,7 +366,11 @@ async def plan_notification(tp: str) -> None:
     # notification sent 5 min before lesson
     notification_time -= datetime.timedelta(minutes=5)
 
-    task = partial(send_notification, await get_user_list_from_tp(tp), embed=embed)
+    task = partial(
+        send_notification,
+        await get_user_list_from_tp(notify="next_lesson", t_p=t_p),
+        embed=embed,
+    )
 
     await schedule_task(
         task,
@@ -353,17 +397,18 @@ async def send_notification(
     logging.debug("notification sent to users : %s", user_list)
 
 
-async def get_user_list_from_tp(tp: str, serv_id=IUTSERVID) -> list:
+async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> list:
     """Renvoie l'ID des utilisateurs faisant partie du TP
 
     Args:
+        notify (str): notification recherché
         tp (str): TP cible (rôle discord)
 
     Returns:
         list: liste d'identifiants discord
     """
     res = []
-    user_list: list[str] = get_notified_users()
+    user_list: list[str] = get_notified_users(notify=notify)
     guild: Guild = bot.get_guild(serv_id)
     logging.debug("Discord server found: %s", guild.name)
     if guild:
@@ -374,7 +419,7 @@ async def get_user_list_from_tp(tp: str, serv_id=IUTSERVID) -> list:
             roles = member.roles
             logging.debug("roles = %s", roles)
             for role in roles:
-                if tp == role.name:
+                if t_p == role.name:
                     res.append(member)
     else:
         raise RuntimeError("Discord server not found")

@@ -32,7 +32,6 @@ def embed_schedule_construct(
         Embed: discord Embed object, ready to be sent
     """
     # TODO - Create a real lesson class
-    print(schedule)
     embed: Embed = Embed(title=title, description=description, color=color)
     for heures in schedule:
         debut: str = heures[1]["Heure de début"]
@@ -45,51 +44,6 @@ def embed_schedule_construct(
             value=f"Début: {debut}\nSalle: {salle}\nProf: {prof}\nHeure de fin: {heure_fin}\n\n",
             inline=False,
         )
-    if sign:
-        embed.set_thumbnail(url=LOGOPATH)
-        embed.set_footer(text=f"Écris par : {AUTHORS}")
-
-    return embed
-
-
-def embed_homework_construct(
-    title: str,
-    color: int | Colour,
-    homeworks: list[Homework],
-    description: str | None,
-    sign: bool = True,
-    sorting: bool = True,
-) -> Embed:
-    """Create a discord Embed object representing a student's homeworks
-
-    Args:
-        title (str): title of the embed
-        color (int | Colour): color of the embed
-        homeworks (list[Homework]): homeworks of student
-        description (str | None): description of the embed
-        sign (bool, optional): signed by CSquare on demand, default True
-        sorting (bool, optional): sorting of homework to position them with outdated on top, default True
-    Returns:
-        Embed: discord Embed object, ready to be sent
-    """
-    if sorting:
-        sorting_homeworks(homeworks)
-    embed: Embed = Embed(
-        title=title, description=description if description else "", color=color
-    )
-    for homework in homeworks:
-        if homework.criticite_compare:
-            ressource: str = homework.ressource
-            prof: str = homework.prof
-            date_rendu: datetime = homework.date_rendu
-            description: str = homework.description
-            note: bool = homework.note
-            outdated: bool = homework.outdated
-
-            embed.add_field(
-                name=f"{ressource} {'DEADLINE DEPASSÉ' if outdated else ''}",
-                value=f"Prof: {prof}\nPour le: {date_rendu.day}/{date_rendu.month if len(str(date_rendu.month)) > 1 else '0'+str(date_rendu.month)}/{date_rendu.year} {date_rendu.hour}H{date_rendu.minute if len(str(date_rendu.minute)) > 1 else '0'+str(date_rendu.minute)}\nDescription: {description}\n{'Devoir noté' if note else ''}",
-            )
     if sign:
         embed.set_thumbnail(url=LOGOPATH)
         embed.set_footer(text=f"Écris par : {AUTHORS}")
@@ -111,40 +65,42 @@ def notification_parameter_change(
     Returns:
         bool: true if modification is done, false if any error happened
     """
-    print(type(user_id))
     with open(path, "r+", encoding="utf-8") as file:
         try:
-            js: dict = json.load(file)
+            j_s: dict = json.load(file)
         except json.JSONDecodeError:
-            js: dict = {}
+            j_s: dict = {}
     try:
-        if user_id in js.keys():
-            js[user_id][notification] = parameter
+        if user_id in j_s.keys():
+            j_s[user_id][notification] = parameter
         else:
             print(1)
-            js[user_id] = {notification: parameter}
+            j_s[user_id] = {notification: parameter}
 
         with open(path, "w+", encoding="utf-8") as file:
-            json.dump(js, file)
+            json.dump(j_s, file)
         return True
     except RuntimeError:
         return False
 
 
-def get_notified_users(sources: str = DATASOURCES) -> list:
+def get_notified_users(notify: str, sources: str = DATASOURCES) -> list:
     """Return all IDs found in json in parameters where schedule's notification are activated
 
     Args:
+        notify (str) : type of notification seached
         sources (str, optional): Path to json. Defaults to DATASOURCES.
 
     Returns:
         list: All IDs found
     """
-    with open(sources, "r", encoding="utf-8") as f:
-        js: dict = json.load(f)
-    # TODO - try/except
+    try:
+        with open(sources, "r", encoding="utf-8") as file:
+            j_s: dict = json.load(file)
+    except FileNotFoundError:
+        return []
     logging.debug("path = %s", sources)
-    liste_id = [user_ for user_, user_params in js.items() if user_params["notify"]]
+    liste_id = [user_ for user_, user_params in j_s.items() if user_params[notify]]
     try:
         logging.debug("Type des ID renvoyés : %s", type(liste_id[0]))
     except IndexError:
@@ -174,8 +130,8 @@ async def schedule_task(task, planned_date: datetime) -> None:
 
     if iscoroutinefunction(task):
         return await task()
-    else:
-        return task()
+
+    return task()
 
 
 def sorting_schedule(cours_dict: dict) -> list[tuple]:
@@ -193,14 +149,10 @@ def sorting_schedule(cours_dict: dict) -> list[tuple]:
     sorted_items = sorted(cours_dict.items(), key=lambda x: x[0])
     logging.debug("sorted_items = %s", sorted_items)
 
-    return [(hour, lesson) for hour, lesson in sorted_items]
+    return list[sorted_items]
 
 
-def sorting_homeworks(homework_list: list[Homework]) -> list[Homework]:
-    return sorted(homework_list, key=lambda hw: hw.is_outdated(), reverse=False)
-
-
-def add_homework_for_tp(homework: Homework, tp: str, path: str = DATASOURCES) -> bool:
+def add_homework_for_tp(homework: Homework, t_p: str, path: str = DATASOURCES) -> bool:
     """Add an homework in json file
 
     Args:
@@ -211,29 +163,29 @@ def add_homework_for_tp(homework: Homework, tp: str, path: str = DATASOURCES) ->
     Returns:
         bool: true if adding complete, false if error happened
     """
-    with open(path, "r+") as file:
+    with open(path, "r+", encoding="utf-8") as file:
         try:
-            js: dict = json.load(file)
+            j_s: dict = json.load(file)
         except json.JSONDecodeError:
-            js: dict = {}
+            j_s: dict = {}
     try:
-        if "homework" not in js:
-            js["homework"] = {}
+        if "homework" not in j_s:
+            j_s["homework"] = {}
 
-        if tp not in js["homework"]:
-            js["homework"][tp] = []
+        if t_p not in j_s["homework"]:
+            j_s["homework"][t_p] = []
 
-        js["homework"][tp].append(homework.tojson())
+        j_s["homework"][t_p].append(homework.tojson())
 
-        with open(path, "w+") as file:
-            json.dump(js, file)
+        with open(path, "w+", encoding="utf-8") as file:
+            json.dump(j_s, file)
         return True
 
     except RuntimeError:
         return False
 
 
-def del_homework_for_tp(placement: int, tp: str, path=DATASOURCES) -> int:
+def del_homework_for_tp(placement: int, t_p: str, path=DATASOURCES) -> int:
     """Remove an homework in json file
 
     Args:
@@ -242,30 +194,31 @@ def del_homework_for_tp(placement: int, tp: str, path=DATASOURCES) -> int:
         path (str, optional): path to json file. Defaults to DATASOURCES.
 
     Returns:
-        int: 1 if deletion is successful, 0 if an error occurs during execution, 2 if user gave a miss-argument
+        int: 1 if deletion is successful, 0 if an error occurs during execution,
+            2 if user gave a miss-argument
     """
     try:
-        with open(path, "r+") as file:
-            js: dict = json.load(file)
+        with open(path, "r+", encoding="utf-8") as file:
+            j_s: dict = json.load(file)
 
-        homework_list: dict = js["homework"][tp]
+        homework_list: dict = j_s["homework"][t_p]
         if placement < 0:
             raise IndexError
         del homework_list[placement]
 
-        with open(path, "w+") as file:
-            json.dump(js, file)
+        with open(path, "w+", encoding="utf-8") as file:
+            json.dump(j_s, file)
 
         return 1
 
     except (json.JSONDecodeError, KeyError, IndexError):
-        # if user gave a miss-argument, because no any homework registered in his tp or not even in all others tp
+        # if user gave a miss-argument, because no any homework registered in his tp
         return 2
     except FileNotFoundError:
         return 0
 
 
-def homework_for_tp(tp: str, path: str = DATASOURCES) -> list[Homework]:
+def homework_for_tp(t_p: str, path: str = DATASOURCES) -> list[Homework]:
     """Return a list of object Homework
 
     Args:
@@ -275,15 +228,15 @@ def homework_for_tp(tp: str, path: str = DATASOURCES) -> list[Homework]:
     Returns:
         list[Homework]: list of Homework for the tp asked
     """
-    with open(path, "r+") as file:
+    with open(path, "r+", encoding="utf-8") as file:
         try:
-            js: dict = json.load(file)
+            j_s: dict = json.load(file)
         except json.JSONDecodeError:
-            js: dict = {}
+            j_s: dict = {}
 
     list_dict_homework: list[Homework] = []
     try:
-        list_dict_homework: list[dict] = js["homework"][tp]
+        list_dict_homework: list[dict] = j_s["homework"][t_p]
     except KeyError:
         pass
     list_homework: list[Homework] = []
@@ -294,31 +247,36 @@ def homework_for_tp(tp: str, path: str = DATASOURCES) -> list[Homework]:
 
 
 def homework_auto_remove(path: str = DATASOURCES):
+    """Remove out-dated homewoks from json file
+
+    Args:
+        path (str, optional): path to json file. Defaults to DATASOURCES.
+    """
     all_homeworks_dict: dict = {}
     current_date: datetime = datetime.now()
-    for tp in TP.values():
-        logging.debug(f"TP = {tp}")
+    for t_p in TP.values():
+        logging.debug("TP = %s", t_p)
 
-        homeworks_temp: list[Homework] = homework_for_tp(tp=tp, path=path)
-        logging.debug(f"homeworks_temp = {homeworks_temp}")
+        homeworks_temp: list[Homework] = homework_for_tp(t_p=t_p, path=path)
+        logging.debug("homeworks_temp = %s", homeworks_temp)
         homeworks: list[Homework] = []
         for homework in homeworks_temp:
             if homework.date_rendu + timedelta(days=1) > current_date:
-                logging.debug(f"valid homework : {homework}")
+                logging.debug("valid homework : %s", homework)
                 homeworks.append(homework.tojson())
             else:
-                logging.debug(f"unvalid homework : {homework}")
+                logging.debug("unvalid homework : %s", homework)
 
-        all_homeworks_dict[tp] = homeworks
-        logging.debug(f"all_homeworks_dict = {all_homeworks_dict}")
+        all_homeworks_dict[t_p] = homeworks
+        logging.debug("all_homeworks_dict = %s", all_homeworks_dict)
 
-    with open(path, "r+") as file:
+    with open(path, "r+", encoding="utf-8") as file:
         try:
-            js: dict = json.load(file)
+            j_s: dict = json.load(file)
         except json.JSONDecodeError:
-            js: dict = {}
+            j_s: dict = {}
 
-    js["homework"] = all_homeworks_dict
+    j_s["homework"] = all_homeworks_dict
 
-    with open(path, "w+") as file:
-        json.dump(js, file)
+    with open(path, "w+", encoding="utf-8") as file:
+        json.dump(j_s, file)

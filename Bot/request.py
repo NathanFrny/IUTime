@@ -3,16 +3,15 @@ import logging
 from datetime import datetime, date
 from ics import Calendar
 from pytz import timezone
-from datetime import datetime, date
 from utils import sorting_schedule
 
 
-def lessons_tp(tp: str) -> dict:
+def lessons_tp(t_p: str) -> dict:
     """Renvoies les cours de la journée pour le TP mis en paramètre"""
-    tp = tp.upper()
-    logging.debug("tp's value = %s", tp)
+    t_p = t_p.upper()
+    logging.debug("tp's value = %s", t_p)
 
-    ics_file: str = f"Calendars/{tp}/ADECal.ics"
+    ics_file: str = f"Calendars/{t_p}/ADECal.ics"
     logging.debug("Source's path : %s", ics_file)
 
     with open(ics_file, "r", encoding="utf-8") as file:
