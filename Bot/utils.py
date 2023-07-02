@@ -5,50 +5,12 @@ import asyncio
 import logging
 import json
 from inspect import iscoroutinefunction
-
-
-from discord import Embed, Colour
-from constants import LOGOPATH, AUTHORS, DATASOURCES, TP
+from constants import (
+    DATASOURCES,
+    TP_DISCORD_TO_SCHEDULE,
+    HOMEWORKSOURCES,
+)
 from homework import Homework
-
-
-def embed_schedule_construct(
-    title: str,
-    color: int | Colour,
-    schedule: list[tuple],
-    description: str | None,
-    sign: bool = True,
-) -> Embed:
-    """Create a discord Embed object representing a student's shedule
-
-    Args:
-        title (str): title of the embed
-        color (int | Colour): color of the embed
-        schedule (list): schedule of student, use sorting function for a good structure
-        description (str | None): description of the embed
-        sign (bool): signed by CSquare on demand, default True
-
-    Returns:
-        Embed: discord Embed object, ready to be sent
-    """
-    # TODO - Create a real lesson class
-    embed: Embed = Embed(title=title, description=description, color=color)
-    for heures in schedule:
-        debut: str = heures[1]["Heure de début"]
-        cours: str = heures[1]["Cours"]
-        salle: str = heures[1]["Salle"]
-        prof: str = heures[1]["Prof"]
-        heure_fin: str = heures[1]["Heure de fin"]
-        embed.add_field(
-            name=cours,
-            value=f"Début: {debut}\nSalle: {salle}\nProf: {prof}\nHeure de fin: {heure_fin}\n\n",
-            inline=False,
-        )
-    if sign:
-        embed.set_thumbnail(url=LOGOPATH)
-        embed.set_footer(text=f"Écris par : {AUTHORS}")
-
-    return embed
 
 
 def notification_parameter_change(
@@ -100,7 +62,9 @@ def get_notified_users(notify: str, sources: str = DATASOURCES) -> list:
     except FileNotFoundError:
         return []
     logging.debug("path = %s", sources)
-    liste_id = [user_ for user_, user_params in j_s.items() if user_params[notify]]
+    liste_id = [
+        user_ for user_, user_params in j_s.items() if user_params.get(notify, False)
+    ]
     try:
         logging.debug("Type des ID renvoyés : %s", type(liste_id[0]))
     except IndexError:
@@ -125,7 +89,7 @@ async def schedule_task(task, planned_date: datetime) -> None:
 
     current_time: datetime = datetime.now()
     sleep_time: timedelta = planned_date - current_time
-    logging.info("Scheduled to run %s at %s", task.__name__, planned_date)
+    logging.info("Scheduled to run %s at %s", task, planned_date)
     await asyncio.sleep(sleep_time.total_seconds())
 
     if iscoroutinefunction(task):
@@ -134,31 +98,15 @@ async def schedule_task(task, planned_date: datetime) -> None:
     return task()
 
 
-def sorting_schedule(cours_dict: dict) -> list[tuple]:
-    """Sorts the dictionary keys time order.
-
-    Args:
-        cours_dict (dict): Representation of lessons.
-
-    Returns:
-        list[tuple]: List of tuples containing the string of an hour in index 0 and
-        a dictionary of the lesson in index 1.
-    """
-    logging.debug("cours_dict = %s", cours_dict)
-
-    sorted_items = sorted(cours_dict.items(), key=lambda x: x[0])
-    logging.debug("sorted_items = %s", sorted_items)
-
-    return list[sorted_items]
-
-
-def add_homework_for_tp(homework: Homework, t_p: str, path: str = DATASOURCES) -> bool:
+def add_homework_for_tp(
+    homework: Homework, t_p: str, path: str = HOMEWORKSOURCES
+) -> bool:
     """Add an homework in json file
 
     Args:
         homework (Homework): homework need to be added
         tp (str): tp group concerned
-        path (str, optional): path to json file. Defaults to DATASOURCES.
+        path (str, optional): path to json file. Defaults to HOMEWORKSOURCES.
 
     Returns:
         bool: true if adding complete, false if error happened
@@ -185,13 +133,13 @@ def add_homework_for_tp(homework: Homework, t_p: str, path: str = DATASOURCES) -
         return False
 
 
-def del_homework_for_tp(placement: int, t_p: str, path=DATASOURCES) -> int:
+def del_homework_for_tp(placement: int, t_p: str, path=HOMEWORKSOURCES) -> int:
     """Remove an homework in json file
 
     Args:
         placement (int): index of the homework
         tp (str): tp group concerned
-        path (str, optional): path to json file. Defaults to DATASOURCES.
+        path (str, optional): path to json file. Defaults to HOMEWORKSOURCES.
 
     Returns:
         int: 1 if deletion is successful, 0 if an error occurs during execution,
@@ -218,12 +166,12 @@ def del_homework_for_tp(placement: int, t_p: str, path=DATASOURCES) -> int:
         return 0
 
 
-def homework_for_tp(t_p: str, path: str = DATASOURCES) -> list[Homework]:
+def homework_for_tp(t_p: str, path: str = HOMEWORKSOURCES) -> list[Homework]:
     """Return a list of object Homework
 
     Args:
         tp (str): tp group concerned
-        path (str, optional): path to json file. Defaults to DATASOURCES.
+        path (str, optional): path to json file. Defaults to HOMEWOKSOURCES.
 
     Returns:
         list[Homework]: list of Homework for the tp asked
@@ -246,15 +194,15 @@ def homework_for_tp(t_p: str, path: str = DATASOURCES) -> list[Homework]:
     return list_homework
 
 
-def homework_auto_remove(path: str = DATASOURCES):
+def homework_auto_remove(path: str = HOMEWORKSOURCES):
     """Remove out-dated homewoks from json file
 
     Args:
-        path (str, optional): path to json file. Defaults to DATASOURCES.
+        path (str, optional): path to json file. Defaults to HOMEWORKSOURCES.
     """
     all_homeworks_dict: dict = {}
     current_date: datetime = datetime.now()
-    for t_p in TP.values():
+    for t_p in TP_DISCORD_TO_SCHEDULE.values():
         logging.debug("TP = %s", t_p)
 
         homeworks_temp: list[Homework] = homework_for_tp(t_p=t_p, path=path)

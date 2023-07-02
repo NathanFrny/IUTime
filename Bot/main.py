@@ -1,6 +1,7 @@
 """Main file of the bot, contains all the commands and the main loop"""
 import datetime
 import logging
+import asyncio
 from functools import partial
 from discord import (
     Embed,
@@ -13,10 +14,9 @@ from discord import (
     Role,
     InteractionResponded,
 )
-from request import lessons_tp, next_lesson_for_tp
+from discord.ext import tasks
+from request import lessons_tp
 from utils import (
-    sorting_schedule,
-    embed_schedule_construct,
     notification_parameter_change,
     get_notified_users,
     schedule_task,
@@ -25,18 +25,22 @@ from utils import (
     del_homework_for_tp,
     homework_auto_remove,
 )
-from rich import print  # pylint: disable=redefined-builtin, unused-import
-from constants import TOKEN, TP, DATASOURCES, IUTSERVID, ZINCEID, NOTIFICATION_JSON_KEYS
+from constants import (
+    TOKEN,
+    TP_DISCORD_TO_SCHEDULE,
+    DATASOURCES,
+    IUTSERVID,
+    ZINCEID,
+    NOTIFICATION_JSON_KEYS,
+    HOMEWORKSOURCES,
+    TP_SCHEDULE_TO_DISCORD,
+    TARGETED_HOUR,
+)
 from homework import Homework
+from lesson import Lesson
 
 intents = Intents.default()
 bot: Bot = Bot(intents=intents)
-
-# logging style: "31/01/2023 12:00:00 | DEBUG | main.py | function : message"
-logging.basicConfig(
-    format="%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s",
-    level=logging.DEBUG,
-)
 
 
 @bot.event
@@ -48,10 +52,43 @@ async def on_ready():
     logging.info(
         "Logged in as %s (%s)", bot.user.name, bot.user.id
     )  # Bot connection confirmation
+    await wait_for_start_time()
 
-    # plan all asks
-    for t_p in TP:
-        await plan_notification(t_p)
+
+@tasks.loop(hours=24)
+async def plan_notif_for_tp():
+    """Recover all lesson for each TP group to send it to plan_notification function"""
+    all_lesson: list = []
+    for (
+        t_p
+    ) in TP_DISCORD_TO_SCHEDULE.keys():  # pylint: disable=consider-iterating-dictionary
+        schedule_: list[Lesson] = lessons_tp(t_p=TP_DISCORD_TO_SCHEDULE[t_p])
+        for lesson in schedule_:
+            all_lesson.append(lesson)
+
+    all_lesson = Lesson.sorting_schedule(all_lesson)
+    while all_lesson != []:
+        lesson = all_lesson.pop(0)
+        logging.debug("lesson = %s", lesson)
+        await plan_notification(t_p=TP_SCHEDULE_TO_DISCORD[lesson.t_p], lesson=lesson)
+
+
+@tasks.loop(hours=24)
+async def homeworks_notif():
+    homework_dict: dict = {}
+    for t_p in TP_DISCORD_TO_SCHEDULE.keys():
+        homeworks = homework_for_tp(TP_DISCORD_TO_SCHEDULE[t_p])
+        homework_dict[t_p] = Homework.embed_homework_construct(
+            title="teste",
+            color=0x00FF00,
+            homeworks=homeworks,
+            description="teste",
+            sign=True,
+            sorting=True,
+        )
+    for t_p in homework_dict.keys():
+        users_list = await get_user_list_from_tp(notify="homeworks", t_p=t_p)
+        await send_notification(user_list=users_list, embed=homework_dict[t_p])
 
 
 @bot.command(description="Ask your schedule")
@@ -62,17 +99,16 @@ async def schedule(ctx: ApplicationContext, t_p: str):
         ctx (ApplicationContext): The application context.
         t_p (str): The TP group for which to retrieve the schedule.
     """
-    # TODO - writte error reporting
     # TODO - if 7pm past, return tomorrow's schedule
     user: User | Member = ctx.author
     logging.debug("User value : %s", user)
-    if t_p.upper() in TP.values():
+    if t_p.upper() in TP_DISCORD_TO_SCHEDULE.values():
         logging.debug("tp value : %s", t_p)
         date: datetime.date = datetime.date.today()
-        _schedule: list = sorting_schedule(lessons_tp(t_p))
+        _schedule: list = Lesson.sorting_schedule(lessons_tp(t_p))
         logging.debug("() | main.py schedule function : schedule value : %s", _schedule)
 
-        embed = embed_schedule_construct(
+        embed = Lesson.embed_schedule_construct(
             title=f"Emploi du temps du {date}",
             description=f"{t_p}",
             color=0xFF0000,  # red
@@ -85,7 +121,7 @@ async def schedule(ctx: ApplicationContext, t_p: str):
     else:
         logging.debug("TP not found")
         message: str = "Les arguments attendus sont :"
-        for element in TP.values():
+        for element in TP_DISCORD_TO_SCHEDULE.values():
             message += element + ", "
         message = message[:-2]  # Last 2 caracters suppression
         await ctx.interaction.response.send_message(
@@ -119,7 +155,7 @@ async def notif(ctx: ApplicationContext, notification: str, boolean: bool):
             )
     else:
         logging.debug("Notification not found")
-        message: str = "Les arguments attendus sont :"
+        message: str = "Les arguments attendus sont: "
         for element in NOTIFICATION_JSON_KEYS:
             message += element + ", "
         message = message[:-2]  # Last 2 caracters suppression
@@ -142,9 +178,13 @@ async def homework(ctx: ApplicationContext):
     roles: list[Role] = user.roles
     for role in roles:
         logging.debug("role value : %s", role)
-        if role.name in TP.keys():  # pylint: disable=consider-iterating-dictionary
+        if (
+            role.name in TP_DISCORD_TO_SCHEDULE.keys()
+        ):  # pylint: disable=consider-iterating-dictionary
             logging.debug("role.name value : %s", role.name)
-            homeworks_temp: list[Homework] = homework_for_tp(TP[role.name])
+            homeworks_temp: list[Homework] = homework_for_tp(
+                TP_DISCORD_TO_SCHEDULE[role.name], path=HOMEWORKSOURCES
+            )
             logging.debug("homeworks_temp value : %s", homeworks_temp)
             logging.debug(
                 "homeworks_temp's elem type : %s",
@@ -216,7 +256,8 @@ async def add_homework(
 
     for name in roles_name:
         if (
-            name in TP.keys()  # pylint: disable=consider-iterating-dictionary
+            name
+            in TP_DISCORD_TO_SCHEDULE.keys()  # pylint: disable=consider-iterating-dictionary
             and "délégué" in roles_name
         ):
             logging.debug("TP and role 'délégué' found")
@@ -235,8 +276,9 @@ async def add_homework(
             )
             logging.debug("homework = %s", homework_)
             result: bool = add_homework_for_tp(
-                homework_,
-                TP[name],
+                homework=homework_,
+                t_p=TP_DISCORD_TO_SCHEDULE[name],
+                path=HOMEWORKSOURCES,
             )
             if result:
                 await ctx.interaction.response.send_message("Devoir ajouté avec succès")
@@ -279,14 +321,17 @@ async def del_homework(ctx: ApplicationContext, emplacement: int = None):
 
     for name in roles_name:
         if (
-            name in TP.keys()  # pylint: disable=consider-iterating-dictionary
+            name
+            in TP_DISCORD_TO_SCHEDULE.keys()  # pylint: disable=consider-iterating-dictionary
             and "délégué" in roles_name
         ):
             # 0 = not
             if not emplacement:
                 logging.debug("not placement")
 
-                homeworks: list[Homework] = homework_for_tp(TP[name])
+                homeworks: list[Homework] = homework_for_tp(
+                    t_p=TP_DISCORD_TO_SCHEDULE[name], path=HOMEWORKSOURCES
+                )
                 logging.debug("homeworks = %s", homeworks)
                 embed: Embed = Homework.embed_homework_construct(
                     title="Liste des devoirs enregistrés",
@@ -300,7 +345,9 @@ le numéro du devoir que vous voulez supprimer",
             else:
                 logging.debug("placement")
                 result: int = del_homework_for_tp(
-                    placement=emplacement - 1, t_p=TP[name]
+                    placement=emplacement - 1,
+                    t_p=TP_DISCORD_TO_SCHEDULE[name],
+                    path=HOMEWORKSOURCES,
                 )
                 match result:
                     case 1:
@@ -319,7 +366,7 @@ user {ctx.author}, tp = {name}, placement = {emplacement}"
                     case 2:
                         await ctx.interaction.response.send_message(
                             "Il semblerai que le devoir dont vous avez\
-demandé la suppression n'existe pas"
+ demandé la suppression n'existe pas"
                         )
                 break
     try:
@@ -330,39 +377,36 @@ demandé la suppression n'existe pas"
         pass
 
 
-async def plan_notification(t_p: str) -> None:
+async def plan_notification(t_p: str, lesson: Lesson) -> None:
     """Send a notification 5 minutes before the next lesson
 
     Args:
         tp (str): code of the TP group
+        lesson (lesson): lesson object that should be sent
     """
+    logging.debug("(Send lesson for TP %s : %s", t_p, lesson)
 
-    # Get the next lesson hour
-    try:
-        next_lesson: list[tuple] = next_lesson_for_tp(lessons_tp(TP[t_p]), t_p)
-    except RuntimeError:
-        # If the TP doesn't have any lessons, stop the automatic planing
-        logging.error(
-            "The TP %s doesn't have any more lesson, shuttig down the automatic planning",
-            t_p,
-        )
-        return
-    logging.info("(Send lesson for TP %s : %s", t_p, next_lesson)
-
-    embed: Embed = embed_schedule_construct(
+    embed: Embed = Lesson.embed_schedule_construct(
         title="Prochain cours:",
         description=None,
         color=0x9370DB,
-        schedule=next_lesson,
+        schedule=[lesson],
         sign=True,
     )
-    logging.info("next lesson : %s", next_lesson)
     lesson_time: datetime.datetime = datetime.datetime.strptime(
-        next_lesson[0][1]["Heure de début"], "%H:%M"
+        lesson.start_hour, "%H:%M"
+    ).time()
+    lesson_time: datetime.datetime = datetime.datetime.combine(
+        datetime.date.today(), lesson_time
     )
+    if lesson_time < datetime.datetime.now() - datetime.timedelta(hours=1, minutes=30):
+        logging.info("Lesson time to far in the past, %s", lesson_time)
+        return
 
     notification_time: datetime.datetime = datetime.datetime.now()
-    notification_time.replace(hour=lesson_time.hour, minute=lesson_time.minute)
+    notification_time = notification_time.replace(
+        hour=lesson_time.hour, minute=lesson_time.minute
+    )
     # notification sent 5 min before lesson
     notification_time -= datetime.timedelta(minutes=5)
 
@@ -402,11 +446,13 @@ async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> lis
 
     Args:
         notify (str): notification recherché
-        tp (str): TP cible (rôle discord)
+        tp (str): TP cible (rôle discord) (like: BUT1-TPA)
+        serv_id (int): targeted server. DEFAULT IUTSERVID
 
     Returns:
         list: liste d'identifiants discord
     """
+    logging.debug("t_p =  %s", t_p)
     res = []
     user_list: list[str] = get_notified_users(notify=notify)
     guild: Guild = bot.get_guild(serv_id)
@@ -425,6 +471,41 @@ async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> lis
         raise RuntimeError("Discord server not found")
 
     return res
+
+
+async def wait_for_start_time():
+    current_time: datetime.datetime = datetime.datetime.now()
+    target_time: datetime.datetime = datetime.datetime(
+        current_time.year,
+        current_time.month,
+        current_time.day,
+        TARGETED_HOUR[0],
+        TARGETED_HOUR[1],
+    )
+    logging.debug("target time = %s", target_time)
+    # Calculer le délai avant l'heure cible
+    if current_time < target_time:
+        wait_time: datetime = target_time - current_time
+        logging.debug("wait time = %s", wait_time)
+    else:
+        next_day: datetime.datetime = current_time + datetime.timedelta(days=1)
+        target_time = datetime.datetime(
+            next_day.year,
+            next_day.month,
+            next_day.day,
+            TARGETED_HOUR[0],
+            TARGETED_HOUR[1],
+        )
+        wait_time: datetime.timedelta = target_time - current_time
+
+    # Attendre jusqu'à l'heure cible
+    logging.info("waiting %s seconds", wait_time.total_seconds())
+    await asyncio.sleep(wait_time.total_seconds())
+
+    asyncio.ensure_future(plan_notif_for_tp.start())
+
+    await asyncio.sleep(58200)  # 16h10min
+    asyncio.ensure_future(homeworks_notif.start())
 
 
 if __name__ == "__main__":

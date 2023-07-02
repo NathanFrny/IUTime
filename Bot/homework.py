@@ -284,7 +284,7 @@ description={self._description}, note={self._note}"
                 note: bool = homework.note
 
                 embed.add_field(
-                    name=f"{ressource} {'DEADLINE DEPASSÉ' if homework.is_outdated else ''}",
+                    name=f"{ressource} {'DEADLINE DEPASSÉ' if homework.is_outdated() else ''}",
                     value=f"Prof: {prof}\nPour le: {date_rendu.day}/\
 {date_rendu.month if len(str(date_rendu.month)) > 1 else '0'+str(date_rendu.month)}\
 /{date_rendu.year} {date_rendu.hour}H{date_rendu.minute if len(str(date_rendu.minute)) > 1 else '0'+str(date_rendu.minute)}\

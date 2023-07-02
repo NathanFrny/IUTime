@@ -1,13 +1,21 @@
 """Module contenant les fonctions permettant de récupérer les cours d'un TP"""
+from __future__ import annotations
 import logging
 from datetime import datetime, date
 from ics import Calendar
 from pytz import timezone
-from utils import sorting_schedule
+from lesson import Lesson
 
 
-def lessons_tp(t_p: str) -> dict:
-    """Renvoies les cours de la journée pour le TP mis en paramètre"""
+def lessons_tp(t_p: str) -> list[Lesson]:
+    """Return schedule for tp group concerned
+
+    Args:
+        t_p (str): tp group  concerned (like: BUT1TD1TPA)
+
+    Returns:
+        dict: dict representing the schedule
+    """
     t_p = t_p.upper()
     logging.debug("tp's value = %s", t_p)
 
@@ -19,7 +27,7 @@ def lessons_tp(t_p: str) -> dict:
 
     calendar: Calendar = Calendar(ical_data)
 
-    lessons: dict[str:dict] = {}
+    lessons: list[Lesson] = []
     reference_date: date = date.today()
     logging.debug("Reference_date = %s", reference_date)
 
@@ -66,13 +74,16 @@ def lessons_tp(t_p: str) -> dict:
             logging.debug("teacher = %s", teacher)
 
             # On crée la valeur du dictionnaire contenant le cours (la clé est l'heure de début du cours)
-            lessons[start_hour]: dict[str] = {
-                "Cours": event.name[:-3],
-                "Salle": event.location,
-                "Prof": teacher,
-                "Heure de début": start_hour,
-                "Heure de fin": end_hour,
-            }
+            lessons.append(
+                Lesson(
+                    start_hour=start_hour,
+                    end_hour=end_hour,
+                    professor=teacher,
+                    room=event.location,
+                    t_p=t_p,
+                    cours=event.description,
+                )
+            )
         else:
             logging.debug(
                 "Error on event date's: %s | reference_date: %s",
@@ -82,7 +93,7 @@ def lessons_tp(t_p: str) -> dict:
     return lessons
 
 
-def next_lesson_for_tp(cours_dict: dict[str], tp: str) -> list[tuple] | None:
+def next_lesson_for_tp(lessons: list[Lesson], t_p: str) -> Lesson | None:
     """Return the next lesson regardless of the date
 
     Args:
@@ -93,7 +104,7 @@ def next_lesson_for_tp(cours_dict: dict[str], tp: str) -> list[tuple] | None:
         list[tuple]: represention of the lesson
     """
 
-    next_lesson: list[tuple] = None
+    next_lesson: Lesson = None
 
     date_: datetime = datetime.now()
     logging.debug("date = %s", date_)
@@ -101,18 +112,18 @@ def next_lesson_for_tp(cours_dict: dict[str], tp: str) -> list[tuple] | None:
     total_minutes: int = (date_.hour * 60) + date_.minute
     logging.debug("total_minutes = %s", total_minutes)
 
-    cours: list[tuple] = sorting_schedule(cours_dict)
+    schedule: list[tuple] = Lesson.sorting_schedule(lessons)
 
-    for key in cours:
-        logging.debug("value of key: %s", key)
+    for lesson in schedule:
+        logging.debug("lesson: %s", lesson)
+        lesson: Lesson
         # Conversion in total minutes
-        key: tuple[str]
-        minutes = int(key[0].split(":")[0]) * 60 + int(key[0].split(":")[1])
+        minutes = lesson.start_hour.hour * 60 + lesson.start_hour.minute
         if total_minutes < minutes:
-            return [key]
+            return lesson
 
     if next_lesson is None:
-        logging.error("Le TP %s n'a pas/plus de cours aujourd'hui", tp.upper())
-        raise RuntimeError(f"Le TP {tp.upper()} n'a pas/plus de cours aujourd'hui")
+        logging.error("Le TP %s n'a pas/plus de cours aujourd'hui", t_p.upper())
+        raise RuntimeError(f"Le TP {t_p.upper()} n'a pas/plus de cours aujourd'hui")
 
     return next_lesson

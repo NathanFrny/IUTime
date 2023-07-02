@@ -1,6 +1,7 @@
 TOKEN = "MTExMDk2NzMxODU1MDQzMzgyMw.GiO2NB.1Gevd3Q159xq0hvItQd016xH97EnSP4RpaMofI"
 LOGOPATH = "https://i.imgur.com/zNMQ14u.png"
 DATASOURCES = "index.json"
+HOMEWORKSOURCES = "homeworks.json"
 IUTSERVID = 1092412416811343872
 LESSONS_HOUR = {
     8: "08:30",
@@ -13,7 +14,7 @@ LESSONS_HOUR = {
     17: "17:30",
     18: "10:00",
 }
-TP = {
+TP_DISCORD_TO_SCHEDULE = {
     "BUT1-TPA": "BUT1TD1TPA",
     # "BUT1-TPB": "BUT1TD1TPB",
     # "BUT1-TPC": "BUT1TD2TPC",
@@ -25,6 +26,18 @@ TP = {
     # "BUT2-TPD": "BUT2TD2TPD",
     # "BUT2-APP": "BUT2APP",
 }
+TP_SCHEDULE_TO_DISCORD = {
+    "BUT1TD1TPA": "BUT1-TPA",
+    # "BUT1TD1TPB": "BUT1-TPB",
+    # "BUT1TD2TPC": "BUT1-TPC",
+    # "BUT1TD2TPD": "BUT1-TPD",
+    # "BUT1TD3TPE": "BUT1-TPE",
+    # "BUT2TD1TPA": "BUT2-TPA",
+    # "BUT2TD1TPB": "BUT2-TPB",
+    # "BUT2TD2TPC": "BUT2-TPC",
+    # "BUT2TD2TPD": "BUT2-TPD",
+    # "BUT2APP": "BUT2-APP",
+}
 DEFAULT_STRING_NO_LESSON = "Pas de cours prévu dans l'heure suivante"
 NOTIFICATION_JSON_KEYS = [
     "next_lesson",  # Value for notification of the next lesson
@@ -32,3 +45,4 @@ NOTIFICATION_JSON_KEYS = [
 ]
 AUTHORS = "C Square : Bonnel Noah, Fourny Nathan, Artu Florient, Thimoté Bois, Colin Prokopowicz"
 ZINCEID = 363011509564997642
+TARGETED_HOUR = (3, 0)

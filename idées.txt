@@ -1,27 +1,4 @@
-suppression automatiques des devoirs dont la deadlines est dépassées ( 1 jours aprés, noté en OUTDATED)
+fonctions pour changer les fichiers sources des emploi du temps
 
+mettre une description sur les arguments discord
 
-
-envois automatique des devoirs à 19h10, calculé à 19h05 pour éviter les problèmes
-suppression auto des devoirs outdated aprés 36h de délais dépassé lorsque la fonction se relance automatiquement a 3h  du mat
-
-desciption sur les arguments des commandes slash
-gérer les droits du bot sur le pannel discord
-
-mettre des constants partout avec une description de chaque constant, ou elle est utilisé etc dans le fichier constant
-
-class emploi du temps avec adaptation des fonctions nécessaires
-
-class schedule:
-	- date	
-	- heure de début
-	- durée
-	- prof
-	- ressouce
-	- salle
-
-	méthode:
-		- calcul de l'heure de fin
-		-from_json
-		-to_json
-		-from_ics
