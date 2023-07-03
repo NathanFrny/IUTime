@@ -1,4 +1,3 @@
-"""Main file of the bot, contains all the commands and the main loop"""
 import datetime
 import logging
 import asyncio
@@ -13,6 +12,7 @@ from discord import (
     Guild,
     Role,
     InteractionResponded,
+    Option,
 )
 from discord.ext import tasks
 from request import lessons_tp
@@ -57,7 +57,7 @@ async def on_ready():
 
 @tasks.loop(hours=24)
 async def plan_notif_for_tp():
-    """Recover all lesson for each TP group to send it to plan_notification function"""
+    """For each tp, create a list of sorted lesson, will this list is not empty, plan a notification for the next lesson"""
     all_lesson: list = []
     for (
         t_p
@@ -75,14 +75,16 @@ async def plan_notif_for_tp():
 
 @tasks.loop(hours=24)
 async def homeworks_notif():
+    """Send a notification of homeworks for each users who activate notifications
+    and delete out-dated homeworks"""
     homework_dict: dict = {}
     for t_p in TP_DISCORD_TO_SCHEDULE.keys():
         homeworks = homework_for_tp(TP_DISCORD_TO_SCHEDULE[t_p])
         homework_dict[t_p] = Homework.embed_homework_construct(
-            title="teste",
+            title="automatic notifications homeworks",
             color=0x00FF00,
             homeworks=homeworks,
-            description="teste",
+            description=f"Homeworks for {TP_DISCORD_TO_SCHEDULE[t_p]}",
             sign=True,
             sorting=True,
         )
@@ -90,26 +92,34 @@ async def homeworks_notif():
         users_list = await get_user_list_from_tp(notify="homeworks", t_p=t_p)
         await send_notification(user_list=users_list, embed=homework_dict[t_p])
 
+    homework_auto_remove()
+
 
 @bot.command(description="Ask your schedule")
-async def schedule(ctx: ApplicationContext, t_p: str):
+async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP group")):
     """Command to retrieve and send the schedule for a specific TP group.
+        If hour > 19, retrieve and send tommorow's shedule
 
     Args:
         ctx (ApplicationContext): The application context.
         t_p (str): The TP group for which to retrieve the schedule.
     """
-    # TODO - if 7pm past, return tomorrow's schedule
     user: User | Member = ctx.author
     logging.debug("User value : %s", user)
     if t_p.upper() in TP_DISCORD_TO_SCHEDULE.values():
         logging.debug("tp value : %s", t_p)
-        date: datetime.date = datetime.date.today()
-        _schedule: list = Lesson.sorting_schedule(lessons_tp(t_p))
-        logging.debug("() | main.py schedule function : schedule value : %s", _schedule)
+        date: datetime.datetime = datetime.datetime.now()
+        logging.debug("date = %s", date)
+        if date.hour >= 19:
+            tomorrow: bool = True
+            date += datetime.timedelta(days=1)
+        else:
+            tomorrow: bool = False
+        _schedule: list = Lesson.sorting_schedule(lessons_tp(t_p, tomorrow=tomorrow))
+        logging.debug("schedule value : %s", _schedule)
 
         embed = Lesson.embed_schedule_construct(
-            title=f"Emploi du temps du {date}",
+            title=f"Emploi du temps du {date.day}/{date.month}/{date.year}",
             description=f"{t_p}",
             color=0xFF0000,  # red
             schedule=_schedule,
@@ -129,9 +139,19 @@ async def schedule(ctx: ApplicationContext, t_p: str):
         )  # Responding if bad argument
 
 
-@bot.command(description="Activer ou non les notifications des cours")
-async def notif(ctx: ApplicationContext, notification: str, boolean: bool):
-    """Permet aux utilisateurs d'activer ou désactiver les notifications de prochains cours"""
+@bot.command(description="Able/Enable notifications for homeworks or lessons")
+async def notif(
+    ctx: ApplicationContext,
+    notification: Option(str, description="Notification parameter you want to change"),
+    boolean: Option(bool, description="True if you want the notification, False else"),
+):
+    """Enable users to change their notification parameters
+
+    Args:
+        ctx (ApplicationContext): Discord users recuperation
+        notification (str): which notification need to change
+        boolean (bool): True if notification desired, False else
+    """
     if notification in NOTIFICATION_JSON_KEYS:
         author_id: str = str(ctx.author.id)
         result = notification_parameter_change(
@@ -164,23 +184,21 @@ async def notif(ctx: ApplicationContext, notification: str, boolean: bool):
         )  # Responding if bad argument
 
 
-@bot.command(description="Demandez les devoirs enregistrés liés à son TP")
+@bot.command(description="Ask recorded homeworks for your TP")
 async def homework(ctx: ApplicationContext):
     """Command to retrieve and send homeworks to the user.
 
     Args:
         ctx (ApplicationContext): The application context.
     """
-    # TODO - checker la génération d'une erreur azec add_homework si l'utilisateur n'est relié a aucun groupe de tp
     user: User | Member = ctx.author
+    homeworks: list = None
     logging.debug("User value : %s", user)
-    # Récupération du TP de l'utilisateur
+    # User's TP recuperation
     roles: list[Role] = user.roles
     for role in roles:
         logging.debug("role value : %s", role)
-        if (
-            role.name in TP_DISCORD_TO_SCHEDULE.keys()
-        ):  # pylint: disable=consider-iterating-dictionary
+        if role.name in TP_DISCORD_TO_SCHEDULE.keys():
             logging.debug("role.name value : %s", role.name)
             homeworks_temp: list[Homework] = homework_for_tp(
                 TP_DISCORD_TO_SCHEDULE[role.name], path=HOMEWORKSOURCES
@@ -199,39 +217,44 @@ async def homework(ctx: ApplicationContext):
             for homework_ in homeworks_temp:
                 if homework_.criticite_compare():
                     homeworks.append(homework_)
+            # Sending homeworks or another message if not homeworks
+            if homeworks:
+                embed: Embed = Homework.embed_homework_construct(
+                    title=role.name,
+                    color=0x00FF00,
+                    homeworks=homeworks,
+                    description="Homeworks",
+                )
+                await send_notification(user_list=[user], embed=embed)
+                await ctx.interaction.response.send_message("Done!")
+            else:
+                await send_notification(
+                    user_list=[user], message="No homeworks recorded"
+                )
+                await ctx.interaction.response.send_message("Done!")
             break
-    # Envois des devoirs ou d'un message si aucun devoir
-    if homeworks:
-        embed: Embed = Homework.embed_homework_construct(
-            title=role.name,  # pylint: disable=undefined-loop-variable
-            color=0x00FF00,
-            homeworks=homeworks,
-            description="Devoir",
-        )
-        await send_notification(user_list=[user], embed=embed)
-        await ctx.interaction.response.send_message("Done!")
-    else:
-        await send_notification(user_list=[user], message="Aucun devoirs enregistrés")
-        await ctx.interaction.response.send_message("Done!")
 
-    # Si aucun groupe TP n'a été trouvé
+    # If user has not any TP group
     try:
         await ctx.interaction.response.send_message(
-            "Aucun groupe TP ne vous est attribué sur ce serveur discord"
+            "No TP group assigned to you on this discord server"
         )
     except InteractionResponded:
         pass
 
 
-@bot.command(description="Ajouter un devoir à son TP")
+@bot.command(description="Add an homework to your TP")
 async def add_homework(
     ctx: ApplicationContext,
-    ressource: str,
-    prof: str,
-    criticite: str,
-    date_rendu: str,
-    description: str,
-    note: bool = False,
+    ressource: Option(str, description="Ressource of the homework"),
+    prof: Option(str, description="For which teacher"),
+    criticite: Option(
+        str,
+        description="Importance, 'banale' to be notified 1 day before, 'normal' for 3 days, 'critique' to always be",
+    ),
+    date_rendu: Option(str, description="Due date, exemple '2023-07-03-02-40"),
+    description: Option(str, description="A simple desciption of the homework"),
+    note: Option(bool, description="If graded or not") = False,
 ):
     """Command to add a homework to the TP.
 
@@ -244,7 +267,6 @@ async def add_homework(
         description (str): The description of the homework.
         note (bool, optional): Whether the homework needs to be noted. Defaults to False.
     """
-    # TODO - ajouter des descriptions aux arguments visible sur discord ( format de la date notemment)
 
     user: User | Member = ctx.author
     roles: list[Role] = user.roles
@@ -255,11 +277,7 @@ async def add_homework(
     logging.debug("roles_name = %s", roles_name)
 
     for name in roles_name:
-        if (
-            name
-            in TP_DISCORD_TO_SCHEDULE.keys()  # pylint: disable=consider-iterating-dictionary
-            and "délégué" in roles_name
-        ):
+        if name in TP_DISCORD_TO_SCHEDULE.keys() and "délégué" in roles_name:
             logging.debug("TP and role 'délégué' found")
             try:
                 date_rendu_obj: datetime.datetime = datetime.datetime.strptime(
@@ -267,7 +285,7 @@ async def add_homework(
                 )
             except ValueError:
                 await ctx.interaction.response.send_message(
-                    "Format de date invalide. Utilisez le format 'AAAA-MM-JJ-HH-MM'"
+                    "Invalid date format. Use the format 'YYYY-MM-DD-HH-MM'"
                 )
                 return
 
@@ -281,7 +299,7 @@ async def add_homework(
                 path=HOMEWORKSOURCES,
             )
             if result:
-                await ctx.interaction.response.send_message("Devoir ajouté avec succès")
+                await ctx.interaction.response.send_message("Homework added!")
             else:
                 # Never supposed to appear
                 zince: User = await bot.fetch_user(ZINCEID)
@@ -297,14 +315,20 @@ for user {ctx.author}, tp = {name}, homework = {homework_}"
     try:
         logging.debug("TP or role 'délégué' not found")
         await ctx.interaction.response.send_message(
-            "Seul les délégués des TP ont le droit de modifier les devoirs enregistrés"
+            "Only TP delegates have the right to modify recorded homeworks"
         )
     except InteractionResponded:
         pass
 
 
-@bot.command(description="Supprimer un devoir à son TP")
-async def del_homework(ctx: ApplicationContext, emplacement: int = None):
+@bot.command(description="Delete an homework to your TP")
+async def del_homework(
+    ctx: ApplicationContext,
+    emplacement: Option(
+        int,
+        description="Homework's list placement, start to 1, let empty to obtain the list of homeworks",
+    ) = None,
+):
     """Command to delete a homework from the TP.
 
     Args:
@@ -320,11 +344,7 @@ async def del_homework(ctx: ApplicationContext, emplacement: int = None):
     logging.debug("roles_name = %s", roles_name)
 
     for name in roles_name:
-        if (
-            name
-            in TP_DISCORD_TO_SCHEDULE.keys()  # pylint: disable=consider-iterating-dictionary
-            and "délégué" in roles_name
-        ):
+        if name in TP_DISCORD_TO_SCHEDULE.keys() and "délégué" in roles_name:
             # 0 = not
             if not emplacement:
                 logging.debug("not placement")
@@ -334,9 +354,9 @@ async def del_homework(ctx: ApplicationContext, emplacement: int = None):
                 )
                 logging.debug("homeworks = %s", homeworks)
                 embed: Embed = Homework.embed_homework_construct(
-                    title="Liste des devoirs enregistrés",
-                    description="Utilisez la commande /del_homework en indiquant\
-le numéro du devoir que vous voulez supprimer",
+                    title="Homeworks recorded list",
+                    description="Use the /del_homework command, indicating\
+the number of the homework you want to delete",
                     color=0x00FF00,
                     homeworks=homeworks,
                     sorting=False,
@@ -365,13 +385,12 @@ user {ctx.author}, tp = {name}, placement = {emplacement}"
                         )
                     case 2:
                         await ctx.interaction.response.send_message(
-                            "Il semblerai que le devoir dont vous avez\
- demandé la suppression n'existe pas"
+                            "Seems like this homework doesn't exist"
                         )
                 break
     try:
         await ctx.interaction.response.send_message(
-            "Seul les délégués des TP ont le droit de modifier les devoirs enregistrés"
+            "Only TP delegates have the right to modify recorded homeworks"
         )
     except InteractionResponded:
         pass
@@ -384,10 +403,10 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
         tp (str): code of the TP group
         lesson (lesson): lesson object that should be sent
     """
-    logging.debug("(Send lesson for TP %s : %s", t_p, lesson)
+    logging.debug("Send lesson for TP %s : %s", t_p, lesson)
 
     embed: Embed = Lesson.embed_schedule_construct(
-        title="Prochain cours:",
+        title="Next lesson:",
         description=None,
         color=0x9370DB,
         schedule=[lesson],
@@ -442,15 +461,15 @@ async def send_notification(
 
 
 async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> list:
-    """Renvoie l'ID des utilisateurs faisant partie du TP
+    """Return a list of user's ID who activated the notification searched
 
     Args:
-        notify (str): notification recherché
-        tp (str): TP cible (rôle discord) (like: BUT1-TPA)
+        notify (str):notification searched
+        tp (str): TP group (exemple: BUT1-TPA)
         serv_id (int): targeted server. DEFAULT IUTSERVID
 
     Returns:
-        list: liste d'identifiants discord
+        list: users discord ID
     """
     logging.debug("t_p =  %s", t_p)
     res = []
@@ -483,7 +502,7 @@ async def wait_for_start_time():
         TARGETED_HOUR[1],
     )
     logging.debug("target time = %s", target_time)
-    # Calculer le délai avant l'heure cible
+    # Calculate delay before target time
     if current_time < target_time:
         wait_time: datetime = target_time - current_time
         logging.debug("wait time = %s", wait_time)
@@ -498,13 +517,15 @@ async def wait_for_start_time():
         )
         wait_time: datetime.timedelta = target_time - current_time
 
-    # Attendre jusqu'à l'heure cible
+    # waiting until target time
     logging.info("waiting %s seconds", wait_time.total_seconds())
     await asyncio.sleep(wait_time.total_seconds())
 
     asyncio.ensure_future(plan_notif_for_tp.start())
 
-    await asyncio.sleep(58200)  # 16h10min
+    await asyncio.sleep(
+        58200
+    )  # 16 hours and 10 min (if plan_notif start at 3am, homeworks are sent around 7pm10)
     asyncio.ensure_future(homeworks_notif.start())
 
 
@@ -513,5 +534,4 @@ if __name__ == "__main__":
         level=logging.DEBUG,
         format="%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s",
     )
-    homework_auto_remove()
     bot.run(TOKEN)

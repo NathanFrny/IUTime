@@ -1,4 +1,3 @@
-"""Contains class Homework representing an homework for  a student"""
 from __future__ import annotations
 import json
 from datetime import datetime, timedelta
@@ -284,15 +283,15 @@ description={self._description}, note={self._note}"
                 note: bool = homework.note
 
                 embed.add_field(
-                    name=f"{ressource} {'DEADLINE DEPASSÉ' if homework.is_outdated() else ''}",
-                    value=f"Prof: {prof}\nPour le: {date_rendu.day}/\
+                    name=f"{ressource} {'DEADLINE PASSED' if homework.is_outdated() else ''}",
+                    value=f"Teacher: {prof}\nFor: {date_rendu.day}/\
 {date_rendu.month if len(str(date_rendu.month)) > 1 else '0'+str(date_rendu.month)}\
 /{date_rendu.year} {date_rendu.hour}H{date_rendu.minute if len(str(date_rendu.minute)) > 1 else '0'+str(date_rendu.minute)}\
-\nDescription: {description}\n{'Devoir noté' if note else ''}",
+\nDescription: {description}\n{'Graded homework' if note else ''}",
                 )
         if sign:
             embed.set_thumbnail(url=LOGOPATH)
-            embed.set_footer(text=f"Écris par : {AUTHORS}")
+            embed.set_footer(text=f"{AUTHORS}")
 
         return embed
 

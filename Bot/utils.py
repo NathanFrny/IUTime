@@ -1,5 +1,3 @@
-"""This module contains all the functions that are used in the bot."""
-# TODO - rename this file, utils.py is too generic
 from datetime import timedelta, datetime
 import asyncio
 import logging
@@ -66,7 +64,7 @@ def get_notified_users(notify: str, sources: str = DATASOURCES) -> list:
         user_ for user_, user_params in j_s.items() if user_params.get(notify, False)
     ]
     try:
-        logging.debug("Type des ID renvoyés : %s", type(liste_id[0]))
+        logging.debug("ID types returned : %s", type(liste_id[0]))
     except IndexError:
         logging.debug("liste_id is empty")
     return liste_id
@@ -82,10 +80,6 @@ async def schedule_task(task, planned_date: datetime) -> None:
     Returns:
         None
     """
-
-    # if datetime.datetime.now() > planned_date:
-    #     # TODO - faire des vrais classes d'erreur
-    #     raise RuntimeError("Planned date is already passed")
 
     current_time: datetime = datetime.now()
     sleep_time: timedelta = planned_date - current_time
@@ -160,7 +154,7 @@ def del_homework_for_tp(placement: int, t_p: str, path=HOMEWORKSOURCES) -> int:
         return 1
 
     except (json.JSONDecodeError, KeyError, IndexError):
-        # if user gave a miss-argument, because no any homework registered in his tp
+        # if user gave a miss-argument or because no any homework registered in his tp
         return 2
     except FileNotFoundError:
         return 0
@@ -209,7 +203,7 @@ def homework_auto_remove(path: str = HOMEWORKSOURCES):
         logging.debug("homeworks_temp = %s", homeworks_temp)
         homeworks: list[Homework] = []
         for homework in homeworks_temp:
-            if homework.date_rendu + timedelta(days=1) > current_date:
+            if homework.date_rendu + timedelta(days=1, hours=12) > current_date:
                 logging.debug("valid homework : %s", homework)
                 homeworks.append(homework.tojson())
             else:
