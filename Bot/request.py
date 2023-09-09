@@ -1,10 +1,13 @@
 from __future__ import annotations
-import logging
 from datetime import datetime, date, timedelta
-from ics import Calendar
+from ics import Calendar, Event
 from pytz import timezone
 from lesson import Lesson
-
+from constants import TP_CONCERNED
+import xml.etree.ElementTree as ET
+import logging
+import re
+import os
 
 def lessons_tp(t_p: str, tomorrow: bool = False) -> list[Lesson]:
     """Return schedule for tp group concerned
@@ -127,3 +130,48 @@ def lessons_tp(t_p: str, tomorrow: bool = False) -> list[Lesson]:
 #
 #    return next_lesson
 #
+
+def convert_xml_to_ical(xml_file : str = "../Calendars/rss"):
+    # Charger le fichier XML
+    tree = ET.parse(xml_file)
+    root = tree.getroot()
+
+    # Créer un dictionnaire pour stocker les événements par groupe TP
+    tp_events = {}
+
+    # Parcourir les éléments <item> dans le fichier XML
+    for item in root.findall('.//item'):
+        title = item.find('title').text
+        description = item.find('description').text
+
+        # Extraire le nom du groupe TP (ex. "BUT1 TPD")
+        print(description)
+        tp= re.search(r'BUT[^<]+', description)[0]
+        # Créer un événement iCalendar
+        event = Event()
+        event.name = title
+        event.description = description
+
+        # Ajouter l'événement au groupe TP correspondant
+        for tp_group in TP_CONCERNED[tp]:
+            print(tp_group)
+            if tp_group in tp_events:
+                tp_events[tp_group].append(event)
+            else:
+                tp_events[tp_group] = [event]
+
+    # Créer un fichier iCalendar (.ics) pour chaque groupe TP
+    print(tp_events.keys())
+    for tp, events in tp_events.items():
+        cal = Calendar(events=events)
+
+        # Vérifier si le répertoire existe, sinon le créer
+        if not os.path.exists(f'../Calendars/{tp}'):
+            print(tp)
+            os.makedirs(f'../Calendars/{tp}')
+
+        with open(f'../Calendars/{tp}/{tp}.ics', 'w', encoding='utf-8') as ical_file:
+            ical_file.writelines(cal)
+
+# Utilisation de la fonction
+convert_xml_to_ical()

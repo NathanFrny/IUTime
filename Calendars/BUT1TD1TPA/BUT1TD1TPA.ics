@@ -1,0 +1,194 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:ics.py - http://git.io/lLljaA
+BEGIN:VEVENT
+DESCRIPTION:<p>20/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT1 info<br/>DELIGNIERES Isabelle<br/>Grand amphi<br/>
+SUMMARY:R1-01 algo CM
+UID:4bae7217-6384-4b1f-84dd-c3a3c6422ce4@4bae.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>21/09/2023 13h00 - 16h00</p><p><b>Ressources</b><br />BUT1 TD1<br/>KERKENI Insaf<br/>S135<br/>
+SUMMARY:R1-01 algo-C TD1
+UID:5061eb4c-2e74-41d9-87b2-0d17064ae1e4@5061.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>11/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT1 TD1<br/>KERKENI Insaf<br/>S135<br/>
+SUMMARY:R1-031 codage TD1
+UID:08097ba0-f8fd-4c04-90d0-a67cb3c9bad2@0809.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>18/09/2023 11h30 - 13h00</p><p><b>Ressources</b><br />BUT1 TPA<br/>MERLOT Jimmy<br/>S128<br/>
+SUMMARY:R1-05 BD TPA1
+UID:a50788e4-2865-41b2-a78b-4228ac43bc7c@a507.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>20/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT1 TD1<br/>CHRETIEN Bernard<br/>S135<br/>
+SUMMARY:R1-06 Maths dis TD 1
+UID:a59dd329-6606-42ef-bc1c-225ad335cb21@a59d.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>20/09/2023 14h30 - 16h00</p><p><b>Ressources</b><br />BUT1 TD1<br/>CHRETIEN Bernard<br/>S012<br/>
+SUMMARY:R1-06 Maths dis TD 1
+UID:08deb5c3-357b-41d0-a938-fc45c6aa3bc0@08de.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>14/09/2023 08h30 - 11h30</p><p><b>Ressources</b><br />BUT1 TPA<br/>MUGUET Romain<br/>S137<br/>
+SUMMARY:R1-02 Web TP A
+UID:543ec067-bb8f-45fa-b8d8-f4cce2d2529a@543e.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>15/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT1 TPA<br/>S138<br/>
+SUMMARY:S1 SaéC156 TI TPA
+UID:1a36fbb7-34aa-4ed0-ab84-5e082d22a81d@1a36.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>19/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT1 TPA<br/>CHRETIEN Bernard<br/>Bibliothèque<br/>
+SUMMARY:R1-06 Maths dis TPA
+UID:6cb80f72-1cdb-4c8b-9457-3fb2543f5d88@6cb8.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>13/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT1 TD1<br/>CHRETIEN Bernard<br/>Bibliothèque<br/>
+SUMMARY:R1-06 Maths dis TD 1
+UID:483f14f5-cb56-4afe-9b77-ccf987cae5be@483f.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>18/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT1 TD1<br/>KERKENI Insaf<br/>S135<br/>
+SUMMARY:R1-031 codage TD1
+UID:ddc0e7ed-8f61-4df0-99c8-c55d227396dd@ddc0.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>20/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT1 info<br/>CAPITAINE Dany<br/>Petit amphi<br/>
+SUMMARY:R1-05 BD CM
+UID:b370062e-6bf0-4c47-ab4b-e1b9d2fc31a6@b370.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>18/09/2023 14h30 - 17h30</p><p><b>Ressources</b><br />BUT1 TD1<br/>KERKENI Insaf<br/>S141<br/>
+SUMMARY:R1-01 algo-C TD1
+UID:c493e080-9c5d-43f9-81cb-aaf7ff5824ab@c493.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>22/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT1 TPA<br/>S128<br/>
+SUMMARY:S1 SaéC156 TI TPA
+UID:9caf9abd-6971-47ea-8376-f5f62cafc281@9caf.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>13/09/2023 08h30 - 11h30</p><p><b>Ressources</b><br />BUT1 TD1<br/>KERKENI Insaf<br/>Bibliothèque<br/>
+SUMMARY:R1-01 algo-C TD1
+UID:0fa9adf3-3d3f-4f78-9e23-1a6798bda76a@0fa9.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>22/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT1 info<br/>LETREZ Séverine<br/>Petit amphi<br/>
+SUMMARY:R1-08 ent CM
+UID:f975260a-e06e-464f-97aa-2f21b0be3dad@f975.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>11/09/2023 11h30 - 13h00</p><p><b>Ressources</b><br />BUT1 TPA<br/>MERLOT Jimmy<br/>S133<br/>
+SUMMARY:R1-05 BD TPA1
+UID:6e783118-0d38-4a17-899d-e75d3418efe4@6e78.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>22/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT1 TD1<br/>KERKENI Insaf<br/>S135<br/>
+SUMMARY:R1-031 codageTD 1
+UID:d2641495-c094-4f71-8f27-4fe48011c95e@d264.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>15/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT1 info<br/>LETREZ Séverine<br/>Petit amphi<br/>
+SUMMARY:R1-08 ent CM
+UID:94bade25-4d42-4b2b-a476-6ab60052e145@94ba.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>15/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT1 TD1<br/>KERKENI Insaf<br/>S136<br/>
+SUMMARY:R1-031 codageTD 1
+UID:3ce62df4-939f-4af4-b3b4-263724384c6e@3ce6.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>11/09/2023 14h30 - 17h30</p><p><b>Ressources</b><br />BUT1 TD1<br/>KERKENI Insaf<br/>Bibliothèque<br/>
+SUMMARY:R1-01 algo-C TD1
+UID:fa5493db-8de8-4f8b-a6c8-6331e3fa5456@fa54.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>11/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT1 TD1<br/>CAPITAINE Dany<br/>Bibliothèque<br/>
+SUMMARY:R1-02 Web TD 1
+UID:28e0cb5d-cd5a-46ba-b691-5912094d39ae@28e0.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>20/09/2023 16h00 - 17h30</p><p><b>Ressources</b><br />BUT1 TPA<br/>CHRETIEN Bernard<br/>S133<br/>
+SUMMARY:R1-06 Maths dis TPA
+UID:145b5cf2-1de0-4c32-9845-c399ae824c52@145b.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>12/09/2023 14h00 - 15h30</p><p><b>Ressources</b><br />BUT1 info<br/>CAPITAINE Dany<br/>Grand amphi<br/>
+SUMMARY:R1-02 CM
+UID:664fe570-f278-4595-8cf7-b25027ac4c28@664f.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>18/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT1 TD1<br/>CAPITAINE Dany<br/>S135<br/>
+SUMMARY:R1-02 Web TD 1
+UID:770733e9-c08a-4840-9188-099838bb1e3d@7707.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>14/09/2023 14h30 - 16h00</p><p><b>Ressources</b><br />BUT1 TD1<br/>LA DELFA Valérie<br/>Bibliothèque<br/>
+SUMMARY:RS1-11 exp TD1
+UID:8d138ef9-79ee-4e46-a05d-466c169e3cb8@8d13.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>19/09/2023 16h00 - 17h30</p><p><b>Ressources</b><br />LETREZ Séverine<br/>BUT1 TPA<br/>S128<br/>
+SUMMARY:R1-08 ent TP A
+UID:dd448517-f797-42c5-9d3b-e895782ddfdd@dd44.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>13/09/2023 16h00 - 17h30</p><p><b>Ressources</b><br />BUT1 info<br/>DELIGNIERES Isabelle<br/>Petit amphi<br/>
+SUMMARY:R1-01 algo CM
+UID:be249d59-c5c9-4f48-afa3-9e8bddb30d85@be24.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>22/09/2023 14h30 - 16h00</p><p><b>Ressources</b><br />BUT1 TPA<br/>S208<br/>
+SUMMARY:S1 SaéC156 TI TPA
+UID:5b1caf8b-b910-42e3-9911-c0e2c2fff100@5b1c.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>21/09/2023 08h30 - 11h30</p><p><b>Ressources</b><br />BUT1 TPA<br/>MUGUET Romain<br/>S138<br/>
+SUMMARY:R1-02 Web TP A
+UID:bc2ae218-ea2f-47c2-8c82-0a6f2b92dfd0@bc2a.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>12/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT1 info<br/>PACOU Anne<br/>Bibliothèque<br/>
+SUMMARY:R1-06 maths dis CM
+UID:c69d8dbe-a0fb-4e2b-a467-bbcd3b9efd86@c69d.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>15/09/2023 14h30 - 16h00</p><p><b>Ressources</b><br />LETREZ Séverine<br/>BUT1 TPA<br/>S138<br/>
+SUMMARY:R1-08 ent TP A
+UID:921b15b8-2414-4b93-8323-a3e9d5be2ec0@921b.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>14/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT1 TD1<br/>LETREZ Séverine<br/>Bibliothèque<br/>
+SUMMARY:R1-08 ent TD 1
+UID:571ae44f-7d99-4382-931e-d8ba7814a082@571a.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>12/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT1 info<br/>CAPITAINE Dany<br/>Petit amphi<br/>
+SUMMARY:R1-05 BD CM
+UID:cad6aa81-1462-4101-ab6a-c3f4a63c69e8@cad6.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>19/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT1 TD1<br/>LETREZ Séverine<br/>S208<br/>
+SUMMARY:R1-08 ent TD 1
+UID:cacb4cab-3ef0-4e9d-91b2-dffb8f3b77a0@cacb.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>19/09/2023 14h30 - 16h00</p><p><b>Ressources</b><br />BUT1 info<br/>PACOU Anne<br/>S100<br/>
+SUMMARY:R1-06 maths dis CM
+UID:b85d21c8-3589-409e-b40e-2fe42e9ed2c9@b85d.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>14/09/2023 16h00 - 17h30</p><p><b>Ressources</b><br />BUT1 TPA<br/>S207<br/>
+SUMMARY:S1 SaéC156 TI TPA
+UID:4b35282f-bbb6-4489-8c3f-bc2649b796bd@4b35.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>13/09/2023 14h30 - 16h00</p><p><b>Ressources</b><br />BUT1 TD1<br/>CHRETIEN Bernard<br/>S136<br/>
+SUMMARY:R1-06 Maths dis TD 1
+UID:7a974ffe-79e1-46bb-8e27-86f8d86b7fe4@7a97.org
+END:VEVENT
+END:VCALENDAR

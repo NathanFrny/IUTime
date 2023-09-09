@@ -1,0 +1,199 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:ics.py - http://git.io/lLljaA
+BEGIN:VEVENT
+DESCRIPTION:<p>22/09/2023 14h30 - 16h00</p><p><b>Ressources</b><br />BUT2 TD2<br/>FERNANDEZ Marguerite<br/>S141<br/>
+SUMMARY:R3-13 COM TD2
+UID:c37066dc-78a9-4a0d-bf16-96aadea93b66@c370.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>14/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT2 info<br/>CONOIR Lionnel<br/>Grand amphi<br/>
+SUMMARY:R3-06 Res CM
+UID:102bae52-d40e-4989-b76d-9f22a816105f@102b.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>19/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT2A TPD<br/>SYNAVE Rémi<br/>S012<br/>
+SUMMARY:S3 saé C1 suivi TPD
+UID:a0f22e72-43c1-413b-947a-adc43c1ade88@a0f2.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>13/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT2 TD2<br/>FORTIN Benoit<br/>S136<br/>
+SUMMARY:R3-08 Proba TD2
+UID:05e32dc3-66fb-4b9c-bc7c-05e5688d6c14@05e3.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>14/09/2023 13h00 - 16h00</p><p><b>Ressources</b><br />BUT2A TPD<br/>DUSSART Dominique<br/>S134<br/>
+SUMMARY:R3-05 Syst. TPD
+UID:ccc4c62a-d584-4588-8d2d-0efd8bb356e9@ccc4.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>22/09/2023 08h30 - 11h30</p><p><b>Ressources</b><br />BUT2 TD2<br/>ZHANG Jing<br/>S141<br/>
+SUMMARY:R3-021 Algo TD2
+UID:7ee82b47-e555-4da4-8833-49fbfaab0fe8@7ee8.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>12/09/2023 12h30 - 14h00</p><p><b>Ressources</b><br />BUT2A TPD<br/>SYNAVE Rémi<br/>S012<br/>
+SUMMARY:S3 saé C1 suivi TPD
+UID:5e08e5e6-6e77-4fd2-82c3-8c859c85122c@5e08.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>18/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT2 info<br/>CONOIR Lionnel<br/>Petit amphi<br/>
+SUMMARY:R3-08 Proba CM
+UID:7c350bda-8b8b-4be7-ba26-3495ce4dcec9@7c35.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>11/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT2 info<br/>COZOT Rémi<br/>Petit amphi<br/>
+SUMMARY:R3-021 Algo CM
+UID:d5ae2ccd-e28e-48cd-9834-f0a2c79086ca@d5ae.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>12/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT2 info<br/>SYNAVE Rémi<br/>Petit amphi<br/>
+SUMMARY:RS3-02 C++ CM
+UID:d130456d-59be-4760-a417-4a4f5f0798cb@d130.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>13/09/2023 16h00 - 17h30</p><p><b>Ressources</b><br />BUT2A TPD<br/>S209<br/>
+SUMMARY:S3 SaéC1 TI TPD
+UID:09bef33d-20d5-4a02-956c-f5c75c28728b@09be.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>13/09/2023 08h30 - 11h30</p><p><b>Ressources</b><br />BUT2A TPD<br/>VANNESTE Vincent<br/>S137<br/>
+SUMMARY:RS3-01 PHP TPD
+UID:35d5a16b-9e26-40a3-8332-04c150109ec9@35d5.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>19/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT2 info<br/>SYNAVE Rémi<br/>Petit amphi<br/>
+SUMMARY:RS3-02 C++ CM
+UID:77dd67a8-2834-41a2-aeaa-1618ac39c60f@77dd.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>14/09/2023 16h00 - 17h30</p><p><b>Ressources</b><br />BUT2A TPD<br/>S209<br/>
+SUMMARY:S3 SaéC1 TI TPD
+UID:ad9ef6a6-b44b-4637-8b03-5ad69dbe095a@ad9e.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>12/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT2 TD2<br/>FERNANDEZ Marguerite<br/>S135<br/>
+SUMMARY:R3-13 COM TD2
+UID:61ddff32-3979-4b08-819c-32fe0fdaea14@61dd.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>21/09/2023 16h00 - 17h30</p><p><b>Ressources</b><br />BUT2A TPD<br/>S208<br/>
+SUMMARY:S3 SaéC1 TI TPD
+UID:3c1251d1-90a9-4961-80ba-e4d974403b65@3c12.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>18/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT2 info<br/>COZOT Rémi<br/>Grand amphi<br/>
+SUMMARY:R3-021 Algo CM
+UID:c56b6f77-a75a-4a08-93e8-f1c74866690a@c56b.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>20/09/2023 16h00 - 17h30</p><p><b>Ressources</b><br />BUT2A TPD<br/>S209<br/>
+SUMMARY:S3 SaéC1 TI TPD
+UID:bee6b9b2-9bb4-4af3-a924-d293143437a6@bee6.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>21/09/2023 08h30 - 10h00</p><p><b>Ressources</b><br />BUT2 info<br/>CONOIR Lionnel<br/>S135<br/>
+SUMMARY:R3-06 Res CM
+UID:1b4071c6-1880-4c6a-92bb-6e21a2b1f4e2@1b40.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>18/09/2023 14h30 - 17h30</p><p><b>Ressources</b><br />BUT2 TD2<br/>SYNAVE Rémi<br/>S135<br/>
+SUMMARY:RS3-02 C++ TD2
+UID:9aabd4b0-9fe6-49e6-9ea4-b4286a5b2073@9aab.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>20/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT2 TD2<br/>FORTIN Benoit<br/>S204<br/>
+SUMMARY:R3-08 Proba TD2
+UID:8f51c95a-c2bb-49f1-9ae6-9fdff28d6ac9@8f51.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>20/09/2023 17h30 - 19h00</p><p><b>Ressources</b><br />BUT2A TPD<br/>FORTIN Benoit<br/>S138<br/>
+SUMMARY:R3-08 proba TPD
+UID:adeaff7a-ad9f-4888-852f-7aa4b8a2d703@adea.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>13/09/2023 14h30 - 16h00</p><p><b>Ressources</b><br />BUT2 TD2<br/>FORTIN Benoit<br/>Bibliothèque<br/>
+SUMMARY:R3-08 Proba TD2
+UID:624de019-263a-4e70-9b94-900f2c0d66bf@624d.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>15/09/2023 13h00 - 16h00</p><p><b>Ressources</b><br />BUT2 TD2<br/>SYNAVE Rémi<br/>Bibliothèque<br/>
+SUMMARY:RS3-02 C++ TD2
+UID:512e4deb-0d2e-466d-aca4-d7339f548a69@512e.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>12/09/2023 14h00 - 15h30</p><p><b>Ressources</b><br />BUT2A TPD<br/>S135<br/>
+SUMMARY:S3 SaéC1 TI TPD
+UID:c2f1484d-6c03-4086-8227-7bc3056e835a@c2f1.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>21/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT2 info<br/>DELIGNIERES Isabelle<br/>Petit amphi<br/>
+SUMMARY:R3-05 Syst. CM
+UID:17e901ba-0f3c-4d2a-84c1-61d0e2a1556e@17e9.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>19/09/2023 16h00 - 17h30</p><p><b>Ressources</b><br />BUT2A TPD<br/>S204<br/>
+SUMMARY:S3 SaéC1 TI TPD
+UID:23ea7402-b575-4c2f-b8ed-22cfa22c22b2@23ea.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>21/09/2023 13h00 - 16h00</p><p><b>Ressources</b><br />BUT2A TPD<br/>DUSSART Dominique<br/>Bibliothèque<br/>
+SUMMARY:R3-05 Syst. TPD
+UID:752c2336-52a5-4ccd-aba2-6d00bc5d8298@752c.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>11/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT2 info<br/>CONOIR Lionnel<br/>Petit amphi<br/>
+SUMMARY:R3-08 Proba CM
+UID:06c49422-52fa-4e68-b2e5-09290b5d7d3a@06c4.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>11/09/2023 14h30 - 17h30</p><p><b>Ressources</b><br />BUT2 TD2<br/>ZHANG Jing<br/>S135<br/>
+SUMMARY:R3-021 Algo TD2
+UID:fd1c37ec-0be3-46eb-88cc-c6c80408e3d7@fd1c.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>11/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT2 info<br/>VANNESTE Vincent<br/>Petit amphi<br/>
+SUMMARY:RS3-01 PHP CM
+UID:3ecc65fd-f740-4bf3-8324-f31f9f099546@3ecc.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>19/09/2023 14h30 - 16h00</p><p><b>Ressources</b><br />BUT2A TPD<br/>S209<br/>
+SUMMARY:S3 SaéC1 TI TPD
+UID:e1932768-fe5d-43b4-8222-edb363ce3649@e193.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>20/09/2023 14h30 - 16h00</p><p><b>Ressources</b><br />BUT2 TD2<br/>FORTIN Benoit<br/>Bibliothèque<br/>
+SUMMARY:R3-08 Proba TD2
+UID:6696b663-f9e5-4376-87c2-a8d1536cb4ae@6696.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>20/09/2023 08h30 - 11h30</p><p><b>Ressources</b><br />BUT2A TPD<br/>VANNESTE Vincent<br/>S141<br/>
+SUMMARY:RS3-01 PHP TPD
+UID:eeb0b81b-27f0-4144-99bb-fc9885541d3c@eeb0.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>14/09/2023 10h00 - 11h30</p><p><b>Ressources</b><br />BUT2 info<br/>DELIGNIERES Isabelle<br/>Petit amphi<br/>
+SUMMARY:R3-05 Syst. CM
+UID:21666a69-1ef0-4999-88ec-caaddc98f703@2166.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>22/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT2 info<br/>CONOIR Lionnel<br/>Petit amphi<br/>
+SUMMARY:R3-06 Res CM
+UID:010f4d4b-8d4a-4e39-a368-57ebfb1cb0cc@010f.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>15/09/2023 08h30 - 11h30</p><p><b>Ressources</b><br />BUT2A TPD<br/>CONOIR Lionnel<br/>S137<br/>
+SUMMARY:R3-06 Res TPD
+UID:180f4d7d-c148-458c-bee1-ef5c8a668f86@180f.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>13/09/2023 17h30 - 19h00</p><p><b>Ressources</b><br />BUT2A TPD<br/>FORTIN Benoit<br/>S012<br/>
+SUMMARY:R3-08 proba TPD
+UID:c38dc1c9-cf4f-49dd-a2ba-5eaad66def66@c38d.org
+END:VEVENT
+BEGIN:VEVENT
+DESCRIPTION:<p>18/09/2023 13h00 - 14h30</p><p><b>Ressources</b><br />BUT2 info<br/>VANNESTE Vincent<br/>Petit amphi<br/>
+SUMMARY:RS3-01 PHP CM
+UID:508e7a9d-175a-450e-82d3-710bf35bb93a@508e.org
+END:VEVENT
+END:VCALENDAR

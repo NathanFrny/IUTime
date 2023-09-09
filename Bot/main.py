@@ -7,7 +7,6 @@ from discord import (
     Intents,
     Member,
     User,
-    Bot,
     ApplicationContext,
     Guild,
     Role,
@@ -15,6 +14,7 @@ from discord import (
     Option,
 )
 from discord.ext import tasks
+from discord.ext.commands import Bot
 from request import lessons_tp
 from utils import (
     notification_parameter_change,
