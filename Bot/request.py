@@ -131,7 +131,7 @@ def lessons_tp(t_p: str, tomorrow: bool = False) -> list[Lesson]:
 #    return next_lesson
 #
 
-def convert_xml_to_ical(xml_file : str = "../Calendars/rss"):
+def convert_xml_to_ical(xml_file : str = "C:\\Users\\artuf\\Desktop\\Dev\\IUTime\\Calendars\\rss"):
     # Charger le fichier XML
     tree = ET.parse(xml_file)
     root = tree.getroot()
@@ -141,16 +141,32 @@ def convert_xml_to_ical(xml_file : str = "../Calendars/rss"):
 
     # Parcourir les éléments <item> dans le fichier XML
     for item in root.findall('.//item'):
+        print(item)
         title = item.find('title').text
         description = item.find('description').text
-
+        
         # Extraire le nom du groupe TP (ex. "BUT1 TPD")
         print(description)
         tp= re.search(r'BUT[^<]+', description)[0]
         # Créer un événement iCalendar
-        event = Event()
+        event : Event = Event()
         event.name = title
         event.description = description
+
+        # Utilisation d'une expression régulière pour extraire la date et l'heure de début et de fin
+        date_match = re.search(r'(\d{2}/\d{2}/\d{4}) (\d{2}h\d{2}) - (\d{2}h\d{2})', description)
+
+
+        date_str, start_time_str, end_time_str = date_match.groups()
+
+        # Conversion des chaînes en objets datetime
+        date_obj = datetime.strptime(date_str, '%d/%m/%Y')
+        start_time_obj = datetime.strptime(start_time_str, '%Hh%M')
+        end_time_obj = datetime.strptime(end_time_str, '%Hh%M')
+
+        # Calcul de la date et de l'heure de début et de fin
+        event.begin = date_obj + timedelta(hours=start_time_obj.hour, minutes=start_time_obj.minute)
+        event.end = date_obj + timedelta(hours=end_time_obj.hour, minutes=end_time_obj.minute)
 
         # Ajouter l'événement au groupe TP correspondant
         for tp_group in TP_CONCERNED[tp]:
@@ -166,12 +182,10 @@ def convert_xml_to_ical(xml_file : str = "../Calendars/rss"):
         cal = Calendar(events=events)
 
         # Vérifier si le répertoire existe, sinon le créer
-        if not os.path.exists(f'../Calendars/{tp}'):
+        if not os.path.exists(f'C:\\Users\\artuf\\Desktop\\Dev\\IUTime\\Calendars\\{tp}'):
             print(tp)
-            os.makedirs(f'../Calendars/{tp}')
+            os.makedirs(f'C:\\Users\\artuf\\Desktop\\Dev\\IUTime\\Calendars\\{tp}')
 
-        with open(f'../Calendars/{tp}/{tp}.ics', 'w', encoding='utf-8') as ical_file:
+        with open(f'C:\\Users\\artuf\\Desktop\Dev\\IUTime\\Calendars\\{tp}\\ADECal.ics', 'w', encoding='utf-8') as ical_file:
             ical_file.writelines(cal)
 
-# Utilisation de la fonction
-convert_xml_to_ical()

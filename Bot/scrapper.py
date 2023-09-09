@@ -111,7 +111,8 @@ def get_calendar(
 
 
 if __name__ == "__main__":
-    get_calendar(
+    teste = get_calendar(
         datetime.datetime(2023, 9, 3),
         download_location=os.path.join(os.getcwd(), "Calendars"),
     )
+    print(teste)

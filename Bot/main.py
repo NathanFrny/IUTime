@@ -1,5 +1,6 @@
 import datetime
 import logging
+import requests
 import asyncio
 from functools import partial
 from discord import (
@@ -12,10 +13,10 @@ from discord import (
     Role,
     InteractionResponded,
     Option,
+    Bot
 )
 from discord.ext import tasks
-from discord.ext.commands import Bot
-from request import lessons_tp
+from request import lessons_tp, convert_xml_to_ical
 from utils import (
     notification_parameter_change,
     get_notified_users,
@@ -52,6 +53,8 @@ async def on_ready():
     logging.info(
         "Logged in as %s (%s)", bot.user.name, bot.user.id
     )  # Bot connection confirmation
+
+    await ical_updates()
     await wait_for_start_time()
 
 
@@ -94,6 +97,18 @@ async def homeworks_notif():
 
     homework_auto_remove()
 
+@tasks.loop(hours=1)
+async def ical_updates():
+    try:
+        response = requests.get("https://edt.univ-littoral.fr/direct/gwtdirectplanning/rss?data=bd72d825015315feb8cbbaa6aa476052ba91660c496776ee5ea3f3582128b89839488979fe1e8de49788540dcf238aebccc64f696dd7c3f88c4b14f89e37ffeb061f7968f1d954af", verify=False)
+        if response.status_code == 500:
+            with open("C:\\Users\\artuf\Desktop\\Dev\\IUTime\\Calendars\\rss", 'wb') as file:
+                file.write(response.content)
+        else:
+            print(f"mauvais code d'erreur : {response.status_code}")
+    except Exception as e:
+        print(f"erreur : {e}")
+    convert_xml_to_ical()
 
 @bot.command(description="Ask your schedule")
 async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP group")):
