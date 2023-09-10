@@ -72,7 +72,7 @@ def get_notified_users(notify: str, sources: str = DATASOURCES) -> list:
     return liste_id
 
 
-async def schedule_task(task, planned_date: datetime) -> None:
+async def schedule_task(task, planned_date: datetime = datetime.now()) -> None:
     """Schedule a task to run at a specific time.
 
     Args:

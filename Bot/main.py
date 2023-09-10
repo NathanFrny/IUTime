@@ -3,8 +3,8 @@ import logging
 import requests
 import asyncio
 import os
-import sys
-import urllib3
+from urllib3 import disable_warnings
+from urllib3.exceptions import InsecureRequestWarning
 from functools import partial
 from discord import (
     Embed,
@@ -58,7 +58,7 @@ async def on_ready():
         "Logged in as %s (%s)", bot.user.name, bot.user.id
     )  # Bot connection confirmation
 
-    await ical_updates()
+    await ical_updates.start()
     await wait_for_auto_start()
 
 
@@ -107,19 +107,23 @@ async def homeworks_notif():
 async def ical_updates():
     """Auto updates for .ical schedule for each TP
     """
+    counter = 0
     for tp in TP_SCHEDULE.keys():
         try:
-            response = requests.get(TP_SCHEDULE[tp], verify=False)
+            response = requests.get(TP_SCHEDULE[tp], verify=False, timeout=1)
             if response.status_code == 200:
-                if not os.path.exists(f'C:\\Users\\artuf\\Desktop\\Dev\\IUTime\\Calendars\\{tp}'):
-                    os.makedirs(f'C:\\Users\\artuf\\Desktop\\Dev\\IUTime\\Calendars\\{tp}')
-                with open(f"C:\\Users\\artuf\Desktop\\Dev\\IUTime\\Calendars\\{tp}\\{tp}", 'wb') as file:
+                if not os.path.exists(f'../Calendars/{tp}'):
+                    os.makedirs(f'../Calendars/{tp}')
+                with open(f"../Calendars/{tp}/{tp}", 'wb') as file:
                     file.write(response.content)
                 logging.info(f"Schedule update for {tp}")
+                counter += 1
             else:
                 logging.critical(f"response.status_code = {response.status_code}, tp = {tp}")
         except Exception as e:
-            logging.critical(f"erreur : {e}")
+            logging.critical(f"erreur : {e}, tp={tp}")
+        await asyncio.sleep(2) #Let time to the bot to answer to requests
+    logging.info(f"ended : {counter}/{len(TP_SCHEDULE.keys())} icals updated")
 
 @bot.command(description="Ask your schedule")
 async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP group")):
@@ -192,6 +196,7 @@ async def notif(
             await ctx.interaction.response.send_message("Done!")
         else:
             # Never supposed to appear
+
             zince: User = await bot.fetch_user(ZINCEID)
             date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
             await zince.send(
@@ -562,7 +567,7 @@ async def wait_for_auto_start():
 
 
 if __name__ == "__main__":
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) #Désactive des messages de prévention du module requests
+    disable_warnings(InsecureRequestWarning) #Désactive des messages de prévention du module requests
     log_format = "%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s"
     log_level = logging.INFO
 
@@ -572,19 +577,20 @@ if __name__ == "__main__":
     )
 
     #Retranscription des logs du script main
-    logger_main = logging.getLogger("__main__")
-    file_handler_main = logging.FileHandler("main_logs.txt")
+    logger_main = logging.getLogger(f"{__name__}.py")
+    file_handler_main = logging.FileHandler("Logs/main_logs.txt")
     file_handler_main.setLevel(log_level)
     file_handler_main.setFormatter(logging.Formatter(log_format))
     logger_main.addHandler(file_handler_main)
 
     #Retranscription des logs du module discord
     logger_discord = logging.getLogger("discord")
-    file_handler_discord = logging.FileHandler("discord_logs.txt")
+    file_handler_discord = logging.FileHandler("Logs/discord_logs.txt")
     file_handler_discord.setLevel(log_level)
     file_handler_discord.setFormatter(logging.Formatter(log_format))
     logger_discord.addHandler(file_handler_discord)
 
     #for module in sys.modules:
     #    print(module)
+
     bot.run(TOKEN)
