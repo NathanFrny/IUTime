@@ -1,0 +1,3 @@
+2023-09-10 12:58:49,918 | WARNING | main.py | <module> : Ceci est un message d'avertissement pour main.py.
+2023-09-10 13:01:35,001 | WARNING | main.py | <module> : Ceci est un message d'avertissement pour main.py.
+2023-09-10 13:02:21,310 | WARNING | main.py | <module> : Ceci est un message d'avertissement pour main.py.

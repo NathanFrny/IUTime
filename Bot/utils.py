@@ -25,6 +25,7 @@ def notification_parameter_change(
     Returns:
         bool: true if modification is done, false if any error happened
     """
+    logging.info(f"called | args: {user_id}, {parameter}, {notification} {path}")
     with open(path, "r+", encoding="utf-8") as file:
         try:
             j_s: dict = json.load(file)
@@ -54,6 +55,7 @@ def get_notified_users(notify: str, sources: str = DATASOURCES) -> list:
     Returns:
         list: All IDs found
     """
+    logging.info(f"called | args: {notify}, {sources}")
     try:
         with open(sources, "r", encoding="utf-8") as file:
             j_s: dict = json.load(file)
@@ -80,10 +82,9 @@ async def schedule_task(task, planned_date: datetime) -> None:
     Returns:
         None
     """
-
+    logging.info(f"called | args: {task}, {planned_date}")
     current_time: datetime = datetime.now()
     sleep_time: timedelta = planned_date - current_time
-    logging.info("Scheduled to run %s at %s", task, planned_date)
     await asyncio.sleep(sleep_time.total_seconds())
 
     if iscoroutinefunction(task):
@@ -105,6 +106,7 @@ def add_homework_for_tp(
     Returns:
         bool: true if adding complete, false if error happened
     """
+    logging.info(f"called | {homework}, {t_p}, {path}")
     with open(path, "r+", encoding="utf-8") as file:
         try:
             j_s: dict = json.load(file)
@@ -139,6 +141,7 @@ def del_homework_for_tp(placement: int, t_p: str, path=HOMEWORKSOURCES) -> int:
         int: 1 if deletion is successful, 0 if an error occurs during execution,
             2 if user gave a miss-argument
     """
+    logging.info(f"called | args: {placement}, {t_p}, {path}")
     try:
         with open(path, "r+", encoding="utf-8") as file:
             j_s: dict = json.load(file)
@@ -170,6 +173,7 @@ def homework_for_tp(t_p: str, path: str = HOMEWORKSOURCES) -> list[Homework]:
     Returns:
         list[Homework]: list of Homework for the tp asked
     """
+    logging.info(f"called | args: {t_p}, {path}")
     with open(path, "r+", encoding="utf-8") as file:
         try:
             j_s: dict = json.load(file)
@@ -194,6 +198,7 @@ def homework_auto_remove(path: str = HOMEWORKSOURCES):
     Args:
         path (str, optional): path to json file. Defaults to HOMEWORKSOURCES.
     """
+    logging.info(f"called | args: {path}")
     all_homeworks_dict: dict = {}
     current_date: datetime = datetime.now()
     for t_p in TP_DISCORD_TO_SCHEDULE.values():

@@ -4,3 +4,4 @@ ics
 pytz
 selenium
 requests
+feedparser

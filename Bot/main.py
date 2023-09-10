@@ -2,6 +2,9 @@ import datetime
 import logging
 import requests
 import asyncio
+import os
+import sys
+import urllib3
 from functools import partial
 from discord import (
     Embed,
@@ -16,7 +19,7 @@ from discord import (
     Bot
 )
 from discord.ext import tasks
-from request import lessons_tp, convert_xml_to_ical
+from request import lessons_tp
 from utils import (
     notification_parameter_change,
     get_notified_users,
@@ -36,6 +39,7 @@ from constants import (
     HOMEWORKSOURCES,
     TP_SCHEDULE_TO_DISCORD,
     TARGETED_HOUR,
+    TP_SCHEDULE
 )
 from homework import Homework
 from lesson import Lesson
@@ -55,16 +59,17 @@ async def on_ready():
     )  # Bot connection confirmation
 
     await ical_updates()
-    await wait_for_start_time()
+    await wait_for_auto_start()
 
 
 @tasks.loop(hours=24)
 async def plan_notif_for_tp():
     """For each tp, create a list of sorted lesson, will this list is not empty, plan a notification for the next lesson"""
+    logging.info("called")
     all_lesson: list = []
     for (
         t_p
-    ) in TP_DISCORD_TO_SCHEDULE.keys():  # pylint: disable=consider-iterating-dictionary
+    ) in TP_DISCORD_TO_SCHEDULE.keys():
         schedule_: list[Lesson] = lessons_tp(t_p=TP_DISCORD_TO_SCHEDULE[t_p])
         for lesson in schedule_:
             all_lesson.append(lesson)
@@ -80,6 +85,7 @@ async def plan_notif_for_tp():
 async def homeworks_notif():
     """Send a notification of homeworks for each users who activate notifications
     and delete out-dated homeworks"""
+    logging.info("called")
     homework_dict: dict = {}
     for t_p in TP_DISCORD_TO_SCHEDULE.keys():
         homeworks = homework_for_tp(TP_DISCORD_TO_SCHEDULE[t_p])
@@ -99,16 +105,21 @@ async def homeworks_notif():
 
 @tasks.loop(hours=1)
 async def ical_updates():
-    try:
-        response = requests.get("https://edt.univ-littoral.fr/direct/gwtdirectplanning/rss?data=bd72d825015315feb8cbbaa6aa476052ba91660c496776ee5ea3f3582128b89839488979fe1e8de49788540dcf238aebccc64f696dd7c3f88c4b14f89e37ffeb061f7968f1d954af", verify=False)
-        if response.status_code == 500:
-            with open("C:\\Users\\artuf\Desktop\\Dev\\IUTime\\Calendars\\rss", 'wb') as file:
-                file.write(response.content)
-        else:
-            print(f"mauvais code d'erreur : {response.status_code}")
-    except Exception as e:
-        print(f"erreur : {e}")
-    convert_xml_to_ical()
+    """Auto updates for .ical schedule for each TP
+    """
+    for tp in TP_SCHEDULE.keys():
+        try:
+            response = requests.get(TP_SCHEDULE[tp], verify=False)
+            if response.status_code == 200:
+                if not os.path.exists(f'C:\\Users\\artuf\\Desktop\\Dev\\IUTime\\Calendars\\{tp}'):
+                    os.makedirs(f'C:\\Users\\artuf\\Desktop\\Dev\\IUTime\\Calendars\\{tp}')
+                with open(f"C:\\Users\\artuf\Desktop\\Dev\\IUTime\\Calendars\\{tp}\\{tp}", 'wb') as file:
+                    file.write(response.content)
+                logging.info(f"Schedule update for {tp}")
+            else:
+                logging.critical(f"response.status_code = {response.status_code}, tp = {tp}")
+        except Exception as e:
+            logging.critical(f"erreur : {e}")
 
 @bot.command(description="Ask your schedule")
 async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP group")):
@@ -119,6 +130,7 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
         ctx (ApplicationContext): The application context.
         t_p (str): The TP group for which to retrieve the schedule.
     """
+    logging.info(f"called by : {ctx.author} | args : {t_p}")
     user: User | Member = ctx.author
     logging.debug("User value : %s", user)
     if t_p.upper() in TP_DISCORD_TO_SCHEDULE.values():
@@ -167,6 +179,7 @@ async def notif(
         notification (str): which notification need to change
         boolean (bool): True if notification desired, False else
     """
+    logging.info(f"called by : {ctx.author} | args : {notification}, {boolean}")
     if notification in NOTIFICATION_JSON_KEYS:
         author_id: str = str(ctx.author.id)
         result = notification_parameter_change(
@@ -206,6 +219,7 @@ async def homework(ctx: ApplicationContext):
     Args:
         ctx (ApplicationContext): The application context.
     """
+    logging.info(f"called by : {ctx.author}")
     user: User | Member = ctx.author
     homeworks: list = None
     logging.debug("User value : %s", user)
@@ -267,7 +281,7 @@ async def add_homework(
         str,
         description="Importance, 'banale' to be notified 1 day before, 'normal' for 3 days, 'critique' to always be",
     ),
-    date_rendu: Option(str, description="Due date, exemple '2023-07-03-02-40"),
+    date_rendu: Option(str, description="Due date, 'AAAA-MM-DD-HH-MM' exemple '2023-07-03-02-40"),
     description: Option(str, description="A simple desciption of the homework"),
     note: Option(bool, description="If graded or not") = False,
 ):
@@ -282,7 +296,7 @@ async def add_homework(
         description (str): The description of the homework.
         note (bool, optional): Whether the homework needs to be noted. Defaults to False.
     """
-
+    logging.info(f"called by : {ctx.author} | args: {ressource}, {prof}, {criticite}, {date_rendu}, {description}, {note}")
     user: User | Member = ctx.author
     roles: list[Role] = user.roles
     roles_name: list[str] = []
@@ -317,6 +331,7 @@ async def add_homework(
                 await ctx.interaction.response.send_message("Homework added!")
             else:
                 # Never supposed to appear
+                logging.critical(f"Error in add_homework_for_tp function : {result}")
                 zince: User = await bot.fetch_user(ZINCEID)
                 date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
                 await zince.send(
@@ -350,6 +365,7 @@ async def del_homework(
         ctx (ApplicationContext): The application context.
         emplacement (int, optional): The placement of the homework to be deleted. Defaults to None.
     """
+    logging.info(f"called by : {ctx.author} | args: {emplacement}")
     user: User | Member = ctx.author
     roles: list[Role] = user.roles
     roles_name: list[str] = []
@@ -388,6 +404,7 @@ the number of the homework you want to delete",
                     case 1:
                         await ctx.interaction.response.send_message("Done!")
                     case 0:
+                        logging.critical(f"Error un del_homework_for_tp function : {result}")
                         # Never supposed to appear
                         zince: User = await bot.fetch_user(ZINCEID)
                         date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -418,7 +435,7 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
         tp (str): code of the TP group
         lesson (lesson): lesson object that should be sent
     """
-    logging.debug("Send lesson for TP %s : %s", t_p, lesson)
+    logging.info("Plan lesson for TP %s : %s", t_p, lesson)
 
     embed: Embed = Lesson.embed_schedule_construct(
         title="Next lesson:",
@@ -472,7 +489,7 @@ async def send_notification(
             await user.send(message)
         if embed:
             await user.send(embed=embed)
-    logging.debug("notification sent to users : %s", user_list)
+    logging.info("notification sent to users : %s", user_list)
 
 
 async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> list:
@@ -507,7 +524,7 @@ async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> lis
     return res
 
 
-async def wait_for_start_time():
+async def wait_for_auto_start():
     current_time: datetime.datetime = datetime.datetime.now()
     target_time: datetime.datetime = datetime.datetime(
         current_time.year,
@@ -545,8 +562,29 @@ async def wait_for_start_time():
 
 
 if __name__ == "__main__":
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) #Désactive des messages de prévention du module requests
+    log_format = "%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s"
+    log_level = logging.INFO
+
     logging.basicConfig(
-        level=logging.DEBUG,
-        format="%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s",
+        level=log_level,
+        format=log_format,
     )
+
+    #Retranscription des logs du script main
+    logger_main = logging.getLogger("__main__")
+    file_handler_main = logging.FileHandler("main_logs.txt")
+    file_handler_main.setLevel(log_level)
+    file_handler_main.setFormatter(logging.Formatter(log_format))
+    logger_main.addHandler(file_handler_main)
+
+    #Retranscription des logs du module discord
+    logger_discord = logging.getLogger("discord")
+    file_handler_discord = logging.FileHandler("discord_logs.txt")
+    file_handler_discord.setLevel(log_level)
+    file_handler_discord.setFormatter(logging.Formatter(log_format))
+    logger_discord.addHandler(file_handler_discord)
+
+    #for module in sys.modules:
+    #    print(module)
     bot.run(TOKEN)

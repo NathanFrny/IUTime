@@ -1,0 +1,1515 @@
+2023-09-10 12:54:21,837 | INFO | client.py | login : logging in using static token
+2023-09-10 12:54:22,792 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 12:54:23,152 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-pldt",{"micros":169571,"calls":["id_created",{"micros":1653,"calls":[]},"session_lookup_time",{"micros":337,"calls":[]},"session_lookup_finished",{"micros":23,"calls":[]},"discord-sessions-prd-2-274",{"micros":166970,"calls":["start_session",{"micros":111467,"calls":["discord-api-645dfd885d-wdmp6",{"micros":96362,"calls":["get_user",{"micros":29897},"get_guilds",{"micros":11423},"send_scheduled_deletion_message",{"micros":7},"guild_join_requests",{"micros":1},"authorized_ip_coro",{"micros":9}]}]},"starting_guild_connect",{"micros":64,"calls":[]},"presence_started",{"micros":235,"calls":[]},"guilds_started",{"micros":155,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":55017,"calls":[]},"connect_finished",{"micros":55023,"calls":[]},"build_ready",{"micros":22,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: aa79813df1dcb61710aeb42320847b55).
+2023-09-10 12:58:49,919 | INFO | client.py | login : logging in using static token
+2023-09-10 12:58:51,123 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 12:58:51,501 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-454m",{"micros":173943,"calls":["id_created",{"micros":1454,"calls":[]},"session_lookup_time",{"micros":426,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-157",{"micros":171454,"calls":["start_session",{"micros":93889,"calls":["discord-api-645dfd885d-n8t8n",{"micros":79952,"calls":["get_user",{"micros":24661},"get_guilds",{"micros":9363},"send_scheduled_deletion_message",{"micros":10},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":10}]}]},"starting_guild_connect",{"micros":66,"calls":[]},"presence_started",{"micros":260,"calls":[]},"guilds_started",{"micros":148,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":77046,"calls":[]},"connect_finished",{"micros":77052,"calls":[]},"build_ready",{"micros":34,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 13fc0a3e28fe34a3154f1381ed4343e3).
+2023-09-10 13:01:35,001 | INFO | client.py | login : logging in using static token
+2023-09-10 13:01:36,089 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 13:01:36,375 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-xqsb",{"micros":126506,"calls":["id_created",{"micros":1836,"calls":[]},"session_lookup_time",{"micros":374,"calls":[]},"session_lookup_finished",{"micros":21,"calls":[]},"discord-sessions-prd-2-266",{"micros":123595,"calls":["start_session",{"micros":79858,"calls":["discord-api-645dfd885d-swqx7",{"micros":74344,"calls":["get_user",{"micros":31024},"get_guilds",{"micros":7290},"send_scheduled_deletion_message",{"micros":11},"guild_join_requests",{"micros":337},"authorized_ip_coro",{"micros":23}]}]},"starting_guild_connect",{"micros":53,"calls":[]},"presence_started",{"micros":300,"calls":[]},"guilds_started",{"micros":139,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":43217,"calls":[]},"connect_finished",{"micros":43223,"calls":[]},"build_ready",{"micros":18,"calls":[]},"clean_ready",{"micros":2,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 1f0d4d0cfd95c32f193c0a70054422d9).
+2023-09-10 13:02:21,311 | INFO | client.py | login : logging in using static token
+2023-09-10 13:02:22,329 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 13:02:22,680 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-pqjp",{"micros":174665,"calls":["id_created",{"micros":1202,"calls":[]},"session_lookup_time",{"micros":269,"calls":[]},"session_lookup_finished",{"micros":17,"calls":[]},"discord-sessions-prd-2-249",{"micros":171469,"calls":["start_session",{"micros":108023,"calls":["discord-api-645dfd885d-c2fcq",{"micros":86085,"calls":["get_user",{"micros":29647},"get_guilds",{"micros":7040},"send_scheduled_deletion_message",{"micros":9},"guild_join_requests",{"micros":5265},"authorized_ip_coro",{"micros":12}]}]},"starting_guild_connect",{"micros":55,"calls":[]},"presence_started",{"micros":246,"calls":[]},"guilds_started",{"micros":137,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":62976,"calls":[]},"connect_finished",{"micros":62981,"calls":[]},"build_ready",{"micros":22,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 54e82487d889c63e3fb5fafd663aecd9).
+2023-09-10 13:27:50,433 | INFO | client.py | login : logging in using static token
+2023-09-10 13:27:51,225 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 13:27:51,764 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-h88p",{"micros":365814,"calls":["id_created",{"micros":2241,"calls":[]},"session_lookup_time",{"micros":7587,"calls":[]},"session_lookup_finished",{"micros":17,"calls":[]},"discord-sessions-prd-2-88",{"micros":355408,"calls":["start_session",{"micros":312031,"calls":["discord-api-645dfd885d-dt9dx",{"micros":301714,"calls":["get_user",{"micros":134844},"get_guilds",{"micros":25472},"send_scheduled_deletion_message",{"micros":55},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":16}]}]},"starting_guild_connect",{"micros":61,"calls":[]},"presence_started",{"micros":269,"calls":[]},"guilds_started",{"micros":158,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":42837,"calls":[]},"connect_finished",{"micros":42843,"calls":[]},"build_ready",{"micros":41,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: a83ea7366c4e492334953f930b6df066).
+2023-09-10 13:28:42,549 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:28:52,566 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:29:02,511 | INFO | client.py | login : logging in using static token
+2023-09-10 13:29:03,287 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 13:29:03,668 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-b70k",{"micros":229135,"calls":["id_created",{"micros":1233,"calls":[]},"session_lookup_time",{"micros":489,"calls":[]},"session_lookup_finished",{"micros":19,"calls":[]},"discord-sessions-prd-2-95",{"micros":226414,"calls":["start_session",{"micros":114285,"calls":["discord-api-645dfd885d-bz9j7",{"micros":108862,"calls":["get_user",{"micros":31293},"get_guilds",{"micros":17372},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":2},"authorized_ip_coro",{"micros":15}]}]},"starting_guild_connect",{"micros":63,"calls":[]},"presence_started",{"micros":44096,"calls":[]},"guilds_started",{"micros":141,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":67799,"calls":[]},"connect_finished",{"micros":67804,"calls":[]},"build_ready",{"micros":21,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":2,"calls":[]}]}]}] (Session ID: 7979d9aeabebfc0882cd04f3fadd8d4d).
+2023-09-10 13:29:54,564 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:30:04,572 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:30:12,070 | INFO | client.py | login : logging in using static token
+2023-09-10 13:30:12,967 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 13:30:13,193 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-nkqm",{"micros":96443,"calls":["id_created",{"micros":2982,"calls":[]},"session_lookup_time",{"micros":1436,"calls":[]},"session_lookup_finished",{"micros":22,"calls":[]},"discord-sessions-prd-2-258",{"micros":91739,"calls":["start_session",{"micros":49054,"calls":["discord-api-645dfd885d-qjxd2",{"micros":43330,"calls":["get_user",{"micros":15238},"get_guilds",{"micros":3373},"send_scheduled_deletion_message",{"micros":11},"guild_join_requests",{"micros":931},"authorized_ip_coro",{"micros":11}]}]},"starting_guild_connect",{"micros":52,"calls":[]},"presence_started",{"micros":325,"calls":[]},"guilds_started",{"micros":155,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":42113,"calls":[]},"connect_finished",{"micros":42119,"calls":[]},"build_ready",{"micros":30,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 68c9ed29bc0e5851f2b83c960ff72073).
+2023-09-10 13:31:04,232 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:31:14,239 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:31:24,267 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 30 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:31:34,273 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 40 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:31:44,295 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 50 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:31:49,884 | INFO | client.py | login : logging in using static token
+2023-09-10 13:31:51,431 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 13:31:51,753 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-12tn",{"micros":136587,"calls":["id_created",{"micros":3904,"calls":[]},"session_lookup_time",{"micros":2592,"calls":[]},"session_lookup_finished",{"micros":14,"calls":[]},"discord-sessions-prd-2-148",{"micros":129640,"calls":["start_session",{"micros":85109,"calls":["discord-api-645dfd885d-v65qz",{"micros":79271,"calls":["get_user",{"micros":28187},"get_guilds",{"micros":11771},"send_scheduled_deletion_message",{"micros":15},"guild_join_requests",{"micros":374},"authorized_ip_coro",{"micros":16}]}]},"starting_guild_connect",{"micros":60,"calls":[]},"presence_started",{"micros":784,"calls":[]},"guilds_started",{"micros":227,"calls":[]},"guilds_connect",{"micros":3,"calls":[]},"presence_connect",{"micros":43426,"calls":[]},"connect_finished",{"micros":43433,"calls":[]},"build_ready",{"micros":23,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 8a68cfea475695ca8a568bfd525fbf80).
+2023-09-10 13:32:42,715 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:32:52,723 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:33:02,740 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 30 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:33:12,756 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 40 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:33:22,774 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 50 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:33:32,797 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 60 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:33:42,814 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 70 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:33:52,831 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 80 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:34:02,851 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 90 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:34:12,869 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 100 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:34:22,881 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 110 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:34:32,909 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 120 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:34:42,938 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 130 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:34:52,965 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 140 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:35:02,991 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 150 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:35:13,003 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 160 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 13:35:53,041 | INFO | client.py | login : logging in using static token
+2023-09-10 13:35:53,918 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 13:35:54,456 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-xkf5",{"micros":227892,"calls":["id_created",{"micros":1771,"calls":[]},"session_lookup_time",{"micros":4171,"calls":[]},"session_lookup_finished",{"micros":17,"calls":[]},"discord-sessions-prd-2-161",{"micros":221638,"calls":["start_session",{"micros":122738,"calls":["discord-api-645dfd885d-j66fl",{"micros":115263,"calls":["get_user",{"micros":25121},"get_guilds",{"micros":20658},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":3},"authorized_ip_coro",{"micros":13}]}]},"starting_guild_connect",{"micros":49,"calls":[]},"presence_started",{"micros":44576,"calls":[]},"guilds_started",{"micros":181,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":54067,"calls":[]},"connect_finished",{"micros":54074,"calls":[]},"build_ready",{"micros":18,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: e697202eeba4d1a708bbc9019a8e5983).
+2023-09-10 15:48:19,590 | INFO | client.py | login : logging in using static token
+2023-09-10 15:48:20,462 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 15:48:20,824 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-b-q56h",{"micros":225704,"calls":["id_created",{"micros":2842,"calls":[]},"session_lookup_time",{"micros":3061,"calls":[]},"session_lookup_finished",{"micros":19,"calls":[]},"discord-sessions-prd-2-274",{"micros":219350,"calls":["start_session",{"micros":134128,"calls":["discord-api-645dfd885d-cbd77",{"micros":124907,"calls":["get_user",{"micros":26127},"get_guilds",{"micros":54803},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":3},"authorized_ip_coro",{"micros":14}]}]},"starting_guild_connect",{"micros":76,"calls":[]},"presence_started",{"micros":46498,"calls":[]},"guilds_started",{"micros":173,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":38447,"calls":[]},"connect_finished",{"micros":38454,"calls":[]},"build_ready",{"micros":18,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 573615adcc48a12ce0aeb58fbb1451a0).
+2023-09-10 15:49:15,772 | INFO | client.py | login : logging in using static token
+2023-09-10 15:49:16,593 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 15:49:16,835 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-c-j714",{"micros":100758,"calls":["id_created",{"micros":1017,"calls":[]},"session_lookup_time",{"micros":7691,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-119",{"micros":91300,"calls":["start_session",{"micros":46082,"calls":["discord-api-645dfd885d-8fckk",{"micros":42008,"calls":["get_user",{"micros":15341},"get_guilds",{"micros":3395},"send_scheduled_deletion_message",{"micros":9},"guild_join_requests",{"micros":2409},"authorized_ip_coro",{"micros":9}]}]},"starting_guild_connect",{"micros":49,"calls":[]},"presence_started",{"micros":416,"calls":[]},"guilds_started",{"micros":202,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":44526,"calls":[]},"connect_finished",{"micros":44531,"calls":[]},"build_ready",{"micros":17,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 745a3e7e879fb0436360329621fa5642).
+2023-09-10 15:50:07,886 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 15:50:17,904 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 15:50:27,910 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 30 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 15:50:37,919 | WARNING | gateway.py | run : Shard ID None heartbeat blocked for more than 40 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 590, in <module>
+    bot.run(TOKEN)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 707, in run
+    loop.run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 604, in run_forever
+    self._run_once()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1909, in _run_once
+    handle._run()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\client.py", line 378, in _run_event
+    await coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 61, in on_ready
+    await ical_updates()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\discord\ext\tasks\__init__.py", line 303, in __call__
+    return await self.coro(*args, **kwargs)
+  File "c:\Users\artuf\Desktop\Dev\IUTime\Bot\main.py", line 112, in ical_updates
+    response = requests.get(TP_SCHEDULE[tp], verify=False)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\site-packages\urllib3\connection.py", line 454, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\artuf\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+
+2023-09-10 15:51:51,358 | INFO | client.py | login : logging in using static token
+2023-09-10 15:51:52,474 | INFO | gateway.py | identify : Shard ID None has sent the IDENTIFY payload.
+2023-09-10 15:51:52,755 | INFO | gateway.py | received_message : Shard ID None has connected to Gateway: ["gateway-prd-us-east1-d-wrsx",{"micros":103265,"calls":["id_created",{"micros":2707,"calls":[]},"session_lookup_time",{"micros":393,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-294",{"micros":99545,"calls":["start_session",{"micros":62628,"calls":["discord-api-645dfd885d-z2lwf",{"micros":56927,"calls":["get_user",{"micros":18534},"get_guilds",{"micros":10952},"send_scheduled_deletion_message",{"micros":11},"guild_join_requests",{"micros":208},"authorized_ip_coro",{"micros":13}]}]},"starting_guild_connect",{"micros":57,"calls":[]},"presence_started",{"micros":358,"calls":[]},"guilds_started",{"micros":138,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":36333,"calls":[]},"connect_finished",{"micros":36339,"calls":[]},"build_ready",{"micros":22,"calls":[]},"clean_ready",{"micros":0,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 4b7509cec69da95bef390b6a863b11aa).
