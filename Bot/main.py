@@ -54,7 +54,7 @@ async def on_ready():
     if not bot.user:
         raise InterruptedError("The bot didn't connect")
 
-    logging.info(
+    logger_main.info(
         "Logged in as %s (%s)", bot.user.name, bot.user.id
     )  # Bot connection confirmation
 
@@ -65,19 +65,19 @@ async def on_ready():
 @tasks.loop(hours=24)
 async def plan_notif_for_tp():
     """For each tp, create a list of sorted lesson, will this list is not empty, plan a notification for the next lesson"""
-    logging.info("called")
+    logger_main.info("called")
     all_lesson: list = []
     for (
         t_p
     ) in TP_DISCORD_TO_SCHEDULE.keys():
-        schedule_: list[Lesson] = lessons_tp(t_p=TP_DISCORD_TO_SCHEDULE[t_p])
+        schedule_: list[Lesson] = lessons_tp(t_p=TP_DISCORD_TO_SCHEDULE[t_p], logger_main=logger_main)
         for lesson in schedule_:
             all_lesson.append(lesson)
 
     all_lesson = Lesson.sorting_schedule(all_lesson)
     while all_lesson != []:
         lesson = all_lesson.pop(0)
-        logging.debug("lesson = %s", lesson)
+        logger_main.debug("lesson = %s", lesson)
         await plan_notification(t_p=TP_SCHEDULE_TO_DISCORD[lesson.t_p], lesson=lesson)
 
 
@@ -85,10 +85,10 @@ async def plan_notif_for_tp():
 async def homeworks_notif():
     """Send a notification of homeworks for each users who activate notifications
     and delete out-dated homeworks"""
-    logging.info("called")
+    logger_main.info("called")
     homework_dict: dict = {}
     for t_p in TP_DISCORD_TO_SCHEDULE.keys():
-        homeworks = homework_for_tp(TP_DISCORD_TO_SCHEDULE[t_p])
+        homeworks = homework_for_tp(t_p = TP_DISCORD_TO_SCHEDULE[t_p], logger_main=logger_main)
         homework_dict[t_p] = Homework.embed_homework_construct(
             title="automatic notifications homeworks",
             color=0x00FF00,
@@ -101,7 +101,7 @@ async def homeworks_notif():
         users_list = await get_user_list_from_tp(notify="homeworks", t_p=t_p)
         await send_notification(user_list=users_list, embed=homework_dict[t_p])
 
-    homework_auto_remove()
+    homework_auto_remove(logger_main=logger_main)
 
 @tasks.loop(hours=1)
 async def ical_updates():
@@ -116,14 +116,14 @@ async def ical_updates():
                     os.makedirs(f'../Calendars/{tp}')
                 with open(f"../Calendars/{tp}/{tp}", 'wb') as file:
                     file.write(response.content)
-                logging.info(f"Schedule update for {tp}")
+                logger_main.info(f"Schedule update for {tp}")
                 counter += 1
             else:
-                logging.critical(f"response.status_code = {response.status_code}, tp = {tp}")
+                logger_main.critical(f"response.status_code = {response.status_code}, tp = {tp}")
         except Exception as e:
-            logging.critical(f"erreur : {e}, tp={tp}")
-        await asyncio.sleep(2) #Let time to the bot to answer to requests
-    logging.info(f"ended : {counter}/{len(TP_SCHEDULE.keys())} icals updated")
+            logger_main.critical(f"erreur : {e}, tp={tp}")
+        await asyncio.sleep(3) #Let time to the bot to answer to requests
+    logger_main.info(f"ended : {counter}/{len(TP_SCHEDULE.keys())} icals updated")
 
 @bot.command(description="Ask your schedule")
 async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP group")):
@@ -134,19 +134,19 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
         ctx (ApplicationContext): The application context.
         t_p (str): The TP group for which to retrieve the schedule.
     """
-    logging.info(f"called by : {ctx.author} | args : {t_p}")
+    logger_main.info(f"called by : {ctx.author.id} | args : {t_p}")
     user: User | Member = ctx.author
     logging.debug("User value : %s", user)
     if t_p.upper() in TP_DISCORD_TO_SCHEDULE.values():
         logging.debug("tp value : %s", t_p)
         date: datetime.datetime = datetime.datetime.now()
         logging.debug("date = %s", date)
-        if date.hour >= 19:
+        if date.hour >= 18:
             tomorrow: bool = True
             date += datetime.timedelta(days=1)
         else:
             tomorrow: bool = False
-        _schedule: list = Lesson.sorting_schedule(lessons_tp(t_p, tomorrow=tomorrow))
+        _schedule: list = Lesson.sorting_schedule(lessons_tp(t_p, tomorrow=tomorrow, logger_main=logger_main))
         logging.debug("schedule value : %s", _schedule)
 
         embed = Lesson.embed_schedule_construct(
@@ -156,9 +156,8 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
             schedule=_schedule,
             sign=True,
         )
-
-        await send_notification(user_list=[user], embed=embed)
         await ctx.interaction.response.send_message("Done!")  # Responding to user
+        await send_notification(user_list=[user], embed=embed)
     else:
         logging.debug("TP not found")
         message: str = "Les arguments attendus sont :"
@@ -183,7 +182,7 @@ async def notif(
         notification (str): which notification need to change
         boolean (bool): True if notification desired, False else
     """
-    logging.info(f"called by : {ctx.author} | args : {notification}, {boolean}")
+    logger_main.info(f"called by : {ctx.author.id} | args : {notification}, {boolean}")
     if notification in NOTIFICATION_JSON_KEYS:
         author_id: str = str(ctx.author.id)
         result = notification_parameter_change(
@@ -191,6 +190,7 @@ async def notif(
             parameter=boolean,
             notification=notification,
             path=DATASOURCES,
+            logger_main=logger_main
         )
         if result:
             await ctx.interaction.response.send_message("Done!")
@@ -224,7 +224,16 @@ async def homework(ctx: ApplicationContext):
     Args:
         ctx (ApplicationContext): The application context.
     """
-    logging.info(f"called by : {ctx.author}")
+    logger_main.info(f"called by : {ctx.author.id}")
+
+    try:
+        user: User | Member = ctx.author
+        user.roles
+    except AttributeError:
+        await ctx.interaction.response.send_message("Thanks to use this command from a server")
+        return
+
+    logger_main.info(f"called by : {ctx.author.id}")
     user: User | Member = ctx.author
     homeworks: list = None
     logging.debug("User value : %s", user)
@@ -235,7 +244,7 @@ async def homework(ctx: ApplicationContext):
         if role.name in TP_DISCORD_TO_SCHEDULE.keys():
             logging.debug("role.name value : %s", role.name)
             homeworks_temp: list[Homework] = homework_for_tp(
-                TP_DISCORD_TO_SCHEDULE[role.name], path=HOMEWORKSOURCES
+                TP_DISCORD_TO_SCHEDULE[role.name], path=HOMEWORKSOURCES, logger_main=logger_main
             )
             logging.debug("homeworks_temp value : %s", homeworks_temp)
             logging.debug(
@@ -301,7 +310,15 @@ async def add_homework(
         description (str): The description of the homework.
         note (bool, optional): Whether the homework needs to be noted. Defaults to False.
     """
-    logging.info(f"called by : {ctx.author} | args: {ressource}, {prof}, {criticite}, {date_rendu}, {description}, {note}")
+    logger_main.info(f"called by : {ctx.author.id} | args: {ressource}, {prof}, {criticite}, {date_rendu}, {description}, {note}")
+    
+    try:
+        user: User | Member = ctx.author
+        user.roles
+    except AttributeError:
+        await ctx.interaction.response.send_message("Thanks to use this command from a server")
+        return
+
     user: User | Member = ctx.author
     roles: list[Role] = user.roles
     roles_name: list[str] = []
@@ -331,12 +348,13 @@ async def add_homework(
                 homework=homework_,
                 t_p=TP_DISCORD_TO_SCHEDULE[name],
                 path=HOMEWORKSOURCES,
+                logger_main=logger_main
             )
             if result:
                 await ctx.interaction.response.send_message("Homework added!")
             else:
                 # Never supposed to appear
-                logging.critical(f"Error in add_homework_for_tp function : {result}")
+                logger_main.critical(f"Error in add_homework_for_tp function : {result}")
                 zince: User = await bot.fetch_user(ZINCEID)
                 date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
                 await zince.send(
@@ -348,7 +366,7 @@ for user {ctx.author}, tp = {name}, homework = {homework_}"
                 )
             break
     try:
-        logging.debug("TP or role 'délégué' not found")
+        logger_main.debug("TP or role 'délégué' not found")
         await ctx.interaction.response.send_message(
             "Only TP delegates have the right to modify recorded homeworks"
         )
@@ -370,7 +388,15 @@ async def del_homework(
         ctx (ApplicationContext): The application context.
         emplacement (int, optional): The placement of the homework to be deleted. Defaults to None.
     """
-    logging.info(f"called by : {ctx.author} | args: {emplacement}")
+    logger_main.info(f"called by : {ctx.author.id} | args: {emplacement}")
+
+    try:
+        user: User | Member = ctx.author
+        user.roles
+    except AttributeError:
+        await ctx.interaction.response.send_message("Thanks to use this command from a server")
+        return
+
     user: User | Member = ctx.author
     roles: list[Role] = user.roles
     roles_name: list[str] = []
@@ -386,7 +412,7 @@ async def del_homework(
                 logging.debug("not placement")
 
                 homeworks: list[Homework] = homework_for_tp(
-                    t_p=TP_DISCORD_TO_SCHEDULE[name], path=HOMEWORKSOURCES
+                    t_p=TP_DISCORD_TO_SCHEDULE[name], path=HOMEWORKSOURCES, logger_main=logger_main
                 )
                 logging.debug("homeworks = %s", homeworks)
                 embed: Embed = Homework.embed_homework_construct(
@@ -404,6 +430,7 @@ the number of the homework you want to delete",
                     placement=emplacement - 1,
                     t_p=TP_DISCORD_TO_SCHEDULE[name],
                     path=HOMEWORKSOURCES,
+                    logger_main=logger_main
                 )
                 match result:
                     case 1:
@@ -440,7 +467,7 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
         tp (str): code of the TP group
         lesson (lesson): lesson object that should be sent
     """
-    logging.info("Plan lesson for TP %s : %s", t_p, lesson)
+    logger_main.info("Plan lesson for TP %s : %s", t_p, lesson)
 
     embed: Embed = Lesson.embed_schedule_construct(
         title="Next lesson:",
@@ -456,7 +483,7 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
         datetime.date.today(), lesson_time
     )
     if lesson_time < datetime.datetime.now() - datetime.timedelta(hours=1, minutes=30):
-        logging.info("Lesson time to far in the past, %s", lesson_time)
+        logger_main.info("Lesson time to far in the past, %s", lesson_time)
         return
 
     notification_time: datetime.datetime = datetime.datetime.now()
@@ -494,7 +521,7 @@ async def send_notification(
             await user.send(message)
         if embed:
             await user.send(embed=embed)
-    logging.info("notification sent to users : %s", user_list)
+    logger_main.info("notification sent to users : %s", user_list)
 
 
 async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> list:
@@ -508,9 +535,9 @@ async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> lis
     Returns:
         list: users discord ID
     """
-    logging.debug("t_p =  %s", t_p)
+    logger_main.info(f"called | args : {notify}, {t_p}, {serv_id}")
     res = []
-    user_list: list[str] = get_notified_users(notify=notify)
+    user_list: list[str] = get_notified_users(notify=notify, logger_main=logger_main)
     guild: Guild = bot.get_guild(serv_id)
     logging.debug("Discord server found: %s", guild.name)
     if guild:
@@ -538,7 +565,7 @@ async def wait_for_auto_start():
         TARGETED_HOUR[0],
         TARGETED_HOUR[1],
     )
-    logging.debug("target time = %s", target_time)
+    logger_main.info(f"called")
     # Calculate delay before target time
     if current_time < target_time:
         wait_time: datetime = target_time - current_time
@@ -567,6 +594,7 @@ async def wait_for_auto_start():
 
 
 if __name__ == "__main__":
+
     disable_warnings(InsecureRequestWarning) #Désactive des messages de prévention du module requests
     log_format = "%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s"
     log_level = logging.INFO
@@ -577,7 +605,7 @@ if __name__ == "__main__":
     )
 
     #Retranscription des logs du script main
-    logger_main = logging.getLogger(f"{__name__}.py")
+    logger_main = logging.getLogger(f"main.py")
     file_handler_main = logging.FileHandler("Logs/main_logs.txt")
     file_handler_main.setLevel(log_level)
     file_handler_main.setFormatter(logging.Formatter(log_format))
@@ -589,8 +617,5 @@ if __name__ == "__main__":
     file_handler_discord.setLevel(log_level)
     file_handler_discord.setFormatter(logging.Formatter(log_format))
     logger_discord.addHandler(file_handler_discord)
-
-    #for module in sys.modules:
-    #    print(module)
 
     bot.run(TOKEN)

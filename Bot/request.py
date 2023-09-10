@@ -4,9 +4,10 @@ from ics import Calendar
 from pytz import timezone
 from lesson import Lesson
 import logging
+import re
 
 
-def lessons_tp(t_p: str, tomorrow: bool = False) -> list[Lesson]:
+def lessons_tp(t_p: str, logger_main, tomorrow: bool = False) -> list[Lesson]:
     """Return schedule for tp group concerned
 
     Args:
@@ -16,11 +17,11 @@ def lessons_tp(t_p: str, tomorrow: bool = False) -> list[Lesson]:
     Returns:
         dict: dict representing the schedule
     """
-    logging.info(f"called | args: {t_p}, {tomorrow}")
+    logger_main.info(f"called | args: {t_p}, {tomorrow}")
     t_p = t_p.upper()
     logging.debug("tp's value = %s", t_p)
 
-    ics_file: str = f"Calendars/{t_p}/ADECal.ics"
+    ics_file: str = f"Calendars/{t_p}/{t_p}"
     logging.debug("Source's path : %s", ics_file)
 
     with open(ics_file, "r", encoding="utf-8") as file:
@@ -81,7 +82,7 @@ def lessons_tp(t_p: str, tomorrow: bool = False) -> list[Lesson]:
                     professor=teacher,
                     room=event.location,
                     t_p=t_p,
-                    cours=event.description,
+                    cours=f"{event.name}",
                 )
             )
         else:

@@ -12,7 +12,7 @@ from homework import Homework
 
 
 def notification_parameter_change(
-    user_id: str, parameter: bool, notification: str, path: str = DATASOURCES
+    user_id: str, parameter: bool, notification: str, logger_main, path: str = DATASOURCES
 ) -> bool:
     """Change the notification's parameter for the user
 
@@ -25,7 +25,7 @@ def notification_parameter_change(
     Returns:
         bool: true if modification is done, false if any error happened
     """
-    logging.info(f"called | args: {user_id}, {parameter}, {notification} {path}")
+    logger_main.info(f"called | args: {user_id}, {parameter}, {notification} {path}")
     with open(path, "r+", encoding="utf-8") as file:
         try:
             j_s: dict = json.load(file)
@@ -45,7 +45,7 @@ def notification_parameter_change(
         return False
 
 
-def get_notified_users(notify: str, sources: str = DATASOURCES) -> list:
+def get_notified_users(notify: str, logger_main, sources: str = DATASOURCES) -> list:
     """Return all IDs found in json in parameters where schedule's notification are activated
 
     Args:
@@ -55,7 +55,7 @@ def get_notified_users(notify: str, sources: str = DATASOURCES) -> list:
     Returns:
         list: All IDs found
     """
-    logging.info(f"called | args: {notify}, {sources}")
+    logger_main.info(f"called | args: {notify}, {sources}")
     try:
         with open(sources, "r", encoding="utf-8") as file:
             j_s: dict = json.load(file)
@@ -72,7 +72,7 @@ def get_notified_users(notify: str, sources: str = DATASOURCES) -> list:
     return liste_id
 
 
-async def schedule_task(task, planned_date: datetime = datetime.now()) -> None:
+async def schedule_task(task, logger_main, planned_date: datetime = datetime.now()) -> None:
     """Schedule a task to run at a specific time.
 
     Args:
@@ -82,7 +82,7 @@ async def schedule_task(task, planned_date: datetime = datetime.now()) -> None:
     Returns:
         None
     """
-    logging.info(f"called | args: {task}, {planned_date}")
+    logger_main.info(f"called | args: {task}, {planned_date}")
     current_time: datetime = datetime.now()
     sleep_time: timedelta = planned_date - current_time
     await asyncio.sleep(sleep_time.total_seconds())
@@ -94,7 +94,7 @@ async def schedule_task(task, planned_date: datetime = datetime.now()) -> None:
 
 
 def add_homework_for_tp(
-    homework: Homework, t_p: str, path: str = HOMEWORKSOURCES
+    homework: Homework, t_p: str, logger_main, path: str = HOMEWORKSOURCES
 ) -> bool:
     """Add an homework in json file
 
@@ -106,7 +106,7 @@ def add_homework_for_tp(
     Returns:
         bool: true if adding complete, false if error happened
     """
-    logging.info(f"called | {homework}, {t_p}, {path}")
+    logger_main.info(f"called | {homework}, {t_p}, {path}")
     with open(path, "r+", encoding="utf-8") as file:
         try:
             j_s: dict = json.load(file)
@@ -129,7 +129,7 @@ def add_homework_for_tp(
         return False
 
 
-def del_homework_for_tp(placement: int, t_p: str, path=HOMEWORKSOURCES) -> int:
+def del_homework_for_tp(placement: int, t_p: str, logger_main, path=HOMEWORKSOURCES) -> int:
     """Remove an homework in json file
 
     Args:
@@ -141,7 +141,7 @@ def del_homework_for_tp(placement: int, t_p: str, path=HOMEWORKSOURCES) -> int:
         int: 1 if deletion is successful, 0 if an error occurs during execution,
             2 if user gave a miss-argument
     """
-    logging.info(f"called | args: {placement}, {t_p}, {path}")
+    logger_main.info(f"called | args: {placement}, {t_p}, {path}")
     try:
         with open(path, "r+", encoding="utf-8") as file:
             j_s: dict = json.load(file)
@@ -163,7 +163,7 @@ def del_homework_for_tp(placement: int, t_p: str, path=HOMEWORKSOURCES) -> int:
         return 0
 
 
-def homework_for_tp(t_p: str, path: str = HOMEWORKSOURCES) -> list[Homework]:
+def homework_for_tp(t_p: str, logger_main, path: str = HOMEWORKSOURCES) -> list[Homework]:
     """Return a list of object Homework
 
     Args:
@@ -173,7 +173,7 @@ def homework_for_tp(t_p: str, path: str = HOMEWORKSOURCES) -> list[Homework]:
     Returns:
         list[Homework]: list of Homework for the tp asked
     """
-    logging.info(f"called | args: {t_p}, {path}")
+    logger_main.info(f"called | args: {t_p}, {path}")
     with open(path, "r+", encoding="utf-8") as file:
         try:
             j_s: dict = json.load(file)
@@ -192,13 +192,13 @@ def homework_for_tp(t_p: str, path: str = HOMEWORKSOURCES) -> list[Homework]:
     return list_homework
 
 
-def homework_auto_remove(path: str = HOMEWORKSOURCES):
+def homework_auto_remove(logger_main, path: str = HOMEWORKSOURCES):
     """Remove out-dated homewoks from json file
 
     Args:
         path (str, optional): path to json file. Defaults to HOMEWORKSOURCES.
     """
-    logging.info(f"called | args: {path}")
+    logger_main.info(f"called | args: {path}")
     all_homeworks_dict: dict = {}
     current_date: datetime = datetime.now()
     for t_p in TP_DISCORD_TO_SCHEDULE.values():
@@ -227,3 +227,4 @@ def homework_auto_remove(path: str = HOMEWORKSOURCES):
 
     with open(path, "w+", encoding="utf-8") as file:
         json.dump(j_s, file)
+
