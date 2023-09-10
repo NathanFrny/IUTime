@@ -313,3 +313,67 @@
 2023-09-10 21:44:12,612 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
 2023-09-10 21:44:16,761 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
 2023-09-10 21:44:19,765 | INFO | main.py | ical_updates : ended : 0/15 icals updated
+2023-09-10 21:59:04,212 | INFO | main.py | schedule : called by : 238995072740229121 | args : BUT3TD1TPA
+2023-09-10 21:59:27,688 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-10 21:59:28,820 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
+2023-09-10 21:59:32,898 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
+2023-09-10 21:59:37,043 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
+2023-09-10 21:59:41,159 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
+2023-09-10 21:59:45,258 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
+2023-09-10 21:59:45,350 | INFO | main.py | schedule : called by : 363011509564997642 | args : BUT3TP1FI
+2023-09-10 21:59:45,351 | INFO | request.py | lessons_tp : called | args: BUT3TP1FI, True
+2023-09-10 21:59:49,355 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
+2023-09-10 21:59:53,500 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
+2023-09-10 21:59:57,631 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
+2023-09-10 22:00:01,731 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
+2023-09-10 22:00:05,820 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
+2023-09-10 22:00:09,909 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
+2023-09-10 22:00:14,048 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
+2023-09-10 22:00:18,251 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
+2023-09-10 22:00:22,355 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
+2023-09-10 22:00:26,457 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
+2023-09-10 22:00:29,459 | INFO | main.py | ical_updates : ended : 0/15 icals updated
+2023-09-10 22:01:00,763 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-10 22:01:01,860 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
+2023-09-10 22:01:05,994 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
+2023-09-10 22:01:10,100 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
+2023-09-10 22:01:14,348 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
+2023-09-10 22:01:15,616 | INFO | main.py | schedule : called by : 363011509564997642 | args : BUT3ATP1FI
+2023-09-10 22:01:15,617 | INFO | request.py | lessons_tp : called | args: BUT3ATP1FI, True
+2023-09-10 22:01:18,867 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
+2023-09-10 22:01:19,300 | INFO | main.py | send_notification : notification sent to users : [<Member id=363011509564997642 name='zince_' discriminator='0' bot=False nick=None guild=<Guild id=1092412416811343872 name='C Square' shard_id=0 chunked=False member_count=9>>]
+2023-09-10 22:01:23,009 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
+2023-09-10 22:01:27,148 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
+2023-09-10 22:01:31,235 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
+2023-09-10 22:01:35,386 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
+2023-09-10 22:01:39,503 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
+2023-09-10 22:01:43,582 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
+2023-09-10 22:01:48,346 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
+2023-09-10 22:01:52,466 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
+2023-09-10 22:01:56,625 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
+2023-09-10 22:02:00,746 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
+2023-09-10 22:02:03,750 | INFO | main.py | ical_updates : ended : 0/15 icals updated
+2023-09-10 22:35:24,659 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-10 22:35:26,090 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
+2023-09-10 22:35:30,195 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
+2023-09-10 22:35:34,273 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
+2023-09-10 22:35:35,413 | INFO | main.py | schedule : called by : 363011509564997642 | args : f
+2023-09-10 22:35:38,388 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
+2023-09-10 22:35:42,524 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
+2023-09-10 22:35:43,810 | INFO | main.py | schedule : called by : 363011509564997642 | args : BUT3AAPP
+2023-09-10 22:35:43,811 | INFO | request.py | lessons_tp : called | args: BUT3AAPP, True
+2023-09-10 22:35:46,613 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
+2023-09-10 22:35:46,615 | INFO | main.py | send_notification : notification sent to users : [<Member id=363011509564997642 name='zince_' discriminator='0' bot=False nick=None guild=<Guild id=543338931022856242 name='Test des bots IUT' shard_id=0 chunked=False member_count=11>>]
+2023-09-10 22:35:50,680 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
+2023-09-10 22:35:54,790 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
+2023-09-10 22:35:58,886 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
+2023-09-10 22:36:03,059 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
+2023-09-10 22:36:07,152 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
+2023-09-10 22:36:11,296 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
+2023-09-10 22:36:15,391 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
+2023-09-10 22:36:19,540 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
+2023-09-10 22:36:23,680 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
+2023-09-10 22:36:26,682 | INFO | main.py | ical_updates : ended : 0/15 icals updated
+2023-09-10 22:41:56,433 | INFO | main.py | schedule : called by : 363011509564997642 | args : BUT2TD2TPD
+2023-09-10 22:41:56,433 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, True
+2023-09-10 22:41:59,302 | INFO | main.py | send_notification : notification sent to users : [<Member id=363011509564997642 name='zince_' discriminator='0' bot=False nick=None guild=<Guild id=543338931022856242 name='Test des bots IUT' shard_id=0 chunked=False member_count=11>>]
