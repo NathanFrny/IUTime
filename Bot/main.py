@@ -67,14 +67,23 @@ async def plan_notif_for_tp():
     """For each tp, create a list of sorted lesson, will this list is not empty, plan a notification for the next lesson"""
     logger_main.info("called")
     all_lesson: list[Lesson] = []
-    for t_p in TP_DISCORD_TO_SCHEDULE.keys():
-        schedule_: list[Lesson] = lessons_tp(t_p=TP_DISCORD_TO_SCHEDULE[t_p], logger_main=logger_main)
-        for lesson in schedule_:
-            all_lesson.append(lesson)
+    print(TP_DISCORD_TO_SCHEDULE.keys())
+    #for t_p in TP_DISCORD_TO_SCHEDULE.keys():
+    print(1)
+    #schedule_: list[Lesson] = lessons_tp(t_p="TP_DISCORD_TO_SHEDULE[t_p]", logger_main=logger_main)
+    schedule_: list[Lesson] = lessons_tp(t_p="BUT2TD2TPD", logger_main=logger_main)
+    for lesson in schedule_:
+        all_lesson.append(lesson)
+        print("test")
 
+        # TODO - Retirez les prints
+
+    print(2)
     all_lesson = Lesson.sorting_schedule(all_lesson)
+    print(3)
     while all_lesson != []:
         lesson = all_lesson.pop(0)
+        print(4)
         logger_main.debug("lesson = %s", lesson)
         asyncio.create_task(plan_notification(t_p=TP_SCHEDULE_TO_DISCORD[lesson.t_p], lesson=lesson))
 

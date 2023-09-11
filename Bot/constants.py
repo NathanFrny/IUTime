@@ -98,4 +98,4 @@ TP_SCHEDULE = {"BUT1TD1TPA" : "https://edt.univ-littoral.fr/jsp/custom/modules/p
 
 AUTHORS = "C Square : Bonnel Noah, Fourny Nathan, Artu Florient, Thimoté Bois, Colin Prokopowicz"
 ZINCEID = 363011509564997642
-TARGETED_HOUR = (16, 36)
+TARGETED_HOUR = (19, 5)

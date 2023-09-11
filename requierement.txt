@@ -1,7 +1,6 @@
-py-cord
+discord
 rich
 ics
 pytz
 requests
-feedparser
 urllib3

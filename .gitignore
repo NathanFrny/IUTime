@@ -2,3 +2,5 @@
 __pycache__
 geckodriver.log
 geckodriver.exe
+discord_logs.txt
+main_logs.txt
