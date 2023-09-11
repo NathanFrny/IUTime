@@ -58,18 +58,16 @@ async def on_ready():
         "Logged in as %s (%s)", bot.user.name, bot.user.id
     )  # Bot connection confirmation
 
-    await ical_updates.start()
-    await wait_for_auto_start()
+    asyncio.create_task(wait_for_auto_start())
+    #asyncio.create_task(ical_updates.start())
 
 
 @tasks.loop(hours=24)
 async def plan_notif_for_tp():
     """For each tp, create a list of sorted lesson, will this list is not empty, plan a notification for the next lesson"""
     logger_main.info("called")
-    all_lesson: list = []
-    for (
-        t_p
-    ) in TP_DISCORD_TO_SCHEDULE.keys():
+    all_lesson: list[Lesson] = []
+    for t_p in TP_DISCORD_TO_SCHEDULE.keys():
         schedule_: list[Lesson] = lessons_tp(t_p=TP_DISCORD_TO_SCHEDULE[t_p], logger_main=logger_main)
         for lesson in schedule_:
             all_lesson.append(lesson)
@@ -78,7 +76,7 @@ async def plan_notif_for_tp():
     while all_lesson != []:
         lesson = all_lesson.pop(0)
         logger_main.debug("lesson = %s", lesson)
-        await plan_notification(t_p=TP_SCHEDULE_TO_DISCORD[lesson.t_p], lesson=lesson)
+        asyncio.create_task(plan_notification(t_p=TP_SCHEDULE_TO_DISCORD[lesson.t_p], lesson=lesson))
 
 
 @tasks.loop(hours=24)
@@ -112,9 +110,9 @@ async def ical_updates():
         try:
             response = requests.get(TP_SCHEDULE[tp], verify=False, timeout=1)
             if response.status_code == 200:
-                if not os.path.exists(f'../Calendars/{tp}'):
-                    os.makedirs(f'../Calendars/{tp}')
-                with open(f"../Calendars/{tp}/{tp}", 'wb') as file:
+                if not os.path.exists(f'Calendars/{tp}'):
+                    os.makedirs(f'Calendars/{tp}')
+                with open(f"Calendars/{tp}/{tp}", 'wb') as file:
                     file.write(response.content)
                 logger_main.info(f"Schedule update for {tp}")
                 counter += 1
@@ -499,10 +497,10 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
         embed=embed,
     )
 
-    await schedule_task(
+    asyncio.create_task(schedule_task(
         task,
         notification_time,
-    )
+    ))
 
 
 async def send_notification(
@@ -585,12 +583,12 @@ async def wait_for_auto_start():
     logging.info("waiting %s seconds", wait_time.total_seconds())
     await asyncio.sleep(wait_time.total_seconds())
 
-    asyncio.ensure_future(plan_notif_for_tp.start())
+    asyncio.create_task(plan_notif_for_tp.start())
 
     await asyncio.sleep(
         58200
     )  # 16 hours and 10 min (if plan_notif start at 3am, homeworks are sent around 7pm10)
-    asyncio.ensure_future(homeworks_notif.start())
+    asyncio.create_task(homeworks_notif.start())
 
 
 if __name__ == "__main__":

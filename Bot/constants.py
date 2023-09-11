@@ -32,9 +32,20 @@ TP_DISCORD_TO_SCHEDULE = {
     
 }
 TP_SCHEDULE_TO_DISCORD = {
-    "BUT2TD2TPC" : "BUT2-TPC",
-    "BUT2TD2TPD" : "BUT2-TPD",
-    "BUT2TPAAPP" : "BUT2-APP"
+    "BUT1TD1TPA": "BUT1-TPA",
+    "BUT1TD1TPB": "BUT1-TPB",
+    "BUT1TD2TPC": "BUT1-TPC",
+    "BUT1TD2TPD": "BUT1-TPD",
+    "BUT1TD3TPE": "BUT1-TPE",
+    "BUT2TD1TPA": "BUT2-TPA",
+    "BUT2TD1TPB": "BUT2-TPB",
+    "BUT2TD2TPC": "BUT2-TPC",
+    "BUT2TD2TPD": "BUT2-TPD",
+    "BUT2TPAAPP": "BUT2-APP",
+    "BUT3ATP1FI": "BUT3-TPA",
+    "BUT3ATP2FI": "BUT3-TPB",
+    "BUT3AAPP": "BUT3-TPC",
+    "BUT3BAPP": "BUT3-TPD"
 }
 DEFAULT_STRING_NO_LESSON = "Pas de cours prévu dans l'heure suivante"
 NOTIFICATION_JSON_KEYS = [
@@ -87,4 +98,4 @@ TP_SCHEDULE = {"BUT1TD1TPA" : "https://edt.univ-littoral.fr/jsp/custom/modules/p
 
 AUTHORS = "C Square : Bonnel Noah, Fourny Nathan, Artu Florient, Thimoté Bois, Colin Prokopowicz"
 ZINCEID = 363011509564997642
-TARGETED_HOUR = (3, 0)
+TARGETED_HOUR = (16, 36)

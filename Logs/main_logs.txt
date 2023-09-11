@@ -1,379 +1,549 @@
-2023-09-10 20:22:34,530 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 20:53:25,033 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 20:53:26,846 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 20:53:31,048 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 20:53:35,272 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 20:53:39,500 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 20:53:43,631 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 20:53:47,945 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 20:53:52,086 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 20:53:56,184 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 20:54:00,289 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 20:54:04,777 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 20:54:08,962 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 20:54:13,342 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 20:54:17,842 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 20:54:22,056 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 20:54:26,242 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 20:54:29,245 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 20:58:37,943 | INFO | main.py | schedule : called by : zince_#0 | args : BUT1TD1TPA
-2023-09-10 21:00:26,934 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:00:28,126 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:00:32,611 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:00:34,879 | INFO | main.py | schedule : called by : zince_#0 | args : BUT1TD1TPA
-2023-09-10 21:00:34,879 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, True
-2023-09-10 21:00:37,284 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:00:38,160 | INFO | main.py | send_notification : notification sent to users : [<Member id=363011509564997642 name='zince_' discriminator='0' bot=False nick=None guild=<Guild id=543338931022856242 name='Test des bots IUT' shard_id=0 chunked=False member_count=11>>]
-2023-09-10 21:00:41,385 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:00:45,486 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:00:49,539 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214afa61ee6300d9346e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f1e84565ae0>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT2TD1TPA
-2023-09-10 21:00:53,929 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:00:58,008 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:01:02,087 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:01:06,178 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:01:10,909 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:01:15,004 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:01:19,330 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 21:01:23,608 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 21:01:27,722 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 21:01:30,725 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 21:01:40,236 | INFO | main.py | schedule : called by : naihl#0 | args : BUT1TD
-2023-09-10 21:01:48,606 | INFO | main.py | schedule : called by : naihl#0 | args : BUT1TD2TPD
-2023-09-10 21:01:48,607 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, True
-2023-09-10 21:01:51,330 | INFO | main.py | send_notification : notification sent to users : [<Member id=238995072740229121 name='naihl' discriminator='0' bot=False nick=None guild=<Guild id=1092412416811343872 name='C Square' shard_id=0 chunked=False member_count=9>>]
-2023-09-10 21:03:03,566 | INFO | main.py | schedule : called by : naihl#0 | args : BUT2TD2TPD
-2023-09-10 21:03:03,566 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, True
-2023-09-10 21:03:15,585 | INFO | main.py | schedule : called by : naihl#0 | args : BUT2TD2TPD
-2023-09-10 21:03:15,585 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, True
-2023-09-10 21:03:18,924 | INFO | main.py | send_notification : notification sent to users : [<Member id=238995072740229121 name='naihl' discriminator='0' bot=False nick=None guild=<Guild id=1092412416811343872 name='C Square' shard_id=0 chunked=False member_count=9>>]
-2023-09-10 21:05:38,396 | INFO | main.py | schedule : called by : zince_#0 | args : BU1TD1TPA
-2023-09-10 21:10:29,490 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:10:31,152 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:10:35,247 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:10:39,326 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:10:43,666 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:10:47,766 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:10:50,036 | INFO | main.py | schedule : called by : zince_#0 | args : BUT1TD1TPA
-2023-09-10 21:10:50,036 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, True
-2023-09-10 21:10:52,353 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:10:56,444 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:11:00,596 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:11:04,945 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:11:09,096 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:11:13,173 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:11:17,261 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:11:21,365 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 21:11:25,448 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 21:11:29,929 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 21:11:32,932 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 21:13:09,014 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:13:10,102 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:13:14,119 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214633da5846189fc9de0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f355e07ffa0>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT1TD1TPB
-2023-09-10 21:13:18,269 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:13:18,274 | INFO | main.py | schedule : called by : zince_#0 | args : BUT1TD1TPA
-2023-09-10 21:13:18,275 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, True
-2023-09-10 21:13:22,289 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214b4c69b21f41db101e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f355cf42e30>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT1TD2TPD
-2023-09-10 21:13:26,365 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:13:30,460 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:13:34,604 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:13:38,687 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:13:42,788 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:13:46,928 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:13:51,022 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:13:55,124 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:13:59,264 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 21:14:03,346 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 21:14:07,484 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 21:14:15,627 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:14:16,759 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:14:20,837 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:14:21,570 | INFO | main.py | schedule : called by : zince_#0 | args : BUT1TD1TPA
-2023-09-10 21:14:21,570 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, True
-2023-09-10 21:14:24,929 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:14:24,932 | INFO | main.py | send_notification : notification sent to users : [<Member id=363011509564997642 name='zince_' discriminator='0' bot=False nick=None guild=<Guild id=543338931022856242 name='Test des bots IUT' shard_id=0 chunked=False member_count=11>>]
-2023-09-10 21:14:29,066 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:14:33,451 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:14:37,552 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:14:41,639 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:14:45,709 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:14:49,827 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:14:53,918 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:14:58,062 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:15:02,159 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:15:06,560 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 21:15:10,607 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214a9bb6791dfafa87ee0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f726b261cc0>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT3ATP2FI
-2023-09-10 21:15:14,745 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 21:15:17,749 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 21:17:18,599 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:17:19,752 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:17:22,095 | INFO | main.py | schedule : called by : zince_#0 | args : BUT1TD1TPA
-2023-09-10 21:17:22,096 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, True
-2023-09-10 21:17:24,537 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:17:25,581 | INFO | main.py | send_notification : notification sent to users : [<User id=363011509564997642 name='zince_' discriminator='0' bot=False>]
-2023-09-10 21:17:28,909 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:17:33,059 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:17:37,288 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:17:41,415 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:17:45,864 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:17:49,882 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc387320021459430e2aefb27d40e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f80d1b43b80>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT2TD2TPC
-2023-09-10 21:17:53,901 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214eba1f059caa03d5ae0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f80d0a38130>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT2TD2TPD
-2023-09-10 21:17:57,919 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214097a0191464d3295324cfcf2e9e6b435e05b7ab2457e00b4571f857a52dc5aa230f492d81d4f1a0fa96c4fad30084a42 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f80d0a39960>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT2TD3TPAAPP
-2023-09-10 21:18:01,940 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc38732002145a3f91796c885729e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f80d0a3a140>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT2TD3TPBAPP
-2023-09-10 21:18:06,086 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214a86890e163ca034ee0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f80d1ae3100>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT3AAPP
-2023-09-10 21:18:10,229 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214a2f73a72523cc44be0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f80d0a08b80>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT3ATP1FI
-2023-09-10 21:18:14,314 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 21:18:18,616 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 21:18:21,620 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 21:19:07,537 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:19:08,616 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:19:12,744 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:19:13,711 | INFO | main.py | schedule : called by : zince_#0 | args : BUT1TD1TPA
-2023-09-10 21:19:13,711 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, True
-2023-09-10 21:19:16,840 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:19:17,244 | INFO | main.py | send_notification : notification sent to users : [<User id=363011509564997642 name='zince_' discriminator='0' bot=False>]
-2023-09-10 21:19:21,734 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:19:25,848 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:19:29,931 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:19:34,176 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:19:38,298 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:19:42,406 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:19:46,424 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214097a0191464d3295324cfcf2e9e6b435e05b7ab2457e00b4571f857a52dc5aa230f492d81d4f1a0fa96c4fad30084a42 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f3a8d0d1300>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT2TD3TPAAPP
-2023-09-10 21:19:50,518 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:19:54,857 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:19:58,924 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 21:20:02,946 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214a9bb6791dfafa87ee0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f3a8d0a36d0>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT3ATP2FI
-2023-09-10 21:20:06,992 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc387320021412405c8e744f3509e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f3a8d0c1300>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT3BAPP
-2023-09-10 21:20:09,996 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 21:24:19,680 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:24:21,309 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:24:23,166 | INFO | main.py | schedule : called by : zince_#0 | args : BUT1TD1TPA
-2023-09-10 21:24:23,167 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, True
-2023-09-10 21:24:25,599 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:24:29,997 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:24:34,438 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:24:38,644 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:24:42,738 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:24:46,811 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:24:50,917 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:24:54,996 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:24:59,422 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:25:03,520 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:25:07,609 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:25:11,695 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 21:25:15,816 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 21:25:19,910 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 21:25:22,914 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 21:25:51,643 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:25:52,785 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:25:56,880 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:25:57,786 | INFO | main.py | schedule : called by : zince_#0 | args : BUT1TD1TPA
-2023-09-10 21:25:57,786 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, True
-2023-09-10 21:26:00,972 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:26:05,047 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:26:09,119 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:26:13,234 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:26:17,322 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:26:21,430 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:26:25,523 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:26:29,666 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:26:33,769 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:26:37,990 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:26:47,217 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:26:48,288 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:26:52,364 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:26:56,504 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:27:00,611 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:27:04,687 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:27:08,836 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:27:12,911 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:27:17,013 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:27:21,088 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:27:25,205 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:27:29,311 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:27:33,420 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:27:37,508 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 21:27:41,632 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 21:27:45,930 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 21:27:48,933 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 21:35:58,149 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:35:59,715 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:36:03,896 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:36:08,198 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:36:12,711 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:36:16,840 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:36:21,100 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:36:25,410 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:36:27,880 | INFO | main.py | homework : called by : 363011509564997642
-2023-09-10 21:36:29,728 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:36:34,003 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:36:38,308 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:36:42,608 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:36:46,718 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:36:50,733 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214a2f73a72523cc44be0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f89006da230>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT3ATP1FI
-2023-09-10 21:36:54,747 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214a9bb6791dfafa87ee0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f890069d4b0>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT3ATP2FI
-2023-09-10 21:36:58,844 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 21:37:01,845 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 21:37:48,244 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:37:49,345 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:37:53,425 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:37:53,427 | INFO | main.py | homework : called by : 363011509564997642
-2023-09-10 21:37:53,448 | INFO | main.py | homework : called by : 363011509564997642
-2023-09-10 21:37:57,508 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:38:01,583 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:38:06,575 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:38:10,639 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:38:14,741 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:38:18,862 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:38:22,943 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:38:27,065 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:38:31,184 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:38:35,262 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:38:39,353 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 21:38:43,506 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 21:38:47,590 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 21:38:55,714 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:38:56,824 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:38:56,975 | INFO | main.py | homework : called by : 363011509564997642
-2023-09-10 21:38:56,980 | INFO | main.py | homework : called by : 363011509564997642
-2023-09-10 21:39:00,908 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:39:05,014 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:39:09,108 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:39:13,186 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:39:17,262 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:39:21,388 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:39:25,503 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:39:29,584 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:39:33,744 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:39:43,641 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:39:44,750 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:39:48,828 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:39:49,406 | INFO | main.py | del_homework : called by : 363011509564997642 | args: None
-2023-09-10 21:39:52,910 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:39:56,986 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:40:01,083 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:40:05,150 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:40:09,244 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:40:13,348 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:40:17,426 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:40:21,507 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:40:25,528 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Max retries exceeded with url: /jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc38732002145a3f91796c885729e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f2f88def550>, 'Connection to edt.univ-littoral.fr timed out. (connect timeout=1)')), tp=BUT2TD3TPBAPP
-2023-09-10 21:40:29,631 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:40:33,711 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 21:40:37,830 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 21:40:41,913 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 21:40:44,917 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 21:41:15,469 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:41:16,564 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:41:17,894 | INFO | main.py | del_homework : called by : 363011509564997642 | args: None
-2023-09-10 21:41:20,715 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:41:24,786 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:41:29,150 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:41:33,242 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:41:37,348 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:41:41,430 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:41:45,556 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:41:49,631 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:41:53,715 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:41:57,785 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:42:06,705 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:42:07,789 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:42:08,262 | INFO | main.py | del_homework : called by : 363011509564997642 | args: None
-2023-09-10 21:42:11,910 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:42:16,232 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:42:20,401 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:42:29,358 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:42:30,461 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:42:30,463 | INFO | main.py | del_homework : called by : 363011509564997642 | args: None
-2023-09-10 21:42:34,551 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:42:38,667 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:42:42,768 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:42:46,853 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:42:50,998 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:42:55,067 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:42:59,178 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:43:03,272 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:43:07,376 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:43:17,517 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:43:18,907 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:43:21,069 | INFO | main.py | homework : called by : 363011509564997642
-2023-09-10 21:43:23,003 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:43:27,132 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:43:31,212 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:43:35,299 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:43:37,158 | INFO | main.py | add_homework : called by : 363011509564997642 | args: f, f, 3, ee, efe, False
-2023-09-10 21:43:39,404 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:43:43,542 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:43:46,365 | INFO | main.py | del_homework : called by : 363011509564997642 | args: None
-2023-09-10 21:43:47,691 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 21:43:51,802 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 21:43:55,915 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 21:44:00,048 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 21:44:04,194 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 21:44:08,493 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 21:44:12,612 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 21:44:16,761 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 21:44:19,765 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 21:59:04,212 | INFO | main.py | schedule : called by : 238995072740229121 | args : BUT3TD1TPA
-2023-09-10 21:59:27,688 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 21:59:28,820 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 21:59:32,898 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 21:59:37,043 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 21:59:41,159 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 21:59:45,258 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 21:59:45,350 | INFO | main.py | schedule : called by : 363011509564997642 | args : BUT3TP1FI
-2023-09-10 21:59:45,351 | INFO | request.py | lessons_tp : called | args: BUT3TP1FI, True
-2023-09-10 21:59:49,355 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 21:59:53,500 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 21:59:57,631 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 22:00:01,731 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 22:00:05,820 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 22:00:09,909 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 22:00:14,048 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 22:00:18,251 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 22:00:22,355 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 22:00:26,457 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 22:00:29,459 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 22:01:00,763 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 22:01:01,860 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 22:01:05,994 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 22:01:10,100 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 22:01:14,348 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 22:01:15,616 | INFO | main.py | schedule : called by : 363011509564997642 | args : BUT3ATP1FI
-2023-09-10 22:01:15,617 | INFO | request.py | lessons_tp : called | args: BUT3ATP1FI, True
-2023-09-10 22:01:18,867 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 22:01:19,300 | INFO | main.py | send_notification : notification sent to users : [<Member id=363011509564997642 name='zince_' discriminator='0' bot=False nick=None guild=<Guild id=1092412416811343872 name='C Square' shard_id=0 chunked=False member_count=9>>]
-2023-09-10 22:01:23,009 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 22:01:27,148 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 22:01:31,235 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 22:01:35,386 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 22:01:39,503 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 22:01:43,582 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 22:01:48,346 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 22:01:52,466 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 22:01:56,625 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 22:02:00,746 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 22:02:03,750 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 22:35:24,659 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
-2023-09-10 22:35:26,090 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
-2023-09-10 22:35:30,195 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPB
-2023-09-10 22:35:34,273 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPC
-2023-09-10 22:35:35,413 | INFO | main.py | schedule : called by : 363011509564997642 | args : f
-2023-09-10 22:35:38,388 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD2TPD
-2023-09-10 22:35:42,524 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD3TPE
-2023-09-10 22:35:43,810 | INFO | main.py | schedule : called by : 363011509564997642 | args : BUT3AAPP
-2023-09-10 22:35:43,811 | INFO | request.py | lessons_tp : called | args: BUT3AAPP, True
-2023-09-10 22:35:46,613 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPA
-2023-09-10 22:35:46,615 | INFO | main.py | send_notification : notification sent to users : [<Member id=363011509564997642 name='zince_' discriminator='0' bot=False nick=None guild=<Guild id=543338931022856242 name='Test des bots IUT' shard_id=0 chunked=False member_count=11>>]
-2023-09-10 22:35:50,680 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD1TPB
-2023-09-10 22:35:54,790 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPC
-2023-09-10 22:35:58,886 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD2TPD
-2023-09-10 22:36:03,059 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPAAPP
-2023-09-10 22:36:07,152 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT2TD3TPBAPP
-2023-09-10 22:36:11,296 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3AAPP
-2023-09-10 22:36:15,391 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP1FI
-2023-09-10 22:36:19,540 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3ATP2FI
-2023-09-10 22:36:23,680 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT3BAPP
-2023-09-10 22:36:26,682 | INFO | main.py | ical_updates : ended : 0/15 icals updated
-2023-09-10 22:41:56,433 | INFO | main.py | schedule : called by : 363011509564997642 | args : BUT2TD2TPD
-2023-09-10 22:41:56,433 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, True
-2023-09-10 22:41:59,302 | INFO | main.py | send_notification : notification sent to users : [<Member id=363011509564997642 name='zince_' discriminator='0' bot=False nick=None guild=<Guild id=543338931022856242 name='Test des bots IUT' shard_id=0 chunked=False member_count=11>>]
+2023-09-11 12:04:22,952 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:04:23,440 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPA
+2023-09-11 12:04:26,903 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPB
+2023-09-11 12:04:30,353 | INFO | main.py | ical_updates : Schedule update for BUT1TD2TPC
+2023-09-11 12:04:33,720 | INFO | main.py | ical_updates : Schedule update for BUT1TD2TPD
+2023-09-11 12:04:37,173 | INFO | main.py | ical_updates : Schedule update for BUT1TD3TPE
+2023-09-11 12:04:40,716 | INFO | main.py | ical_updates : Schedule update for BUT2TD1TPA
+2023-09-11 12:04:44,236 | INFO | main.py | ical_updates : Schedule update for BUT2TD1TPB
+2023-09-11 12:04:47,741 | INFO | main.py | ical_updates : Schedule update for BUT2TD2TPC
+2023-09-11 12:04:51,398 | INFO | main.py | ical_updates : Schedule update for BUT2TD2TPD
+2023-09-11 12:04:54,850 | INFO | main.py | ical_updates : Schedule update for BUT2TD3TPAAPP
+2023-09-11 12:04:58,397 | INFO | main.py | ical_updates : Schedule update for BUT2TD3TPBAPP
+2023-09-11 12:05:01,821 | INFO | main.py | ical_updates : Schedule update for BUT3AAPP
+2023-09-11 12:05:05,329 | INFO | main.py | ical_updates : Schedule update for BUT3ATP1FI
+2023-09-11 12:05:08,886 | INFO | main.py | ical_updates : Schedule update for BUT3ATP2FI
+2023-09-11 12:05:12,338 | INFO | main.py | ical_updates : Schedule update for BUT3BAPP
+2023-09-11 12:05:15,341 | INFO | main.py | ical_updates : ended : 15/15 icals updated
+2023-09-11 12:06:37,166 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:06:37,167 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:07:47,369 | INFO | main.py | notif : called by : 363011509564997642 | args : schedule, True
+2023-09-11 12:08:00,004 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:08:00,004 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:08:01,278 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:08:02,667 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:08:03,861 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:08:05,182 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:08:06,662 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:08:08,183 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:08:09,672 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:08:11,199 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:08:12,671 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:08:12,962 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:08:12,962 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:08:14,157 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:08:15,407 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:08:16,644 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:08:17,948 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:08:19,529 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:08:21,140 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:08:22,643 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:08:24,108 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:08:25,606 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:08:27,484 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:08:27,485 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:08:28,667 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:08:30,204 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:08:31,425 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:08:32,675 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:08:34,089 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:08:35,625 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:08:37,149 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:08:38,623 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:08:40,111 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:08:40,116 | INFO | main.py | notif : called by : 363011509564997642 | args : next_lesson, True
+2023-09-11 12:08:40,116 | INFO | utils.py | notification_parameter_change : called | args: 363011509564997642, True, next_lesson JSON/index.json
+2023-09-11 12:08:46,783 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:08:46,784 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:08:48,271 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:08:49,603 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:08:51,659 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:08:53,528 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:08:55,739 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:08:58,295 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:09:01,019 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:09:03,437 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:09:06,002 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:09:16,507 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:09:16,508 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:09:17,774 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:09:19,028 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:09:20,311 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:09:21,554 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:09:22,993 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:09:24,583 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:09:26,091 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:09:27,615 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:09:29,130 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:09:36,523 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:09:36,524 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:09:37,762 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:09:39,014 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:09:40,237 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:09:41,539 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:09:43,011 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:09:44,584 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:09:46,108 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:09:47,635 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:09:49,140 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:10:16,156 | INFO | main.py | schedule : called by : 363011509564997642 | args : BUT2TD2TPD
+2023-09-11 12:10:16,156 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:10:21,068 | INFO | main.py | send_notification : notification sent to users : [<Member id=363011509564997642 name='zince_' discriminator='0' bot=False nick=None guild=<Guild id=1092412416811343872 name='C Square' shard_id=0 chunked=False member_count=9>>]
+2023-09-11 12:10:43,567 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:10:43,568 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:10:44,828 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:10:46,133 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:10:47,341 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:10:48,584 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:10:50,019 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:10:51,523 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:10:53,014 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:10:54,482 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:10:56,105 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:10:56,107 | INFO | main.py | schedule : called by : 363011509564997642 | args : BUT2TD2TPD
+2023-09-11 12:10:56,108 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:12:52,943 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:12:52,944 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:12:54,909 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:12:56,592 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:12:58,482 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:13:00,486 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:13:02,571 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:13:04,987 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:13:07,522 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:13:10,079 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:13:12,768 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:13:59,348 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:13:59,348 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:16:26,860 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:16:26,860 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:18:00,011 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:18:00,012 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:18:01,898 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:18:03,534 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:18:04,816 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:18:06,571 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:18:08,021 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:18:09,559 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:18:11,504 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:18:14,269 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:18:17,105 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:18:17,467 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:18:17,467 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:18:19,558 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:18:21,865 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:18:24,012 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:18:26,097 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:18:28,257 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:18:30,257 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:18:32,638 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:18:34,905 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:18:37,059 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:18:40,649 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:18:40,649 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:18:42,084 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:18:43,560 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:18:44,742 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:18:45,970 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:18:47,398 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:18:49,134 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:18:51,475 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:18:53,242 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:18:54,721 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:18:55,608 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:18:55,609 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:18:57,900 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:19:00,164 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:19:02,301 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:19:04,493 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:19:06,949 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:19:09,361 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:19:20,461 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:19:20,465 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:20:04,697 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:20:04,700 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:21:04,508 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:21:04,512 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:21:05,023 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPA
+2023-09-11 12:21:08,622 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPB
+2023-09-11 12:21:12,042 | INFO | main.py | ical_updates : Schedule update for BUT1TD2TPC
+2023-09-11 12:21:15,554 | INFO | main.py | ical_updates : Schedule update for BUT1TD2TPD
+2023-09-11 12:21:19,094 | INFO | main.py | ical_updates : Schedule update for BUT1TD3TPE
+2023-09-11 12:21:42,687 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:21:42,692 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:21:43,297 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPA
+2023-09-11 12:21:46,922 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPB
+2023-09-11 12:21:50,462 | INFO | main.py | ical_updates : Schedule update for BUT1TD2TPC
+2023-09-11 12:21:54,133 | INFO | main.py | ical_updates : Schedule update for BUT1TD2TPD
+2023-09-11 12:21:57,725 | INFO | main.py | ical_updates : Schedule update for BUT1TD3TPE
+2023-09-11 12:22:01,405 | INFO | main.py | ical_updates : Schedule update for BUT2TD1TPA
+2023-09-11 12:22:04,992 | INFO | main.py | ical_updates : Schedule update for BUT2TD1TPB
+2023-09-11 12:22:08,708 | INFO | main.py | ical_updates : Schedule update for BUT2TD2TPC
+2023-09-11 12:22:12,350 | INFO | main.py | ical_updates : Schedule update for BUT2TD2TPD
+2023-09-11 12:22:16,403 | INFO | main.py | ical_updates : Schedule update for BUT2TD3TPAAPP
+2023-09-11 12:22:24,371 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:22:24,374 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:22:25,479 | CRITICAL | main.py | ical_updates : erreur : HTTPSConnectionPool(host='edt.univ-littoral.fr', port=443): Read timed out. (read timeout=1), tp=BUT1TD1TPA
+2023-09-11 12:22:29,026 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPB
+2023-09-11 12:22:32,756 | INFO | main.py | ical_updates : Schedule update for BUT1TD2TPC
+2023-09-11 12:22:36,392 | INFO | main.py | ical_updates : Schedule update for BUT1TD2TPD
+2023-09-11 12:22:39,973 | INFO | main.py | ical_updates : Schedule update for BUT1TD3TPE
+2023-09-11 12:22:43,609 | INFO | main.py | ical_updates : Schedule update for BUT2TD1TPA
+2023-09-11 12:22:47,201 | INFO | main.py | ical_updates : Schedule update for BUT2TD1TPB
+2023-09-11 12:22:50,789 | INFO | main.py | ical_updates : Schedule update for BUT2TD2TPC
+2023-09-11 12:22:54,245 | INFO | main.py | ical_updates : Schedule update for BUT2TD2TPD
+2023-09-11 12:22:57,742 | INFO | main.py | ical_updates : Schedule update for BUT2TD3TPAAPP
+2023-09-11 12:23:01,249 | INFO | main.py | ical_updates : Schedule update for BUT2TD3TPBAPP
+2023-09-11 12:23:04,693 | INFO | main.py | ical_updates : Schedule update for BUT3AAPP
+2023-09-11 12:23:08,139 | INFO | main.py | ical_updates : Schedule update for BUT3ATP1FI
+2023-09-11 12:23:11,729 | INFO | main.py | ical_updates : Schedule update for BUT3ATP2FI
+2023-09-11 12:23:15,189 | INFO | main.py | ical_updates : Schedule update for BUT3BAPP
+2023-09-11 12:23:18,191 | INFO | main.py | ical_updates : ended : 14/15 icals updated
+2023-09-11 12:25:00,036 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:25:00,036 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:25:01,600 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:25:02,993 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:25:04,173 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:25:05,384 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:25:07,783 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:25:09,634 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:25:11,163 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:25:12,645 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:25:14,401 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:25:14,935 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:25:14,936 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:25:17,092 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:25:19,294 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:25:21,347 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:25:23,522 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:25:26,065 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:25:28,719 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:25:31,402 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:25:33,906 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:25:36,429 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:25:39,611 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:25:39,612 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:25:41,396 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:25:42,883 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:25:44,749 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:25:47,072 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:25:49,031 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:25:51,347 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:25:53,528 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:25:56,116 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:25:58,660 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:26:05,326 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:26:05,326 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:26:07,495 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:26:09,241 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:26:10,944 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:26:13,182 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:26:15,778 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:26:18,574 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:26:20,916 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:26:23,257 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:26:25,870 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:26:30,932 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:26:30,933 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:26:33,377 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:26:35,720 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:26:37,807 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:26:39,674 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:26:41,130 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:26:42,771 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:26:44,872 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:26:46,853 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:26:48,476 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:26:58,259 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:26:58,260 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:27:00,333 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:27:02,182 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:27:03,764 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:27:05,478 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:27:07,184 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:27:09,223 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:27:10,918 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:27:12,699 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:27:14,847 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:27:44,639 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:27:44,640 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:27:46,461 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:27:48,648 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:27:50,280 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:27:52,419 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:27:54,564 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:27:56,752 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:27:59,144 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:28:01,482 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:28:04,061 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:30:04,635 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:30:04,636 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:30:06,246 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:30:07,703 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:30:09,684 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:30:11,464 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:30:13,439 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:30:16,070 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:30:18,481 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:30:20,534 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:30:22,867 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:32:38,039 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:32:38,040 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:32:39,452 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:32:40,899 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:32:42,096 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:32:43,356 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:32:44,853 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:32:46,672 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:32:48,171 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:32:49,677 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:32:51,177 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:34:44,991 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:34:44,992 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:34:46,716 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:34:48,225 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:34:50,271 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:34:52,536 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:34:55,093 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:34:58,091 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:35:00,629 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:35:03,201 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:35:05,769 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:36:16,535 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:36:16,536 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:36:17,748 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:36:18,986 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:36:20,473 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:36:21,717 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:36:23,149 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:36:24,637 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:36:26,120 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:36:27,616 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:36:29,852 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:36:38,310 | INFO | main.py | notif : called by : 534827724183699476 | args : next_lesson, False
+2023-09-11 12:36:38,310 | INFO | utils.py | notification_parameter_change : called | args: 534827724183699476, False, next_lesson JSON/index.json
+2023-09-11 12:37:01,416 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:37:01,420 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:37:02,008 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPA
+2023-09-11 12:37:05,529 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPB
+2023-09-11 12:37:20,678 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:37:20,683 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:37:22,007 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPA
+2023-09-11 12:37:25,523 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPB
+2023-09-11 12:37:29,094 | INFO | main.py | ical_updates : Schedule update for BUT1TD2TPC
+2023-09-11 12:37:32,591 | INFO | main.py | ical_updates : Schedule update for BUT1TD2TPD
+2023-09-11 12:37:36,225 | INFO | main.py | ical_updates : Schedule update for BUT1TD3TPE
+2023-09-11 12:37:39,724 | INFO | main.py | ical_updates : Schedule update for BUT2TD1TPA
+2023-09-11 12:37:43,173 | INFO | main.py | ical_updates : Schedule update for BUT2TD1TPB
+2023-09-11 12:37:46,757 | INFO | main.py | ical_updates : Schedule update for BUT2TD2TPC
+2023-09-11 12:37:50,543 | INFO | main.py | ical_updates : Schedule update for BUT2TD2TPD
+2023-09-11 12:37:54,008 | INFO | main.py | ical_updates : Schedule update for BUT2TD3TPAAPP
+2023-09-11 12:37:57,511 | INFO | main.py | ical_updates : Schedule update for BUT2TD3TPBAPP
+2023-09-11 12:38:00,003 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:38:00,004 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:38:01,611 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:38:03,387 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:38:05,022 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:38:07,329 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:38:08,976 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:38:10,523 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:38:12,166 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:38:14,277 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:38:16,437 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:38:16,929 | INFO | main.py | ical_updates : Schedule update for BUT3AAPP
+2023-09-11 12:38:18,083 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:38:18,083 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:38:20,071 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:38:22,159 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:38:23,737 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:38:25,646 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:38:27,362 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:38:29,017 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:38:30,669 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:38:32,709 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:38:34,958 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:38:35,496 | INFO | main.py | ical_updates : Schedule update for BUT3ATP1FI
+2023-09-11 12:38:37,041 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:38:37,041 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:38:38,358 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:38:39,709 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:38:40,969 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:38:42,306 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:38:43,971 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:38:45,603 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:38:47,586 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:38:49,241 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:38:50,789 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:38:51,253 | INFO | main.py | ical_updates : Schedule update for BUT3ATP2FI
+2023-09-11 12:38:52,526 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:38:52,527 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:38:54,112 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:38:56,058 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:38:57,342 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:38:58,640 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:39:00,569 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:39:02,768 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:39:04,703 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:39:06,387 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:39:08,154 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:39:08,617 | INFO | main.py | ical_updates : Schedule update for BUT3BAPP
+2023-09-11 12:39:11,619 | INFO | main.py | ical_updates : ended : 15/15 icals updated
+2023-09-11 12:39:18,747 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:39:18,748 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:39:20,637 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:39:22,596 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:39:24,103 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:39:25,419 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:39:26,913 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:39:28,588 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:39:30,153 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:39:31,706 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:39:34,500 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:39:41,615 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:39:41,616 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:39:42,937 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:39:44,437 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:39:45,673 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:39:46,956 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:39:48,432 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:39:50,548 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:39:52,226 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:39:54,211 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:39:55,745 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:40:02,507 | INFO | main.py | notif : called by : 238995072740229121 | args : next_lesson, True
+2023-09-11 12:40:02,507 | INFO | utils.py | notification_parameter_change : called | args: 238995072740229121, True, next_lesson JSON/index.json
+2023-09-11 12:40:12,520 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:40:12,521 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:40:14,930 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:40:17,019 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:40:19,176 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:40:21,611 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:40:24,171 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:40:26,829 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:40:29,444 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:40:32,352 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:40:34,702 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:41:10,194 | INFO | main.py | schedule : called by : 534827724183699476 | args : BUT2TD2TPD
+2023-09-11 12:41:10,194 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:41:13,166 | INFO | main.py | send_notification : notification sent to users : [<Member id=534827724183699476 name='neekzen' discriminator='0' bot=False nick=None guild=<Guild id=1092412416811343872 name='C Square' shard_id=0 chunked=False member_count=9>>]
+2023-09-11 12:41:27,310 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:41:27,311 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:41:28,554 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:41:29,824 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:41:31,038 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:41:32,311 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:41:33,762 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:41:35,291 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:41:36,797 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:41:38,301 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:41:39,845 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:42:20,451 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:42:20,452 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:42:21,695 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:42:22,948 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:42:24,168 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:42:25,409 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:42:26,847 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:42:28,367 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:42:29,865 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:42:31,363 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:42:32,905 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:48:55,527 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:48:55,528 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:48:56,761 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:48:58,001 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:48:59,205 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:49:00,447 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:49:01,940 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:49:03,438 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:49:04,927 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:49:06,391 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:49:07,975 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:56:35,815 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:56:35,820 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:56:36,378 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPA
+2023-09-11 12:56:40,440 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPB
+2023-09-11 12:56:57,303 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 12:56:57,307 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 12:56:58,559 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPA
+2023-09-11 12:57:00,004 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:57:00,005 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:57:01,263 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:57:03,152 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:57:05,084 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:57:07,263 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:57:09,733 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:57:11,373 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:57:12,880 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:57:14,398 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:57:16,056 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:57:16,733 | INFO | main.py | ical_updates : Schedule update for BUT1TD1TPB
+2023-09-11 12:57:16,734 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 12:57:16,734 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 12:57:18,084 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 12:57:19,385 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 12:57:20,619 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 12:57:21,870 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 12:57:23,812 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 12:57:26,100 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 12:57:27,671 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 12:57:29,203 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 12:57:31,247 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 12:57:32,315 | INFO | main.py | ical_updates : Schedule update for BUT1TD2TPC
+2023-09-11 16:35:00,904 | INFO | main.py | on_ready : Logged in as IUTime (1110967318550433823)
+2023-09-11 16:35:00,905 | INFO | main.py | wait_for_auto_start : called
+2023-09-11 16:36:00,008 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 16:36:00,008 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 16:36:01,444 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 16:36:02,726 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 16:36:03,867 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 16:36:05,443 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 16:36:06,834 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 16:36:08,282 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 16:36:10,323 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 16:36:11,924 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 16:36:13,607 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 16:36:14,492 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 16:36:14,493 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 16:36:15,650 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 16:36:16,893 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 16:36:18,720 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 16:36:20,620 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 16:36:22,848 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 16:36:24,394 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 16:36:25,815 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 16:36:27,793 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 16:36:29,707 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 16:36:32,700 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 16:36:32,701 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 16:36:33,889 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 16:36:35,087 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 16:36:36,630 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 16:36:38,038 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 16:36:39,867 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 16:36:42,247 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 16:36:43,723 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 16:36:45,947 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 16:36:47,480 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 16:36:50,516 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 16:36:50,517 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 16:36:52,290 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 16:36:53,983 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 16:36:55,402 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 16:36:57,354 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 16:36:59,706 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 16:37:01,483 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 16:37:03,083 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 16:37:04,944 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 16:37:07,096 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
+2023-09-11 16:37:11,165 | INFO | main.py | plan_notif_for_tp : called
+2023-09-11 16:37:11,165 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPA, False
+2023-09-11 16:37:12,917 | INFO | request.py | lessons_tp : called | args: BUT1TD1TPB, False
+2023-09-11 16:37:14,892 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPC, False
+2023-09-11 16:37:16,143 | INFO | request.py | lessons_tp : called | args: BUT1TD2TPD, False
+2023-09-11 16:37:17,800 | INFO | request.py | lessons_tp : called | args: BUT1TD3TPE, False
+2023-09-11 16:37:19,192 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPA, False
+2023-09-11 16:37:20,793 | INFO | request.py | lessons_tp : called | args: BUT2TD1TPB, False
+2023-09-11 16:37:22,645 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPC, False
+2023-09-11 16:37:24,120 | INFO | request.py | lessons_tp : called | args: BUT2TD2TPD, False
+2023-09-11 16:37:26,581 | INFO | request.py | lessons_tp : called | args: BUT2TPAAPP, False
