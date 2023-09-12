@@ -38,8 +38,10 @@ from constants import (
     NOTIFICATION_JSON_KEYS,
     HOMEWORKSOURCES,
     TP_SCHEDULE_TO_DISCORD,
-    TARGETED_HOUR,
-    TP_SCHEDULE
+    TARGETED_HOUR_NOTIF_LESSONS,
+    TARGETED_HOUR_NOTIF_HOMEWORKS,
+    TP_SCHEDULE,
+    HELP 
 )
 from homework import Homework
 from lesson import Lesson
@@ -58,8 +60,9 @@ async def on_ready():
         "Logged in as %s (%s)", bot.user.name, bot.user.id
     )  # Bot connection confirmation
 
-    asyncio.create_task(wait_for_auto_start())
-    #asyncio.create_task(ical_updates.start())
+    asyncio.create_task(wait_for_auto_start_notif_lessons())
+    asyncio.create_task(wait_for_auto_start_notif_homeworks())
+    asyncio.create_task(ical_updates.start())
 
 
 @tasks.loop(hours=24)
@@ -67,23 +70,69 @@ async def plan_notif_for_tp():
     """For each tp, create a list of sorted lesson, will this list is not empty, plan a notification for the next lesson"""
     logger_main.info("called")
     all_lesson: list[Lesson] = []
-    print(TP_DISCORD_TO_SCHEDULE.keys())
     #for t_p in TP_DISCORD_TO_SCHEDULE.keys():
-    print(1)
-    #schedule_: list[Lesson] = lessons_tp(t_p="TP_DISCORD_TO_SHEDULE[t_p]", logger_main=logger_main)
-    schedule_: list[Lesson] = lessons_tp(t_p="BUT2TD2TPD", logger_main=logger_main)
+    #    all_lesson.append(lesson for lesson in lessons_tp(t_p=t_p, logger_main=logger_main))
+
+    # TODO - Demander à un prof, la fonction se relance en boucle si il y a trop de TP, incompréhensible
+    schedule_: list[Lesson] = lessons_tp(t_p="BUT1TD1TPA", logger_main=logger_main)
     for lesson in schedule_:
         all_lesson.append(lesson)
-        print("test")
+    
+    schedule_: list[Lesson] = lessons_tp(t_p="BUT1TD1TPB", logger_main=logger_main)
+    for lesson in schedule_:
+        all_lesson.append(lesson)
 
-        # TODO - Retirez les prints
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT1TD2TPC", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
 
-    print(2)
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT1TD2TPD", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
+
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT1TD3TPE", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
+
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT2TD1TPA", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
+
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT2TD1TPB", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
+
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT2TD2TPC", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
+
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT2TD2TPD", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
+
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT2TPAAPP", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
+
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT3ATP1FI", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
+
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT3ATP2FI", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
+
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT3AAPP", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
+
+    #schedule_: list[Lesson] = lessons_tp(t_p="BUT3BAPP", logger_main=logger_main)
+    #for lesson in schedule_:
+    #    all_lesson.append(lesson)
+
     all_lesson = Lesson.sorting_schedule(all_lesson)
-    print(3)
     while all_lesson != []:
         lesson = all_lesson.pop(0)
-        print(4)
         logger_main.debug("lesson = %s", lesson)
         asyncio.create_task(plan_notification(t_p=TP_SCHEDULE_TO_DISCORD[lesson.t_p], lesson=lesson))
 
@@ -175,6 +224,9 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
             message
         )  # Responding if bad argument
 
+@bot.command(description="Need help ?")
+async def iutime(ctx : ApplicationContext):
+    await ctx.interaction.response.send_message(HELP)
 
 @bot.command(description="Able/Enable notifications for homeworks or lessons")
 async def notif(
@@ -302,7 +354,7 @@ async def add_homework(
         str,
         description="Importance, 'banale' to be notified 1 day before, 'normal' for 3 days, 'critique' to always be",
     ),
-    date_rendu: Option(str, description="Due date, 'AAAA-MM-DD-HH-MM' exemple '2023-07-03-02-40"),
+    date_rendue: Option(str, description="Due date, 'AAAA-MM-DD-HH-MM' exemple '2023-07-03-02-40"),
     description: Option(str, description="A simple desciption of the homework"),
     note: Option(bool, description="If graded or not") = False,
 ):
@@ -317,7 +369,7 @@ async def add_homework(
         description (str): The description of the homework.
         note (bool, optional): Whether the homework needs to be noted. Defaults to False.
     """
-    logger_main.info(f"called by : {ctx.author.id} | args: {ressource}, {prof}, {criticite}, {date_rendu}, {description}, {note}")
+    logger_main.info(f"called by : {ctx.author.id} | args: {ressource}, {prof}, {criticite}, {date_rendue}, {description}, {note}")
     
     try:
         user: User | Member = ctx.author
@@ -339,7 +391,7 @@ async def add_homework(
             logging.debug("TP and role 'délégué' found")
             try:
                 date_rendu_obj: datetime.datetime = datetime.datetime.strptime(
-                    date_rendu, "%Y-%m-%d-%H-%M"
+                    date_rendue, "%Y-%m-%d-%H-%M"
                 )
             except ValueError:
                 await ctx.interaction.response.send_message(
@@ -489,7 +541,7 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
     lesson_time: datetime.datetime = datetime.datetime.combine(
         datetime.date.today(), lesson_time
     )
-    if lesson_time < datetime.datetime.now() - datetime.timedelta(hours=1, minutes=30):
+    if lesson_time < datetime.datetime.now() - datetime.timedelta(hours=0, minutes=20):
         logger_main.info("Lesson time to far in the past, %s", lesson_time)
         return
 
@@ -506,9 +558,10 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
         embed=embed,
     )
 
-    asyncio.create_task(schedule_task(
+    asyncio.ensure_future(schedule_task(
         task,
-        notification_time,
+        logger_main=logger_main,
+        planned_date=notification_time
     ))
 
 
@@ -563,14 +616,14 @@ async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> lis
     return res
 
 
-async def wait_for_auto_start():
+async def wait_for_auto_start_notif_lessons():
     current_time: datetime.datetime = datetime.datetime.now()
     target_time: datetime.datetime = datetime.datetime(
         current_time.year,
         current_time.month,
         current_time.day,
-        TARGETED_HOUR[0],
-        TARGETED_HOUR[1],
+        TARGETED_HOUR_NOTIF_LESSONS[0],
+        TARGETED_HOUR_NOTIF_LESSONS[1],
     )
     logger_main.info(f"called")
     # Calculate delay before target time
@@ -583,8 +636,8 @@ async def wait_for_auto_start():
             next_day.year,
             next_day.month,
             next_day.day,
-            TARGETED_HOUR[0],
-            TARGETED_HOUR[1],
+            TARGETED_HOUR_NOTIF_LESSONS[0],
+            TARGETED_HOUR_NOTIF_LESSONS[1],
         )
         wait_time: datetime.timedelta = target_time - current_time
 
@@ -594,9 +647,35 @@ async def wait_for_auto_start():
 
     asyncio.create_task(plan_notif_for_tp.start())
 
-    await asyncio.sleep(
-        58200
-    )  # 16 hours and 10 min (if plan_notif start at 3am, homeworks are sent around 7pm10)
+async def wait_for_auto_start_notif_homeworks():
+    current_time: datetime.datetime = datetime.datetime.now()
+    target_time: datetime.datetime = datetime.datetime(
+        current_time.year,
+        current_time.month,
+        current_time.day,
+        TARGETED_HOUR_NOTIF_HOMEWORKS[0],
+        TARGETED_HOUR_NOTIF_HOMEWORKS[1],
+    )
+    logger_main.info(f"called")
+    # Calculate delay before target time
+    if current_time < target_time:
+        wait_time: datetime = target_time - current_time
+        logging.debug("wait time = %s", wait_time)
+    else:
+        next_day: datetime.datetime = current_time + datetime.timedelta(days=1)
+        target_time = datetime.datetime(
+            next_day.year,
+            next_day.month,
+            next_day.day,
+            TARGETED_HOUR_NOTIF_LESSONS[0],
+            TARGETED_HOUR_NOTIF_LESSONS[1],
+        )
+        wait_time: datetime.timedelta = target_time - current_time
+
+    # waiting until target time
+    logging.info("waiting %s seconds", wait_time.total_seconds())
+    await asyncio.sleep(wait_time.total_seconds())
+
     asyncio.create_task(homeworks_notif.start())
 
 

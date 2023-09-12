@@ -82,7 +82,7 @@ async def schedule_task(task, logger_main, planned_date: datetime = datetime.now
     Returns:
         None
     """
-    logger_main.info(f"called | args: {task}, {planned_date}")
+    #logger_main.info(f"called | args: {task}, {planned_date}")
     current_time: datetime = datetime.now()
     sleep_time: timedelta = planned_date - current_time
     await asyncio.sleep(sleep_time.total_seconds())
@@ -204,7 +204,7 @@ def homework_auto_remove(logger_main, path: str = HOMEWORKSOURCES):
     for t_p in TP_DISCORD_TO_SCHEDULE.values():
         logging.debug("TP = %s", t_p)
 
-        homeworks_temp: list[Homework] = homework_for_tp(t_p=t_p, path=path)
+        homeworks_temp: list[Homework] = homework_for_tp(t_p=t_p, path=path, logger_main=logger_main)
         logging.debug("homeworks_temp = %s", homeworks_temp)
         homeworks: list[Homework] = []
         for homework in homeworks_temp:

@@ -98,4 +98,30 @@ TP_SCHEDULE = {"BUT1TD1TPA" : "https://edt.univ-littoral.fr/jsp/custom/modules/p
 
 AUTHORS = "C Square : Bonnel Noah, Fourny Nathan, Artu Florient, Thimoté Bois, Colin Prokopowicz"
 ZINCEID = 363011509564997642
-TARGETED_HOUR = (19, 5)
+TARGETED_HOUR_NOTIF_LESSONS = (3,0)
+TARGETED_HOUR_NOTIF_HOMEWORKS = (19,10)
+
+
+HELP = f"```Version 0.5\n\
+Commands:\n\
+schedule: Gives today schedule for the given TP, after 7pm gives tomorrow schedule\n\
+    Args: (TP: str)\n\
+    TP: Schedule asked for\n\
+    Exemple: /schedule BUT2TD2TPD\n\
+homework: Gives the list of Homeworks depending of your TP role\n\
+notif: To modify your notifcations preference\n\
+add_homework (Classroom representative ONLY): Add a new homework for your TP\n\
+    Args: (ressource: str) | (prof: str) | (criticite: str) | (date_rendue: date) | (description: str) | (note: bool = False)\n\
+    ressource: module of the homework\n\
+    prof: teacher\n\
+    criticite: str that represent the importance of the homework\n\
+    date_rendue: deadline date\n\
+    description: a small description of the homework\n\
+    note (OPTIONNAL): True of it's a graded homework, False else\n\
+    Exemple: /add_homework ressource: SAE prof: Synave criticite: critique date_rendu: 2023-09-29-15-45 description: SAE jeu vidéo note: true\n\
+del_homework (Classroom representative ONLY): Delete an homework at a certain location\n\
+    Args: (emplacement: int)\n\
+    emplacement (OPTIONNAL): emplacement of the homework in the list (written from left to right then from top to bottom)\n\
+    Exemple: /del_homework 2\n\
+    If your emplacement = 0 OR if you didn't gave an emplacement, show your recorded homeworks\n\
+```"
