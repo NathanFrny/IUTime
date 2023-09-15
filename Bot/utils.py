@@ -82,7 +82,7 @@ async def schedule_task(task, logger_main, planned_date: datetime = datetime.now
     Returns:
         None
     """
-    #logger_main.info(f"called | args: {task}, {planned_date}")
+    logger_main.info(f"called | args: {task}, {planned_date}")
     current_time: datetime = datetime.now()
     sleep_time: timedelta = planned_date - current_time
     await asyncio.sleep(sleep_time.total_seconds())

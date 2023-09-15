@@ -70,65 +70,9 @@ async def plan_notif_for_tp():
     """For each tp, create a list of sorted lesson, will this list is not empty, plan a notification for the next lesson"""
     logger_main.info("called")
     all_lesson: list[Lesson] = []
-    #for t_p in TP_DISCORD_TO_SCHEDULE.keys():
-    #    all_lesson.append(lesson for lesson in lessons_tp(t_p=t_p, logger_main=logger_main))
-
-    # TODO - Demander à un prof, la fonction se relance en boucle si il y a trop de TP, incompréhensible
-    schedule_: list[Lesson] = lessons_tp(t_p="BUT1TD1TPA", logger_main=logger_main)
-    for lesson in schedule_:
-        all_lesson.append(lesson)
-    
-    schedule_: list[Lesson] = lessons_tp(t_p="BUT1TD1TPB", logger_main=logger_main)
-    for lesson in schedule_:
-        all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT1TD2TPC", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT1TD2TPD", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT1TD3TPE", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT2TD1TPA", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT2TD1TPB", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT2TD2TPC", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT2TD2TPD", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT2TPAAPP", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT3ATP1FI", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT3ATP2FI", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT3AAPP", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
-
-    #schedule_: list[Lesson] = lessons_tp(t_p="BUT3BAPP", logger_main=logger_main)
-    #for lesson in schedule_:
-    #    all_lesson.append(lesson)
+    for t_p in TP_SCHEDULE_TO_DISCORD.keys():
+        all_lesson.extend(lessons_tp(t_p=t_p, logger_main=logger_main))
+        await asyncio.sleep(1)
 
     all_lesson = Lesson.sorting_schedule(all_lesson)
     while all_lesson != []:
@@ -158,6 +102,7 @@ async def homeworks_notif():
         await send_notification(user_list=users_list, embed=homework_dict[t_p])
 
     homework_auto_remove(logger_main=logger_main)
+
 
 @tasks.loop(hours=1)
 async def ical_updates():
@@ -224,9 +169,11 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
             message
         )  # Responding if bad argument
 
+
 @bot.command(description="Need help ?")
 async def iutime(ctx : ApplicationContext):
     await ctx.interaction.response.send_message(HELP)
+
 
 @bot.command(description="Able/Enable notifications for homeworks or lessons")
 async def notif(
@@ -646,6 +593,7 @@ async def wait_for_auto_start_notif_lessons():
     await asyncio.sleep(wait_time.total_seconds())
 
     asyncio.create_task(plan_notif_for_tp.start())
+
 
 async def wait_for_auto_start_notif_homeworks():
     current_time: datetime.datetime = datetime.datetime.now()
