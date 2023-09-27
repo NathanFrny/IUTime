@@ -5,3 +5,4 @@ geckodriver.log
 geckodriver.exe
 discord_logs.txt
 main_logs.txt
+_token.py

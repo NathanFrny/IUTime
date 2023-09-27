@@ -30,7 +30,6 @@ from utils import (
     homework_auto_remove,
 )
 from constants import (
-    TOKEN,
     TP_DISCORD_TO_SCHEDULE,
     DATASOURCES,
     IUTSERVID,
@@ -45,6 +44,7 @@ from constants import (
 )
 from homework import Homework
 from lesson import Lesson
+from _token import TOKEN
 
 intents = Intents.default()
 bot: Bot = Bot(intents=intents)
