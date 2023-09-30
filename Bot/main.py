@@ -423,7 +423,7 @@ async def del_homework(
                 logging.debug("homeworks = %s", homeworks)
                 embed: Embed = Homework.embed_homework_construct(
                     title="Homeworks recorded list",
-                    description="Use the /del_homework command, indicating\
+                    description="Use the /del_homework command, indicating \
 the number of the homework you want to delete",
                     color=0x00FF00,
                     homeworks=homeworks,
@@ -488,9 +488,9 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
     lesson_time: datetime.datetime = datetime.datetime.combine(
         datetime.date.today(), lesson_time
     )
-    if lesson_time < datetime.datetime.now() - datetime.timedelta(hours=0, minutes=20):
-        logger_main.info("Lesson time to far in the past, %s", lesson_time)
-        return
+    #if lesson_time < datetime.datetime.now() - datetime.timedelta(hours=0, minutes=20):
+    #    logger_main.info("Lesson time to far in the past, %s", lesson_time)
+    #    return
 
     notification_time: datetime.datetime = datetime.datetime.now()
     notification_time = notification_time.replace(
@@ -498,7 +498,7 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
     )
     # notification sent 5 min before lesson
     notification_time -= datetime.timedelta(minutes=5)
-
+    logger_main.info(f"waiting for : {notification_time}")
     task = partial(
         send_notification,
         await get_user_list_from_tp(notify="next_lesson", t_p=t_p),
@@ -615,8 +615,8 @@ async def wait_for_auto_start_notif_homeworks():
             next_day.year,
             next_day.month,
             next_day.day,
-            TARGETED_HOUR_NOTIF_LESSONS[0],
-            TARGETED_HOUR_NOTIF_LESSONS[1],
+            TARGETED_HOUR_NOTIF_HOMEWORKS[0],
+            TARGETED_HOUR_NOTIF_HOMEWORKS[1],
         )
         wait_time: datetime.timedelta = target_time - current_time
 
@@ -638,6 +638,8 @@ if __name__ == "__main__":
         format=log_format,
     )
 
+    if not os.path.exists("Logs"):
+        os.makedirs("Logs")
     #Retranscription des logs du script main
     logger_main = logging.getLogger(f"main.py")
     file_handler_main = logging.FileHandler("Logs/main_logs.txt")

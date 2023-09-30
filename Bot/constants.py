@@ -107,8 +107,11 @@ schedule: Gives today schedule for the given TP, after 7pm gives tomorrow schedu
     Args: (TP: str)\n\
     TP: Schedule asked for\n\
     Exemple: /schedule BUT2TD2TPD\n\
+\n\
 homework: Gives the list of Homeworks depending of your TP role\n\
-notif: To modify your notifcations preference\n\
+\n\
+notif: To modify your notifications preference\n\
+\n\
 add_homework (Classroom representative ONLY): Add a new homework for your TP\n\
     Args: (ressource: str) | (prof: str) | (criticite: str) | (date_rendue: date) | (description: str) | (note: bool = False)\n\
     ressource: module of the homework\n\
@@ -118,6 +121,7 @@ add_homework (Classroom representative ONLY): Add a new homework for your TP\n\
     description: a small description of the homework\n\
     note (OPTIONNAL): True of it's a graded homework, False else\n\
     Exemple: /add_homework ressource: SAE prof: Synave criticite: critique date_rendu: 2023-09-29-15-45 description: SAE jeu vidéo note: true\n\
+\n\
 del_homework (Classroom representative ONLY): Delete an homework at a certain location\n\
     Args: (emplacement: int)\n\
     emplacement (OPTIONNAL): emplacement of the homework in the list (written from left to right then from top to bottom)\n\
