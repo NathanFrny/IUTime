@@ -156,6 +156,7 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
             date += datetime.timedelta(days=1)
         else:
             tomorrow: bool = False
+        date += datetime.timedelta(days=day)
         _schedule: list = Lesson.sorting_schedule(lessons_tp(t_p, tomorrow=tomorrow, logger_main=logger_main, day = day))
         logging.debug("schedule value : %s", _schedule)
 
@@ -638,9 +639,11 @@ async def wait_for_auto_start_notif_homeworks():
     asyncio.create_task(homeworks_notif.start())
 
 @bot.command(description="Recovery a file from root (ADMIN ONLY)")
-async def recovery_files(ctx: ApplicationContext, path: Option(str, description="Send in DMs files from this path"), all: Option(bool, description="All important files")):
+async def recovery_files(ctx: ApplicationContext, path: Option(str, description="Send in DMs files from this path") = "", all: Option(bool, description="All important files") = False):
     if ctx.author.id in ADMIN_LIST:
         if all:
+            await ctx.interaction.response.send_message("Done!")
+
             for path in IMPORTANT_FILES:
                 with open(path, "r") as file:
                     await send_notification([ctx.author], file=File(file))
@@ -648,7 +651,7 @@ async def recovery_files(ctx: ApplicationContext, path: Option(str, description=
             try:
                 with open(path, "r") as file:
                     await send_notification([ctx.author], file=File(file))
-                    await ctx.interaction.response.send_message("Done")
+                    await ctx.interaction.response.send_message("Done!")
 
             except FileNotFoundError:
                 await ctx.interaction.response.send_message("FileNotFoundError")

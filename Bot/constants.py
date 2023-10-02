@@ -114,9 +114,11 @@ TARGETED_HOUR_NOTIF_HOMEWORKS = (17, 10)
 HELP = f"```Version 0.5\n\
 Commands:\n\
 schedule: Gives today schedule for the given TP, after 7pm gives tomorrow schedule\n\
-    Args: (TP: str)\n\
-    TP: Schedule asked for\n\
-    Exemple: /schedule BUT2TD2TPD\n\
+    Args: (TP: str = '') | (day: int = 0)\n\
+    TP (OPTIONNAL): Schedule asked for\n\
+    day (OPTIONNAL): If you want a schedule for days in the futur\n\
+    Exemple: /schedule BUT2TD2TPD 4\n\
+    If you don't give any TP argument, use your TP rôle to give you your schedule\n\
 \n\
 homework: Gives the list of Homeworks depending of your TP role\n\
 \n\
