@@ -1,7 +1,7 @@
 from __future__ import annotations
 import json
 from datetime import datetime, timedelta
-from critical import Critical
+from remember import Remember
 from discord import Embed, Colour
 from constants import AUTHORS, LOGOPATH
 
@@ -35,18 +35,22 @@ class Homework:
         self._ressource: str = ressource
         self._prof: str = prof
         match importance:
-            case "BANALE":
-                self._criticite: Critical = Critical.BANALE
-            case "NORMAL":
-                self._criticite: Critical = Critical.NORMAL
-            case "CRITIQUE":
-                self._criticite: Critical = Critical.CRITIQUE
+            case "ONEDAY":
+                self._criticite: Remember = Remember.ONEDAY
+            case "TREEDAY":
+                self._criticite: Remember = Remember.TREEDAY
+            case "ALWAYS":
+                self._criticite: Remember = Remember.ALWAYS
+            case "ONEWEEK":
+                self._criticite: Remember = Remember.ONEWEEK
             case 1:
-                self._criticite: Critical = Critical.BANALE
+                self._criticite: Remember = Remember.ONEDAY
             case 3:
-                self._criticite: Critical = Critical.NORMAL
+                self._criticite: Remember = Remember.TREEDAY
+            case 7:
+                self._criticite: Remember = Remember.ONEWEEK
             case _:
-                self._criticite: Critical = Critical.CRITIQUE
+                self._criticite: Remember = Remember.ALWAYS
 
         self._date_rendu: datetime = date_rendu
         self._description: str = description
@@ -93,7 +97,7 @@ class Homework:
         self._prof = value
 
     @property
-    def criticite(self) -> Critical:
+    def criticite(self) -> Remember:
         """
         Get the importance of the homework.
 
@@ -103,7 +107,7 @@ class Homework:
         return self._criticite
 
     @criticite.setter
-    def criticite(self, value: Critical):
+    def criticite(self, value: Remember):
         """
         Set the importance of the homework.
 

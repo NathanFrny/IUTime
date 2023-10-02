@@ -4,10 +4,9 @@ from ics import Calendar
 from pytz import timezone
 from lesson import Lesson
 import logging
-import re
 
 
-def lessons_tp(t_p: str, logger_main, tomorrow: bool = False) -> list[Lesson]:
+def lessons_tp(t_p: str, logger_main, tomorrow: bool = False, day: int = 0) -> list[Lesson]:
     """Return schedule for tp group concerned
 
     Args:
@@ -31,6 +30,7 @@ def lessons_tp(t_p: str, logger_main, tomorrow: bool = False) -> list[Lesson]:
 
     lessons: list[Lesson] = []
     reference_date: date = date.today()
+    reference_date += timedelta(hours=24*day)
     if tomorrow:
         reference_date += timedelta(hours=24)
     logging.debug("Reference_date = %s", reference_date)

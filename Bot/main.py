@@ -16,7 +16,8 @@ from discord import (
     Role,
     InteractionResponded,
     Option,
-    Bot
+    Bot,
+    File
 )
 from discord.ext import tasks
 from request import lessons_tp
@@ -40,7 +41,9 @@ from constants import (
     TARGETED_HOUR_NOTIF_LESSONS,
     TARGETED_HOUR_NOTIF_HOMEWORKS,
     TP_SCHEDULE,
-    HELP 
+    HELP,
+    ADMIN_LIST,
+    IMPORTANT_FILES
 )
 from homework import Homework
 from lesson import Lesson
@@ -127,7 +130,7 @@ async def ical_updates():
     logger_main.info(f"ended : {counter}/{len(TP_SCHEDULE.keys())} icals updated")
 
 @bot.command(description="Ask your schedule")
-async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP group")):
+async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP group") = None, day: Option(int, description="Schedule for which day") = 0):
     """Command to retrieve and send the schedule for a specific TP group.
         If hour > 19, retrieve and send tommorow's shedule
 
@@ -135,19 +138,25 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
         ctx (ApplicationContext): The application context.
         t_p (str): The TP group for which to retrieve the schedule.
     """
-    logger_main.info(f"called by : {ctx.author.id} | args : {t_p}")
+    logger_main.info(f"called by : {ctx.author.id} | args : {t_p}, {day}")
     user: User | Member = ctx.author
     logging.debug("User value : %s", user)
+    if not t_p:
+        for role in user.roles:
+            if role in TP_DISCORD_TO_SCHEDULE.keys():
+                t_p = TP_DISCORD_TO_SCHEDULE[role]
+                break
+            
     if t_p.upper() in TP_DISCORD_TO_SCHEDULE.values():
         logging.debug("tp value : %s", t_p)
         date: datetime.datetime = datetime.datetime.now()
         logging.debug("date = %s", date)
-        if date.hour >= 18:
+        if date.hour >= 16:
             tomorrow: bool = True
             date += datetime.timedelta(days=1)
         else:
             tomorrow: bool = False
-        _schedule: list = Lesson.sorting_schedule(lessons_tp(t_p, tomorrow=tomorrow, logger_main=logger_main))
+        _schedule: list = Lesson.sorting_schedule(lessons_tp(t_p, tomorrow=tomorrow, logger_main=logger_main, day = day))
         logging.debug("schedule value : %s", _schedule)
 
         embed = Lesson.embed_schedule_construct(
@@ -297,9 +306,9 @@ async def add_homework(
     ctx: ApplicationContext,
     ressource: Option(str, description="Ressource of the homework"),
     prof: Option(str, description="For which teacher"),
-    criticite: Option(
+    remember: Option(
         str,
-        description="Importance, 'banale' to be notified 1 day before, 'normal' for 3 days, 'critique' to always be",
+        description="To be notified some days before the deadline : 'ONEDAY', 'TREEDAY', 'ONEWEEK', 'ALWAYS",
     ),
     date_rendue: Option(str, description="Due date, 'AAAA-MM-DD-HH-MM' exemple '2023-07-03-02-40"),
     description: Option(str, description="A simple desciption of the homework"),
@@ -316,7 +325,7 @@ async def add_homework(
         description (str): The description of the homework.
         note (bool, optional): Whether the homework needs to be noted. Defaults to False.
     """
-    logger_main.info(f"called by : {ctx.author.id} | args: {ressource}, {prof}, {criticite}, {date_rendue}, {description}, {note}")
+    logger_main.info(f"called by : {ctx.author.id} | args: {ressource}, {prof}, {remember}, {date_rendue}, {description}, {note}")
     
     try:
         user: User | Member = ctx.author
@@ -347,7 +356,7 @@ async def add_homework(
                 return
 
             homework_ = Homework(
-                ressource, prof, criticite, date_rendu_obj, description, note
+                ressource, prof, remember, date_rendu_obj, description, note
             )
             logging.debug("homework = %s", homework_)
             result: bool = add_homework_for_tp(
@@ -501,7 +510,7 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
     logger_main.info(f"waiting for : {notification_time}")
     task = partial(
         send_notification,
-        await get_user_list_from_tp(notify="next_lesson", t_p=t_p),
+        await get_user_list_from_tp(notify="next_lessons", t_p=t_p),
         embed=embed,
     )
 
@@ -513,7 +522,7 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
 
 
 async def send_notification(
-    user_list: list[User], embed: Embed = None, message: str = None
+    user_list: list[User], embed: Embed = None, message: str = None, file: File = None
 ):
     """Sends a notification with a private message to all the users in user_list
 
@@ -528,6 +537,8 @@ async def send_notification(
             await user.send(message)
         if embed:
             await user.send(embed=embed)
+        if file:
+            await user.send(file=file)
     logger_main.info("notification sent to users : %s", user_list)
 
 
@@ -626,6 +637,24 @@ async def wait_for_auto_start_notif_homeworks():
 
     asyncio.create_task(homeworks_notif.start())
 
+@bot.commande(description="Recovery a file from root (ADMIN ONLY)")
+async def recovery_files(ctx: ApplicationContext, path: Option(str, description="Send in DMs files from this path"), all: Option(bool, description="All important files")):
+    if ctx.author.id in ADMIN_LIST:
+        if all:
+            for path in IMPORTANT_FILES:
+                with open(path, "r") as file:
+                    await send_notification([ctx.author], file=File(file))
+        else:
+            try:
+                with open(path, "r") as file:
+                    await send_notification([ctx.author], file=File(file))
+                    await ctx.interaction.response.send_message("Done")
+
+            except FileNotFoundError:
+                await ctx.interaction.response.send_message("FileNotFoundError")
+    else:
+        await ctx.interaction.response.send_message("You are not in ADMIN_LIST")
+    
 
 if __name__ == "__main__":
 
