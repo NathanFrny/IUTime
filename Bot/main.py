@@ -47,7 +47,7 @@ from constants import (
 )
 from homework import Homework
 from lesson import Lesson
-from _token import TOKEN
+from _token import TOKEN 
 
 intents = Intents.default()
 bot: Bot = Bot(intents=intents)
@@ -65,7 +65,7 @@ async def on_ready():
 
     asyncio.create_task(wait_for_auto_start_notif_lessons())
     asyncio.create_task(wait_for_auto_start_notif_homeworks())
-    asyncio.create_task(ical_updates.start())
+    #asyncio.create_task(ical_updates.start())
 
 
 @tasks.loop(hours=24)
@@ -130,7 +130,7 @@ async def ical_updates():
     logger_main.info(f"ended : {counter}/{len(TP_SCHEDULE.keys())} icals updated")
 
 @bot.command(description="Ask your schedule")
-async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP group") = None, day: Option(int, description="Schedule for which day") = 0):
+async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP group") = "", day: Option(int, description="Schedule for which day") = 0):
     """Command to retrieve and send the schedule for a specific TP group.
         If hour > 19, retrieve and send tommorow's shedule
 
@@ -141,10 +141,10 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
     logger_main.info(f"called by : {ctx.author.id} | args : {t_p}, {day}")
     user: User | Member = ctx.author
     logging.debug("User value : %s", user)
-    if not t_p:
+    if t_p == "":
         for role in user.roles:
-            if role in TP_DISCORD_TO_SCHEDULE.keys():
-                t_p = TP_DISCORD_TO_SCHEDULE[role]
+            if role.name in TP_DISCORD_TO_SCHEDULE.keys():
+                t_p = TP_DISCORD_TO_SCHEDULE[role.name]
                 break
 
     if t_p.upper() in TP_DISCORD_TO_SCHEDULE.values():
