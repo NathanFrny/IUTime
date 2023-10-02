@@ -36,21 +36,21 @@ class Homework:
         self._prof: str = prof
         match importance:
             case "ONEDAY":
-                self._criticite: Remember = Remember.ONEDAY
+                self._remember: Remember = Remember.ONEDAY
             case "TREEDAY":
-                self._criticite: Remember = Remember.TREEDAY
+                self._remember: Remember = Remember.TREEDAY
             case "ALWAYS":
-                self._criticite: Remember = Remember.ALWAYS
+                self._remember: Remember = Remember.ALWAYS
             case "ONEWEEK":
-                self._criticite: Remember = Remember.ONEWEEK
+                self._remember: Remember = Remember.ONEWEEK
             case 1:
-                self._criticite: Remember = Remember.ONEDAY
+                self._remember: Remember = Remember.ONEDAY
             case 3:
-                self._criticite: Remember = Remember.TREEDAY
+                self._remember: Remember = Remember.TREEDAY
             case 7:
-                self._criticite: Remember = Remember.ONEWEEK
+                self._remember: Remember = Remember.ONEWEEK
             case _:
-                self._criticite: Remember = Remember.ALWAYS
+                self._remember: Remember = Remember.ALWAYS
 
         self._date_rendu: datetime = date_rendu
         self._description: str = description
@@ -97,24 +97,24 @@ class Homework:
         self._prof = value
 
     @property
-    def criticite(self) -> Remember:
+    def remember(self) -> Remember:
         """
         Get the importance of the homework.
 
         Returns:
             Critical: Importance of the homework.
         """
-        return self._criticite
+        return self._remember
 
-    @criticite.setter
-    def criticite(self, value: Remember):
+    @remember.setter
+    def remember(self, value: Remember):
         """
         Set the importance of the homework.
 
         Args:
             value (Critical): Importance to be set for the homework.
         """
-        self._criticite = value
+        self._remember = value
 
     @property
     def date_rendu(self) -> datetime:
@@ -178,7 +178,7 @@ class Homework:
 
     def __repr__(self):
         return f"Homework(ressource={self._ressource}, prof={self._prof}, \
-criticite={self._criticite}, date_rendu={self._date_rendu}, \
+remember={self._remember}, date_rendu={self._date_rendu}, \
 description={self._description}, note={self._note}"
 
     def is_outdated(self) -> bool:
@@ -201,21 +201,21 @@ description={self._description}, note={self._note}"
         homework_dict = {
             "ressource": self._ressource,
             "prof": self._prof,
-            "criticite": self._criticite.value,
+            "remember": self._remember.value,
             "date_rendu": self._date_rendu.isoformat(),
             "description": self._description,
             "note": self._note,
         }
         return homework_dict
 
-    def criticite_compare(self) -> bool:
+    def remember_compare(self) -> bool:
         """Compare the due date of the homework with current date and importance.
 
         Returns:
             bool: True if current date and importance (in days) > due date, False otherwise.
         """
         current_date = datetime.now()
-        delta = timedelta(days=self._criticite.value, hours=12)
+        delta = timedelta(days=self._remember.value, hours=12)
         return (current_date + delta) >= self._date_rendu
 
     @staticmethod
@@ -232,12 +232,12 @@ description={self._description}, note={self._note}"
         homework_dict: dict = json.loads(json_str)
         ressource = homework_dict.get("ressource")
         prof = homework_dict.get("prof")
-        criticite = homework_dict.get("criticite")
+        Remember = homework_dict.get("remember")
         date_rendu = datetime.fromisoformat(homework_dict.get("date_rendu"))
         description = homework_dict.get("description")
         note = homework_dict.get("note", False)
 
-        return Homework(ressource, prof, criticite, date_rendu, description, note)
+        return Homework(ressource, prof, Remember, date_rendu, description, note)
 
     @staticmethod
     def sorting_homeworks(homework_list: list[Homework]) -> list[Homework]:
@@ -279,7 +279,7 @@ description={self._description}, note={self._note}"
             title=title, description=description if description else "", color=color
         )
         for homework in homeworks:
-            if homework.criticite_compare:
+            if homework.remember_compare:
                 ressource: str = homework.ressource
                 prof: str = homework.prof
                 date_rendu: datetime = homework.date_rendu

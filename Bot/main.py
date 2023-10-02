@@ -274,7 +274,7 @@ async def homework(ctx: ApplicationContext):
             homeworks: list[Homework] = []
             # DO NOT use remove method here
             for homework_ in homeworks_temp:
-                if homework_.criticite_compare():
+                if homework_.remember_compare():
                     homeworks.append(homework_)
             # Sending homeworks or another message if not homeworks
             if homeworks:
@@ -321,7 +321,7 @@ async def add_homework(
         ctx (ApplicationContext): The application context.
         ressource (str): The resource of the homework.
         prof (str): The professor of the homework.
-        criticite (str): The importance/criticality of the homework.
+        remember (str): The importance/criticality of the homework.
         date_rendu (str): The deadline of the homework in the format 'YYYY-MM-DD-HH-MM'.
         description (str): The description of the homework.
         note (bool, optional): Whether the homework needs to be noted. Defaults to False.
@@ -640,6 +640,14 @@ async def wait_for_auto_start_notif_homeworks():
 
 @bot.command(description="Recovery a file from root (ADMIN ONLY)")
 async def recovery_files(ctx: ApplicationContext, path: Option(str, description="Send in DMs files from this path") = "", all: Option(bool, description="All important files") = False):
+    """
+    Send asked files if you are in ADMIN_LIST
+
+    Args:
+        ctx (ApplicationContext): The application context.
+        path (str, optionnal): Path of asked file DEFAULT: ""
+        all (bool, optionnal): If you want logs and jsons files DEFAULT: False 
+    """
     if ctx.author.id in ADMIN_LIST:
         if all:
             await ctx.interaction.response.send_message("Done!")
