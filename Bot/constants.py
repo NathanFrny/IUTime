@@ -1,7 +1,7 @@
 LOGOPATH = "https://i.imgur.com/zNMQ14u.png"
 DATASOURCES = "JSON/index.json"
 HOMEWORKSOURCES = "JSON/homeworks.json"
-IUTSERVID = 1092412416811343872
+IUTSERVID = 543338931022856242
 LESSONS_HOUR = {
     8: "08:30",
     9: "10:00",
@@ -111,7 +111,7 @@ TARGETED_HOUR_NOTIF_LESSONS = (1, 0)
 TARGETED_HOUR_NOTIF_HOMEWORKS = (17, 10)
 
 
-HELP = f"```Version 0.5\n\
+HELP = f"```Version 0.5B\n\
 Commands:\n\
 schedule: Gives today schedule for the given TP, after 7pm gives tomorrow schedule\n\
     Args: (TP: str = '') | (day: int = 0)\n\
