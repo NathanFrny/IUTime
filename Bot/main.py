@@ -146,7 +146,7 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
             if role in TP_DISCORD_TO_SCHEDULE.keys():
                 t_p = TP_DISCORD_TO_SCHEDULE[role]
                 break
-            
+
     if t_p.upper() in TP_DISCORD_TO_SCHEDULE.values():
         logging.debug("tp value : %s", t_p)
         date: datetime.datetime = datetime.datetime.now()
@@ -637,7 +637,7 @@ async def wait_for_auto_start_notif_homeworks():
 
     asyncio.create_task(homeworks_notif.start())
 
-@bot.commande(description="Recovery a file from root (ADMIN ONLY)")
+@bot.command(description="Recovery a file from root (ADMIN ONLY)")
 async def recovery_files(ctx: ApplicationContext, path: Option(str, description="Send in DMs files from this path"), all: Option(bool, description="All important files")):
     if ctx.author.id in ADMIN_LIST:
         if all:
