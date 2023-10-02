@@ -65,7 +65,7 @@ async def on_ready():
 
     asyncio.create_task(wait_for_auto_start_notif_lessons())
     asyncio.create_task(wait_for_auto_start_notif_homeworks())
-    #asyncio.create_task(ical_updates.start())
+    asyncio.create_task(ical_updates.start())
 
 
 @tasks.loop(hours=24)
