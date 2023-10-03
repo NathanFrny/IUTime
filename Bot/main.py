@@ -182,6 +182,7 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
 
 @bot.command(description="Need help ?")
 async def iutime(ctx : ApplicationContext):
+    """Send to user the /help text"""
     await ctx.interaction.response.send_message(HELP)
 
 
@@ -504,7 +505,7 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
 
     notification_time: datetime.datetime = datetime.datetime.now()
     notification_time = notification_time.replace(
-        hour=lesson_time.hour, minute=lesson_time.minute
+        hour=lesson_time.hour -2, minute=lesson_time.minute
     )
     # notification sent 5 min before lesson
     notification_time -= datetime.timedelta(minutes=5)
@@ -576,6 +577,7 @@ async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> lis
 
 
 async def wait_for_auto_start_notif_lessons():
+    """Wait the indicated time to start the notif lessons loop"""
     current_time: datetime.datetime = datetime.datetime.now()
     target_time: datetime.datetime = datetime.datetime(
         current_time.year,
@@ -608,6 +610,7 @@ async def wait_for_auto_start_notif_lessons():
 
 
 async def wait_for_auto_start_notif_homeworks():
+    """Wait the indicated time to start the notif homeworks loop"""
     current_time: datetime.datetime = datetime.datetime.now()
     target_time: datetime.datetime = datetime.datetime(
         current_time.year,
