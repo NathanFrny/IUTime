@@ -107,11 +107,11 @@ TP_SCHEDULE = {
 
 AUTHORS = "C Square : Bonnel Noah, Fourny Nathan, Artu Florient, Thimoté Bois, Colin Prokopowicz"
 ZINCEID = 363011509564997642
-TARGETED_HOUR_NOTIF_LESSONS = (9, 25)
+TARGETED_HOUR_NOTIF_LESSONS = (1,0)
 TARGETED_HOUR_NOTIF_HOMEWORKS = (17, 10)
 
 
-HELP = f"```Version 0.5B\n\
+HELP = f"```Version 0.51B\n\
 Commands:\n\
 schedule: Gives today schedule for the given TP, after 7pm gives tomorrow schedule\n\
     Args: (TP: str = '') | (day: int = 0)\n\
