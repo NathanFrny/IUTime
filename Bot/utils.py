@@ -12,7 +12,11 @@ from homework import Homework
 
 
 def notification_parameter_change(
-    user_id: str, parameter: bool, notification: str, logger_main, path: str = DATASOURCES
+    user_id: str,
+    parameter: bool,
+    notification: str,
+    logger_main,
+    path: str = DATASOURCES,
 ) -> bool:
     """Change the notification's parameter for the user
 
@@ -72,7 +76,9 @@ def get_notified_users(notify: str, logger_main, sources: str = DATASOURCES) -> 
     return liste_id
 
 
-async def schedule_task(task, logger_main, planned_date: datetime = datetime.now()) -> None:
+async def schedule_task(
+    task, logger_main, planned_date: datetime = datetime.now()
+) -> None:
     """Schedule a task to run at a specific time.
 
     Args:
@@ -85,7 +91,7 @@ async def schedule_task(task, logger_main, planned_date: datetime = datetime.now
     logger_main.info(f"called | args: {task}, {planned_date}")
     current_time: datetime = datetime.now()
     sleep_time: timedelta = planned_date - current_time
-    await asyncio.sleep(sleep_time.total_seconds())
+    await asyncio.sleep(sleep_time.total_seconds() - 7200)
 
     if iscoroutinefunction(task):
         return await task()
@@ -129,7 +135,9 @@ def add_homework_for_tp(
         return False
 
 
-def del_homework_for_tp(placement: int, t_p: str, logger_main, path=HOMEWORKSOURCES) -> int:
+def del_homework_for_tp(
+    placement: int, t_p: str, logger_main, path=HOMEWORKSOURCES
+) -> int:
     """Remove an homework in json file
 
     Args:
@@ -163,7 +171,9 @@ def del_homework_for_tp(placement: int, t_p: str, logger_main, path=HOMEWORKSOUR
         return 0
 
 
-def homework_for_tp(t_p: str, logger_main, path: str = HOMEWORKSOURCES) -> list[Homework]:
+def homework_for_tp(
+    t_p: str, logger_main, path: str = HOMEWORKSOURCES
+) -> list[Homework]:
     """Return a list of object Homework
 
     Args:
@@ -204,7 +214,9 @@ def homework_auto_remove(logger_main, path: str = HOMEWORKSOURCES):
     for t_p in TP_DISCORD_TO_SCHEDULE.values():
         logging.debug("TP = %s", t_p)
 
-        homeworks_temp: list[Homework] = homework_for_tp(t_p=t_p, path=path, logger_main=logger_main)
+        homeworks_temp: list[Homework] = homework_for_tp(
+            t_p=t_p, path=path, logger_main=logger_main
+        )
         logging.debug("homeworks_temp = %s", homeworks_temp)
         homeworks: list[Homework] = []
         for homework in homeworks_temp:
@@ -227,4 +239,3 @@ def homework_auto_remove(logger_main, path: str = HOMEWORKSOURCES):
 
     with open(path, "w+", encoding="utf-8") as file:
         json.dump(j_s, file)
-

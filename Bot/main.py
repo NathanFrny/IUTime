@@ -17,7 +17,7 @@ from discord import (
     InteractionResponded,
     Option,
     Bot,
-    File
+    File,
 )
 from discord.ext import tasks
 from request import lessons_tp
@@ -43,11 +43,11 @@ from constants import (
     TP_SCHEDULE,
     HELP,
     ADMIN_LIST,
-    IMPORTANT_FILES
+    IMPORTANT_FILES,
 )
 from homework import Homework
 from lesson import Lesson
-from _token import TOKEN 
+from _token import TOKEN
 
 intents = Intents.default()
 bot: Bot = Bot(intents=intents)
@@ -81,7 +81,9 @@ async def plan_notif_for_tp():
     while all_lesson != []:
         lesson = all_lesson.pop(0)
         logger_main.debug("lesson = %s", lesson)
-        asyncio.create_task(plan_notification(t_p=TP_SCHEDULE_TO_DISCORD[lesson.t_p], lesson=lesson))
+        asyncio.create_task(
+            plan_notification(t_p=TP_SCHEDULE_TO_DISCORD[lesson.t_p], lesson=lesson)
+        )
 
 
 @tasks.loop(hours=24)
@@ -91,7 +93,9 @@ async def homeworks_notif():
     logger_main.info("called")
     homework_dict: dict = {}
     for t_p in TP_DISCORD_TO_SCHEDULE.keys():
-        homeworks = homework_for_tp(t_p = TP_DISCORD_TO_SCHEDULE[t_p], logger_main=logger_main)
+        homeworks = homework_for_tp(
+            t_p=TP_DISCORD_TO_SCHEDULE[t_p], logger_main=logger_main
+        )
         homework_dict[t_p] = Homework.embed_homework_construct(
             title="automatic notifications homeworks",
             color=0x00FF00,
@@ -109,28 +113,34 @@ async def homeworks_notif():
 
 @tasks.loop(hours=1)
 async def ical_updates():
-    """Auto updates for .ical schedule for each TP
-    """
+    """Auto updates for .ical schedule for each TP"""
     counter = 0
     for tp in TP_SCHEDULE.keys():
         try:
             response = requests.get(TP_SCHEDULE[tp], verify=False, timeout=1)
             if response.status_code == 200:
-                if not os.path.exists(f'Calendars/{tp}'):
-                    os.makedirs(f'Calendars/{tp}')
-                with open(f"Calendars/{tp}/{tp}", 'wb') as file:
+                if not os.path.exists(f"Calendars/{tp}"):
+                    os.makedirs(f"Calendars/{tp}")
+                with open(f"Calendars/{tp}/{tp}", "wb") as file:
                     file.write(response.content)
                 logger_main.info(f"Schedule update for {tp}")
                 counter += 1
             else:
-                logger_main.critical(f"response.status_code = {response.status_code}, tp = {tp}")
+                logger_main.critical(
+                    f"response.status_code = {response.status_code}, tp = {tp}"
+                )
         except Exception as e:
             logger_main.critical(f"erreur : {e}, tp={tp}")
-        await asyncio.sleep(3) #Let time to the bot to answer to requests
+        await asyncio.sleep(3)  # Let time to the bot to answer to requests
     logger_main.info(f"ended : {counter}/{len(TP_SCHEDULE.keys())} icals updated")
 
+
 @bot.command(description="Ask your schedule")
-async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP group") = "", day: Option(int, description="Schedule for which day") = 0):
+async def schedule(
+    ctx: ApplicationContext,
+    t_p: Option(str, description="TP group") = "",
+    day: Option(int, description="Schedule for which day") = 0,
+):
     """Command to retrieve and send the schedule for a specific TP group.
         If hour > 19, retrieve and send tommorow's shedule
 
@@ -157,7 +167,9 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
         else:
             tomorrow: bool = False
         date += datetime.timedelta(days=day)
-        _schedule: list = Lesson.sorting_schedule(lessons_tp(t_p, tomorrow=tomorrow, logger_main=logger_main, day = day))
+        _schedule: list = Lesson.sorting_schedule(
+            lessons_tp(t_p, tomorrow=tomorrow, logger_main=logger_main, day=day)
+        )
         logging.debug("schedule value : %s", _schedule)
 
         embed = Lesson.embed_schedule_construct(
@@ -181,7 +193,7 @@ async def schedule(ctx: ApplicationContext, t_p: Option(str, description="TP gro
 
 
 @bot.command(description="Need help ?")
-async def iutime(ctx : ApplicationContext):
+async def iutime(ctx: ApplicationContext):
     """Send to user the /help text"""
     await ctx.interaction.response.send_message(HELP)
 
@@ -207,7 +219,7 @@ async def notif(
             parameter=boolean,
             notification=notification,
             path=DATASOURCES,
-            logger_main=logger_main
+            logger_main=logger_main,
         )
         if result:
             await ctx.interaction.response.send_message("Done!")
@@ -247,7 +259,9 @@ async def homework(ctx: ApplicationContext):
         user: User | Member = ctx.author
         user.roles
     except AttributeError:
-        await ctx.interaction.response.send_message("Thanks to use this command from a server")
+        await ctx.interaction.response.send_message(
+            "Thanks to use this command from a server"
+        )
         return
 
     logger_main.info(f"called by : {ctx.author.id}")
@@ -261,7 +275,9 @@ async def homework(ctx: ApplicationContext):
         if role.name in TP_DISCORD_TO_SCHEDULE.keys():
             logging.debug("role.name value : %s", role.name)
             homeworks_temp: list[Homework] = homework_for_tp(
-                TP_DISCORD_TO_SCHEDULE[role.name], path=HOMEWORKSOURCES, logger_main=logger_main
+                TP_DISCORD_TO_SCHEDULE[role.name],
+                path=HOMEWORKSOURCES,
+                logger_main=logger_main,
             )
             logging.debug("homeworks_temp value : %s", homeworks_temp)
             logging.debug(
@@ -312,7 +328,9 @@ async def add_homework(
         str,
         description="To be notified some days before the deadline : 'ONEDAY', 'TREEDAY', 'ONEWEEK', 'ALWAYS",
     ),
-    date_rendue: Option(str, description="Due date, 'AAAA-MM-DD-HH-MM' exemple '2023-07-03-02-40"),
+    date_rendue: Option(
+        str, description="Due date, 'AAAA-MM-DD-HH-MM' exemple '2023-07-03-02-40"
+    ),
     description: Option(str, description="A simple desciption of the homework"),
     note: Option(bool, description="If graded or not") = False,
 ):
@@ -327,13 +345,17 @@ async def add_homework(
         description (str): The description of the homework.
         note (bool, optional): Whether the homework needs to be noted. Defaults to False.
     """
-    logger_main.info(f"called by : {ctx.author.id} | args: {ressource}, {prof}, {remember}, {date_rendue}, {description}, {note}")
-    
+    logger_main.info(
+        f"called by : {ctx.author.id} | args: {ressource}, {prof}, {remember}, {date_rendue}, {description}, {note}"
+    )
+
     try:
         user: User | Member = ctx.author
         user.roles
     except AttributeError:
-        await ctx.interaction.response.send_message("Thanks to use this command from a server")
+        await ctx.interaction.response.send_message(
+            "Thanks to use this command from a server"
+        )
         return
 
     user: User | Member = ctx.author
@@ -365,13 +387,15 @@ async def add_homework(
                 homework=homework_,
                 t_p=TP_DISCORD_TO_SCHEDULE[name],
                 path=HOMEWORKSOURCES,
-                logger_main=logger_main
+                logger_main=logger_main,
             )
             if result:
                 await ctx.interaction.response.send_message("Homework added!")
             else:
                 # Never supposed to appear
-                logger_main.critical(f"Error in add_homework_for_tp function : {result}")
+                logger_main.critical(
+                    f"Error in add_homework_for_tp function : {result}"
+                )
                 zince: User = await bot.fetch_user(ZINCEID)
                 date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
                 await zince.send(
@@ -411,7 +435,9 @@ async def del_homework(
         user: User | Member = ctx.author
         user.roles
     except AttributeError:
-        await ctx.interaction.response.send_message("Thanks to use this command from a server")
+        await ctx.interaction.response.send_message(
+            "Thanks to use this command from a server"
+        )
         return
 
     user: User | Member = ctx.author
@@ -429,7 +455,9 @@ async def del_homework(
                 logging.debug("not placement")
 
                 homeworks: list[Homework] = homework_for_tp(
-                    t_p=TP_DISCORD_TO_SCHEDULE[name], path=HOMEWORKSOURCES, logger_main=logger_main
+                    t_p=TP_DISCORD_TO_SCHEDULE[name],
+                    path=HOMEWORKSOURCES,
+                    logger_main=logger_main,
                 )
                 logging.debug("homeworks = %s", homeworks)
                 embed: Embed = Homework.embed_homework_construct(
@@ -447,13 +475,15 @@ the number of the homework you want to delete",
                     placement=emplacement - 1,
                     t_p=TP_DISCORD_TO_SCHEDULE[name],
                     path=HOMEWORKSOURCES,
-                    logger_main=logger_main
+                    logger_main=logger_main,
                 )
                 match result:
                     case 1:
                         await ctx.interaction.response.send_message("Done!")
                     case 0:
-                        logging.critical(f"Error un del_homework_for_tp function : {result}")
+                        logging.critical(
+                            f"Error un del_homework_for_tp function : {result}"
+                        )
                         # Never supposed to appear
                         zince: User = await bot.fetch_user(ZINCEID)
                         date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -499,13 +529,13 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
     lesson_time: datetime.datetime = datetime.datetime.combine(
         datetime.date.today(), lesson_time
     )
-    #if lesson_time < datetime.datetime.now() - datetime.timedelta(hours=0, minutes=20):
+    # if lesson_time < datetime.datetime.now() - datetime.timedelta(hours=0, minutes=20):
     #    logger_main.info("Lesson time to far in the past, %s", lesson_time)
     #    return
 
     notification_time: datetime.datetime = datetime.datetime.now()
     notification_time = notification_time.replace(
-        hour=lesson_time.hour -2, minute=lesson_time.minute
+        hour=lesson_time.hour, minute=lesson_time.minute
     )
     # notification sent 5 min before lesson
     notification_time -= datetime.timedelta(minutes=5)
@@ -516,11 +546,9 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
         embed=embed,
     )
 
-    asyncio.ensure_future(schedule_task(
-        task,
-        logger_main=logger_main,
-        planned_date=notification_time
-    ))
+    asyncio.ensure_future(
+        schedule_task(task, logger_main=logger_main, planned_date=notification_time)
+    )
 
 
 async def send_notification(
@@ -641,15 +669,20 @@ async def wait_for_auto_start_notif_homeworks():
 
     asyncio.create_task(homeworks_notif.start())
 
+
 @bot.command(description="Recovery a file from root (ADMIN ONLY)")
-async def recovery_files(ctx: ApplicationContext, path: Option(str, description="Send in DMs files from this path") = "", all: Option(bool, description="All important files") = False):
+async def recovery_files(
+    ctx: ApplicationContext,
+    path: Option(str, description="Send in DMs files from this path") = "",
+    all: Option(bool, description="All important files") = False,
+):
     """
     Send asked files if you are in ADMIN_LIST
 
     Args:
         ctx (ApplicationContext): The application context.
         path (str, optionnal): Path of asked file DEFAULT: ""
-        all (bool, optionnal): If you want logs and jsons files DEFAULT: False 
+        all (bool, optionnal): If you want logs and jsons files DEFAULT: False
     """
     if ctx.author.id in ADMIN_LIST:
         if all:
@@ -668,12 +701,15 @@ async def recovery_files(ctx: ApplicationContext, path: Option(str, description=
                 await ctx.interaction.response.send_message("FileNotFoundError")
     else:
         await ctx.interaction.response.send_message("You are not in ADMIN_LIST")
-    
+
 
 if __name__ == "__main__":
-
-    disable_warnings(InsecureRequestWarning) #Désactive des messages de prévention du module requests
-    log_format = "%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s"
+    disable_warnings(
+        InsecureRequestWarning
+    )  # Désactive des messages de prévention du module requests
+    log_format = (
+        "%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s"
+    )
     log_level = logging.INFO
 
     logging.basicConfig(
@@ -683,14 +719,14 @@ if __name__ == "__main__":
 
     if not os.path.exists("Logs"):
         os.makedirs("Logs")
-    #Retranscription des logs du script main
+    # Retranscription des logs du script main
     logger_main = logging.getLogger(f"main.py")
     file_handler_main = logging.FileHandler("Logs/main_logs.txt")
     file_handler_main.setLevel(log_level)
     file_handler_main.setFormatter(logging.Formatter(log_format))
     logger_main.addHandler(file_handler_main)
 
-    #Retranscription des logs du module discord
+    # Retranscription des logs du module discord
     logger_discord = logging.getLogger("discord")
     file_handler_discord = logging.FileHandler("Logs/discord_logs.txt")
     file_handler_discord.setLevel(log_level)

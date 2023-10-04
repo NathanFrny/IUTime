@@ -107,7 +107,7 @@ TP_SCHEDULE = {
 
 AUTHORS = "C Square : Bonnel Noah, Fourny Nathan, Artu Florient, Thimoté Bois, Colin Prokopowicz"
 ZINCEID = 363011509564997642
-TARGETED_HOUR_NOTIF_LESSONS = (1, 0)
+TARGETED_HOUR_NOTIF_LESSONS = (9, 25)
 TARGETED_HOUR_NOTIF_HOMEWORKS = (17, 10)
 
 
