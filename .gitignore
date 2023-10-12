@@ -7,3 +7,4 @@ discord_logs.txt
 main_logs.txt
 _token.py
 scrapper.py
+.json

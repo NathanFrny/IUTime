@@ -1,7 +1,7 @@
-LOGOPATH = "https://i.imgur.com/zNMQ14u.png"
+LOGOPATH = "https://i.imgur.com/VVhr2OF.png"
 DATASOURCES = "JSON/index.json"
 HOMEWORKSOURCES = "JSON/homeworks.json"
-IUTSERVID = 543338931022856242
+IUTSERVID = 690169359490089059
 LESSONS_HOUR = {
     8: "08:30",
     9: "10:00",
@@ -104,14 +104,14 @@ TP_SCHEDULE = {
     "BUT3ATP2FI": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214a9bb6791dfafa87ee0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
     "BUT3BAPP": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc387320021412405c8e744f3509e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
 }
+AUTHORS = "C Square : Artu Florient, Bois Thimote, Bonnel Noah, Fourny Nathan, Prokopowicz Colin"
 
-AUTHORS = "C Square : Bonnel Noah, Fourny Nathan, Artu Florient, Thimoté Bois, Colin Prokopowicz"
 ZINCEID = 363011509564997642
-TARGETED_HOUR_NOTIF_LESSONS = (1,0)
-TARGETED_HOUR_NOTIF_HOMEWORKS = (17, 10)
+TARGETED_HOUR_NOTIF_LESSONS = (1,0) #1,0
+TARGETED_HOUR_NOTIF_HOMEWORKS = (17, 10) #17,10
 
 
-HELP = f"```Version 0.51B\n\
+HELP = f"```Version 1\n\
 Commands:\n\
 schedule: Gives today schedule for the given TP, after 7pm gives tomorrow schedule\n\
     Args: (TP: str = '') | (day: int = 0)\n\
