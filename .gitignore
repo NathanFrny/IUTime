@@ -1,5 +1,4 @@
 /.venv
-/.vscode
 __pycache__
 geckodriver.log
 geckodriver.exe
@@ -8,3 +7,5 @@ main_logs.txt
 _token.py
 scrapper.py
 .json
+token.json
+database.db

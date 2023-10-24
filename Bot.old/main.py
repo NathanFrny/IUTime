@@ -115,7 +115,7 @@ async def homeworks_notif():
 async def ical_updates():
     """Auto updates for .ical schedule for each TP"""
     counter = 0
-    for tp in TP_SCHEDULE.keys():
+    for tp in TP_SCHEDULE:
         try:
             response = requests.get(TP_SCHEDULE[tp], verify=False, timeout=1)
             if response.status_code == 200:
