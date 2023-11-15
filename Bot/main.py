@@ -736,6 +736,8 @@ if __name__ == "__main__":
 
     if not os.path.exists("Logs"):
         os.makedirs("Logs")
+    if not os.path.exists("Calendars"):
+        os.makedirs("Calendars")
     # Retranscription des logs du script main
     logger_main = logging.getLogger(f"main.py")
     file_handler_main = logging.FileHandler("Logs/main_logs.txt")
