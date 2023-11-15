@@ -91,7 +91,7 @@ async def schedule_task(
     logger_main.info(f"called | args: {task}, {planned_date}")
     current_time: datetime = datetime.now()
     sleep_time: timedelta = planned_date - current_time
-    await asyncio.sleep(sleep_time.total_seconds() - 7200)
+    await asyncio.sleep(sleep_time.total_seconds() - 3600)
 
     if iscoroutinefunction(task):
         return await task()

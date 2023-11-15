@@ -219,6 +219,19 @@ description={self._description}, note={self._note}"
         return (current_date + delta) >= self._date_rendu
 
     @staticmethod
+    def remembers_compare(list_homeworks: list[Homework]) -> list[Homework]:
+        """Return sorted homeworks by remember.compare function
+
+        Return:
+            list[homework]: list of sorted homeworks
+        """
+        sorted_homeworks: list[Homework] = []
+        for homework in list_homeworks:
+            if homework.remember_compare():
+                sorted_homeworks.append(homework)
+        return sorted_homeworks
+
+    @staticmethod
     def fromjson(json_str: str) -> Homework:
         """
         Create a Homework object from a JSON string.
@@ -279,24 +292,21 @@ description={self._description}, note={self._note}"
             title=title, description=description if description else "", color=color
         )
         for homework in homeworks:
-            if homework.remember_compare:
-                ressource: str = homework.ressource
-                prof: str = homework.prof
-                date_rendu: datetime = homework.date_rendu
-                description: str = homework.description
-                note: bool = homework.note
+            ressource: str = homework.ressource
+            prof: str = homework.prof
+            date_rendu: datetime = homework.date_rendu
+            description: str = homework.description
+            note: bool = homework.note
 
-                embed.add_field(
-                    name=f"{ressource} {'DEADLINE PASSED' if homework.is_outdated() else ''}",
-                    value=f"Teacher: {prof}\nFor: {date_rendu.day}/\
+            embed.add_field(
+                name=f"{ressource} {'DEADLINE PASSED' if homework.is_outdated() else ''}",
+                value=f"Teacher: {prof}\nFor: {date_rendu.day}/\
 {date_rendu.month if len(str(date_rendu.month)) > 1 else '0'+str(date_rendu.month)}\
 /{date_rendu.year} {date_rendu.hour}H{date_rendu.minute if len(str(date_rendu.minute)) > 1 else '0'+str(date_rendu.minute)}\
 \nDescription: {description}\n{'Graded homework' if note else ''}",
-                )
+            )
         if sign:
             embed.set_thumbnail(url=LOGOPATH)
             embed.set_footer(text=f"{AUTHORS}")
 
         return embed
-
-

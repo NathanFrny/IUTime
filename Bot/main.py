@@ -91,24 +91,26 @@ async def homeworks_notif():
     """Send a notification of homeworks for each users who activate notifications
     and delete out-dated homeworks"""
     logger_main.info("called")
+    homework_auto_remove(logger_main=logger_main)
     homework_dict: dict = {}
     for t_p in TP_DISCORD_TO_SCHEDULE.keys():
         homeworks = homework_for_tp(
             t_p=TP_DISCORD_TO_SCHEDULE[t_p], logger_main=logger_main
         )
-        homework_dict[t_p] = Homework.embed_homework_construct(
-            title="automatic notifications homeworks",
-            color=0x00FF00,
-            homeworks=homeworks,
-            description=f"Homeworks for {TP_DISCORD_TO_SCHEDULE[t_p]}",
-            sign=True,
-            sorting=True,
-        )
+        homeworks = Homework.remembers_compare(homeworks)
+        if homeworks:
+            homework_dict[t_p] = Homework.embed_homework_construct(
+                title="automatic notifications homeworks",
+                color=0x00FF00,
+                homeworks=homeworks,
+                description=f"Homeworks for {TP_DISCORD_TO_SCHEDULE[t_p]}",
+                sign=True,
+                sorting=True,
+            )
+
     for t_p in homework_dict.keys():
         users_list = await get_user_list_from_tp(notify="homeworks", t_p=t_p)
         await send_notification(user_list=users_list, embed=homework_dict[t_p])
-
-    homework_auto_remove(logger_main=logger_main)
 
 
 @tasks.loop(hours=1)
@@ -135,6 +137,28 @@ async def ical_updates():
     logger_main.info(f"ended : {counter}/{len(TP_SCHEDULE.keys())} icals updated")
 
 
+async def get_roles_list_from_user(user: User) -> list[Role]:
+    """Return list of user's roles
+
+    Args:
+        user (User): user
+
+    Return:
+        list[Role]: List of role of the user
+    """
+    logger_main.info(f"Called | args : {user}")
+    guild: Guild = bot.get_guild(IUTSERVID)
+    if guild:
+        logging.debug("user_ = %s", user)
+        member: Member = await guild.fetch_member(user.id)
+        logging.debug("member = %s", member)
+        roles = member.roles
+        logging.debug("roles = %s", roles)
+        return roles
+    else:
+        logger_main.critical("No guild found")
+
+
 @bot.command(description="Ask your schedule")
 async def schedule(
     ctx: ApplicationContext,
@@ -149,13 +173,30 @@ async def schedule(
         t_p (str): The TP group for which to retrieve the schedule.
     """
     logger_main.info(f"called by : {ctx.author.id} | args : {t_p}, {day}")
-    user: User | Member = ctx.author
-    logging.debug("User value : %s", user)
+    member: User | Member = ctx.author
+    logging.debug("User value : %s", member)
+
     if t_p == "":
-        for role in user.roles:
+        if isinstance(member, User):
+            logging.debug("User wrong type")
+            roles_list: list[Role] = await get_roles_list_from_user(member)
+        else:
+            logging.debug("User is member")
+            roles_list: list[Role] = member.roles
+            logging.debug(f"Roles: {roles_list}")
+
+        for role in roles_list:
+            logging.debug(f"role: {role.name}")
             if role.name in TP_DISCORD_TO_SCHEDULE.keys():
+                logging.debug("tp found")
                 t_p = TP_DISCORD_TO_SCHEDULE[role.name]
                 break
+
+        if t_p == "":
+            await ctx.interaction.response.send_message(
+                "You don't have any group TP roles", ephemeral=True
+            )
+            return
 
     if t_p.upper() in TP_DISCORD_TO_SCHEDULE.values():
         logging.debug("tp value : %s", t_p)
@@ -166,6 +207,9 @@ async def schedule(
             date += datetime.timedelta(days=1)
         else:
             tomorrow: bool = False
+        await ctx.interaction.response.send_message(
+            "Done!", ephemeral=True
+        )  # Responding to user
         date += datetime.timedelta(days=day)
         _schedule: list = Lesson.sorting_schedule(
             lessons_tp(t_p, tomorrow=tomorrow, logger_main=logger_main, day=day)
@@ -179,8 +223,7 @@ async def schedule(
             schedule=_schedule,
             sign=True,
         )
-        await ctx.interaction.response.send_message("Done!")  # Responding to user
-        await send_notification(user_list=[user], embed=embed)
+        await send_notification(user_list=[member], embed=embed)
     else:
         logging.debug("TP not found")
         message: str = "Les arguments attendus sont :"
@@ -188,62 +231,52 @@ async def schedule(
             message += element + ", "
         message = message[:-2]  # Last 2 caracters suppression
         await ctx.interaction.response.send_message(
-            message
+            message, ephemeral=True
         )  # Responding if bad argument
 
 
 @bot.command(description="Need help ?")
 async def iutime(ctx: ApplicationContext):
     """Send to user the /help text"""
-    await ctx.interaction.response.send_message(HELP)
+    await ctx.interaction.response.send_message(HELP, ephemeral=True)
 
 
 @bot.command(description="Able/Enable notifications for homeworks or lessons")
 async def notif(
     ctx: ApplicationContext,
-    notification: Option(str, description="Notification parameter you want to change"),
-    boolean: Option(bool, description="True if you want the notification, False else"),
+    notification_homeworks: Option(
+        bool, description="Enable/Disable notifications for homeworks"
+    ),
+    notification_lessons: Option(
+        bool, description="Enable/Disable notifications for lessons"
+    ),
 ):
     """Enable users to change their notification parameters
 
     Args:
         ctx (ApplicationContext): Discord users recuperation
-        notification (str): which notification need to change
-        boolean (bool): True if notification desired, False else
+        notification_homeworks (bool): Change homeworks notifications parameter
+        notification_lessons (bool): Change lessons notifications parameter
     """
-    logger_main.info(f"called by : {ctx.author.id} | args : {notification}, {boolean}")
-    if notification in NOTIFICATION_JSON_KEYS:
-        author_id: str = str(ctx.author.id)
-        result = notification_parameter_change(
-            user_id=author_id,
-            parameter=boolean,
-            notification=notification,
-            path=DATASOURCES,
-            logger_main=logger_main,
-        )
-        if result:
-            await ctx.interaction.response.send_message("Done!")
-        else:
-            # Never supposed to appear
-
-            zince: User = await bot.fetch_user(ZINCEID)
-            date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-            await zince.send(
-                f"({date}) Error in notif function (main.py) for user\
-                    {ctx.author}, notification = {notification}, boolean = {boolean}"
-            )
-            await ctx.interaction.response.send_message(
-                "An error happened, my creators have been notified"
-            )
-    else:
-        logging.debug("Notification not found")
-        message: str = "Les arguments attendus sont: "
-        for element in NOTIFICATION_JSON_KEYS:
-            message += element + ", "
-        message = message[:-2]  # Last 2 caracters suppression
-        await ctx.interaction.response.send_message(
-            message
-        )  # Responding if bad argument
+    logger_main.info(
+        f"called by : {ctx.author.id} | args : {notification_homeworks}, {notification_lessons}"
+    )
+    author_id: str = str(ctx.author.id)
+    notification_parameter_change(
+        user_id=author_id,
+        parameter=notification_lessons,
+        notification="next_lessons",
+        path=DATASOURCES,
+        logger_main=logger_main,
+    )
+    notification_parameter_change(
+        user_id=author_id,
+        parameter=notification_homeworks,
+        notification="homeworks",
+        path=DATASOURCES,
+        logger_main=logger_main,
+    )
+    await ctx.interaction.response.send_message("Done!", ephemeral=True)
 
 
 @bot.command(description="Ask recorded homeworks for your TP")
@@ -255,46 +288,32 @@ async def homework(ctx: ApplicationContext):
     """
     logger_main.info(f"called by : {ctx.author.id}")
 
-    try:
-        user: User | Member = ctx.author
-        user.roles
-    except AttributeError:
-        await ctx.interaction.response.send_message(
-            "Thanks to use this command from a server"
-        )
-        return
-
-    logger_main.info(f"called by : {ctx.author.id}")
     user: User | Member = ctx.author
+    if isinstance(user, User):
+        roles: list[Role] = await get_roles_list_from_user(user=user)
+    else:
+        roles: list[Role] = user.roles
+
     homeworks: list = None
     logging.debug("User value : %s", user)
-    # User's TP recuperation
-    roles: list[Role] = user.roles
+
     for role in roles:
         logging.debug("role value : %s", role)
         if role.name in TP_DISCORD_TO_SCHEDULE.keys():
             logging.debug("role.name value : %s", role.name)
-            homeworks_temp: list[Homework] = homework_for_tp(
+            homeworks: list[Homework] = homework_for_tp(
                 TP_DISCORD_TO_SCHEDULE[role.name],
                 path=HOMEWORKSOURCES,
                 logger_main=logger_main,
             )
-            logging.debug("homeworks_temp value : %s", homeworks_temp)
+            logging.debug("homeworks_temp value : %s", homeworks)
             logging.debug(
                 "homeworks_temp's elem type : %s",
-                {
-                    type(homeworks_temp[0])
-                    if homeworks_temp
-                    else "homeworks_temp is empty"
-                },
+                {type(homeworks[0]) if homeworks else "homeworks_temp is empty"},
             )
-            homeworks: list[Homework] = []
-            # DO NOT use remove method here
-            for homework_ in homeworks_temp:
-                if homework_.remember_compare():
-                    homeworks.append(homework_)
             # Sending homeworks or another message if not homeworks
             if homeworks:
+                homeworks = Homework.sorting_homeworks(homeworks)
                 embed: Embed = Homework.embed_homework_construct(
                     title=role.name,
                     color=0x00FF00,
@@ -302,18 +321,18 @@ async def homework(ctx: ApplicationContext):
                     description="Homeworks",
                 )
                 await send_notification(user_list=[user], embed=embed)
-                await ctx.interaction.response.send_message("Done!")
+                await ctx.interaction.response.send_message("Done!", ephemeral=True)
             else:
                 await send_notification(
                     user_list=[user], message="No homeworks recorded"
                 )
-                await ctx.interaction.response.send_message("Done!")
+                await ctx.interaction.response.send_message("Done!", ephemeral=True)
             break
 
     # If user has not any TP group
     try:
         await ctx.interaction.response.send_message(
-            "No TP group assigned to you on this discord server"
+            "No TP group assigned to you on this discord server", ephemeral=True
         )
     except InteractionResponded:
         pass
@@ -349,25 +368,19 @@ async def add_homework(
         f"called by : {ctx.author.id} | args: {ressource}, {prof}, {remember}, {date_rendue}, {description}, {note}"
     )
 
-    try:
-        user: User | Member = ctx.author
-        user.roles
-    except AttributeError:
-        await ctx.interaction.response.send_message(
-            "Thanks to use this command from a server"
-        )
-        return
-
     user: User | Member = ctx.author
-    roles: list[Role] = user.roles
-    roles_name: list[str] = []
+    if isinstance(user, User):
+        roles: list[Role] = await get_roles_list_from_user(user=user)
+    else:
+        roles: list[Role] = user.roles
+
+    logging.debug(f"roles = {roles}")
+
     for role in roles:
-        roles_name.append(role.name)
-
-    logging.debug("roles_name = %s", roles_name)
-
-    for name in roles_name:
-        if name in TP_DISCORD_TO_SCHEDULE.keys() and "délégué" in roles_name:
+        if role.name in TP_DISCORD_TO_SCHEDULE.keys() and (
+            "délégué" in [role.name for role in roles]
+            or "devoirs" in [role.name for role in roles]
+        ):
             logging.debug("TP and role 'délégué' found")
             try:
                 date_rendu_obj: datetime.datetime = datetime.datetime.strptime(
@@ -375,7 +388,8 @@ async def add_homework(
                 )
             except ValueError:
                 await ctx.interaction.response.send_message(
-                    "Invalid date format. Use the format 'YYYY-MM-DD-HH-MM'"
+                    "Invalid date format. Use the format 'YYYY-MM-DD-HH-MM'",
+                    ephemeral=True,
                 )
                 return
 
@@ -385,12 +399,15 @@ async def add_homework(
             logging.debug("homework = %s", homework_)
             result: bool = add_homework_for_tp(
                 homework=homework_,
-                t_p=TP_DISCORD_TO_SCHEDULE[name],
+                t_p=TP_DISCORD_TO_SCHEDULE[role.name],
                 path=HOMEWORKSOURCES,
                 logger_main=logger_main,
             )
             if result:
-                await ctx.interaction.response.send_message("Homework added!")
+                await ctx.interaction.response.send_message(
+                    "Homework added!", ephemeral=True
+                )
+                return
             else:
                 # Never supposed to appear
                 logger_main.critical(
@@ -400,19 +417,17 @@ async def add_homework(
                 date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
                 await zince.send(
                     f"({date}) Error in add_homework function (main.py)\
-for user {ctx.author}, tp = {name}, homework = {homework_}"
+for user {ctx.author}, tp = {role.name}, homework = {homework_}"
                 )
                 await ctx.interaction.response.send_message(
-                    "An error happened, my creators have been notified"
+                    "An error happened, my creators have been notified", ephemeral=True
                 )
             break
-    try:
-        logger_main.debug("TP or role 'délégué' not found")
-        await ctx.interaction.response.send_message(
-            "Only TP delegates have the right to modify recorded homeworks"
-        )
-    except InteractionResponded:
-        pass
+    logger_main.debug("TP or role 'délégué' not found")
+    await ctx.interaction.response.send_message(
+        "Only TP delegates have the right to modify recorded homeworks",
+        ephemeral=True,
+    )
 
 
 @bot.command(description="Delete an homework to your TP")
@@ -431,31 +446,25 @@ async def del_homework(
     """
     logger_main.info(f"called by : {ctx.author.id} | args: {emplacement}")
 
-    try:
-        user: User | Member = ctx.author
-        user.roles
-    except AttributeError:
-        await ctx.interaction.response.send_message(
-            "Thanks to use this command from a server"
-        )
-        return
-
     user: User | Member = ctx.author
-    roles: list[Role] = user.roles
-    roles_name: list[str] = []
+    if isinstance(user, User):
+        roles: list[Role] = await get_roles_list_from_user(user=user)
+    else:
+        roles: list[Role] = user.roles
+
+    logging.debug(f"roles = {roles}")
+
     for role in roles:
-        roles_name.append(role.name)
-
-    logging.debug("roles_name = %s", roles_name)
-
-    for name in roles_name:
-        if name in TP_DISCORD_TO_SCHEDULE.keys() and "délégué" in roles_name:
+        if role.name in TP_DISCORD_TO_SCHEDULE.keys() and (
+            "délégué" in [role.name for role in roles]
+            or "devoirs" in [role.name for role in roles]
+        ):
             # 0 = not
             if not emplacement:
                 logging.debug("not placement")
 
                 homeworks: list[Homework] = homework_for_tp(
-                    t_p=TP_DISCORD_TO_SCHEDULE[name],
+                    t_p=TP_DISCORD_TO_SCHEDULE[role.name],
                     path=HOMEWORKSOURCES,
                     logger_main=logger_main,
                 )
@@ -468,40 +477,44 @@ the number of the homework you want to delete",
                     homeworks=homeworks,
                     sorting=False,
                 )
-                await ctx.interaction.response.send_message(embed=embed)
+                await ctx.interaction.response.send_message(embed=embed, ephemeral=True)
             else:
                 logging.debug("placement")
                 result: int = del_homework_for_tp(
                     placement=emplacement - 1,
-                    t_p=TP_DISCORD_TO_SCHEDULE[name],
+                    t_p=TP_DISCORD_TO_SCHEDULE[role.name],
                     path=HOMEWORKSOURCES,
                     logger_main=logger_main,
                 )
                 match result:
                     case 1:
-                        await ctx.interaction.response.send_message("Done!")
+                        await ctx.interaction.response.send_message(
+                            "Done!", ephemeral=True
+                        )
                     case 0:
                         logging.critical(
-                            f"Error un del_homework_for_tp function : {result}"
+                            f"Error on del_homework_for_tp function : {result}"
                         )
                         # Never supposed to appear
                         zince: User = await bot.fetch_user(ZINCEID)
                         date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
                         await zince.send(
                             f"({date}) Error in del_homework function (main.py) for\
-user {ctx.author}, tp = {name}, placement = {emplacement}"
+user {ctx.author}, tp = {role.name}, placement = {emplacement}"
                         )
                         await ctx.interaction.response.send_message(
-                            "An error happened, my creators have been notified"
+                            "An error happened, my creators have been notified",
+                            ephemeral=True,
                         )
                     case 2:
                         await ctx.interaction.response.send_message(
-                            "Seems like this homework doesn't exist"
+                            "Seems like this homework doesn't exist", ephemeral=True
                         )
                 break
     try:
         await ctx.interaction.response.send_message(
-            "Only TP delegates have the right to modify recorded homeworks"
+            "Only TP delegates have the right to modify recorded homeworks",
+            ephemeral=True,
         )
     except InteractionResponded:
         pass
@@ -686,7 +699,7 @@ async def recovery_files(
     """
     if ctx.author.id in ADMIN_LIST:
         if all:
-            await ctx.interaction.response.send_message("Done!")
+            await ctx.interaction.response.send_message("Done!", ephemeral=True)
 
             for path in IMPORTANT_FILES:
                 with open(path, "r") as file:
@@ -695,12 +708,16 @@ async def recovery_files(
             try:
                 with open(path, "r") as file:
                     await send_notification([ctx.author], file=File(file))
-                    await ctx.interaction.response.send_message("Done!")
+                    await ctx.interaction.response.send_message("Done!", ephemeral=True)
 
             except FileNotFoundError:
-                await ctx.interaction.response.send_message("FileNotFoundError")
+                await ctx.interaction.response.send_message(
+                    "FileNotFoundError", ephemeral=True
+                )
     else:
-        await ctx.interaction.response.send_message("You are not in ADMIN_LIST")
+        await ctx.interaction.response.send_message(
+            "You are not in ADMIN_LIST", ephemeral=True
+        )
 
 
 if __name__ == "__main__":
@@ -710,7 +727,7 @@ if __name__ == "__main__":
     log_format = (
         "%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s"
     )
-    log_level = logging.INFO
+    log_level = logging.DEBUG
 
     logging.basicConfig(
         level=log_level,
