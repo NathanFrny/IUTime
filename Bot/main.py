@@ -98,7 +98,7 @@ async def homeworks_notif():
             t_p=TP_DISCORD_TO_SCHEDULE[t_p], logger_main=logger_main
         )
         homeworks = Homework.remembers_compare(homeworks)
-        if homeworks:
+        if homeworks != []:
             homework_dict[t_p] = Homework.embed_homework_construct(
                 title="automatic notifications homeworks",
                 color=0x00FF00,

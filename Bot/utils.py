@@ -220,7 +220,7 @@ def homework_auto_remove(logger_main, path: str = HOMEWORKSOURCES):
         logging.debug("homeworks_temp = %s", homeworks_temp)
         homeworks: list[Homework] = []
         for homework in homeworks_temp:
-            if homework.date_rendu + timedelta(days=1, hours=12) > current_date:
+            if homework.date_rendu + timedelta(hours=12) > current_date:
                 logging.debug("valid homework : %s", homework)
                 homeworks.append(homework.tojson())
             else:

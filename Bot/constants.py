@@ -107,8 +107,8 @@ TP_SCHEDULE = {
 AUTHORS = "C Square : Artu Florient, Bois Thimote, Bonnel Noah, Fourny Nathan, Prokopowicz Colin"
 
 ZINCEID = 363011509564997642
-TARGETED_HOUR_NOTIF_LESSONS = (1, 0)  # 1,0
-TARGETED_HOUR_NOTIF_HOMEWORKS = (16, 26)  # 17,10
+TARGETED_HOUR_NOTIF_LESSONS = (2, 0)  # 2,0
+TARGETED_HOUR_NOTIF_HOMEWORKS = (18, 10)  # 18,10
 
 
 HELP = f"```Version 1\n\
@@ -124,7 +124,7 @@ homework: Gives the list of Homeworks depending of your TP role\n\
 \n\
 notif: To modify your notifications preference\n\
 \n\
-add_homework (Classroom representative ONLY): Add a new homework for your TP\n\
+add_homework (Classroom representative or 'devoir' role ONLY): Add a new homework for your TP\n\
     Args: (ressource: str) | (prof: str) | (remember: str | int) | (date_rendue: date) | (description: str) | (note: bool = False)\n\
     ressource: module of the homework\n\
     prof: teacher\n\
@@ -134,7 +134,7 @@ add_homework (Classroom representative ONLY): Add a new homework for your TP\n\
     note (OPTIONNAL): True of it's a graded homework, False else\n\
     Exemple: /add_homework ressource: SAE prof: Synave member: critique date_rendu: 2023-09-29-15-45 description: SAE jeu vidéo note: true\n\
 \n\
-del_homework (Classroom representative ONLY): Delete an homework at a certain location\n\
+del_homework (Classroom representative or 'devoir' role ONLY): Delete an homework at a certain location\n\
     Args: (emplacement: int)\n\
     emplacement (OPTIONNAL): emplacement of the homework in the list (written from left to right then from top to bottom)\n\
     Exemple: /del_homework 2\n\
