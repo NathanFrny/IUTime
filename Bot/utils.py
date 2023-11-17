@@ -91,7 +91,7 @@ async def schedule_task(
     logger_main.info(f"called | args: {task}, {planned_date}")
     current_time: datetime = datetime.now()
     sleep_time: timedelta = planned_date - current_time
-    await asyncio.sleep(sleep_time.total_seconds() - 7200)
+    await asyncio.sleep(sleep_time.total_seconds() - 3600)
 
     if iscoroutinefunction(task):
         return await task()
@@ -220,7 +220,7 @@ def homework_auto_remove(logger_main, path: str = HOMEWORKSOURCES):
         logging.debug("homeworks_temp = %s", homeworks_temp)
         homeworks: list[Homework] = []
         for homework in homeworks_temp:
-            if homework.date_rendu + timedelta(days=1, hours=12) > current_date:
+            if homework.date_rendu + timedelta(hours=12) > current_date:
                 logging.debug("valid homework : %s", homework)
                 homeworks.append(homework.tojson())
             else:
