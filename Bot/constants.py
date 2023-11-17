@@ -111,7 +111,7 @@ TARGETED_HOUR_NOTIF_LESSONS = (2, 0)  # 2,0
 TARGETED_HOUR_NOTIF_HOMEWORKS = (18, 10)  # 18,10
 
 
-HELP = f"```Version 1\n\
+HELP = f"```Version 1.1\n\
 Commands:\n\
 schedule: Gives today schedule for the given TP, after 7pm gives tomorrow schedule\n\
     Args: (TP: str = '') | (day: int = 0)\n\
