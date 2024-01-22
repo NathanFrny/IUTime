@@ -18,16 +18,16 @@ def notification_parameter_change(
     logger_main,
     path: str = DATASOURCES,
 ) -> bool:
-    """Change the notification's parameter for the user
+    """Modifie les paramétres de notifications de l'utilisateur.
 
     Args:
-        user_id (str): user's discord id
-        parameter (bool): true if notification accepted, false else
-        notification (str): which notification need a modification
-        path (str, optional): path to json Defaults to DATASOURCES.
+        user_id (str): ID Discord de l'utilisateur.
+        parameter (bool): True si la notifcation est accepté par l'utilisateur, False sinon.
+        notification (str): Nom de la notification à modifier.
+        path (str, optional): Chemin vers le fichier de sauvegarde. Defaults to DATASOURCES.
 
     Returns:
-        bool: true if modification is done, false if any error happened
+        bool: True si la modification à bien été effectué, False si une erreur est survenue.
     """
     logger_main.info(f"called | args: {user_id}, {parameter}, {notification} {path}")
     with open(path, "r+", encoding="utf-8") as file:
@@ -49,15 +49,15 @@ def notification_parameter_change(
         return False
 
 
-def get_notified_users(notify: str, logger_main, sources: str = DATASOURCES) -> list:
-    """Return all IDs found in json in parameters where schedule's notification are activated
+def get_notified_users(notify: str, logger_main, sources: str = DATASOURCES) -> list[str]:
+    """Retourne tous les ID Discord dans la fichier JSON source pour lequel la notification est bien activé
 
     Args:
-        notify (str) : type of notification seached
-        sources (str, optional): Path to json. Defaults to DATASOURCES.
+        notify (str) : Nom de la notification recherchée.
+        sources (str, optional): Chemin vers le fichier source. Defaults to DATASOURCES.
 
     Returns:
-        list: All IDs found
+        list[str]: Liste de tous les ID Discord trouvés.
     """
     logger_main.info(f"called | args: {notify}, {sources}")
     try:
@@ -77,13 +77,13 @@ def get_notified_users(notify: str, logger_main, sources: str = DATASOURCES) -> 
 
 
 async def schedule_task(
-    task, logger_main, planned_date: datetime = datetime.now()
+    task: callable, logger_main, planned_date: datetime = datetime.now()
 ) -> None:
-    """Schedule a task to run at a specific time.
+    """Prévoit une tâche à effectuer à la date et l'heure indiquée.
 
     Args:
-        task (callable | coroutine): task to run
-        planned_date (datetime): time to run the task
+        task (callable | coroutine): Tâche à effectuer.
+        planned_date (datetime): Date et heure à laquelle la tâche doit être effectuée.
 
     Returns:
         None
@@ -102,15 +102,15 @@ async def schedule_task(
 def add_homework_for_tp(
     homework: Homework, t_p: str, logger_main, path: str = HOMEWORKSOURCES
 ) -> bool:
-    """Add an homework in json file
+    """Ajoute un nouveau devoir dans un fichier JSON adapté.
 
     Args:
-        homework (Homework): homework need to be added
-        tp (str): tp group concerned
-        path (str, optional): path to json file. Defaults to HOMEWORKSOURCES.
+        homework (Homework): Devoir à ajouter.
+        tp (str): Groupe TP concerné.
+        path (str, optional): Chemin vers le fichier de sauvegarde. Defaults to HOMEWORKSOURCES.
 
     Returns:
-        bool: true if adding complete, false if error happened
+        bool: True si l'ajout à été effectué, false si une erreur est survenue
     """
     logger_main.info(f"called | {homework}, {t_p}, {path}")
     with open(path, "r+", encoding="utf-8") as file:
@@ -138,16 +138,17 @@ def add_homework_for_tp(
 def del_homework_for_tp(
     placement: int, t_p: str, logger_main, path=HOMEWORKSOURCES
 ) -> int:
-    """Remove an homework in json file
+    """Suppression d'un devoir dans un fichier JSON adapté.
 
     Args:
-        placement (int): index of the homework
-        tp (str): tp group concerned
-        path (str, optional): path to json file. Defaults to HOMEWORKSOURCES.
+        placement (int): Index du devoir dans la liste de devoir du groupe TP concerné.
+        tp (str): Groupe TP concerné.
+        path (str, optional): Chemin vers le fichier source. Defaults to HOMEWORKSOURCES.
 
     Returns:
-        int: 1 if deletion is successful, 0 if an error occurs during execution,
-            2 if user gave a miss-argument
+        int: 1 si le devoir à bien été supprimé, 
+             0 si une erreur d'exécution est survenue,
+             2 si l'utilisateur a donné un argument invalide.
     """
     logger_main.info(f"called | args: {placement}, {t_p}, {path}")
     try:
@@ -164,24 +165,23 @@ def del_homework_for_tp(
 
         return 1
 
-    except (json.JSONDecodeError, KeyError, IndexError):
-        # if user gave a miss-argument or because no any homework registered in his tp
+    except (KeyError, IndexError):
         return 2
-    except FileNotFoundError:
+    except (FileNotFoundError, json.JSONDecodeError):
         return 0
 
 
 def homework_for_tp(
     t_p: str, logger_main, path: str = HOMEWORKSOURCES
 ) -> list[Homework]:
-    """Return a list of object Homework
+    """Retourne la liste des devoirs enregistré pour le TP concerné.
 
     Args:
-        tp (str): tp group concerned
-        path (str, optional): path to json file. Defaults to HOMEWOKSOURCES.
+        tp (str): Groupe TP concerné.
+        path (str, optional): Chemin vers le fichier source. Defaults to HOMEWOKSOURCES.
 
     Returns:
-        list[Homework]: list of Homework for the tp asked
+        list[Homework]: Liste de devoirs.
     """
     logger_main.info(f"called | args: {t_p}, {path}")
     with open(path, "r+", encoding="utf-8") as file:
@@ -203,10 +203,10 @@ def homework_for_tp(
 
 
 def homework_auto_remove(logger_main, path: str = HOMEWORKSOURCES):
-    """Remove out-dated homewoks from json file
+    """Supprime les devoirs dont la date de rendue est dépassée.
 
     Args:
-        path (str, optional): path to json file. Defaults to HOMEWORKSOURCES.
+        path (str, optional): Chemin vers le fichier source. Defaults to HOMEWORKSOURCES.
     """
     logger_main.info(f"called | args: {path}")
     all_homeworks_dict: dict = {}

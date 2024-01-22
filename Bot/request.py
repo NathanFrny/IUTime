@@ -7,14 +7,14 @@ import logging
 
 
 def lessons_tp(t_p: str, logger_main, tomorrow: bool = False, day: int = 0) -> list[Lesson]:
-    """Return schedule for tp group concerned
+    """Calcule et retourne l'emploi du temps du TP concerné
 
     Args:
-        t_p (str): tp group  concerned (like: BUT1TD1TPA)
-        tommrow (bool): if we want lessons for tommorow Default False
+        t_p (str): Groupe TP concerné (Ex: BUT1TD1TPA)
+        tommorow (bool): Si l'on veut l'emploi du temps du lendemain.
 
     Returns:
-        dict: dict representing the schedule
+        list[Lesson]: Liste de Cours 
     """
     logger_main.info(f"called | args: {t_p}, {tomorrow}")
     t_p = t_p.upper()

@@ -8,17 +8,15 @@ from constants import AUTHORS, LOGOPATH
 
 class Homework:
     """
-    Class representing a homework.
+    Classe représentant un devoir.
 
-    Args:
-        ressource (str): Resource associated with the homework.
-        prof (str): Professor in charge of the homework.
-        importance (str | int): Importance of the homework,
-                                can be a string ("BANALE", "NORMAL", "CRITIQUE")
-                                or an integer (1, 3).
-        date_rendu (datetime): Due date of the homework.
-        description (str): Description of the homework.
-        note (bool, optional): Indicates if the homework has been noted. Defaults to False.
+    Attr:
+        ressource (str): Ressource associé au devoir.
+        prof (str): Nom du Professeur ayant demandé ce devoir.
+        importance (enum): Nombre de jour à l'avance auquel ce devoir sera envoyé en notification.
+        date_rendu (datetime): Date de rendu du devoir.
+        description (str): Description du devoir.
+        note (bool, optional): Indique si le devoir est noté.
     """
 
     def __init__(
@@ -37,7 +35,7 @@ class Homework:
         match importance:
             case "ONEDAY":
                 self._remember: Remember = Remember.ONEDAY
-            case "TREEDAY":
+            case "THREEDAY":
                 self._remember: Remember = Remember.TREEDAY
             case "ALWAYS":
                 self._remember: Remember = Remember.ALWAYS
@@ -46,7 +44,7 @@ class Homework:
             case 1:
                 self._remember: Remember = Remember.ONEDAY
             case 3:
-                self._remember: Remember = Remember.TREEDAY
+                self._remember: Remember = Remember.THREEDAY
             case 7:
                 self._remember: Remember = Remember.ONEWEEK
             case _:
@@ -58,122 +56,50 @@ class Homework:
 
     @property
     def ressource(self) -> str:
-        """
-        Get the resource associated with the homework.
-
-        Returns:
-            str: Resource associated with the homework.
-        """
         return self._ressource
 
     @ressource.setter
     def ressource(self, value: str):
-        """
-        Set the resource associated with the homework.
-
-        Args:
-            value (str): Resource to be associated with the homework.
-        """
         self._ressource = value
 
     @property
     def prof(self) -> str:
-        """
-        Get the professor in charge of the homework.
-
-        Returns:
-            str: Professor in charge of the homework.
-        """
         return self._prof
 
     @prof.setter
     def prof(self, value: str):
-        """
-        Set the professor in charge of the homework.
-
-        Args:
-            value (str): Professor to be set in charge of the homework.
-        """
         self._prof = value
 
     @property
     def remember(self) -> Remember:
-        """
-        Get the importance of the homework.
-
-        Returns:
-            Critical: Importance of the homework.
-        """
         return self._remember
 
     @remember.setter
     def remember(self, value: Remember):
-        """
-        Set the importance of the homework.
-
-        Args:
-            value (Critical): Importance to be set for the homework.
-        """
         self._remember = value
 
     @property
     def date_rendu(self) -> datetime:
-        """
-        Get the due date of the homework.
-
-        Returns:
-            datetime: Due date of the homework.
-        """
         return self._date_rendu
 
     @date_rendu.setter
     def date_rendu(self, value: datetime):
-        """
-        Set the due date of the homework.
-
-        Args:
-            value (datetime): Due date to be set for the homework.
-        """
         self._date_rendu = value
 
     @property
     def description(self) -> str:
-        """
-        Get the description of the homework.
-
-        Returns:
-            str: Description of the homework.
-        """
         return self._description
 
     @description.setter
     def description(self, value: str):
-        """
-        Set the description of the homework.
-
-        Args:
-            value (str): Description to be set for the homework.
-        """
         self._description = value
 
     @property
     def note(self) -> bool:
-        """
-        Get the note status of the homework.
-
-        Returns:
-            bool: True if the homework has been noted, False otherwise.
-        """
         return self._note
 
     @note.setter
     def note(self, value: bool):
-        """
-        Set the note status of the homework.
-
-        Args:
-            value (bool): Note status to be set for the homework.
-        """
         self._note = value
 
     def __repr__(self):
@@ -183,20 +109,20 @@ description={self._description}, note={self._note}"
 
     def is_outdated(self) -> bool:
         """
-        Check if the homework is outdated.
+        Regarde si la date de rendu du devoir est déjà passée.
 
         Returns:
-            bool: True if the homework is outdated, False otherwise.
+            bool: True si la date est déjà passée, False sinon.
         """
         current_date: datetime = datetime.now()
         return current_date > self._date_rendu
 
     def tojson(self) -> dict:
         """
-        Convert the homework object to a JSON-compatible dictionary.
+        Convertit l'objet en un format JSON
 
         Returns:
-            dict: JSON-compatible dictionary representing the homework object.
+            dict: Dictionnaire compatible JSON
         """
         homework_dict = {
             "ressource": self._ressource,
@@ -209,21 +135,21 @@ description={self._description}, note={self._note}"
         return homework_dict
 
     def remember_compare(self) -> bool:
-        """Compare the due date of the homework with current date and importance.
+        """Compare la date de rendu du devoir avec la date actuel ainsi que l'importante attribué au devoir.
 
         Returns:
-            bool: True if current date and importance (in days) > due date, False otherwise.
+            bool: True si la date actuelle + importance (en jour) est supérieur à la date de rendue du devoir, False sinon.
         """
         current_date = datetime.now()
-        delta = timedelta(days=self._remember.value, hours=12)
+        delta = timedelta(days=self._remember.value)
         return (current_date + delta) >= self._date_rendu
 
     @staticmethod
     def remembers_compare(list_homeworks: list[Homework]) -> list[Homework]:
-        """Return sorted homeworks by remember.compare function
+        """Retourne la liste de voir avec uniquement les devoirs à rappeller en notification.
 
         Return:
-            list[homework]: list of sorted homeworks
+            list[homework]: Liste de devoirs.
         """
         sorted_homeworks: list[Homework] = []
         for homework in list_homeworks:
@@ -233,14 +159,13 @@ description={self._description}, note={self._note}"
 
     @staticmethod
     def fromjson(json_str: str) -> Homework:
-        """
-        Create a Homework object from a JSON string.
+        """Crée un devoir à partir d'une chaîne de caractére (dictionnaire) au format JSON.
 
         Args:
-            json_str (str): JSON string representing the Homework object.
+            json_str (str): Chaîne de caractére au format JSON.
 
         Returns:
-            Homework: Homework object created from the JSON string.
+            Homework: Objet devoir créé.
         """
         homework_dict: dict = json.loads(json_str)
         ressource = homework_dict.get("ressource")
@@ -254,13 +179,13 @@ description={self._description}, note={self._note}"
 
     @staticmethod
     def sorting_homeworks(homework_list: list[Homework]) -> list[Homework]:
-        """Sort a list of homeworks based on their outdated status.
+        """Trie une liste de devoir en plaçant en premiers les devoirs dont la date de rendue est dépassée.
 
         Args:
-            homework_list (list[Homework]): List of Homework objects.
+            homework_list (list[Homework]): Liste de devoirs.
 
         Returns:
-            list[Homework]: Sorted list of Homework objects
+            list[Homework]: Liste de devoirs triés.
         """
         return sorted(homework_list, key=lambda hw: hw.is_outdated(), reverse=False)
 
@@ -273,21 +198,20 @@ description={self._description}, note={self._note}"
         sign: bool = True,
         sorting: bool = True,
     ) -> Embed:
-        """Create a discord Embed object representing a student's homeworks
-
+        """Crée un Embed discord représentant plusieurs devoirs.
         Args:
-            title (str): title of the embed
-            color (int | Colour): color of the embed
-            homeworks (list[Homework]): homeworks of student
-            description (str | None): description of the embed
-            sign (bool, optional): signed by CSquare on demand, default True
-            sorting (bool, optional): sorting of homework to position them with outdated on top,
-                                    default True
+            title (str): Titre de l'Embed.
+            color (int | Colour): Couleur de l'Embed.
+            homeworks (list[Homework]): Liste de devoirs.
+            description (str | None): Description de l'Embed.
+            sign (bool, optional): Signature par CSquare (Default: True).
+            sorting (bool, optional): Trie des devoirs afin de placer les devoirs dont la date de rendue est dépassée en premiéres positions. (Default True).
         Returns:
-            Embed: discord Embed object, ready to be sent
+            Embed: Embed Discord prêt à être envoyé.
         """
         if sorting:
             Homework.sorting_homeworks(homeworks)
+
         embed: Embed = Embed(
             title=title, description=description if description else "", color=color
         )
@@ -299,11 +223,11 @@ description={self._description}, note={self._note}"
             note: bool = homework.note
 
             embed.add_field(
-                name=f"{ressource} {'DEADLINE PASSED' if homework.is_outdated() else ''}",
-                value=f"Teacher: {prof}\nFor: {date_rendu.day}/\
+                name=f"{ressource} {'DEADLINE PDEPASSE' if homework.is_outdated() else ''}",
+                value=f"Prof: {prof}\Pour le: {date_rendu.day}/\
 {date_rendu.month if len(str(date_rendu.month)) > 1 else '0'+str(date_rendu.month)}\
 /{date_rendu.year} {date_rendu.hour}H{date_rendu.minute if len(str(date_rendu.minute)) > 1 else '0'+str(date_rendu.minute)}\
-\nDescription: {description}\n{'Graded homework' if note else ''}",
+\nDescription: {description}\n{'Noté ? ' if note else ''}",
             )
         if sign:
             embed.set_thumbnail(url=LOGOPATH)

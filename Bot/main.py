@@ -55,13 +55,13 @@ bot: Bot = Bot(intents=intents)
 
 @bot.event
 async def on_ready():
-    """Actions to do when the bot is ready to use"""
+    """Actions effectuées à la connexion du bot"""
     if not bot.user:
         raise InterruptedError("The bot didn't connect")
 
     logger_main.info(
         "Logged in as %s (%s)", bot.user.name, bot.user.id
-    )  # Bot connection confirmation
+    )  # Confirmation de la connexion
 
     asyncio.create_task(wait_for_auto_start_notif_lessons())
     asyncio.create_task(wait_for_auto_start_notif_homeworks())
@@ -70,7 +70,7 @@ async def on_ready():
 
 @tasks.loop(hours=24)
 async def plan_notif_for_tp():
-    """For each tp, create a list of sorted lesson, will this list is not empty, plan a notification for the next lesson"""
+    """Pour chaque groupe TP enregistré, créer une liste des notifications de cours à envoyer et programme leur envoit à l'heure adéquate"""
     logger_main.info("called")
     all_lesson: list[Lesson] = []
     for t_p in TP_SCHEDULE_TO_DISCORD.keys():
@@ -88,8 +88,8 @@ async def plan_notif_for_tp():
 
 @tasks.loop(hours=24)
 async def homeworks_notif():
-    """Send a notification of homeworks for each users who activate notifications
-    and delete out-dated homeworks"""
+    """Envoyer une notification de devoirs pour chaque utilisateur qui active les notifications
+    et supprimer les devoirs dépassés"""
     logger_main.info("called")
     homework_auto_remove(logger_main=logger_main)
     homework_dict: dict = {}
@@ -100,10 +100,10 @@ async def homeworks_notif():
         homeworks = Homework.remembers_compare(homeworks)
         if homeworks != []:
             homework_dict[t_p] = Homework.embed_homework_construct(
-                title="automatic notifications homeworks",
+                title="Notification automatique des devoirs",
                 color=0x00FF00,
                 homeworks=homeworks,
-                description=f"Homeworks for {TP_DISCORD_TO_SCHEDULE[t_p]}",
+                description=f"Devoirs pour {TP_DISCORD_TO_SCHEDULE[t_p]}",
                 sign=True,
                 sorting=True,
             )
@@ -115,7 +115,7 @@ async def homeworks_notif():
 
 @tasks.loop(hours=1)
 async def ical_updates():
-    """Auto updates for .ical schedule for each TP"""
+    """Mise à jour automatique des emplois du temps"""
     counter = 0
     for tp in TP_SCHEDULE.keys():
         try:
@@ -133,19 +133,20 @@ async def ical_updates():
                 )
         except Exception as e:
             logger_main.critical(f"erreur : {e}, tp={tp}")
-        await asyncio.sleep(3)  # Let time to the bot to answer to requests
+        await asyncio.sleep(3)  # Laisser le temps au bot de répondre aux requêtes
     logger_main.info(f"ended : {counter}/{len(TP_SCHEDULE.keys())} icals updated")
 
 
 async def get_roles_list_from_user(user: User) -> list[Role]:
-    """Return list of user's roles
+    """Renvoie la liste des rôles de l'utilisateur
 
     Args:
-        user (User): user
+        user (Utilisateur): utilisateur
 
-    Return:
-        list[Role]: List of role of the user
+    Retourne:
+        list[Role]: Liste des rôles de l'utilisateur
     """
+
     logger_main.info(f"Called | args : {user}")
     guild: Guild = bot.get_guild(IUTSERVID)
     if guild:
@@ -159,19 +160,20 @@ async def get_roles_list_from_user(user: User) -> list[Role]:
         logger_main.critical("No guild found")
 
 
-@bot.command(description="Ask your schedule")
+@bot.command(description="Demandez votre emploi du temps")
 async def schedule(
     ctx: ApplicationContext,
     t_p: Option(str, description="TP group") = "",
     day: Option(int, description="Schedule for which day") = 0,
 ):
-    """Command to retrieve and send the schedule for a specific TP group.
-        If hour > 19, retrieve and send tommorow's shedule
+    """Commande pour récupérer et envoyer l'emploi du temps d'un groupe TP spécifique.
+        Si l'heure est > 19, récupérer et envoyer l'emploi du temps du lendemain.
 
     Args:
-        ctx (ApplicationContext): The application context.
-        t_p (str): The TP group for which to retrieve the schedule.
+        ctx (ApplicationContext): Le contexte de l'application.
+        t_p (str): Le groupe TP pour lequel récupérer l'emploi du temps.
     """
+
     logger_main.info(f"called by : {ctx.author.id} | args : {t_p}, {day}")
     member: User | Member = ctx.author
     logging.debug("User value : %s", member)
@@ -194,7 +196,7 @@ async def schedule(
 
         if t_p == "":
             await ctx.interaction.response.send_message(
-                "You don't have any group TP roles", ephemeral=True
+                "Vous n'avez aucun rôle TP", ephemeral=True
             )
             return
 
@@ -209,7 +211,7 @@ async def schedule(
             tomorrow: bool = False
         await ctx.interaction.response.send_message(
             "Done!", ephemeral=True
-        )  # Responding to user
+        )
         date += datetime.timedelta(days=day)
         _schedule: list = Lesson.sorting_schedule(
             lessons_tp(t_p, tomorrow=tomorrow, logger_main=logger_main, day=day)
@@ -235,29 +237,30 @@ async def schedule(
         )  # Responding if bad argument
 
 
-@bot.command(description="Need help ?")
+@bot.command(description="Besoin d'aide ?")
 async def iutime(ctx: ApplicationContext):
-    """Send to user the /help text"""
+    """Equivalent du /help"""
     await ctx.interaction.response.send_message(HELP, ephemeral=True)
 
 
-@bot.command(description="Able/Enable notifications for homeworks or lessons")
+@bot.command(description="""Activer/Désactiver les notifications pour les devoirs ou les leçons""")
 async def notif(
     ctx: ApplicationContext,
     notification_homeworks: Option(
-        bool, description="Enable/Disable notifications for homeworks"
+        bool, description="Activer/Désactiver les notifications pour les devoirs"
     ),
     notification_lessons: Option(
-        bool, description="Enable/Disable notifications for lessons"
+        bool, description="Activer/Désactiver les notifications pour les cours"
     ),
 ):
-    """Enable users to change their notification parameters
+    """Permet aux utilisateurs de modifier leurs paramètres de notification
 
     Args:
-        ctx (ApplicationContext): Discord users recuperation
-        notification_homeworks (bool): Change homeworks notifications parameter
-        notification_lessons (bool): Change lessons notifications parameter
+        ctx (ApplicationContext): Récupération des utilisateurs Discord
+        notification_homeworks (bool): Modifier le paramètre de notification des devoirs
+        notification_lessons (bool): Modifier le paramètre de notification des leçons
     """
+
     logger_main.info(
         f"called by : {ctx.author.id} | args : {notification_homeworks}, {notification_lessons}"
     )
@@ -279,13 +282,14 @@ async def notif(
     await ctx.interaction.response.send_message("Done!", ephemeral=True)
 
 
-@bot.command(description="Ask recorded homeworks for your TP")
+@bot.command(description="Demander les devoirs enregistrer pour votre TP")
 async def homework(ctx: ApplicationContext):
-    """Command to retrieve and send homeworks to the user.
+    """Commande pour récupérer et envoyer les devoirs à l'utilisateur.
 
     Args:
-        ctx (ApplicationContext): The application context.
+        ctx (ApplicationContext): Le contexte de l'application.
     """
+
     logger_main.info(f"called by : {ctx.author.id}")
 
     user: User | Member = ctx.author
@@ -318,13 +322,13 @@ async def homework(ctx: ApplicationContext):
                     title=role.name,
                     color=0x00FF00,
                     homeworks=homeworks,
-                    description="Homeworks",
+                    description="Devoirs",
                 )
                 await send_notification(user_list=[user], embed=embed)
                 await ctx.interaction.response.send_message("Done!", ephemeral=True)
             else:
                 await send_notification(
-                    user_list=[user], message="No homeworks recorded"
+                    user_list=[user], message="Pas de devoirs enregistrés pour votre TP"
                 )
                 await ctx.interaction.response.send_message("Done!", ephemeral=True)
             break
@@ -332,38 +336,38 @@ async def homework(ctx: ApplicationContext):
     # If user has not any TP group
     try:
         await ctx.interaction.response.send_message(
-            "No TP group assigned to you on this discord server", ephemeral=True
+            "Vous n'étes assigné à aucun groupe TP", ephemeral=True
         )
     except InteractionResponded:
         pass
 
-
-@bot.command(description="Add an homework to your TP")
+@bot.command(description="AJoutez un devoir pour votre TP")
 async def add_homework(
     ctx: ApplicationContext,
-    ressource: Option(str, description="Ressource of the homework"),
-    prof: Option(str, description="For which teacher"),
+    ressource: Option(str, description="Ressource du devoir"),
+    prof: Option(str, description="Proffesseur ayant donné le devoir"),
     remember: Option(
         str,
-        description="To be notified some days before the deadline : 'ONEDAY', 'TREEDAY', 'ONEWEEK', 'ALWAYS",
+        description="To be notified some days before the deadline : 'ONEDAY', 'THREEDAY', 'ONEWEEK', 'ALWAYS",
     ),
     date_rendue: Option(
-        str, description="Due date, 'AAAA-MM-DD-HH-MM' exemple '2023-07-03-02-40"
+        str, description="Date de rendu, format: 'AAAA-MM-DD-HH-MM', exemple '2023-07-03-02-40"
     ),
-    description: Option(str, description="A simple desciption of the homework"),
-    note: Option(bool, description="If graded or not") = False,
+    description: Option(str, description="Description simple du devoir"),
+    note: Option(bool, description="Ce devoir est-il noté ?") = False,
 ):
-    """Command to add a homework to the TP.
+    """Commande pour ajouter un devoir au TP.
 
     Args:
-        ctx (ApplicationContext): The application context.
-        ressource (str): The resource of the homework.
-        prof (str): The professor of the homework.
-        remember (str): The importance/criticality of the homework.
-        date_rendu (str): The deadline of the homework in the format 'YYYY-MM-DD-HH-MM'.
-        description (str): The description of the homework.
-        note (bool, optional): Whether the homework needs to be noted. Defaults to False.
+        ctx (ApplicationContext): Le contexte de l'application.
+        ressource (str): La ressource du devoir.
+        prof (str): Le professeur du devoir.
+        remember (str): L'importance/criticité du devoir.
+        date_rendu (str): La date limite du devoir au format 'AAAA-MM-JJ-HH-MM'.
+        description (str): La description du devoir.
+        note (bool, facultatif): Indique si le devoir doit être noté. Par défaut, False.
     """
+
     logger_main.info(
         f"called by : {ctx.author.id} | args: {ressource}, {prof}, {remember}, {date_rendue}, {description}, {note}"
     )
@@ -381,14 +385,14 @@ async def add_homework(
             "délégué" in [role.name for role in roles]
             or "devoirs" in [role.name for role in roles]
         ):
-            logging.debug("TP and role 'délégué' found")
+            logging.debug("TP and role 'délégué' or 'devoirs' found")
             try:
                 date_rendu_obj: datetime.datetime = datetime.datetime.strptime(
                     date_rendue, "%Y-%m-%d-%H-%M"
                 )
             except ValueError:
                 await ctx.interaction.response.send_message(
-                    "Invalid date format. Use the format 'YYYY-MM-DD-HH-MM'",
+                    "Format de date invalide, utilisez le format 'YYYY-MM-DD-HH-MM'",
                     ephemeral=True,
                 )
                 return
@@ -405,7 +409,7 @@ async def add_homework(
             )
             if result:
                 await ctx.interaction.response.send_message(
-                    "Homework added!", ephemeral=True
+                    "Devoir ajouté !", ephemeral=True
                 )
                 return
             else:
@@ -423,27 +427,28 @@ for user {ctx.author}, tp = {role.name}, homework = {homework_}"
                     "An error happened, my creators have been notified", ephemeral=True
                 )
             break
-    logger_main.debug("TP or role 'délégué' not found")
+    logger_main.debug("TP or role 'délégué'|'devoirs' not found")
     await ctx.interaction.response.send_message(
-        "Only TP delegates have the right to modify recorded homeworks",
+        "Seul les délégués des TP ou les étudiants ayant le rôle 'devoirs' sont autorisés à modifier les devoirs enregistrés pour leur TP",
         ephemeral=True,
     )
 
 
-@bot.command(description="Delete an homework to your TP")
+@bot.command(description="Supprimez un devoirs enregistré pour votre TP")
 async def del_homework(
     ctx: ApplicationContext,
     emplacement: Option(
         int,
-        description="Homework's list placement, start to 1, let empty to obtain the list of homeworks",
+        description="Placement de la liste des devoirs, départ à 1, laisser vide pour obtenir la liste des devoirs"
     ) = None,
 ):
-    """Command to delete a homework from the TP.
+    """Commande pour supprimer un devoir du TP.
 
     Args:
-        ctx (ApplicationContext): The application context.
-        emplacement (int, optional): The placement of the homework to be deleted. Defaults to None.
+        ctx (ApplicationContext): Le contexte de l'application.
+        emplacement (int, facultatif): L'emplacement du devoir à supprimer. Par défaut, None.
     """
+
     logger_main.info(f"called by : {ctx.author.id} | args: {emplacement}")
 
     user: User | Member = ctx.author
@@ -470,9 +475,8 @@ async def del_homework(
                 )
                 logging.debug("homeworks = %s", homeworks)
                 embed: Embed = Homework.embed_homework_construct(
-                    title="Homeworks recorded list",
-                    description="Use the /del_homework command, indicating \
-the number of the homework you want to delete",
+                    title="Liste des devoirs enregistrés",
+                    description=""""Utilisez la commande /del_homework en indiquant le numéro du devoir que vous souhaitez supprimer""",
                     color=0x00FF00,
                     homeworks=homeworks,
                     sorting=False,
@@ -513,7 +517,7 @@ user {ctx.author}, tp = {role.name}, placement = {emplacement}"
                 break
     try:
         await ctx.interaction.response.send_message(
-            "Only TP delegates have the right to modify recorded homeworks",
+            "Seul les délégués des TP ou les étudiants ayant le rôle 'devoirs' sont autorisés à modifier les devoirs enregistrés pour leur TP",
             ephemeral=True,
         )
     except InteractionResponded:
@@ -521,16 +525,17 @@ user {ctx.author}, tp = {role.name}, placement = {emplacement}"
 
 
 async def plan_notification(t_p: str, lesson: Lesson) -> None:
-    """Send a notification 5 minutes before the next lesson
+    """Envoyer une notification 5 minutes avant la prochaine leçon
 
     Args:
-        tp (str): code of the TP group
-        lesson (lesson): lesson object that should be sent
+        tp (str): code du groupe TP
+        lesson (Leçon): objet leçon à envoyer
     """
+
     logger_main.info("Plan lesson for TP %s : %s", t_p, lesson)
 
     embed: Embed = Lesson.embed_schedule_construct(
-        title="Next lesson:",
+        title="Prochain cours:",
         description=None,
         color=0x9370DB,
         schedule=[lesson],
@@ -567,12 +572,12 @@ async def plan_notification(t_p: str, lesson: Lesson) -> None:
 async def send_notification(
     user_list: list[User], embed: Embed = None, message: str = None, file: File = None
 ):
-    """Sends a notification with a private message to all the users in user_list
+    """Envoie une notification avec un message privé à tous les utilisateurs de la liste d'utilisateurs
 
     Args:
-        user_list (list[User]): The list of users to be notified
-        embed (Embed | None): The embed that will be sent
-        message (str | None): The message that will be sent
+        user_list (list[Utilisateur]): La liste des utilisateurs à notifier
+        embed (Embed | None): L'incrustation qui sera envoyée
+        message (str | None): Le message qui sera envoyé
     """
 
     for user in user_list:
@@ -586,16 +591,17 @@ async def send_notification(
 
 
 async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> list:
-    """Return a list of user's ID who activated the notification searched
+    """Renvoie une liste d'identifiants d'utilisateurs qui ont activé la notification recherchée
 
     Args:
-        notify (str):notification searched
-        tp (str): TP group (exemple: BUT1-TPA)
-        serv_id (int): targeted server. DEFAULT IUTSERVID
+        notify (str): Notification recherchée
+        tp (str): Groupe TP (exemple : BUT1-TPA)
+        serv_id (int): Serveur ciblé. PAR DÉFAUT IUTSERVID
 
     Returns:
-        list: users discord ID
+        list: Identifiants des utilisateurs Discord
     """
+
     logger_main.info(f"called | args : {notify}, {t_p}, {serv_id}")
     res = []
     user_list: list[str] = get_notified_users(notify=notify, logger_main=logger_main)
@@ -618,7 +624,7 @@ async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> lis
 
 
 async def wait_for_auto_start_notif_lessons():
-    """Wait the indicated time to start the notif lessons loop"""
+    """Attendre le temps indiqué pour démarrer la boucle de notifications de leçons"""
     current_time: datetime.datetime = datetime.datetime.now()
     target_time: datetime.datetime = datetime.datetime(
         current_time.year,
@@ -651,7 +657,7 @@ async def wait_for_auto_start_notif_lessons():
 
 
 async def wait_for_auto_start_notif_homeworks():
-    """Wait the indicated time to start the notif homeworks loop"""
+    """Attendre le temps indiqué pour démarrer la boucle de notifications de devoirs"""
     current_time: datetime.datetime = datetime.datetime.now()
     target_time: datetime.datetime = datetime.datetime(
         current_time.year,
@@ -716,7 +722,7 @@ async def recovery_files(
                 )
     else:
         await ctx.interaction.response.send_message(
-            "You are not in ADMIN_LIST", ephemeral=True
+            "Vous n'étes pas enregistré en tant qu'administateur", ephemeral=True
         )
 
 

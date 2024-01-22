@@ -6,15 +6,15 @@ from constants import AUTHORS, LOGOPATH
 
 class Lesson:
     """
-    Representation of a Lesson
+    Représente un cours.
 
-    Args:
-        start_hour (str): start hour of the lesson
-        end_hour (str): end hour of the lesson
-        professor (str): name of the professor
-        room (str): room number
-        t_p (str): TP concerned
-        cours (str): name of lesson
+    Attr:
+        start_hour (str): Heure de début du cours.
+        end_hour (str): Heure de fin du cours.
+        professor (str): Nom du professeur.
+        room (str): Salle.
+        t_p (str): Groupe TP concerné.
+        cours (str): Nom du cours.
     """
 
     def __init__(
@@ -35,128 +35,56 @@ class Lesson:
 
     @property
     def start_hour(self) -> str:
-        """
-        Get the start hour of the lesson.
-
-        Returns:
-            str: Start hour of the lesson.
-        """
         return self._start_hour
 
     @start_hour.setter
     def start_hour(self, hour: str):
-        """
-        Set the start hour of the lesson.
-
-        Args:
-            hour (str | int): Start hour to be set for the lesson.
-        """
         self._start_hour = str(hour)
 
     @property
     def end_hour(self) -> str:
-        """
-        Get the end hour of the lesson.
-
-        Returns:
-            str: End hour of the lesson.
-        """
         return self._end_hour
 
     @end_hour.setter
     def end_hour(self, hour: str):
-        """
-        Set the end hour of the lesson.
-
-        Args:
-            hour (str | int): End hour to be set for the lesson.
-        """
         self._end_hour = str(hour)
 
     @property
     def professor(self) -> str:
-        """
-        Get the name of the professor for the lesson.
-
-        Returns:
-            str: Name of the professor.
-        """
         return self._professor
 
     @professor.setter
     def professor(self, professor: str):
-        """
-        Set the name of the professor for the lesson.
-
-        Args:
-            professor (str): Name of the professor to be set.
-        """
         self._professor = professor
 
     @property
     def room(self) -> str:
-        """
-        Get the room number for the lesson.
-
-        Returns:
-            str: Room number of the lesson.
-        """
         return self._room
 
     @room.setter
     def room(self, room: str):
-        """
-        Set the room number for the lesson.
-
-        Args:
-            room (str): Room number to be set for the lesson.
-        """
         self._room = room
 
     @property
     def t_p(self) -> str:
-        """
-        Get the TP concerned for the lesson.
-
-        Returns:
-            str: TP concerned for the lesson.
-        """
         return self._t_p
 
     @t_p.setter
     def t_p(self, t_p: str):
-        """
-        Set the TP concerned for the lesson.
-
-        Args:
-            t_p (str): TP to be set for the lesson.
-        """
         self._t_p = t_p
 
     @property
     def cours(self) -> str:
-        """
-        Get the name of the lesson.
-
-        Returns:
-            str: Name of the lesson.
-        """
         return self._cours
 
     @cours.setter
     def cours(self, cours: str):
-        """
-        Set the name of the lesson.
-
-        Args:
-            cours (str): Name of the lesson to be set.
-        """
         self._cours = cours
 
     def __repr__(self):
         return (
-            f"Lesson: start_hour={self.start_hour}, end_hour={self.end_hour}, "
-            f"professor={self.professor}, lesson={self.cours}, room={self.room}, tp={self.t_p}"
+            f"Cours: Début={self.start_hour}, Fin={self.end_hour}, "
+            f"Prof={self.professor}, Cours={self.cours}, Salle={self.room}, TP={self.t_p}"
         )
 
     @staticmethod
@@ -167,29 +95,24 @@ class Lesson:
         description: str | None,
         sign: bool = True,
     ) -> Embed:
-        """Create a discord Embed object representing a student's shedule
+        """Crée un Embed Discord représentant l'emplois du temps d'un étudiant.
 
         Args:
-            title (str): title of the embed
-            color (int | Colour): color of the embed
-            schedule (list[Lesson]): schedule of student
-            description (str | None): description of the embed
-            sign (bool): signed by CSquare on demand, default True
+            title (str): Titre de l'Embed.
+            color (int | Colour): Couleur de l'Embed.
+            schedule (list[Lesson]): Liste de Cours.
+            description (str | None): Description de l'Embed.
+            sign (bool): Signature par CSquare (Default: True).
 
         Returns:
-            Embed: discord Embed object, ready to be sent
+            Embed: Embed discord prêt à être envoyé.
         """
         embed: Embed = Embed(title=title, description=description, color=color)
         for lesson in schedule:
             logging.debug("lesson = %s", lesson)
-            debut: str = lesson.start_hour
-            cours: str = lesson.cours
-            salle: str = lesson.room
-            prof: str = lesson.professor
-            heure_fin: str = lesson.end_hour
             embed.add_field(
-                name=cours,
-                value=f"Start: {debut}\nRoom: {salle}\nTeacher: {prof}\nEnd: {heure_fin}\n\n",
+                name=lesson.cours,
+                value=f"Début: {lesson.start_hour}\nSalle: {lesson.room}\nProfesseur: {lesson.professor}\nFin: {lesson.end_hour}\n\n",
                 inline=False,
             )
         if sign:
@@ -200,13 +123,13 @@ class Lesson:
 
     @staticmethod
     def sorting_schedule(schedule: list[Lesson]) -> list[Lesson]:
-        """Sorts the lessons list by start time order.
+        """Trie une liste de cours par ordre chronologique dans la journée.
 
         Args:
-            schedule (list[Lesson]): Representation of schedule.
+            schedule (list[Lesson]): Liste de cours.
 
         Returns:
-            list[Lesson]: List of lessons sorted
+            list[Lesson]: Liste de cours trié.
         """
         sorted_items = sorted(schedule, key=lambda x: x.start_hour)
         logging.debug("sorted_items = %s", sorted_items)
