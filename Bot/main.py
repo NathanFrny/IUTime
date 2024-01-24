@@ -624,7 +624,9 @@ async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> lis
 
 
 async def wait_for_auto_start_notif_lessons():
-    """Attendre le temps indiqué pour démarrer la boucle de notifications de leçons"""
+    """Attendre jusqu'à l'heure indiqué pour lancer la fonction
+    Args:
+        """
     current_time: datetime.datetime = datetime.datetime.now()
     target_time: datetime.datetime = datetime.datetime(
         current_time.year,
@@ -655,38 +657,6 @@ async def wait_for_auto_start_notif_lessons():
 
     asyncio.create_task(plan_notif_for_tp.start())
 
-
-async def wait_for_auto_start_notif_homeworks():
-    """Attendre le temps indiqué pour démarrer la boucle de notifications de devoirs"""
-    current_time: datetime.datetime = datetime.datetime.now()
-    target_time: datetime.datetime = datetime.datetime(
-        current_time.year,
-        current_time.month,
-        current_time.day,
-        TARGETED_HOUR_NOTIF_HOMEWORKS[0],
-        TARGETED_HOUR_NOTIF_HOMEWORKS[1],
-    )
-    logger_main.info(f"called")
-    # Calculate delay before target time
-    if current_time < target_time:
-        wait_time: datetime = target_time - current_time
-        logging.debug("wait time = %s", wait_time)
-    else:
-        next_day: datetime.datetime = current_time + datetime.timedelta(days=1)
-        target_time = datetime.datetime(
-            next_day.year,
-            next_day.month,
-            next_day.day,
-            TARGETED_HOUR_NOTIF_HOMEWORKS[0],
-            TARGETED_HOUR_NOTIF_HOMEWORKS[1],
-        )
-        wait_time: datetime.timedelta = target_time - current_time
-
-    # waiting until target time
-    logging.info("waiting %s seconds", wait_time.total_seconds())
-    await asyncio.sleep(wait_time.total_seconds())
-
-    asyncio.create_task(homeworks_notif.start())
 
 
 @bot.command(description="Recovery a file from root (ADMIN ONLY)")
