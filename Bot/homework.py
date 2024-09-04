@@ -36,7 +36,7 @@ class Homework:
             case "ONEDAY":
                 self._remember: Remember = Remember.ONEDAY
             case "THREEDAY":
-                self._remember: Remember = Remember.TREEDAY
+                self._remember: Remember = Remember.THREEDAY
             case "ALWAYS":
                 self._remember: Remember = Remember.ALWAYS
             case "ONEWEEK":

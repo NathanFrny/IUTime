@@ -3,11 +3,7 @@ import asyncio
 import logging
 import json
 from inspect import iscoroutinefunction
-from constants import (
-    DATASOURCES,
-    TP_DISCORD_TO_SCHEDULE,
-    HOMEWORKSOURCES,
-)
+from constants import DATASOURCES, TP_DISCORD_TO_SCHEDULE, HOMEWORKSOURCES, ADMIN_LIST
 from homework import Homework
 
 
@@ -49,7 +45,9 @@ def notification_parameter_change(
         return False
 
 
-def get_notified_users(notify: str, logger_main, sources: str = DATASOURCES) -> list[str]:
+def get_notified_users(
+    notify: str, logger_main, sources: str = DATASOURCES
+) -> list[str]:
     """Retourne tous les ID Discord dans la fichier JSON source pour lequel la notification est bien activé
 
     Args:
@@ -146,7 +144,7 @@ def del_homework_for_tp(
         path (str, optional): Chemin vers le fichier source. Defaults to HOMEWORKSOURCES.
 
     Returns:
-        int: 1 si le devoir à bien été supprimé, 
+        int: 1 si le devoir à bien été supprimé,
              0 si une erreur d'exécution est survenue,
              2 si l'utilisateur a donné un argument invalide.
     """

@@ -3,6 +3,7 @@ import logging
 import requests
 import asyncio
 import os
+from typing import Callable
 from urllib3 import disable_warnings
 from urllib3.exceptions import InsecureRequestWarning
 from functools import partial
@@ -34,8 +35,6 @@ from constants import (
     TP_DISCORD_TO_SCHEDULE,
     DATASOURCES,
     IUTSERVID,
-    ZINCEID,
-    NOTIFICATION_JSON_KEYS,
     HOMEWORKSOURCES,
     TP_SCHEDULE_TO_DISCORD,
     TARGETED_HOUR_NOTIF_LESSONS,
@@ -63,9 +62,21 @@ async def on_ready():
         "Logged in as %s (%s)", bot.user.name, bot.user.id
     )  # Confirmation de la connexion
 
-    asyncio.create_task(wait_for_auto_start_notif_lessons())
-    asyncio.create_task(wait_for_auto_start_notif_homeworks())
-    asyncio.create_task(ical_updates.start())
+    asyncio.create_task(
+        wait_for_auto_start_function(
+            plan_notif_for_tp,
+            TARGETED_HOUR_NOTIF_LESSONS[0],
+            TARGETED_HOUR_NOTIF_LESSONS[1],
+        )
+    )
+    asyncio.create_task(
+        wait_for_auto_start_function(
+            homeworks_notif,
+            TARGETED_HOUR_NOTIF_HOMEWORKS[0],
+            TARGETED_HOUR_NOTIF_HOMEWORKS[1],
+        )
+    )
+    # asyncio.create_task(ical_updates.start())
 
 
 @tasks.loop(hours=24)
@@ -209,9 +220,7 @@ async def schedule(
             date += datetime.timedelta(days=1)
         else:
             tomorrow: bool = False
-        await ctx.interaction.response.send_message(
-            "Done!", ephemeral=True
-        )
+        await ctx.interaction.response.send_message("Done!", ephemeral=True)
         date += datetime.timedelta(days=day)
         _schedule: list = Lesson.sorting_schedule(
             lessons_tp(t_p, tomorrow=tomorrow, logger_main=logger_main, day=day)
@@ -243,7 +252,9 @@ async def iutime(ctx: ApplicationContext):
     await ctx.interaction.response.send_message(HELP, ephemeral=True)
 
 
-@bot.command(description="""Activer/Désactiver les notifications pour les devoirs ou les leçons""")
+@bot.command(
+    description="""Activer/Désactiver les notifications pour les devoirs ou les leçons"""
+)
 async def notif(
     ctx: ApplicationContext,
     notification_homeworks: Option(
@@ -341,6 +352,7 @@ async def homework(ctx: ApplicationContext):
     except InteractionResponded:
         pass
 
+
 @bot.command(description="AJoutez un devoir pour votre TP")
 async def add_homework(
     ctx: ApplicationContext,
@@ -351,7 +363,8 @@ async def add_homework(
         description="To be notified some days before the deadline : 'ONEDAY', 'THREEDAY', 'ONEWEEK', 'ALWAYS",
     ),
     date_rendue: Option(
-        str, description="Date de rendu, format: 'AAAA-MM-DD-HH-MM', exemple '2023-07-03-02-40"
+        str,
+        description="Date de rendu, format: 'AAAA-MM-DD-HH-MM', exemple '2023-07-03-02-40",
     ),
     description: Option(str, description="Description simple du devoir"),
     note: Option(bool, description="Ce devoir est-il noté ?") = False,
@@ -413,18 +426,8 @@ async def add_homework(
                 )
                 return
             else:
-                # Never supposed to appear
-                logger_main.critical(
-                    f"Error in add_homework_for_tp function : {result}"
-                )
-                zince: User = await bot.fetch_user(ZINCEID)
-                date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-                await zince.send(
-                    f"({date}) Error in add_homework function (main.py)\
-for user {ctx.author}, tp = {role.name}, homework = {homework_}"
-                )
                 await ctx.interaction.response.send_message(
-                    "An error happened, my creators have been notified", ephemeral=True
+                    "Unknow error happened", ephemeral=True
                 )
             break
     logger_main.debug("TP or role 'délégué'|'devoirs' not found")
@@ -439,7 +442,7 @@ async def del_homework(
     ctx: ApplicationContext,
     emplacement: Option(
         int,
-        description="Placement de la liste des devoirs, départ à 1, laisser vide pour obtenir la liste des devoirs"
+        description="Placement de la liste des devoirs, départ à 1, laisser vide pour obtenir la liste des devoirs",
     ) = None,
 ):
     """Commande pour supprimer un devoir du TP.
@@ -499,15 +502,8 @@ async def del_homework(
                         logging.critical(
                             f"Error on del_homework_for_tp function : {result}"
                         )
-                        # Never supposed to appear
-                        zince: User = await bot.fetch_user(ZINCEID)
-                        date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-                        await zince.send(
-                            f"({date}) Error in del_homework function (main.py) for\
-user {ctx.author}, tp = {role.name}, placement = {emplacement}"
-                        )
                         await ctx.interaction.response.send_message(
-                            "An error happened, my creators have been notified",
+                            "Unknw error happened",
                             ephemeral=True,
                         )
                     case 2:
@@ -623,15 +619,22 @@ async def get_user_list_from_tp(notify: str, t_p: str, serv_id=IUTSERVID) -> lis
     return res
 
 
-async def wait_for_auto_start_notif_lessons():
-    """Attendre le temps indiqué pour démarrer la boucle de notifications de leçons"""
+async def wait_for_auto_start_function(function: Callable, hour: int, minute: int):
+    """Lance la fonction demandé à l'heure indiquée
+
+    Args:
+        function (function): Fonction à lancer
+        hour (int): Heure à laquelle lancer la fonction
+        minute (int): Minute à laquelle lancer la fonction
+    """
+
     current_time: datetime.datetime = datetime.datetime.now()
     target_time: datetime.datetime = datetime.datetime(
         current_time.year,
         current_time.month,
         current_time.day,
-        TARGETED_HOUR_NOTIF_LESSONS[0],
-        TARGETED_HOUR_NOTIF_LESSONS[1],
+        hour=hour,
+        minute=minute,
     )
     logger_main.info(f"called")
     # Calculate delay before target time
@@ -640,53 +643,13 @@ async def wait_for_auto_start_notif_lessons():
         logging.debug("wait time = %s", wait_time)
     else:
         next_day: datetime.datetime = current_time + datetime.timedelta(days=1)
-        target_time = datetime.datetime(
-            next_day.year,
-            next_day.month,
-            next_day.day,
-            TARGETED_HOUR_NOTIF_LESSONS[0],
-            TARGETED_HOUR_NOTIF_LESSONS[1],
-        )
-        wait_time: datetime.timedelta = target_time - current_time
-
-    # waiting until target time
-    logging.info("waiting %s seconds", wait_time.total_seconds())
-    await asyncio.sleep(wait_time.total_seconds())
-
-    asyncio.create_task(plan_notif_for_tp.start())
-
-
-async def wait_for_auto_start_notif_homeworks():
-    """Attendre le temps indiqué pour démarrer la boucle de notifications de devoirs"""
-    current_time: datetime.datetime = datetime.datetime.now()
-    target_time: datetime.datetime = datetime.datetime(
-        current_time.year,
-        current_time.month,
-        current_time.day,
-        TARGETED_HOUR_NOTIF_HOMEWORKS[0],
-        TARGETED_HOUR_NOTIF_HOMEWORKS[1],
-    )
-    logger_main.info(f"called")
-    # Calculate delay before target time
-    if current_time < target_time:
-        wait_time: datetime = target_time - current_time
+        wait_time: datetime.timedelta = next_day - current_time
         logging.debug("wait time = %s", wait_time)
-    else:
-        next_day: datetime.datetime = current_time + datetime.timedelta(days=1)
-        target_time = datetime.datetime(
-            next_day.year,
-            next_day.month,
-            next_day.day,
-            TARGETED_HOUR_NOTIF_HOMEWORKS[0],
-            TARGETED_HOUR_NOTIF_HOMEWORKS[1],
-        )
-        wait_time: datetime.timedelta = target_time - current_time
 
     # waiting until target time
     logging.info("waiting %s seconds", wait_time.total_seconds())
     await asyncio.sleep(wait_time.total_seconds())
-
-    asyncio.create_task(homeworks_notif.start())
+    asyncio.create_task(function())
 
 
 @bot.command(description="Recovery a file from root (ADMIN ONLY)")
@@ -708,17 +671,20 @@ async def recovery_files(
             await ctx.interaction.response.send_message("Done!", ephemeral=True)
 
             for path in IMPORTANT_FILES:
-                with open(path, "r") as file:
-                    await send_notification([ctx.author], file=File(file))
+                try:
+                    with open(path, "r") as file:
+                        await send_notification([ctx.author], file=File(file))
+                except Exception as e:
+                    await send_notification([ctx.author], message=f"Error : {e}")
         else:
             try:
                 with open(path, "r") as file:
                     await send_notification([ctx.author], file=File(file))
                     await ctx.interaction.response.send_message("Done!", ephemeral=True)
 
-            except FileNotFoundError:
+            except Exception as e:
                 await ctx.interaction.response.send_message(
-                    "FileNotFoundError", ephemeral=True
+                    f"Error : {e}", ephemeral=True
                 )
     else:
         await ctx.interaction.response.send_message(
@@ -730,6 +696,7 @@ if __name__ == "__main__":
     disable_warnings(
         InsecureRequestWarning
     )  # Désactive des messages de prévention du module requests
+
     log_format = (
         "%(asctime)s | %(levelname)s | %(filename)s | %(funcName)s : %(message)s"
     )
@@ -752,10 +719,10 @@ if __name__ == "__main__":
     logger_main.addHandler(file_handler_main)
 
     # Retranscription des logs du module discord
-    logger_discord = logging.getLogger("discord")
-    file_handler_discord = logging.FileHandler("Logs/discord_logs.txt")
-    file_handler_discord.setLevel(log_level)
-    file_handler_discord.setFormatter(logging.Formatter(log_format))
-    logger_discord.addHandler(file_handler_discord)
+    # logger_discord = logging.getLogger("discord")
+    # file_handler_discord = logging.FileHandler("Logs/discord_logs.txt")
+    # file_handler_discord.setLevel(log_level)
+    # file_handler_discord.setFormatter(logging.Formatter(log_format))
+    # logger_discord.addHandler(file_handler_discord)
 
     bot.run(TOKEN)
