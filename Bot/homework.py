@@ -223,11 +223,14 @@ description={self._description}, note={self._note}"
             note: bool = homework.note
 
             embed.add_field(
-                name=f"{ressource} {'DEADLINE PDEPASSE' if homework.is_outdated() else ''}",
-                value=f"Prof: {prof}\Pour le: {date_rendu.day}/\
-{date_rendu.month if len(str(date_rendu.month)) > 1 else '0'+str(date_rendu.month)}\
-/{date_rendu.year} {date_rendu.hour}H{date_rendu.minute if len(str(date_rendu.minute)) > 1 else '0'+str(date_rendu.minute)}\
-\nDescription: {description}\n{'Noté ? ' if note else ''}",
+                name=f"{ressource} {'DEADLINE DEPASSÉ' if homework.is_outdated() else ''}",
+                value=(
+                    f"Prof: {prof}\n"
+                    f"Pour le: {date_rendu.day:02}/{date_rendu.month:02}/{date_rendu.year} "
+                    f"{date_rendu.hour:02}H{date_rendu.minute:02}\n"
+                    f"Description: {description}\n"
+                    f"{'Devoir noté' if note else ''}"
+                ),
             )
         if sign:
             embed.set_thumbnail(url=LOGOPATH)

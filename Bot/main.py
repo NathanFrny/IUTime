@@ -76,7 +76,7 @@ async def on_ready():
             TARGETED_HOUR_NOTIF_HOMEWORKS[1],
         )
     )
-    # asyncio.create_task(ical_updates.start())
+    asyncio.create_task(ical_updates.start())
 
 
 @tasks.loop(hours=24)
@@ -228,7 +228,7 @@ async def schedule(
         logging.debug("schedule value : %s", _schedule)
 
         embed = Lesson.embed_schedule_construct(
-            title=f"Emploi du temps du {date.day}/{date.month}/{date.year}",
+            title=f"Emploi du temps du {date.day:02}/{date.month:02}/{date.year}",
             description=f"{t_p}",
             color=0xFF0000,  # red
             schedule=_schedule,

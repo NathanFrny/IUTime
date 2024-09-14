@@ -1,7 +1,7 @@
 LOGOPATH = "https://i.imgur.com/VVhr2OF.png"
 DATASOURCES = "JSON/index.json"
 HOMEWORKSOURCES = "JSON/homeworks.json"
-IUTSERVID = 690169359490089059
+IUTSERVID = 1092412416811343872
 LESSONS_HOUR = {
     8: "08:30",
     9: "10:00",
@@ -27,24 +27,25 @@ TP_DISCORD_TO_SCHEDULE = {
     "BUT2-APPB": "BUT2APPB",
     "BUT3-TPA": "BUT3TPA",
     "BUT3-TPB": "BUT3TPB",
-    "BUT3-TPC": "BUT3TPC",
-    "BUT3-TPD": "BUT3TPD",
+    "BUT3-AAPA": "BUT3APPA",
+    "BUT3-AAPB": "BUT3APPB",
 }
 TP_SCHEDULE_TO_DISCORD = {
-    "BUT1TD1TPA": "BUT1-TPA",
-    "BUT1TD1TPB": "BUT1-TPB",
-    "BUT1TD2TPC": "BUT1-TPC",
-    "BUT1TD2TPD": "BUT1-TPD",
-    "BUT1TD3TPE": "BUT1-TPE",
-    "BUT2TD1TPA": "BUT2-TPA",
-    "BUT2TD1TPB": "BUT2-TPB",
-    "BUT2TD2TPC": "BUT2-TPC",
-    "BUT2TD2TPD": "BUT2-TPD",
-    "BUT2TD3TPAAPP": "BUT2-APP",
-    "BUT3ATP1FI": "BUT3-TPA",
-    "BUT3ATP2FI": "BUT3-TPB",
-    "BUT3AAPP": "BUT3-TPC",
-    "BUT3BAPP": "BUT3-TPD",
+    "BUT1TPA": "BUT1-TPA",
+    "BUT1TPB": "BUT1-TPB",
+    "BUT1TPC": "BUT1-TPC",
+    "BUT1TPD": "BUT1-TPD",
+    "BUT1TPE": "BUT1-TPE",
+    "BUT2TPA": "BUT2-TPA",
+    "BUT2TPB": "BUT2-TPB",
+    "BUT2TPC": "BUT2-TPC",
+    "BUT2TPD": "BUT2-TPD",
+    "BUT2APPA": "BUT2-APPA",
+    "BUT2APPB": "BUT2-APPB",
+    "BUT3TPA": "BUT3-TPA",
+    "BUT3TPB": "BUT3-TPB",
+    "BUT3APPA": "BUT3-AAPA",
+    "BUT3APPB": "BUT3-AAPB",
 }
 DEFAULT_STRING_NO_LESSON = "Pas de cours prévu dans l'heure suivante"
 NOTIFICATION_JSON_KEYS = [
@@ -52,63 +53,27 @@ NOTIFICATION_JSON_KEYS = [
     "homeworks",  # Value for notification of homeworks
 ]
 
-TP_CONCERNED = {
-    "BUT1 info": ("BUT1TD1TPA", "BUT1TD1TPB", "BUT1TD2TPC", "BUT1TD2TPD", "BUT1TD3TPE"),
-    "BUT1 TPA": ["BUT1TD1TPA"],
-    "BUT1 TPB": ["BUT1TD1TPB"],
-    "BUT1 TPC": ["BUT1TD2TPC"],
-    "BUT1 TPD": ["BUT1TD2TPD"],
-    "BUT1 TPE": ["BUT1TD3TPE"],
-    "BUT1 TD3": ["BUT1TD3TPE"],
-    "BUT1 TD1": ("BUT1TD1TPA", "BUT1TD1TPB"),
-    "BUT1 TD2": ("BUT1TD2TPC", "BUT1TD2TPD"),
-    "BUT2 info": (
-        "BUT2TD1TPA",
-        "BUT2TD1TPB",
-        "BUT2TD2TPC",
-        "BUT2TD2TPD",
-        "BUT2TD3TPAAPP",
-        "BUT2TD3TPBAPP",
-    ),
-    "BUT2A FI": ("BUT2TD1TPA", "BUT2TD2TPC", "BUT2TD2TPD"),
-    "BUT2A TPA": ["BUT2TD1TPA"],
-    "BUT2B TPB": ["BUT2TD1TPB"],
-    "BUT2A TPC": ["BUT2TD2TPC"],
-    "BUT2A TPD": ["BUT2TD2TPD"],
-    "BUT2 TD1": ("BUT2TD1TPA", "BUT2TD1TPB"),
-    "BUT2 TD2": ("BUT2TD2TPC", "BUT2TD2TPD"),
-    "BUT2 TPA APP": ["BUT2TD3TPAAPP"],
-    "BUT2 TPB APP": ["BUT2TD3TPBAPP"],
-    "BUT2 info App": ("BUT2TD3TPAAPP", "BUT2TD3TPBAPP"),
-    "BUT3 info": ("BUT3AAPP", "BUT3ATP1", "BUT3ATP2", "BUT3BAPP"),
-    "BUT3A FI": ("BUT3ATP1", "BUT3ATP2"),
-    "BUT3A APP": ["BUT3AAPP"],
-    "BUT3A TP1 FI": ["BUT3ATP1"],
-    "BUT3A TP2 FI": ["BUT3ATP2"],
-    "BUT3B APP/FI": ["BUT3BAPP"],
-}
-
 TP_SCHEDULE = {
-    "BUT1TD1TPA": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc38732002143ffcc28a30e8c25ae0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT1TD1TPB": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214633da5846189fc9de0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT1TD2TPC": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214cb97491b201409c5e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT1TD2TPD": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214b4c69b21f41db101e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT1TD3TPE": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc38732002142edc9a35a1d5436ee0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT2TD1TPA": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214afa61ee6300d9346e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT2TD1TPB": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc387320021454fe9d42b6752ce5e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT2TD2TPC": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc387320021459430e2aefb27d40e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT2TD2TPD": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214eba1f059caa03d5ae0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT2TD3TPAAPP": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214097a0191464d3295324cfcf2e9e6b435e05b7ab2457e00b4571f857a52dc5aa230f492d81d4f1a0fa96c4fad30084a42",
-    "BUT2TD3TPBAPP": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc38732002145a3f91796c885729e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT3AAPP": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214a86890e163ca034ee0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT3ATP1FI": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214a2f73a72523cc44be0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT3ATP2FI": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214a9bb6791dfafa87ee0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
-    "BUT3BAPP": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc387320021412405c8e744f3509e0fa50826f0818af2370d544632bbb83906f45af276f59aec18424f8595af9f973866adc6bb17503",
+    "BUT1TPA": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214f10aa373cf877d6dea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT1TPB": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc38732002142879514c891f9d04ea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT1TPC": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc387320021403bb3cac7f4dce14ea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT1TPD": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214a4af781f8c47d1eaea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT1TPE": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214c55eb78c10620f88ea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT2TPA": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214c59041f6a31990f5ea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT2TPB": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc387320021476db9e7a9f83e128ea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT2TPC": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc38732002149f438338bd606a64ea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT2TPD": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214ae2f302cdcaacc0aea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT2APPA": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc38732002147c182b59da8ee9beea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT2APPB": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214d0925e84aaf5f6a4ea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT3TPA": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc38732002140e5b28b25d1fd66bea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT3TPB": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214d41d5d036c2ce769ea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT3APPA": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc3873200214b2dabd805fa66974ea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
+    "BUT3APPB": "https://edt.univ-littoral.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?data=8241fc38732002144d408f0d671f0efbea8ccab428c89e097070b31f8deeace8c5fe00e25987de25e0fa50826f0818af42f6b661317fa297",
 }
 AUTHORS = "C Square : Artu Florient, Bois Thimote, Bonnel Noah, Fourny Nathan, Prokopowicz Colin"
 
-TARGETED_HOUR_NOTIF_LESSONS = (19, 31)  # 2,0
-TARGETED_HOUR_NOTIF_HOMEWORKS = (19, 31)  # 18,10
+TARGETED_HOUR_NOTIF_LESSONS = (3, 0)  # 3,0
+TARGETED_HOUR_NOTIF_HOMEWORKS = (18, 10)  # 18,10
 
 
 HELP = f"```Version 1.1\n\

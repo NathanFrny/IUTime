@@ -237,3 +237,25 @@ def homework_auto_remove(logger_main, path: str = HOMEWORKSOURCES):
 
     with open(path, "w+", encoding="utf-8") as file:
         json.dump(j_s, file)
+
+
+# def is_dst(date):
+#    """Détermine si une date donnée est en heure d'été (DST) pour la France."""
+#    dernier_dimanche_mars = max(semaine for semaine in range(25, 32) if datetime(date.year, 3, semaine).weekday() == 6)
+#    dernier_dimanche_octobre = max(semaine for semaine in range(25, 32) if datetime(date.year, 10, semaine).weekday() == 6)
+#
+#    debut_dst = datetime(date.year, 3, dernier_dimanche_mars, 2, 0, 0)  # L'heure d'été commence à 2h du matin le dernier dimanche de mars
+#    fin_dst = datetime(date.year, 10, dernier_dimanche_octobre, 3, 0, 0)  # L'heure d'été se termine à 3h du matin le dernier dimanche d'octobre
+#
+#    return debut_dst <= date < fin_dst
+#
+# def convert_to_utc(heure, minute):
+#    """Convertit l'heure locale française en UTC en tenant compte de l'heure d'été."""
+#    maintenant = datetime.now()
+#    heure_locale = datetime(maintenant.year, maintenant.month, maintenant.day, heure, minute)
+#
+#    # Détermine le décalage en fonction de l'activation de l'heure d'été
+#    decalage = 2 if is_dst(heure_locale) else 1
+#    # Conversion en UTC
+#    heure_utc = heure_locale - timedelta(hours=decalage)
+#    return heure_utc.hour, heure_utc.minute
