@@ -76,8 +76,7 @@ TARGETED_HOUR_NOTIF_LESSONS = (3, 0)  # 3,0
 TARGETED_HOUR_NOTIF_HOMEWORKS = (18, 10)  # 18,10
 
 
-HELP = f"```\ 
-Commandes:\n\ 
+HELP = f"""```Commandes:\n\ 
 schedule: Donne l'emploi du temps d'aujourd'hui pour le TP donné ou récupéré automatiquement, après 19h donne l'emploi du temps du lendemain\n\ 
     Args: (TP: str = '') | (day: int = 0)\n\ 
     TP (OPTIONNEL): TP dont vous voulez l'emploi du temps\n\ 
@@ -89,7 +88,7 @@ homework: Donne la liste des devoirs en fonction de votre rôle TP\n\
 \n\ 
 notif: Pour modifier vos préférences de notifications\n\ 
 \n\ 
-add_homework (Représentant de classe ou rôle 'devoir' UNIQUEMENT): Ajouter un nouveau devoir pour votre TP\n\ 
+add_homework (Délégué de TP ou rôle 'devoir' UNIQUEMENT): Ajouter un nouveau devoir pour votre TP\n\ 
     Args: (ressource: str) | (prof: str) | (importance: str | int) | (date_rendue: date) | (description: str) | (note: bool = False)\n\ 
     ressource: module du devoir\n\ 
     prof: professeur\n\ 
@@ -99,12 +98,12 @@ add_homework (Représentant de classe ou rôle 'devoir' UNIQUEMENT): Ajouter un 
     note (OPTIONNEL): True si c'est un devoir noté, False sinon\n\ 
     Exemple: /add_homework ressource: SAE prof: Synave importance: critique date_rendue: 2023-09-29-15-45 description: SAE jeu vidéo note: true\n\ 
 \n\ 
-del_homework (Représentant de classe ou rôle 'devoir' UNIQUEMENT): Supprimer un devoir à un emplacement donné\n\ 
+del_homework (Délégué de TP ou rôle 'devoir' UNIQUEMENT): Supprimer un devoir à un emplacement donné\n\ 
     Args: (emplacement: int)\n\ 
     emplacement (OPTIONNEL): emplacement du devoir dans la liste (écrit de gauche à droite puis de haut en bas)\n\ 
     Exemple: /del_homework 2\n\ 
-    Si votre emplacement = 0 OU si vous n'avez pas donné d'emplacement, affichez vos devoirs enregistrés\n\ 
-```"
+    Si votre emplacement = 0 OU si vous n'avez pas donné d'emplacement, affiche tout vos devoirs enregistrés\n\ 
+```"""
 
 
 ADMIN_LIST = [363011509564997642, 238995072740229121, 534827724183699476]
