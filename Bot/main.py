@@ -360,7 +360,7 @@ async def add_homework(
     prof: Option(str, description="Professeur ayant donné le devoir"),
     importance: Option(
         str,
-        description="Pour être notifié automatiquement quelques jours avant la date de rendue : 'ONEDAY', 'THREEDAY', 'ONEWEEK', 'ALWAYS",
+        description="Pour être notifié quelques jours avant la date de rendue : 'ONEDAY', 'THREEDAY', 'ONEWEEK', 'ALWAYS",
     ),
     date_rendue: Option(
         str,
