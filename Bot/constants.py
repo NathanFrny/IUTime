@@ -1,7 +1,7 @@
 LOGOPATH = "https://i.imgur.com/VVhr2OF.png"
 DATASOURCES = "JSON/index.json"
 HOMEWORKSOURCES = "JSON/homeworks.json"
-IUTSERVID = 1092412416811343872
+IUTSERVID = 690169359490089059
 LESSONS_HOUR = {
     8: "08:30",
     9: "10:00",
@@ -76,35 +76,36 @@ TARGETED_HOUR_NOTIF_LESSONS = (3, 0)  # 3,0
 TARGETED_HOUR_NOTIF_HOMEWORKS = (18, 10)  # 18,10
 
 
-HELP = f"```Version 1.1\n\
-Commands:\n\
-schedule: Gives today schedule for the given TP, after 7pm gives tomorrow schedule\n\
-    Args: (TP: str = '') | (day: int = 0)\n\
-    TP (OPTIONNAL): Schedule asked for\n\
-    day (OPTIONNAL): If you want a schedule for days in the futur\n\
-    Exemple: /schedule BUT2TD2TPD 4\n\
-    If you don't give any TP argument, use your TP rôle to give you your schedule\n\
-\n\
-homework: Gives the list of Homeworks depending of your TP role\n\
-\n\
-notif: To modify your notifications preference\n\
-\n\
-add_homework (Classroom representative or 'devoir' role ONLY): Add a new homework for your TP\n\
-    Args: (ressource: str) | (prof: str) | (remember: str | int) | (date_rendue: date) | (description: str) | (note: bool = False)\n\
-    ressource: module of the homework\n\
-    prof: teacher\n\
-    remember: str that represent the importance of the homework\n\
-    date_rendue: deadline date\n\
-    description: a small description of the homework\n\
-    note (OPTIONNAL): True of it's a graded homework, False else\n\
-    Exemple: /add_homework ressource: SAE prof: Synave member: critique date_rendu: 2023-09-29-15-45 description: SAE jeu vidéo note: true\n\
-\n\
-del_homework (Classroom representative or 'devoir' role ONLY): Delete an homework at a certain location\n\
-    Args: (emplacement: int)\n\
-    emplacement (OPTIONNAL): emplacement of the homework in the list (written from left to right then from top to bottom)\n\
-    Exemple: /del_homework 2\n\
-    If your emplacement = 0 OR if you didn't gave an emplacement, show your recorded homeworks\n\
+HELP = f"```\ 
+Commandes:\n\ 
+schedule: Donne l'emploi du temps d'aujourd'hui pour le TP donné ou récupéré automatiquement, après 19h donne l'emploi du temps du lendemain\n\ 
+    Args: (TP: str = '') | (day: int = 0)\n\ 
+    TP (OPTIONNEL): TP dont vous voulez l'emploi du temps\n\ 
+    day (OPTIONNEL): Si vous voulez l'emploi du temps dans x jours\n\ 
+    Exemple: /schedule BUT2TD2TPD 4\n\ 
+    Si vous ne donnez aucun argument, votre TP est récupéré directement via vos rôles discord\n\ 
+\n\ 
+homework: Donne la liste des devoirs en fonction de votre rôle TP\n\ 
+\n\ 
+notif: Pour modifier vos préférences de notifications\n\ 
+\n\ 
+add_homework (Représentant de classe ou rôle 'devoir' UNIQUEMENT): Ajouter un nouveau devoir pour votre TP\n\ 
+    Args: (ressource: str) | (prof: str) | (importance: str | int) | (date_rendue: date) | (description: str) | (note: bool = False)\n\ 
+    ressource: module du devoir\n\ 
+    prof: professeur\n\ 
+    importance: chaîne de caractères qui représente l'importance du devoir\n\ 
+    date_rendue: date de remise\n\ 
+    description: une petite description du devoir\n\ 
+    note (OPTIONNEL): True si c'est un devoir noté, False sinon\n\ 
+    Exemple: /add_homework ressource: SAE prof: Synave importance: critique date_rendue: 2023-09-29-15-45 description: SAE jeu vidéo note: true\n\ 
+\n\ 
+del_homework (Représentant de classe ou rôle 'devoir' UNIQUEMENT): Supprimer un devoir à un emplacement donné\n\ 
+    Args: (emplacement: int)\n\ 
+    emplacement (OPTIONNEL): emplacement du devoir dans la liste (écrit de gauche à droite puis de haut en bas)\n\ 
+    Exemple: /del_homework 2\n\ 
+    Si votre emplacement = 0 OU si vous n'avez pas donné d'emplacement, affichez vos devoirs enregistrés\n\ 
 ```"
+
 
 ADMIN_LIST = [363011509564997642, 238995072740229121, 534827724183699476]
 IMPORTANT_FILES = [

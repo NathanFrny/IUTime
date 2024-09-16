@@ -357,10 +357,10 @@ async def homework(ctx: ApplicationContext):
 async def add_homework(
     ctx: ApplicationContext,
     ressource: Option(str, description="Ressource du devoir"),
-    prof: Option(str, description="Proffesseur ayant donné le devoir"),
-    remember: Option(
+    prof: Option(str, description="Professeur ayant donné le devoir"),
+    importance: Option(
         str,
-        description="To be notified some days before the deadline : 'ONEDAY', 'THREEDAY', 'ONEWEEK', 'ALWAYS",
+        description="Pour être notifié automatiquement quelques jours avant la date de rendue : 'ONEDAY', 'THREEDAY', 'ONEWEEK', 'ALWAYS",
     ),
     date_rendue: Option(
         str,
@@ -382,7 +382,7 @@ async def add_homework(
     """
 
     logger_main.info(
-        f"called by : {ctx.author.id} | args: {ressource}, {prof}, {remember}, {date_rendue}, {description}, {note}"
+        f"called by : {ctx.author.id} | args: {ressource}, {prof}, {importance}, {date_rendue}, {description}, {note}"
     )
 
     user: User | Member = ctx.author
@@ -411,7 +411,7 @@ async def add_homework(
                 return
 
             homework_ = Homework(
-                ressource, prof, remember, date_rendu_obj, description, note
+                ressource, prof, importance, date_rendu_obj, description, note
             )
             logging.debug("homework = %s", homework_)
             result: bool = add_homework_for_tp(
