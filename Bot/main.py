@@ -62,20 +62,20 @@ async def on_ready():
         "Logged in as %s (%s)", bot.user.name, bot.user.id
     )  # Confirmation de la connexion
 
-    asyncio.create_task(
-        wait_for_auto_start_function(
-            plan_notif_for_tp,
-            TARGETED_HOUR_NOTIF_LESSONS[0],
-            TARGETED_HOUR_NOTIF_LESSONS[1],
-        )
-    )
-    asyncio.create_task(
-        wait_for_auto_start_function(
-            homeworks_notif,
-            TARGETED_HOUR_NOTIF_HOMEWORKS[0],
-            TARGETED_HOUR_NOTIF_HOMEWORKS[1],
-        )
-    )
+    # asyncio.create_task(
+    #    wait_for_auto_start_function(
+    #        plan_notif_for_tp,
+    #        TARGETED_HOUR_NOTIF_LESSONS[0],
+    #        TARGETED_HOUR_NOTIF_LESSONS[1],
+    #    )
+    # )
+    # asyncio.create_task(
+    #    wait_for_auto_start_function(
+    #        homeworks_notif,
+    #        TARGETED_HOUR_NOTIF_HOMEWORKS[0],
+    #        TARGETED_HOUR_NOTIF_HOMEWORKS[1],
+    #    )
+    # )
     asyncio.create_task(ical_updates.start())
 
 
